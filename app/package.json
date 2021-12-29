@@ -12,11 +12,7 @@
     "web-vitals": "^2.1.2"
   },
   "scripts": {
-<<<<<<< HEAD
-    "start": "node server.js",
-=======
     "start": "react-scripts start",
->>>>>>> parent of 816a31f (wip)
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
