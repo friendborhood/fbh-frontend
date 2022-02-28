@@ -1,13 +1,13 @@
 import BoxInput from "./BoxInput";
 
-function Form(props){
+const Form = () => {
     return(
         <div id='form' className="basis-full border-8 border-green-900 rounded-lg border-double">
         <BoxInput label="First Name" id="fname" margin="mt-6"/>
         <BoxInput label="Last Name" id="lname"/>
         <BoxInput label="Username" id="username"/>
-        <BoxInput label="password" id="password"/>
         <BoxInput label="Email Address" id="email" margin="mb-6"/>
+
         </div>
     );
 }
