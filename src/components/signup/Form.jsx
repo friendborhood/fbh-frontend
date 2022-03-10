@@ -1,6 +1,6 @@
 import BoxInput from "./BoxInput";
-import { useState } from "react";
-function Form(props) {
+import { useEffect, useState } from "react";
+const Form = (props) => {
   const [fname, setFname] = useState("");
   const [lname, setLname] = useState("");
   const [username, setUsername] = useState("");
@@ -39,6 +39,6 @@ function Form(props) {
       />
     </form>
   );
-}
+};
 
 export default Form;

@@ -1,18 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
-import { Route } from 'react-router-dom';
-import Form from './components/Form';
+import { Route, Redirect, Switch } from 'react-router-dom';
+import Form from './components/signup/Form';
+import Layout from './components/Layout/Layout';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
-    <>
-    <div className='flex flex-col items-center'>
-      <img src="./photo/logo.png" width="600px"/>
+    <Layout>
+      <Route path='/' exact>
+        <Redirect to='/home'/>
+      </Route>
       <Route path="/signup">
         <Form/>
       </Route>
-    </div>
-    </>
+      <Route path='*'>
+        <NotFound/>
+      </Route>
+    </Layout>
   );
 }
 

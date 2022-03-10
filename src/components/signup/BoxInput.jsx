@@ -1,4 +1,4 @@
-function BoxInput(props) {
+const BoxInput = (props) => {
   const def = "border-solid border-2 border-green-700 rounded-md";
   const focus =
     "focus:outline-none focus:border-green-800 focus:shadow-inner focus:shadow-green-900";
@@ -18,6 +18,6 @@ function BoxInput(props) {
       />
     </div>
   );
-}
+};
 
 export default BoxInput;
