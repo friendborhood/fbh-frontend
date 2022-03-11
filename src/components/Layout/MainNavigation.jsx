@@ -1,26 +1,22 @@
-import classes from "./MainNavigation.module.css";
-import { NavLink } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
+import classes from './MainNavigation.module.css';
 
-const MainNavigation = (props) => {
-  const tabs = ["login", "sign-up"];
+function MainNavigation() {
+  const tabs = ['login', 'sign-up'];
 
   const formatTabText = (text) => {
-    let myText = text.charAt(0).toUpperCase() + text.slice(1);
+    const myText = text.charAt(0).toUpperCase() + text.slice(1);
     console.log(myText);
     return myText;
   };
 
-  const mapTabs = () => {
-    return tabs.map((item, index) => {
-      return (
-        <li key={index}>
-          <NavLink to={`/${item}`} activeClassName={classes.active}>
-            {formatTabText(item)}
-          </NavLink>
-        </li>
-      );
-    });
-  };
+  const mapTabs = () => tabs.map((item, index) => (
+    <li key={index}>
+      <NavLink to={`/${item}`} activeClassName={classes.active}>
+        {formatTabText(item)}
+      </NavLink>
+    </li>
+  ));
 
   return (
     <header>
@@ -35,6 +31,6 @@ const MainNavigation = (props) => {
       </nav>
     </header>
   );
-};
+}
 
 export default MainNavigation;

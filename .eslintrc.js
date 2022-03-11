@@ -21,5 +21,7 @@ module.exports = {
   rules: {
     'import/prefer-default-export': 'off',
     'react/react-in-jsx-scope': 'off',
+    'react/prop-types': 'off',
+    'react/no-array-index-key': 'off',
   },
 };

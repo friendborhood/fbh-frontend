@@ -1,12 +1,13 @@
-import MainNavigation from "./MainNavigation";
-import classes from "./Layout.module.css";
-const Layout = (props) => {
+import MainNavigation from './MainNavigation';
+import classes from './Layout.module.css';
+
+function Layout({ children }) {
   return (
     <>
       <MainNavigation />
-      <main className={classes.main}>{props.children}</main>
+      <main className={classes.main}>{children}</main>
     </>
   );
-};
+}
 
 export default Layout;
