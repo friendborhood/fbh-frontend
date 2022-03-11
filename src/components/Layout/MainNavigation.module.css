@@ -1,0 +1,21 @@
+nav{
+    display: flex;
+    margin-bottom: 20px;
+}
+
+ul {
+    display: flex;
+    align-items: flex-end;
+}
+
+ul a {
+    padding: 7px;
+}
+
+ul a:hover{
+    background-color: #757575;
+}
+ul a:active,
+ul a.active{
+    background-color: #606060;
+}

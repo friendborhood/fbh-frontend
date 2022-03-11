@@ -7,15 +7,17 @@ import NotFound from './pages/NotFound';
 function App() {
   return (
     <Layout>
-      <Route path='/' exact>
-        <Redirect to='/home'/>
-      </Route>
-      <Route path="/signup">
-        <Form/>
-      </Route>
-      <Route path='*'>
-        <NotFound/>
-      </Route>
+      <Switch>
+        <Route path='/' exact>
+          <Redirect to='/home'/>
+        </Route>
+        <Route path="/sign-up">
+          <Form/>
+        </Route>
+        <Route path='*'>
+          <NotFound />
+        </Route>
+      </Switch>
     </Layout>
   );
 }
