@@ -1,10 +1,13 @@
-import BoxInput from "./BoxInput";
-import { useEffect, useState } from "react";
-const Form = (props) => {
-  const [fname, setFname] = useState("");
-  const [lname, setLname] = useState("");
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
+import React, { useState } from 'react';
+import Button from '@mui/material/Button';
+import { handleSignUp } from './utils';
+import BoxInput from './BoxInput';
+
+function Form() {
+  const [fname, setFname] = useState('');
+  const [lname, setLname] = useState('');
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
 
   return (
     <form
@@ -37,8 +40,16 @@ const Form = (props) => {
         setState={setEmail}
         margin="mb-6"
       />
+      <Button
+        variant="contained"
+        onClick={() => handleSignUp({
+          email, username, lname, fname,
+        })}
+      >
+        Sign Up!
+      </Button>
     </form>
   );
-};
+}
 
 export default Form;

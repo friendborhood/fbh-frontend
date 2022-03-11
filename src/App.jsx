@@ -1,4 +1,5 @@
 import './App.css';
+import React from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
 import Form from './components/signup/Form';
 import Layout from './components/Layout/Layout';
@@ -8,13 +9,13 @@ function App() {
   return (
     <Layout>
       <Switch>
-        <Route path='/' exact>
-          <Redirect to='/home'/>
+        <Route path="/" exact>
+          <Redirect to="/home" />
         </Route>
         <Route path="/sign-up">
-          <Form/>
+          <Form />
         </Route>
-        <Route path='*'>
+        <Route path="*">
           <NotFound />
         </Route>
       </Switch>
