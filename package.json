@@ -21,7 +21,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts start & react-scripts test",
     "eject": "react-scripts eject",
     "linter": "./node_modules/.bin/eslint ."
   },
@@ -52,6 +52,7 @@
     "eslint-plugin-react": "^7.29.3",
     "eslint-plugin-react-hooks": "^4.3.0",
     "postcss": "^8.4.7",
+    "puppeteer": "^13.5.1",
     "tailwindcss": "^3.0.23"
   }
 }
