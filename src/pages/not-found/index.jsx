@@ -2,7 +2,7 @@ function NotFound() {
   return (
     <div className="centered">
       {/* <img src="./photo/icon.jpg"></img> */}
-      <p>{'404\nPage not found!'}</p>
+      <p>{'Oops , this page doesn\'t exist 🐿️'}</p>
     </div>
   );
 }
