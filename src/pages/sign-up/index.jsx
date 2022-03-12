@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import { handleSignUp } from './utils';
-import BoxInput from './BoxInput';
+import BoxInput from '../../components/BoxInput';
 
 function Form() {
   const [fname, setFname] = useState('');
@@ -41,6 +41,7 @@ function Form() {
         margin="mb-6"
       />
       <Button
+        id="sign-up"
         variant="contained"
         onClick={() => handleSignUp({
           email, username, lname, fname,

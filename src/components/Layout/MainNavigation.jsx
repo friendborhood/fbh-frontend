@@ -1,26 +1,9 @@
 /* eslint-disable no-unused-vars */
-// import { NavLink } from 'react-router-dom';
 import {
   Nav, Navbar, NavDropdown, Container,
 } from 'react-bootstrap';
 
 function MainNavigation() {
-  const tabs = ['login', 'sign-up'];
-
-  const formatTabText = (text) => {
-    const myText = text.charAt(0).toUpperCase() + text.slice(1);
-    console.log(myText);
-    return myText;
-  };
-
-  // const mapTabs = () => tabs.map((item, index) => (
-  //   <li key={index}>
-  //     <NavLink to={`/${item}`} activeClassName={classes.active}>
-  //       {formatTabText(item)}
-  //     </NavLink>
-  //   </li>
-  // ));
-
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Navbar.Brand href="#home">

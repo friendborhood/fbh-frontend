@@ -2,9 +2,9 @@ import './App.css';
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Route, Redirect, Switch } from 'react-router-dom';
-import Form from './components/signup/Form';
+import Form from './pages/sign-up';
 import Layout from './components/Layout/Layout';
-import NotFound from './pages/NotFound';
+import NotFound from './pages/not-found';
 
 function App() {
   return (
