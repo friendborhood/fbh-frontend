@@ -6,7 +6,7 @@ import BoxInput from '../../components/BoxInput';
 function Form() {
   const [fname, setFname] = useState('');
   const [lname, setLname] = useState('');
-  const [username, setUsername] = useState('');
+  const [userName, setuserName] = useState('');
   const [email, setEmail] = useState('');
 
   return (
@@ -28,10 +28,10 @@ function Form() {
         setState={setLname}
       />
       <BoxInput
-        label="Username"
-        id="username"
-        state={username}
-        setState={setUsername}
+        label="userName"
+        id="userName"
+        state={userName}
+        setState={setuserName}
       />
       <BoxInput
         label="Email Address"
@@ -44,7 +44,7 @@ function Form() {
         id="sign-up"
         variant="contained"
         onClick={() => handleSignUp({
-          email, username, lname, fname,
+          email, userName, lastName: lname, firstName: fname,
         })}
       >
         Sign Up!
