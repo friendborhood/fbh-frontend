@@ -8,6 +8,7 @@ function Form() {
   const [lname, setLname] = useState('');
   const [userName, setuserName] = useState('');
   const [email, setEmail] = useState('');
+  const canSignUp = !(email && userName && fname && lname);
 
   return (
     <form
@@ -28,7 +29,7 @@ function Form() {
         setState={setLname}
       />
       <BoxInput
-        label="userName"
+        label="User Name"
         id="userName"
         state={userName}
         setState={setuserName}
@@ -41,7 +42,9 @@ function Form() {
         margin="mb-6"
       />
       <Button
+        style={{ marginLeft: 150 }}
         id="sign-up"
+        disabled={canSignUp}
         variant="contained"
         onClick={() => handleSignUp({
           email, userName, lastName: lname, firstName: fname,
