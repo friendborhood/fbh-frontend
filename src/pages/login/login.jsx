@@ -4,7 +4,7 @@ import BoxInput from '../../components/BoxInput';
 import { handleLogin } from './utils';
 
 function Form() {
-  const [username, setUsername] = useState('');
+  const [userName, setUsername] = useState('');
 
   return (
     <form
@@ -14,13 +14,13 @@ function Form() {
       <BoxInput
         label="Username"
         id="username"
-        state={username}
+        state={userName}
         setState={setUsername}
       />
       <Button
         id="sign-up"
         variant="contained"
-        onClick={() => handleLogin(username)}
+        onClick={() => handleLogin(userName)}
       >
         Login
       </Button>
