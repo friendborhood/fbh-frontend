@@ -1,7 +1,7 @@
 import { network } from '../../../network';
 
 export const handleLogin = async (userName) => {
-  const { data: { message } } = await network.get();
-  alert(userName);
-  alert(message);
+  const { data } = await network.post(`/user/auth/${userName}`);
+  alert(JSON.stringify(data));
+  console.log(JSON.stringify(data));
 };
