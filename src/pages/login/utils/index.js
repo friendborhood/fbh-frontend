@@ -1,7 +1,12 @@
 import { network } from '../../../network';
 
 export const handleLogin = async (userName) => {
-  const { data } = await network.post(`/user/auth/${userName}`);
-  alert(JSON.stringify(data));
-  console.log(JSON.stringify(data));
+  try {
+    const { data } = await network.post(`/user/auth/${userName}`);
+    alert(JSON.stringify(data));
+    return true;
+  } catch (e) {
+    alert('this user does not exist');
+    return false;
+  }
 };

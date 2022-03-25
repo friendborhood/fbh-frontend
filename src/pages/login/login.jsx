@@ -5,6 +5,11 @@ import { handleLogin } from './utils';
 
 function Form() {
   const [userName, setUsername] = useState('');
+  const [pinCode, setPinCode] = useState('');
+  const [codeHasBeenSent, setCodeSent] = useState({
+    codeWasSent: false,
+    text: 'Send Login Code!',
+  });
 
   return (
     <form
@@ -16,13 +21,34 @@ function Form() {
         id="username"
         state={userName}
         setState={setUsername}
+        isHidden={codeHasBeenSent.codeWasSent}
       />
+
+      <BoxInput
+        label="Code from email"
+        id="pinCode"
+        state={pinCode}
+        setState={setPinCode}
+        isHidden={!codeHasBeenSent.codeWasSent}
+      />
+
       <Button
-        id="sign-up"
+        id="login"
         variant="contained"
-        onClick={() => handleLogin(userName)}
+        disabled={!userName && !pinCode}
+        style={{ marginLeft: 150 }}
+        onClick={async () => {
+          const codeWasSentSuccessfully = await handleLogin(userName);
+          if (codeWasSentSuccessfully) {
+            setCodeSent({
+              text: 'Login',
+              codeWasSent: true,
+            });
+            setUsername('');
+          }
+        }}
       >
-        Login
+        {codeHasBeenSent.text}
       </Button>
     </form>
   );
