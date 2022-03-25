@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import BoxInput from '../../components/BoxInput';
-import { handleLogin } from './utils';
+import { handleAuthValidation, handleLogin } from './utils';
 
 function Form() {
   const [userName, setUsername] = useState('');
@@ -38,13 +38,21 @@ function Form() {
         disabled={!userName && !pinCode}
         style={{ marginLeft: 150 }}
         onClick={async () => {
-          const codeWasSentSuccessfully = await handleLogin(userName);
-          if (codeWasSentSuccessfully) {
-            setCodeSent({
-              text: 'Login',
-              codeWasSent: true,
-            });
-            setUsername('');
+          if (!codeHasBeenSent.codeWasSent) {
+            const codeWasSentSuccessfully = await handleLogin(userName);
+            if (codeWasSentSuccessfully) {
+              setCodeSent({
+                text: 'Login',
+                codeWasSent: true,
+              });
+            }
+          } else {
+            const pinCodeIsCorrect = await handleAuthValidation({ userName, code: pinCode });
+            if (pinCodeIsCorrect) {
+              alert('success login');
+            } else {
+              alert('wrong code');
+            }
           }
         }}
       >
