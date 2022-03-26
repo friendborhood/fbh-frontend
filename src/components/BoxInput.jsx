@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 function BoxInput(props) {
   const {
-    setState, margin, label, id: idBox,
+    setState, margin, label, id: idBox, isHidden = false,
   } = props;
   const def = 'border-solid border-2 border-green-700 rounded-md';
   const focus = 'focus:outline-none focus:border-green-800 focus:shadow-inner focus:shadow-green-900';
@@ -14,16 +14,20 @@ function BoxInput(props) {
   };
   return (
     <div className={`flex justify-between w-80 my-3 mx-8 ${margin}`}>
-      <label>
+      <label hidden={isHidden}>
         {label}
         :
         {' '}
+
       </label>
+
       <input
+        hidden={isHidden}
         id={idBox}
         onChange={onChangeHandler}
         className={`${def} ${hover} ${focus} ${hoverShadow}`}
       />
+
     </div>
   );
 }
