@@ -19,7 +19,6 @@ export const handleAuthValidation = async ({ userName, code }) => {
     }
     return false;
   } catch (e) {
-    alert(e);
     return false;
   }
 };
