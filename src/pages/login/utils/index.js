@@ -2,8 +2,7 @@ import { network } from '../../../network';
 
 export const handleLogin = async (userName) => {
   try {
-    const { data } = await network.post(`/user/auth/${userName}`);
-    alert(JSON.stringify(data));
+    await network.post(`/user/auth/${userName}`);
     return true;
   } catch (e) {
     alert('this user does not exist');
@@ -20,7 +19,6 @@ export const handleAuthValidation = async ({ userName, code }) => {
     }
     return false;
   } catch (e) {
-    alert(e);
     return false;
   }
 };

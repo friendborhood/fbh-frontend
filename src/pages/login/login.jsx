@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
+import { useNavigate } from 'react-router-dom';
 import BoxInput from '../../components/BoxInput';
 import { handleAuthValidation, handleLogin } from './utils';
 
 function Form() {
+  const navigate = useNavigate();
   const [userName, setUsername] = useState('');
   const [pinCode, setPinCode] = useState('');
   const [codeHasBeenSent, setCodeSent] = useState({
@@ -49,7 +51,8 @@ function Form() {
           } else {
             const pinCodeIsCorrect = await handleAuthValidation({ userName, code: pinCode });
             if (pinCodeIsCorrect) {
-              alert('success login');
+              console.log('success login');
+              navigate('/dashboard', { replace: true });
             } else {
               alert('wrong code');
             }

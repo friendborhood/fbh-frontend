@@ -9,7 +9,6 @@ function BoxInput(props) {
   const hover = 'hover:border-green-700';
   const hoverShadow = 'hover:shadow-inner hover:shadow-green-800';
   const onChangeHandler = (event) => {
-    console.log(event.target.value);
     setState(event.target.value);
   };
   return (
