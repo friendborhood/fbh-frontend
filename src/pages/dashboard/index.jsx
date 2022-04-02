@@ -1,8 +1,14 @@
 import React from 'react';
 
 function DashboardPage() {
+  const fullName = localStorage.getItem('fullName');
+  const email = localStorage.getItem('email');
   return (
-    <h1>Hello these are items around you ! </h1>
+
+    <h1>
+      {`Hello ${fullName} your email is ${email}. These are items around you! 🐼`}
+
+    </h1>
   );
 }
 

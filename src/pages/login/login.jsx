@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
+import GoogleLogin from 'react-google-login';
 import BoxInput from '../../components/BoxInput';
 import { handleAuthValidation, handleLogin } from './utils';
 
@@ -12,12 +13,27 @@ function Form() {
     codeWasSent: false,
     text: 'Send Login Code!',
   });
+  const successGoogleLogin = (response) => {
+    const { Du: userDetails } = response;
+    const { tf: fullName, tv: email } = userDetails;
+    localStorage.setItem('fullName', fullName);
+    localStorage.setItem('email', email);
+    navigate('/dashboard', { replace: true });
+  };
 
   return (
     <form
       id="form"
       className="basis-full border-8 border-green-900 rounded-lg border-double"
     >
+      <GoogleLogin
+        clientId={process.env.REACT_APP_GOOGLE_LOGIN_KEY}
+        buttonText="Sign in with google"
+        onSuccess={successGoogleLogin}
+        onFailure={() => alert('bad login')}
+        cookiePolicy="single_host_origin"
+      />
+
       <BoxInput
         label="Username"
         id="username"
