@@ -14,6 +14,7 @@ function Form() {
     text: 'Send Login Code!',
   });
   const successGoogleLogin = (response) => {
+    console.log(response);
     const { Du: userDetails } = response;
     const { tf: fullName, tv: email } = userDetails;
     localStorage.setItem('fullName', fullName);
