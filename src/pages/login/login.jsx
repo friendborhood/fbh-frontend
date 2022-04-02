@@ -30,7 +30,7 @@ function Form() {
         clientId={process.env.REACT_APP_GOOGLE_LOGIN_KEY}
         buttonText="Sign in with google"
         onSuccess={successGoogleLogin}
-        onFailure={() => alert('bad login')}
+        onFailure={() => console.log('bad login')}
         cookiePolicy="single_host_origin"
       />
 
