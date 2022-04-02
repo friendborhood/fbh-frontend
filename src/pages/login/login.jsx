@@ -14,11 +14,13 @@ function Form() {
     text: 'Send Login Code!',
   });
   const successGoogleLogin = (response) => {
-    console.log(response);
-    const { Du: userDetails } = response;
-    const { tf: fullName, tv: email } = userDetails;
+    const profile = response.getBasicProfile();
+    const email = profile.getEmail();
+    const id = profile.getId();
+    const fullName = profile.getName();
     localStorage.setItem('fullName', fullName);
     localStorage.setItem('email', email);
+    localStorage.setItem('id', id);
     navigate('/dashboard', { replace: true });
   };
 
