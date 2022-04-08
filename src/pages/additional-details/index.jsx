@@ -1,6 +1,6 @@
 import React from 'react';
 
-function DashboardPage() {
+function additionalDetailsPage() {
   const fullName = localStorage.getItem('fullName');
   const email = localStorage.getItem('email');
   const id = localStorage.getItem('id');
@@ -12,4 +12,4 @@ function DashboardPage() {
   );
 }
 
-export default DashboardPage;
+export default additionalDetailsPage;
