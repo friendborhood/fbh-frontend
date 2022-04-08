@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 function BoxInput(props) {
   const {
-    setState, margin, label, id: idBox, isHidden = false,
+    setState, margin, label, id: idBox, isHidden = false, noInput,
   } = props;
   const def = 'border-solid border-2 border-green-700 rounded-md';
   const focus = 'focus:outline-none focus:border-green-800 focus:shadow-inner focus:shadow-green-900';
@@ -21,7 +21,7 @@ function BoxInput(props) {
       </label>
 
       <input
-        hidden={isHidden}
+        hidden={isHidden || noInput}
         id={idBox}
         onChange={onChangeHandler}
         className={`${def} ${hover} ${focus} ${hoverShadow}`}

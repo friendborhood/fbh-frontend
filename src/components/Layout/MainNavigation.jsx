@@ -27,7 +27,7 @@ function MainNavigation() {
         </Nav>
         <Nav>
           <Nav.Link href="/login">Login</Nav.Link>
-          <Nav.Link href="/Sign-up">Sign-up</Nav.Link>
+          <Nav.Link href="/sign-up">Sign-up</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

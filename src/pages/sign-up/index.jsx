@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
+import { useNavigate } from 'react-router-dom';
 import { handleSignUp } from './utils';
 import BoxInput from '../../components/BoxInput';
 
 function Form() {
+  const navigate = useNavigate();
   const [fname, setFname] = useState('');
   const [lname, setLname] = useState('');
   const [userName, setuserName] = useState('');
@@ -46,9 +48,14 @@ function Form() {
         id="sign-up"
         disabled={canSignUp}
         variant="contained"
-        onClick={() => handleSignUp({
-          email, userName, lastName: lname, firstName: fname,
-        })}
+        onClick={async () => {
+          const successfulSignUp = await handleSignUp({
+            email, userName, lastName: lname, firstName: fname,
+          });
+          if (successfulSignUp) {
+            navigate('/additionalDetails', { replace: true });
+          }
+        }}
       >
         Sign Up!
       </Button>

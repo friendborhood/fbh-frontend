@@ -21,7 +21,7 @@ function Form() {
     localStorage.setItem('fullName', fullName);
     localStorage.setItem('email', email);
     localStorage.setItem('id', id);
-    navigate('/dashboard', { replace: true });
+    navigate('/additional-details', { replace: true });
   };
 
   return (
@@ -71,7 +71,7 @@ function Form() {
             const pinCodeIsCorrect = await handleAuthValidation({ userName, code: pinCode });
             if (pinCodeIsCorrect) {
               console.log('success login');
-              navigate('/dashboard', { replace: true });
+              navigate('/additionalDetails', { replace: true });
             } else {
               alert('wrong code');
             }
