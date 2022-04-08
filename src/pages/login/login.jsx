@@ -21,7 +21,7 @@ function Form() {
     localStorage.setItem('fullName', fullName);
     localStorage.setItem('email', email);
     localStorage.setItem('id', id);
-    navigate('/additionalDetails', { replace: true });
+    navigate('/additional-details', { replace: true });
   };
 
   return (

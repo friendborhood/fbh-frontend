@@ -1,15 +1,40 @@
-import React from 'react';
+import Autocomplete from 'react-google-autocomplete';
+import React, { useState } from 'react';
+import BoxInput from '../../components/BoxInput';
 
-function additionalDetailsPage() {
+function AdditionalDetailsPage() {
   const fullName = localStorage.getItem('fullName');
-  const email = localStorage.getItem('email');
-  const id = localStorage.getItem('id');
-  return (
+  const [location, setLocation] = useState('');
+  const [category, setCategory] = useState('');
 
-    <h1>
-      {`Hello ${fullName} your email is ${email}. These are items around you! 🐼 your id is ${id}`}
-    </h1>
+  return (
+    <form>
+      <h3>
+        {`Hello ${fullName}, Wer'e happy to have you onboard. please add the following details to help us provide you the best service`}
+      </h3>
+
+      <BoxInput
+        noInput
+        label="Base Address"
+        id="location"
+        state={location}
+        setState={setLocation}
+      />
+      <Autocomplete
+        options={
+          { types: ['address'] }
+        }
+        apiKey={process.env.REACT_APP_GOOGLE_API_KEY}
+        onPlaceSelected={(place) => console.log(place)}
+      />
+      <BoxInput
+        label="Favorite category"
+        id="category"
+        state={category}
+        setState={setCategory}
+      />
+    </form>
   );
 }
 
-export default additionalDetailsPage;
+export default AdditionalDetailsPage;
