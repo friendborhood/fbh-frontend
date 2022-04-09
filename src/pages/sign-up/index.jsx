@@ -16,9 +16,10 @@ function Form() {
   const canSignUp = !(email && userName && fname && lname);
 
   const trySignUp = async (data) => {
+    const { userName } = data;
     const successfulSignUp = await handleSignUp(data);
     if (successfulSignUp) {
-      localStorage.setItem('userName', email);
+      localStorage.setItem('userName', userName);
       navigate(PAGES.ADDITIONAL_DETAILS, { replace: true });
     }
   };
@@ -80,14 +81,12 @@ function Form() {
         id="sign-up"
         disabled={canSignUp}
         variant="contained"
-        onClick={async () => {
-          const successfulSignUp = await handleSignUp({
-            email, userName, lastName: lname, firstName: fname,
-          });
-          if (successfulSignUp) {
-            navigate(PAGES.ADDITIONAL_DETAILS, { replace: true });
-          }
-        }}
+        onClick={() => trySignUp({
+          email,
+          userName,
+          firstName: fname,
+          lastName: lname,
+        })}
       >
         Sign Up!
       </Button>
