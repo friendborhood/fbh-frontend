@@ -29,7 +29,11 @@ function Form() {
     const lastName = profile.getFamilyName();
     const imageUrl = profile.getImageUrl();
     trySignUp({
-      email: emailFromGoogle, firstName, lastName, imageUrl,
+      email: emailFromGoogle,
+      firstName,
+      lastName,
+      imageUrl,
+      userName: emailFromGoogle,
     });
   };
 
