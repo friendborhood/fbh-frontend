@@ -3,14 +3,14 @@ import React, { useState } from 'react';
 import BoxInput from '../../components/BoxInput';
 
 function AdditionalDetailsPage() {
-  const fullName = localStorage.getItem('fullName');
+  const userName = localStorage.getItem('fullName');
   const [location, setLocation] = useState('');
   const [category, setCategory] = useState('');
 
   return (
     <form>
       <h3>
-        {`Hello ${fullName}, Wer'e happy to have you onboard. please add the following details to help us provide you the best service`}
+        {`Hello ${userName}, Wer'e happy to have you onboard. please add the following details to help us provide you the best service`}
       </h3>
 
       <BoxInput
