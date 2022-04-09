@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
 import BoxInput from '../../components/BoxInput';
 import { handleAuthValidation, handleLogin } from './utils';
+import { PAGES } from '../consts';
 
 function Form() {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ function Form() {
     localStorage.setItem('fullName', fullName);
     localStorage.setItem('email', email);
     localStorage.setItem('id', id);
-    navigate('/additional-details', { replace: true });
+    navigate(PAGES.ADDITIONAL_DETAILS, { replace: true });
   };
 
   return (
@@ -71,7 +72,7 @@ function Form() {
             const pinCodeIsCorrect = await handleAuthValidation({ userName, code: pinCode });
             if (pinCodeIsCorrect) {
               console.log('success login');
-              navigate('/additionalDetails', { replace: true });
+              navigate(PAGES.ADDITIONAL_DETAILS, { replace: true });
             } else {
               alert('wrong code');
             }

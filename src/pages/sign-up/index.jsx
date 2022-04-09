@@ -3,6 +3,7 @@ import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
 import { handleSignUp } from './utils';
 import BoxInput from '../../components/BoxInput';
+import { PAGES } from '../consts';
 
 function Form() {
   const navigate = useNavigate();
@@ -53,7 +54,7 @@ function Form() {
             email, userName, lastName: lname, firstName: fname,
           });
           if (successfulSignUp) {
-            navigate('/additionalDetails', { replace: true });
+            navigate(PAGES.ADDITIONAL_DETAILS, { replace: true });
           }
         }}
       >

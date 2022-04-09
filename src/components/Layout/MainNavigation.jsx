@@ -2,6 +2,7 @@
 import {
   Nav, Navbar, NavDropdown, Container,
 } from 'react-bootstrap';
+import { PAGES } from '../../pages/consts';
 
 function MainNavigation() {
   return (
@@ -26,8 +27,8 @@ function MainNavigation() {
           </NavDropdown>
         </Nav>
         <Nav>
-          <Nav.Link href="/login">Login</Nav.Link>
-          <Nav.Link href="/sign-up">Sign-up</Nav.Link>
+          <Nav.Link href={PAGES.LOGIN}>Login</Nav.Link>
+          <Nav.Link href={PAGES.SIGN_UP}>Sign-up</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
