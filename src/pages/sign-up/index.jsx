@@ -26,6 +26,7 @@ function Form() {
   const successGoogleAuth = async (response) => {
     const profile = response.getBasicProfile();
     const emailFromGoogle = profile.getEmail();
+    const userName = emailFromGoogle.split('@')[0];
     const firstName = profile.getGivenName();
     const lastName = profile.getFamilyName();
     const imageUrl = profile.getImageUrl();
@@ -34,7 +35,7 @@ function Form() {
       firstName,
       lastName,
       imageUrl,
-      userName: emailFromGoogle,
+      userName,
     });
   };
 

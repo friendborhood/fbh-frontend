@@ -1,13 +1,17 @@
 import Autocomplete from 'react-google-autocomplete';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
+import { useNavigate } from 'react-router-dom';
 import BoxInput from '../../components/BoxInput';
 import { handleSubmitDetails } from './utils';
+import { PAGES } from '../consts';
 
 function AdditionalDetailsPage() {
+  const navigate = useNavigate();
   const userName = localStorage.getItem('userName');
   const [location, setLocation] = useState('');
   const [category, setCategory] = useState('');
+  useEffect(() => (!userName ? navigate(PAGES.HOME, { replace: true }) : {}), []);
 
   return (
     <form>
