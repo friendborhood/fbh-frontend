@@ -5,13 +5,21 @@ import { useNavigate } from 'react-router-dom';
 import BoxInput from '../../components/BoxInput';
 import { handleSubmitDetails } from './utils';
 import { PAGES } from '../consts';
+import { network } from '../../network';
 
 function AdditionalDetailsPage() {
   const navigate = useNavigate();
   const userName = localStorage.getItem('userName');
   const [location, setLocation] = useState('');
   const [category, setCategory] = useState('');
-  useEffect(() => (!userName ? navigate(PAGES.HOME, { replace: true }) : {}), []);
+  const [imageUrl, setImageUrl] = useState('');
+  const fetchUserData = async () => {
+    const { data: { data: userData } } = await network.get(`user/${userName}`);
+    console.log(JSON.stringify(userData));
+    console.log(userData.imageUrl);
+    setImageUrl(userData.imageUrl);
+  };
+  useEffect(() => (!userName ? navigate(PAGES.HOME, { replace: true }) : fetchUserData()), []);
 
   return (
     <form>
@@ -43,6 +51,7 @@ function AdditionalDetailsPage() {
         state={category}
         setState={setCategory}
       />
+      <img alt="profile" src={imageUrl} referrerpolicy="no-referrer" />
       <Button
         style={{ marginLeft: 150 }}
         id="more-details"

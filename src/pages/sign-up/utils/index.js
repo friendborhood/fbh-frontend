@@ -6,7 +6,8 @@ export const handleSignUp = async (data) => {
     console.log(`user has been added ${JSON.stringify(newUserData)}`);
     return true;
   } catch (e) {
-    alert(`error ${e}`);
+    alert(JSON.stringify(e));
+    console.log(e);
     return false;
   }
 };

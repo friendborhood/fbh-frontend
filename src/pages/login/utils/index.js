@@ -9,6 +9,16 @@ export const handleLogin = async (userName) => {
     return false;
   }
 };
+export const handleGoogleLogin = async (userName) => {
+  try {
+    await network.get(`/user/${userName}`);
+    return true;
+  } catch (e) {
+    console.log(e);
+    alert('this user does not exist');
+    return false;
+  }
+};
 export const handleAuthValidation = async ({ userName, code }) => {
   try {
     console.log(userName, code);
