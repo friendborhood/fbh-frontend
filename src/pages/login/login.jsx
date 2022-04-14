@@ -19,7 +19,7 @@ function Form() {
     console.log(response);
     const profile = response.getBasicProfile();
     const emailFromGoogle = profile.getEmail();
-    const username = emailFromGoogle.split('@')[0];
+    const username = parseGmailToValidUserName(emailFromGoogle);
     const successAuth = await handleGoogleLogin(username);
     if (successAuth) {
       localStorage.setItem('userName', username);
