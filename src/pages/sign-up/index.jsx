@@ -6,6 +6,7 @@ import GoogleLogin from 'react-google-login';
 import { handleSignUp } from './utils';
 import BoxInput from '../../components/BoxInput';
 import { PAGES } from '../consts';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Form() {
   const navigate = useNavigate();
@@ -44,6 +45,7 @@ function Form() {
       id="form"
       className="basis-full border-8 border-green-900 rounded-lg border-double"
     >
+
       <GoogleLogin
         clientId={process.env.REACT_APP_GOOGLE_LOGIN_KEY}
         buttonText="Sign up with google"

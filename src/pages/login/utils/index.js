@@ -1,11 +1,13 @@
+import { toast } from 'react-toastify';
 import { network } from '../../../network';
 
+const alertNotExist = (userName) => toast(`user ${userName} does not exist`);
 export const handleLogin = async (userName) => {
   try {
     await network.post(`/user/auth/${userName}`);
     return true;
   } catch (e) {
-    alert('this user does not exist');
+    alertNotExist(userName);
     return false;
   }
 };
@@ -15,7 +17,7 @@ export const handleGoogleLogin = async (userName) => {
     return true;
   } catch (e) {
     console.log(e);
-    alert('this user does not exist');
+    alertNotExist(userName);
     return false;
   }
 };

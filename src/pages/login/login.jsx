@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
+import { toast } from 'react-toastify';
 import BoxInput from '../../components/BoxInput';
 import { handleAuthValidation, handleGoogleLogin, handleLogin } from './utils';
 import { PAGES } from '../consts';
@@ -24,7 +25,7 @@ function Form() {
       localStorage.setItem('userName', username);
       navigate(PAGES.ADDITIONAL_DETAILS, { replace: true });
     } else {
-      alert('user does not exist');
+      toast('user does not exist');
     }
   };
 
@@ -33,7 +34,6 @@ function Form() {
       id="form"
       className="basis-full border-8 border-green-900 rounded-lg border-double"
     >
-
       <BoxInput
         label="Username"
         id="username"
@@ -77,7 +77,7 @@ function Form() {
               localStorage.setItem('userName', userName);
               navigate(PAGES.ADDITIONAL_DETAILS, { replace: true });
             } else {
-              alert('wrong code');
+              toast('wrong code');
             }
           }
         }}

@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   BrowserRouter, Route, Routes, Navigate,
 } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import SignUpPage from './pages/sign-up';
 import LoginPage from './pages/login/login';
 import Layout from './components/Layout/Layout';
@@ -15,6 +16,7 @@ function App() {
   return (
     <BrowserRouter>
       <Layout>
+        <ToastContainer />
         <Routes>
           <Route path="/" element={<Navigate to="/home" />} />
           <Route path={PAGES.SIGN_UP} element={<SignUpPage />} />
