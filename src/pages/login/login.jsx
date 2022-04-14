@@ -4,7 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
 import { toast } from 'react-toastify';
 import BoxInput from '../../components/BoxInput';
-import { handleAuthValidation, handleGoogleLogin, handleLogin } from './utils';
+import {
+  handleAuthValidation, handleGoogleLogin, handleLogin, parseGmailToValidUserName,
+} from './utils';
 import { PAGES } from '../consts';
 
 function Form() {

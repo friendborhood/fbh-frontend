@@ -2,6 +2,11 @@ import { toast } from 'react-toastify';
 import { network } from '../../../network';
 
 const alertNotExist = (userName) => toast(`user ${userName} does not exist`);
+export const parseGmailToValidUserName = (gmail) => {
+  const leftSideOfEmail = gmail.split('@')[0];
+  const userNameAfterRemoveNonAlphaNum = leftSideOfEmail.replace(/[^a-z0-9]/gi, '');
+  return userNameAfterRemoveNonAlphaNum;
+};
 export const handleLogin = async (userName) => {
   try {
     await network.post(`/user/auth/${userName}`);
