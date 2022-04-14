@@ -7,6 +7,7 @@ import { handleSignUp } from './utils';
 import BoxInput from '../../components/BoxInput';
 import { PAGES } from '../consts';
 import 'react-toastify/dist/ReactToastify.css';
+import { parseGmailToValidUserName } from '../login/utils';
 
 function Form() {
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ function Form() {
   const successGoogleAuth = async (response) => {
     const profile = response.getBasicProfile();
     const emailFromGoogle = profile.getEmail();
-    const userName = emailFromGoogle.split('@')[0];
+    const userName = parseGmailToValidUserName(emailFromGoogle);
     const firstName = profile.getGivenName();
     const lastName = profile.getFamilyName();
     const imageUrl = profile.getImageUrl();
