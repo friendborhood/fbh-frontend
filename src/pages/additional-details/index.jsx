@@ -14,7 +14,7 @@ function AdditionalDetailsPage() {
   const [category, setCategory] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const fetchUserData = async () => {
-    const { data: { data: userData } } = await network.get(`user/${userName}`);
+    const { data: userData } = await network.get(`user/${userName}`);
     console.log(JSON.stringify(userData));
     console.log(userData.imageUrl);
     setImageUrl(userData.imageUrl);
