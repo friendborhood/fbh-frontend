@@ -26,8 +26,6 @@ function Form() {
     if (successAuth) {
       localStorage.setItem('userName', username);
       navigate(PAGES.ADDITIONAL_DETAILS, { replace: true });
-    } else {
-      toast('user does not exist');
     }
   };
 
