@@ -2,6 +2,7 @@ import Autocomplete from 'react-google-autocomplete';
 import React, { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
+import DropDown from '../../components/drop-down';
 import BoxInput from '../../components/BoxInput';
 import { handleSubmitDetails } from './utils';
 import { PAGES } from '../consts';
@@ -11,8 +12,9 @@ function AdditionalDetailsPage() {
   const navigate = useNavigate();
   const userName = localStorage.getItem('userName');
   const [location, setLocation] = useState('');
-  const [category, setCategory] = useState('');
+  const [category] = useState('');
   const [imageUrl, setImageUrl] = useState('');
+
   const fetchUserData = async () => {
     const { data: userData } = await network.get(`user/${userName}`);
     console.log(JSON.stringify(userData));
@@ -45,13 +47,8 @@ function AdditionalDetailsPage() {
           },
         })}
       />
-      <BoxInput
-        label="Favorite category"
-        id="category"
-        state={category}
-        setState={setCategory}
-      />
       <img alt="profile" src={imageUrl} referrerpolicy="no-referrer" />
+
       <Button
         style={{ marginLeft: 150 }}
         id="more-details"
@@ -64,6 +61,8 @@ function AdditionalDetailsPage() {
       >
         Submit!
       </Button>
+      <DropDown options={['Cleaning', 'Garden']} />
+
     </form>
   );
 }
