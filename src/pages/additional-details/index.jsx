@@ -6,7 +6,7 @@ import DropDown from '../../components/drop-down';
 import BoxInput from '../../components/BoxInput';
 import { handleSubmitDetails } from './utils';
 import { PAGES } from '../consts';
-import { network } from '../../network';
+import { END_POINTS, network } from '../../network';
 
 function AdditionalDetailsPage() {
   const navigate = useNavigate();
@@ -17,13 +17,15 @@ function AdditionalDetailsPage() {
   const [imageUrl, setImageUrl] = useState('');
 
   const fetchUserData = async () => {
-    const { data: userData } = await network.get(`user/${userName}`);
+    const { data: userData } = await network.get(`${END_POINTS.USER}/${userName}`);
     console.log(JSON.stringify(userData));
     console.log(userData.imageUrl);
     setImageUrl(userData.imageUrl);
   };
   const fetchCategories = async () => {
-    setCategories(['Cleaning', 'Garden', 'MoreStuff']);
+    const { data: currentCategories } = await network.get(END_POINTS.CATEGORIES);
+    console.log(currentCategories);
+    setCategories(currentCategories);
   };
   useEffect(() => (!userName
     ? navigate(PAGES.HOME, { replace: true })
