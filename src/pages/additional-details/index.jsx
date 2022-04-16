@@ -12,7 +12,8 @@ function AdditionalDetailsPage() {
   const navigate = useNavigate();
   const userName = localStorage.getItem('userName');
   const [location, setLocation] = useState('');
-  const [category] = useState('');
+  const [category, setCategory] = useState('');
+  const [categories, setCategories] = useState(['Cleaning']);
   const [imageUrl, setImageUrl] = useState('');
 
   const fetchUserData = async () => {
@@ -21,7 +22,12 @@ function AdditionalDetailsPage() {
     console.log(userData.imageUrl);
     setImageUrl(userData.imageUrl);
   };
-  useEffect(() => (!userName ? navigate(PAGES.HOME, { replace: true }) : fetchUserData()), []);
+  const fetchCategories = async () => {
+    setCategories(['Cleaning', 'Garden', 'MoreStuff']);
+  };
+  useEffect(() => (!userName
+    ? navigate(PAGES.HOME, { replace: true })
+    : Promise.all([fetchUserData(), fetchCategories()])), []);
 
   return (
     <form>
@@ -61,7 +67,7 @@ function AdditionalDetailsPage() {
       >
         Submit!
       </Button>
-      <DropDown options={['Cleaning', 'Garden']} />
+      <DropDown options={categories} setState={setCategory} state={category} />
 
     </form>
   );
