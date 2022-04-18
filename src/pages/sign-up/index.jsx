@@ -3,13 +3,22 @@ import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
+import ClipLoader from 'react-spinners/ClipLoader';
+import { css } from '@emotion/react';
 import { handleSignUp } from './utils';
 import BoxInput from '../../components/BoxInput';
 import { PAGES } from '../consts';
 import 'react-toastify/dist/ReactToastify.css';
 import { parseGmailToValidUserName } from '../login/utils';
 
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
 function Form() {
+  const color = '#5F9EA0';
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [fname, setFname] = useState('');
   const [lname, setLname] = useState('');
@@ -23,8 +32,11 @@ function Form() {
     if (successfulSignUp) {
       localStorage.setItem('userName', userName);
       navigate(PAGES.ADDITIONAL_DETAILS, { replace: true });
+    } else {
+      setLoading(false);
     }
   };
+
   const successGoogleAuth = async (response) => {
     const profile = response.getBasicProfile();
     const emailFromGoogle = profile.getEmail();
@@ -85,15 +97,19 @@ function Form() {
         id="sign-up"
         disabled={canSignUp}
         variant="contained"
-        onClick={() => trySignUp({
-          email,
-          userName,
-          firstName: fname,
-          lastName: lname,
-        })}
+        onClick={() => {
+          setLoading(!loading);
+          trySignUp({
+            email,
+            userName,
+            firstName: fname,
+            lastName: lname,
+          });
+        }}
       >
         Sign Up!
       </Button>
+      <ClipLoader color={color} loading={loading} css={override} size={150} />
     </form>
   );
 }
