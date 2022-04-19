@@ -27,6 +27,7 @@ function Form() {
   const canSignUp = !(email && userName && fname && lname);
 
   const trySignUp = async (data) => {
+    setLoading(true);
     const { userName } = data;
     const successfulSignUp = await handleSignUp(data);
     if (successfulSignUp) {
@@ -98,7 +99,6 @@ function Form() {
         disabled={canSignUp}
         variant="contained"
         onClick={() => {
-          setLoading(!loading);
           trySignUp({
             email,
             userName,
