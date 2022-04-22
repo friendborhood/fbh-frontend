@@ -91,7 +91,7 @@ function Form() {
           placeHolder="email"
         />
       </div>
-      <div className="terms-agree">
+      <div className="checkbox">
         <StyledCheckbox
           checked={acceptedTerms}
           onChange={handleCheckboxChange}

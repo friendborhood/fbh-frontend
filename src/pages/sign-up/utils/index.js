@@ -2,7 +2,9 @@ import { toast } from 'react-toastify';
 import styled from 'styled-components';
 import { END_POINTS, network } from '../../../network';
 import { BAD_REQUEST_CODE, UNKNOWN_SERVER_ERROR } from '../../consts';
-import { GLOBAL_SCARLET, FORM_BOTTON_HEIGHT, BUTTON_RADIUS } from '../../../GlobalStyling';
+import {
+  GLOBAL_SCARLET, FORM_BOTTON_HEIGHT, BUTTON_RADIUS, FORM_MARGIN_LEFT,
+} from '../../../GlobalStyling';
 
 const COMPONENT_WIDTH = '446px';
 export const handleSignUp = async (data) => {
@@ -22,7 +24,7 @@ export const handleSignUp = async (data) => {
 export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
-  margin-left: 260px;
+  margin-left: ${FORM_MARGIN_LEFT};
   font-style: heebo;
   font-weight: medium;
   width: 50%;
@@ -52,7 +54,7 @@ export const StyledForm = styled.form`
       justify-content: space-between;
     }
 
-    &.terms-agree {
+    &.checkbox {
       display: flex;
       flex-direction: row;
       align-items: center;

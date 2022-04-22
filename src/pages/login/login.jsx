@@ -2,17 +2,12 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
 import { toast } from 'react-toastify';
-import styled from 'styled-components';
 import BoxInput from '../../components/BoxInput';
 import {
   handleAuthValidation, handleGoogleLogin, handleLogin, parseGmailToValidUserName,
 } from './utils';
 import { PAGES } from '../consts';
-
-const StyledSection = styled.section`
-  display: flex;
-  flex-direction: column;
-`;
+import { StyledForm } from '../sign-up/utils';
 
 function Form() {
   const navigate = useNavigate();
@@ -35,7 +30,9 @@ function Form() {
   };
 
   return (
-    <StyledSection>
+    <StyledForm>
+      <h1>Welcome Back</h1>
+      <p>Welcome back! Please enter your details.</p>
       <BoxInput
         label="Username"
         id="username"
@@ -45,6 +42,7 @@ function Form() {
         isHidden={codeHasBeenSent.codeWasSent}
       />
       <GoogleLogin
+        className="google-button"
         clientId={process.env.REACT_APP_GOOGLE_LOGIN_KEY}
         buttonText="Sign in with google"
         onSuccess={successGoogleAuth}
@@ -63,7 +61,6 @@ function Form() {
         id="login"
         type="button"
         disabled={!userName && !pinCode}
-        style={{ marginLeft: 150 }}
         onClick={async () => {
           if (!codeHasBeenSent.codeWasSent) {
             const codeWasSentSuccessfully = await handleLogin(userName);
@@ -87,7 +84,7 @@ function Form() {
       >
         {codeHasBeenSent.text}
       </button>
-    </StyledSection>
+    </StyledForm>
   );
 }
 
