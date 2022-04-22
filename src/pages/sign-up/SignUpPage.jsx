@@ -1,6 +1,5 @@
 /* eslint-disable no-shadow */
-import React, { useState } from 'react';
-import Button from '@mui/material/Button';
+import React, { useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
@@ -9,10 +8,52 @@ import BoxInput from '../../components/BoxInput';
 import { PAGES } from '../consts';
 import 'react-toastify/dist/ReactToastify.css';
 import { parseGmailToValidUserName } from '../login/utils';
+import { GLOBAL_SCARLET, FORM_BOTTON_HEIGHT } from '../../GlobalStyling';
+
+const componentWidth = '446px';
 
 const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
+  margin-left: 260px;
+  font-style: heebo;
+  font-weight: medium;
+  width: 50%;
+  min-width: ${componentWidth};
+
+  & h1 {
+    font-size: 48px;
+    font-weight: 400;
+    line-height: 70.5px;
+  }
+
+  & p {
+    size: 20px;
+    font-weight: 400;
+  }
+
+  & div {
+    &.form-wrapper {
+      width: inherit;
+      width: ${componentWidth};
+      margin-bottom: 25px;
+    }
+
+    &.name-wrapper {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+
+  & button {
+    width: ${componentWidth} !important;
+    background-color: ${GLOBAL_SCARLET};
+    height: ${FORM_BOTTON_HEIGHT};
+    font-weight: 500 !important;
+    color: white;
+    margin-bottom: 15px;
+  }
 `;
 
 function Form() {
@@ -22,7 +63,10 @@ function Form() {
   const [userName, setuserName] = useState('');
   const [email, setEmail] = useState('');
   // TODO: replace to useMemo hook and check if behaves the same
-  const canSignUp = !(email && userName && fname && lname);
+  const canSignUp = useMemo(
+    () => !(email && userName && fname && lname),
+    [email, userName, fname, lname],
+  );
 
   const trySignUp = async (data) => {
     const { userName } = data;
@@ -49,45 +93,45 @@ function Form() {
   };
 
   return (
-    <StyledForm
-      id="form"
-    >
-
-      <GoogleLogin
-        clientId={process.env.REACT_APP_GOOGLE_LOGIN_KEY}
-        buttonText="Sign up with google"
-        onSuccess={successGoogleAuth}
-        onFailure={(e) => console.log(e)}
-        cookiePolicy="single_host_origin"
-      />
-      <BoxInput
-        label="First Name"
-        id="fname"
-        state={fname}
-        setState={setFname}
-      />
-      <BoxInput
-        label="Last Name"
-        id="lname"
-        state={lname}
-        setState={setLname}
-      />
-      <BoxInput
-        label="User Name"
-        id="userName"
-        state={userName}
-        setState={setuserName}
-      />
-      <BoxInput
-        label="Email Address"
-        id="email"
-        state={email}
-        setState={setEmail}
-      />
-      <Button
+    <StyledForm>
+      <h1>Sign up</h1>
+      <p>Welcome! Please enter your details.</p>
+      <div className="form-wrapper">
+        <div className="name-wrapper">
+          <BoxInput
+            label="First Name"
+            id="fname"
+            state={fname}
+            setState={setFname}
+            placeHolder="first name"
+          />
+          <BoxInput
+            label="Last Name"
+            id="lname"
+            state={lname}
+            setState={setLname}
+            placeHolder="last name"
+          />
+        </div>
+        <BoxInput
+          label="User Name"
+          id="userName"
+          state={userName}
+          setState={setuserName}
+          placeHolder="user name"
+        />
+        <BoxInput
+          label="Email Address"
+          id="email"
+          state={email}
+          setState={setEmail}
+          placeHolder="email"
+        />
+      </div>
+      <button
+        type="submit"
         id="sign-up"
         disabled={canSignUp}
-        variant="contained"
         onClick={() => trySignUp({
           email,
           userName,
@@ -96,7 +140,18 @@ function Form() {
         })}
       >
         Sign Up!
-      </Button>
+      </button>
+      <div>
+        <GoogleLogin
+          className="my-try"
+          clientId={process.env.REACT_APP_GOOGLE_LOGIN_KEY}
+          buttonText="Sign up with google"
+          onSuccess={successGoogleAuth}
+          onFailure={(e) => console.log(e)}
+          cookiePolicy="single_host_origin"
+        />
+
+      </div>
     </StyledForm>
   );
 }

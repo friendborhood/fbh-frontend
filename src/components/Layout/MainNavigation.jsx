@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { PAGES } from '../../pages/consts';
-import { navigationGrey, GlobalScarlet } from '../../GlobalStyling';
+import { GLOBAL_LIGHTGRAY, GLOBAL_SCARLET } from '../../GlobalStyling';
 
 const logo = require('../../images/logo.png');
 
@@ -35,12 +35,12 @@ const StyledDiv = styled.div`
 
     & div {
       margin-top: 45px;
-      color: ${navigationGrey};
+      color: ${GLOBAL_LIGHTGRAY};
       font-weight: 400, normal;
       font-style: feebo;
       cursor: pointer;
       &:active, &:hover, &:focus {
-        color: ${GlobalScarlet};
+        color: ${GLOBAL_SCARLET};
         font-weight: bold;
         font-weight: 500, medium;
       }
@@ -57,7 +57,7 @@ const StyledDiv = styled.div`
       text-decoration: none; 
     }
     &:active, &:hover, &:focus {
-        color: ${GlobalScarlet};
+        color: ${GLOBAL_SCARLET};
         font-weight: bold;
         font-weight: 500, medium;
     }
