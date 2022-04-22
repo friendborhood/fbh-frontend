@@ -9,6 +9,7 @@ const StyledSection = styled.section`
   flex-direction: column;
   font-style: heebo;
   margin-top: 10px;
+  max-width: 446px;
 
   & div {
     font-weight: 500;

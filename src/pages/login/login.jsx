@@ -33,14 +33,16 @@ function Form() {
     <StyledForm>
       <h1>Welcome Back</h1>
       <p>Welcome back! Please enter your details.</p>
-      <BoxInput
-        label="Username"
-        id="username"
-        state={userName}
-        placeHolder="user name"
-        setState={setUsername}
-        isHidden={codeHasBeenSent.codeWasSent}
-      />
+      <div className="form-wrapper">
+        <BoxInput
+          label="Username"
+          id="username"
+          state={userName}
+          placeHolder="user name"
+          setState={setUsername}
+          isHidden={codeHasBeenSent.codeWasSent}
+        />
+      </div>
       <GoogleLogin
         className="google-button"
         clientId={process.env.REACT_APP_GOOGLE_LOGIN_KEY}

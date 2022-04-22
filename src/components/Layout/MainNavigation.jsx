@@ -10,7 +10,7 @@ function MainNavigation() {
   return (
     <StyledDiv>
       <section className="site-info">
-        <img src={logo} alt="logo" />
+        <Link to={PAGES.HOME}><img src={logo} alt="logo" /></Link>
         <div>About</div>
         <div>System</div>
       </section>
