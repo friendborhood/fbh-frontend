@@ -2,119 +2,16 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable no-shadow */
 import React, { useMemo, useState } from 'react';
-import styled from 'styled-components';
+
 import { useNavigate } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
-import { handleSignUp } from './utils';
+import { handleSignUp, StyledCheckbox, StyledForm } from './utils';
 import BoxInput from '../../components/BoxInput';
 import { PAGES } from '../consts';
 import 'react-toastify/dist/ReactToastify.css';
 import { parseGmailToValidUserName } from '../login/utils';
-import { GLOBAL_SCARLET, FORM_BOTTON_HEIGHT, BUTTON_RADIUS } from '../../GlobalStyling';
-
-const componentWidth = '446px';
 
 // TODO: add style to marked checkbox
-
-const StyledForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  margin-left: 260px;
-  font-style: heebo;
-  font-weight: medium;
-  width: 50%;
-  min-width: ${componentWidth};
-
-  & h1 {
-    font-size: 48px;
-    font-weight: 400;
-    line-height: 70.5px;
-  }
-
-  & p {
-    size: 20px;
-    font-weight: 400;
-  }
-
-  & div {
-    &.form-wrapper {
-      width: inherit;
-      width: ${componentWidth};
-      margin-bottom: 25px;
-    }
-
-    &.name-wrapper {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-    }
-
-    &.terms-agree {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      font-weight: 500;
-      text-decoration: underline;
-      margin-bottom: 25px;
-    }
-
-    &.already-have {
-      display: flex;
-      flex-direction: row;
-      gap: 5px;
-      font-weight: 400;
-    }
-
-    &.clickable {
-      color: ${GLOBAL_SCARLET};
-      font-weight: 500;
-    }
-
-  }
-
-  & button {
-    width: ${componentWidth};
-    background-color: ${GLOBAL_SCARLET};
-    height: ${FORM_BOTTON_HEIGHT};
-    border-radius: ${BUTTON_RADIUS};
-    font-weight: 500;
-    color: white;
-    margin-bottom: 15px;
-    
-
-    &.google-button {
-      box-shadow: none !important;
-      border: solid black !important;
-      border-radius: ${BUTTON_RADIUS} !important;
-      justify-content: center !important;
-    }
-  }
-`;
-
-const StyledCheckbox = styled.input.attrs({ type: 'checkbox' })`
-  -webkit-appearance: none;
-  height:16px;
-  width: 18px;
-  border: 1px solid black;
-  border-radius: 3px;
-  display: inline-block;
-  position: relative;
-  margin-right: 4px;
-
-  &:hover, :active, :checked:active {
-    background-color: #D5D5D5;
-  }
-
-  &:checked {
-  background-color: #e9ecee;
-  color: #99a1a7;
-
-  &:after {
-    display:inline-block;
-    content: "V";
-  }
-}
-`;
 
 function Form() {
   const navigate = useNavigate();
