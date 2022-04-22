@@ -2,13 +2,13 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import styled from 'styled-components';
-import { GLOBAL_LIGHTGRAY } from '../GlobalStyling';
+import { GLOBAL_LIGHTGRAY, BUTTON_RADIUS } from '../GlobalStyling';
 
 const StyledSection = styled.section`
   display: flex;
   flex-direction: column;
   font-style: heebo;
-  margin-top: 5px;
+  margin-top: 10px;
 
   & div {
     font-weight: 500;
@@ -16,7 +16,7 @@ const StyledSection = styled.section`
 
   & input {
     border: solid ${GLOBAL_LIGHTGRAY};
-    border-radius: 8px;
+    border-radius: ${BUTTON_RADIUS};
     min-width: 218px;
     padding: 4px;
   }
