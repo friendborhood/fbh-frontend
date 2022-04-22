@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
-import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
 import { toast } from 'react-toastify';
+import styled from 'styled-components';
 import BoxInput from '../../components/BoxInput';
 import {
   handleAuthValidation, handleGoogleLogin, handleLogin, parseGmailToValidUserName,
 } from './utils';
 import { PAGES } from '../consts';
+
+const StyledSection = styled.section`
+  display: flex;
+  flex-direction: column;
+`;
 
 function Form() {
   const navigate = useNavigate();
@@ -30,10 +35,7 @@ function Form() {
   };
 
   return (
-    <form
-      id="form"
-      className="basis-full border-8 border-green-900 rounded-lg border-double"
-    >
+    <StyledSection>
       <BoxInput
         label="Username"
         id="username"
@@ -57,9 +59,9 @@ function Form() {
         isHidden={!codeHasBeenSent.codeWasSent}
       />
 
-      <Button
+      <button
         id="login"
-        variant="contained"
+        type="button"
         disabled={!userName && !pinCode}
         style={{ marginLeft: 150 }}
         onClick={async () => {
@@ -84,8 +86,8 @@ function Form() {
         }}
       >
         {codeHasBeenSent.text}
-      </Button>
-    </form>
+      </button>
+    </StyledSection>
   );
 }
 
