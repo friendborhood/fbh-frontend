@@ -1,33 +1,47 @@
-/* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable react/prop-types */
+import React from 'react';
+import styled from 'styled-components';
+import { GLOBAL_LIGHTGRAY, BUTTON_RADIUS } from '../GlobalStyling';
+
+const StyledSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  font-style: heebo;
+  margin-top: 10px;
+
+  & div {
+    font-weight: 500;
+  }
+
+  & input {
+    border: solid ${GLOBAL_LIGHTGRAY};
+    border-radius: ${BUTTON_RADIUS};
+    min-width: 218px;
+    padding: 4px;
+  }
+`;
+
 function BoxInput(props) {
   const {
-    setState, margin, label, id: idBox, isHidden = false, noInput,
+    setState, label, id: idBox, isHidden = false, noInput,
+    placeHolder,
   } = props;
-  const def = 'border-solid border-2 border-green-700 rounded-md';
-  const focus = 'focus:outline-none focus:border-green-800 focus:shadow-inner focus:shadow-green-900';
-  const hover = 'hover:border-green-700';
-  const hoverShadow = 'hover:shadow-inner hover:shadow-green-800';
+
   const onChangeHandler = (event) => {
     setState(event.target.value);
   };
+
   return (
-    <div className={`flex justify-between w-80 my-3 mx-8 ${margin}`}>
-      <label hidden={isHidden}>
-        {label}
-        :
-        {' '}
-
-      </label>
-
+    <StyledSection>
+      <div hidden={isHidden}>{label}</div>
       <input
         hidden={isHidden || noInput}
         id={idBox}
         onChange={onChangeHandler}
-        className={`${def} ${hover} ${focus} ${hoverShadow}`}
+        placeholder={`Enter your ${placeHolder}`}
       />
-
-    </div>
+    </StyledSection>
   );
 }
 

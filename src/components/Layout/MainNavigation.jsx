@@ -1,37 +1,24 @@
-/* eslint-disable no-unused-vars */
-import {
-  Nav, Navbar, NavDropdown, Container,
-} from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { PAGES } from '../../pages/consts';
+import { StyledDiv } from './main-navigation-utils';
+
+const logo = require('../../images/logo.png');
+
+// TODO: Check active-hover-focus imperfect working
 
 function MainNavigation() {
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-      <Navbar.Brand href="#home">
-        <img
-          src="./photo/logo.png"
-          width="350px"
-          alt="Logo"
-        />
-
-      </Navbar.Brand>
-      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-      <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="me-auto">
-          <Nav.Link href="/about">About</Nav.Link>
-          <NavDropdown title="System" id="collasible-nav-dropdown">
-            <NavDropdown.Item href="/coins-info">Coins System</NavDropdown.Item>
-            <NavDropdown.Item href="/workflow">How it works</NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="/rules">Rules</NavDropdown.Item>
-          </NavDropdown>
-        </Nav>
-        <Nav>
-          <Nav.Link href={PAGES.LOGIN}>Login</Nav.Link>
-          <Nav.Link href={PAGES.SIGN_UP}>Sign-up</Nav.Link>
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
+    <StyledDiv>
+      <section className="site-info">
+        <img src={logo} alt="logo" />
+        <div>About</div>
+        <div>System</div>
+      </section>
+      <section className="user-usage">
+        <Link to={PAGES.SIGN_UP}><div>Sign-up</div></Link>
+        <Link to={PAGES.LOGIN}><div className="login">Login</div></Link>
+      </section>
+    </StyledDiv>
   );
 }
 

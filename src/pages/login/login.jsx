@@ -38,6 +38,7 @@ function Form() {
         label="Username"
         id="username"
         state={userName}
+        placeHolder="user name"
         setState={setUsername}
         isHidden={codeHasBeenSent.codeWasSent}
       />

@@ -5,7 +5,7 @@ import {
   BrowserRouter, Route, Routes, Navigate,
 } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-import SignUpPage from './pages/sign-up';
+import SignUpPage from './pages/sign-up/SignUpPage';
 import LoginPage from './pages/login/login';
 import Layout from './components/Layout/Layout';
 import NotFound from './pages/not-found';
