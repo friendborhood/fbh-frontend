@@ -18,18 +18,19 @@ function Form() {
   const [fname, setFname] = useState('');
   const [lname, setLname] = useState('');
   const [userName, setuserName] = useState('');
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [email, setEmail] = useState('');
 
   const canSignUp = useMemo(
-    () => !(email && userName && fname && lname),
-    [email, userName, fname, lname],
+    () => !(email && userName && fname && lname && acceptedTerms),
+    [email, userName, fname, lname, acceptedTerms],
   );
 
   const trySignUp = async (data) => {
     const { userName } = data;
+    console.log(userName);
     const successfulSignUp = await handleSignUp(data);
     if (successfulSignUp) {
-      localStorage.setItem('userName', userName);
       navigate(PAGES.ADDITIONAL_DETAILS, { replace: true });
     }
   };
@@ -37,7 +38,7 @@ function Form() {
   const navigateToLogin = () => {
     navigate(PAGES.LOGIN);
   };
-
+  const handleCheckboxChange = () => { setAcceptedTerms(!acceptedTerms); };
   const successGoogleAuth = async (response) => {
     const profile = response.getBasicProfile();
     const emailFromGoogle = profile.getEmail();
@@ -91,11 +92,14 @@ function Form() {
         />
       </div>
       <div className="terms-agree">
-        <StyledCheckbox />
+        <StyledCheckbox
+          checked={acceptedTerms}
+          onChange={handleCheckboxChange}
+        />
         <div>{'I\'ve read and agree with terms of service.'}</div>
       </div>
       <button
-        type="submit"
+        type="button"
         id="sign-up"
         disabled={canSignUp}
         onClick={() => trySignUp({
