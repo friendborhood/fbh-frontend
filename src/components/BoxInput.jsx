@@ -1,33 +1,34 @@
-/* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable react/prop-types */
+import styled from 'styled-components';
+
+const StyledDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  font-style: heebo;
+
+  & label {
+    font-weight: 500, medium;
+  }
+`;
+
 function BoxInput(props) {
   const {
-    setState, margin, label, id: idBox, isHidden = false, noInput,
+    setState, label, id: idBox, isHidden = false, noInput,
   } = props;
-  const def = 'border-solid border-2 border-green-700 rounded-md';
-  const focus = 'focus:outline-none focus:border-green-800 focus:shadow-inner focus:shadow-green-900';
-  const hover = 'hover:border-green-700';
-  const hoverShadow = 'hover:shadow-inner hover:shadow-green-800';
+
   const onChangeHandler = (event) => {
     setState(event.target.value);
   };
   return (
-    <div className={`flex justify-between w-80 my-3 mx-8 ${margin}`}>
-      <label hidden={isHidden}>
-        {label}
-        :
-        {' '}
-
-      </label>
-
+    <StyledDiv>
+      <label hidden={isHidden}>{`${label}:`}</label>
       <input
         hidden={isHidden || noInput}
         id={idBox}
         onChange={onChangeHandler}
-        className={`${def} ${hover} ${focus} ${hoverShadow}`}
       />
-
-    </div>
+    </StyledDiv>
   );
 }
 

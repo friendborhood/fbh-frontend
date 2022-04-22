@@ -1,37 +1,82 @@
 /* eslint-disable no-unused-vars */
-import {
-  Nav, Navbar, NavDropdown, Container,
-} from 'react-bootstrap';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { PAGES } from '../../pages/consts';
+import { navigationGrey, GlobalScarlet } from '../../GlobalStyling';
+
+const logo = require('../../images/logo.png');
+
+// TODO: Check active-hover-focus imperfect working
+const StyledDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 147px;
+
+  & section {
+    gap: 50px;
+
+    &.site-info {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      cursor: auto;
+      }
+
+    &.user-usage {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      margin-right: 40px;
+      cursor: auto;
+    }
+
+    & div {
+      margin-top: 45px;
+      color: ${navigationGrey};
+      font-weight: 400, normal;
+      font-style: feebo;
+      cursor: pointer;
+      &:active, &:hover, &:focus {
+        color: ${GlobalScarlet};
+        font-weight: bold;
+        font-weight: 500, medium;
+      }
+    }
+
+  }
+  & img {
+    width: 223px;
+    height: 102px;
+  }
+
+  & a {
+    &:link {
+      text-decoration: none; 
+    }
+    &:active, &:hover, &:focus {
+        color: ${GlobalScarlet};
+        font-weight: bold;
+        font-weight: 500, medium;
+    }
+  }
+`;
 
 function MainNavigation() {
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-      <Navbar.Brand href="#home">
-        <img
-          src="./photo/logo.png"
-          width="350px"
-          alt="Logo"
-        />
-
-      </Navbar.Brand>
-      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-      <Navbar.Collapse id="responsive-navbar-nav">
-        <Nav className="me-auto">
-          <Nav.Link href="/about">About</Nav.Link>
-          <NavDropdown title="System" id="collasible-nav-dropdown">
-            <NavDropdown.Item href="/coins-info">Coins System</NavDropdown.Item>
-            <NavDropdown.Item href="/workflow">How it works</NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="/rules">Rules</NavDropdown.Item>
-          </NavDropdown>
-        </Nav>
-        <Nav>
-          <Nav.Link href={PAGES.LOGIN}>Login</Nav.Link>
-          <Nav.Link href={PAGES.SIGN_UP}>Sign-up</Nav.Link>
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
+    <StyledDiv>
+      <section className="site-info">
+        <img src={logo} alt="logo" />
+        <div>About</div>
+        <div>System</div>
+      </section>
+      <section className="user-usage">
+        <Link to={PAGES.SIGN_UP}><div>Sign-up</div></Link>
+        <Link to={PAGES.LOGIN}><div className="login">Login</div></Link>
+      </section>
+    </StyledDiv>
   );
 }
 

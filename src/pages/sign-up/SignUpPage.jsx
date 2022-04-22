@@ -1,6 +1,7 @@
 /* eslint-disable no-shadow */
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
+import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
 import { handleSignUp } from './utils';
@@ -9,12 +10,18 @@ import { PAGES } from '../consts';
 import 'react-toastify/dist/ReactToastify.css';
 import { parseGmailToValidUserName } from '../login/utils';
 
+const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+`;
+
 function Form() {
   const navigate = useNavigate();
   const [fname, setFname] = useState('');
   const [lname, setLname] = useState('');
   const [userName, setuserName] = useState('');
   const [email, setEmail] = useState('');
+  // TODO: replace to useMemo hook and check if behaves the same
   const canSignUp = !(email && userName && fname && lname);
 
   const trySignUp = async (data) => {
@@ -42,9 +49,8 @@ function Form() {
   };
 
   return (
-    <form
+    <StyledForm
       id="form"
-      className="basis-full border-8 border-green-900 rounded-lg border-double"
     >
 
       <GoogleLogin
@@ -59,7 +65,6 @@ function Form() {
         id="fname"
         state={fname}
         setState={setFname}
-        margin="mt-6"
       />
       <BoxInput
         label="Last Name"
@@ -78,10 +83,8 @@ function Form() {
         id="email"
         state={email}
         setState={setEmail}
-        margin="mb-6"
       />
       <Button
-        style={{ marginLeft: 150 }}
         id="sign-up"
         disabled={canSignUp}
         variant="contained"
@@ -94,7 +97,7 @@ function Form() {
       >
         Sign Up!
       </Button>
-    </form>
+    </StyledForm>
   );
 }
 
