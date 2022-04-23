@@ -55,7 +55,7 @@ function AdditionalDetailsPage() {
           },
         })}
       />
-      <img alt="profile" src={imageUrl} referrerpolicy="no-referrer" />
+      <img alt="profile" src={imageUrl} referrerpolicy="no-referrer" width="120" height="120" />
 
       <Button
         style={{ marginLeft: 150 }}
