@@ -6,9 +6,8 @@ import {
   GLOBAL_SCARLET, FORM_BOTTON_HEIGHT, BUTTON_RADIUS, FORM_MARGIN_LEFT,
 } from '../../../GlobalStyling';
 
-const checkBoxSign = require('../../../images/checkbox-sign.svg');
-
 const COMPONENT_WIDTH = '446px';
+
 export const handleSignUp = async (data) => {
   try {
     const { data: newUserData } = await network.post(END_POINTS.USER, data);
@@ -75,6 +74,7 @@ export const StyledForm = styled.form`
     &.clickable {
       color: ${GLOBAL_SCARLET};
       font-weight: 500;
+      background-color: white;
     }
 
   }
@@ -104,24 +104,23 @@ export const StyledCheckbox = styled.input.attrs({ type: 'checkbox' })`
   width: 16px;
   border: 2px solid black;
   border-radius: 2px;
-  display: inline-block;
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-right: 4px;
+  flex-shrink: 0;
 
   &:hover, :active, :checked:active {
     background-color: #D5D5D5;
-    content: ${checkBoxSign};
-
   }
 
   &:checked {
   background-color: #e9ecee;
   color: #99a1a7;
-  content: ${checkBoxSign};
 
-  &:after {
+  &::after {
     display:inline-block;
-    content: ${checkBoxSign};
+    content: '\\2714';
   }
 }
 `;

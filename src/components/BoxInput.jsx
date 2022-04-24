@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import styled from 'styled-components';
-import { GLOBAL_LIGHTGRAY, BUTTON_RADIUS } from '../GlobalStyling';
+import { GLOBAL_LIGHTGRAY, BUTTON_RADIUS, GLOBAL_SCARLET } from '../GlobalStyling';
 
 const StyledSection = styled.section`
   display: flex;
@@ -10,7 +10,7 @@ const StyledSection = styled.section`
   font-style: heebo;
   margin-top: 10px;
   max-width: 446px;
-
+  
   & div {
     font-weight: 500;
   }
@@ -20,6 +20,12 @@ const StyledSection = styled.section`
     border-radius: ${BUTTON_RADIUS};
     min-width: 218px;
     padding: 4px;
+
+    &:focus {
+      border-color: ${GLOBAL_SCARLET};
+      outline: ${GLOBAL_SCARLET};
+      outline-color: none;
+    }
   }
 `;
 

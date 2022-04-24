@@ -92,13 +92,13 @@ function Form() {
         cookiePolicy="single_host_origin"
       />
       <div className="already-have">
-        <p>Already have an account?</p>
+        <p>{'Don\'t have an account?'}</p>
         <div
           type="button"
           className="clickable"
           onClick={navigateToSignUp}
         >
-          Sign in
+          Sign up
         </div>
       </div>
       <BoxInput
