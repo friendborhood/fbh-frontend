@@ -84,13 +84,17 @@ export const StyledForm = styled.form`
     background-color: ${GLOBAL_SCARLET};
     height: ${FORM_BOTTON_HEIGHT};
     border-radius: ${BUTTON_RADIUS};
-    font-weight: 500;
+    font-weight: 500 !important;
     color: white;
     margin-bottom: 15px;
     
+    &:disabled {
+      background-color: grey;
+    }
 
     &.google-button {
       box-shadow: none !important;
+      color: black !important;
       border: solid black !important;
       border-radius: ${BUTTON_RADIUS} !important;
       justify-content: center !important;
