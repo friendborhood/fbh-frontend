@@ -81,6 +81,7 @@ export const StyledForm = styled.form`
       display: flex;
       justify-content: center;
       width: ${COMPONENT_WIDTH};
+      height: ${FORM_BOTTON_HEIGHT};
     }
 
   }

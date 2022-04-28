@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable no-shadow */
 import React, { useMemo, useState } from 'react';
-import { Oval } from 'react-loader-spinner';
+import { TailSpin } from 'react-loader-spinner';
 import { useNavigate } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
 import { handleSignUp, StyledForm } from './utils';
@@ -22,7 +22,7 @@ function Form() {
   const [userName, setuserName] = useState('');
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [email, setEmail] = useState('');
-  const [hideLoader, setHideLoader] = useState(false); // set to true after check
+  const [hideLoader, setHideLoader] = useState(true); // set to true after check
 
   const canSignUp = useMemo(
     () => !(email && userName && fname && lname && acceptedTerms),
@@ -38,7 +38,7 @@ function Form() {
       localStorage.setItem('userName', userName);
       navigate(PAGES.ADDITIONAL_DETAILS, { replace: true });
     }
-    setHideLoader(false); // set to true after check
+    setHideLoader(true); // set to true after check
   };
 
   const navigateToLogin = () => {
@@ -118,7 +118,7 @@ function Form() {
               Sign Up!
             </button>
           )
-          : <div className="loader-container"><Oval color={GLOBAL_SCARLET} height={30} width={30} /></div>
+          : <div className="loader-container"><TailSpin color={GLOBAL_SCARLET} height={40} width={30} /></div>
 }
       <GoogleLogin
         className="google-button"
