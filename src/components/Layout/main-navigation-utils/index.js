@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import { GLOBAL_LIGHTGRAY, GLOBAL_SCARLET } from '../../../GlobalStyling';
 
-export const StyledDiv = styled.div`
+export const MainNavigationStyle = styled.div`
   display: flex;
+  position: relative;
   z-index: 100;
   flex-direction: row;
   justify-content: space-between;
