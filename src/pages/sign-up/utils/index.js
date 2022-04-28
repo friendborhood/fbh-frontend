@@ -80,8 +80,9 @@ export const StyledForm = styled.form`
     &.loader-container {
       display: flex;
       justify-content: center;
+      align-items: center;
       width: ${COMPONENT_WIDTH};
-      height: ${FORM_BOTTON_HEIGHT};
+      height: calc(${FORM_BOTTON_HEIGHT} * 2);
     }
 
   }

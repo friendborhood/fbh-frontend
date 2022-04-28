@@ -23,7 +23,6 @@ function Form() {
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [email, setEmail] = useState('');
   const [hideLoader, setHideLoader] = useState(true);
-  const [hideLoaderOnGoogle, setHideLoaderOnGoogle] = useState(true);
 
   const canSignUp = useMemo(
     () => !(email && userName && fname && lname && acceptedTerms),
@@ -47,8 +46,6 @@ function Form() {
   };
 
   const successGoogleAuth = async (response) => {
-    setHideLoaderOnGoogle(false);
-
     const profile = response.getBasicProfile();
     const emailFromGoogle = profile.getEmail();
     const userName = parseGmailToValidUserName(emailFromGoogle);
@@ -107,36 +104,33 @@ function Form() {
       {
         hideLoader
           ? (
-            <button
-              type="button"
-              id="sign-up"
-              disabled={canSignUp}
-              onClick={() => trySignUp({
-                email,
-                userName,
-                firstName: fname,
-                lastName: lname,
-              })}
-            >
-              Sign Up!
-            </button>
+            <>
+              <button
+                type="button"
+                id="sign-up"
+                disabled={canSignUp}
+                onClick={() => trySignUp({
+                  email,
+                  userName,
+                  firstName: fname,
+                  lastName: lname,
+                })}
+              >
+                Sign Up!
+              </button>
+              <GoogleLogin
+                className="google-button"
+                clientId={process.env.REACT_APP_GOOGLE_LOGIN_KEY}
+                buttonText="Sign up with google"
+                onSuccess={successGoogleAuth}
+                onFailure={(e) => console.log(e)}
+                cookiePolicy="single_host_origin"
+              />
+            </>
           )
           : <div className="loader-container"><TailSpin color={GLOBAL_SCARLET} height={40} width={30} /></div>
 }
-      {
-        hideLoaderOnGoogle
-          ? (
-            <GoogleLogin
-              className="google-button"
-              clientId={process.env.REACT_APP_GOOGLE_LOGIN_KEY}
-              buttonText="Sign up with google"
-              onSuccess={successGoogleAuth}
-              onFailure={(e) => console.log(e)}
-              cookiePolicy="single_host_origin"
-            />
-          )
-          : <div className="loader-container"><TailSpin color={GLOBAL_SCARLET} height={40} width={30} /></div>
-}
+
       <div className="already-have">
         <p>Already have an account?</p>
         <div
