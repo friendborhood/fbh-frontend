@@ -22,7 +22,8 @@ function Form() {
   const [userName, setuserName] = useState('');
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [email, setEmail] = useState('');
-  const [hideLoader, setHideLoader] = useState(true); // set to true after check
+  const [hideLoader, setHideLoader] = useState(true);
+  const [hideLoaderOnGoogle, setHideLoaderOnGoogle] = useState(true);
 
   const canSignUp = useMemo(
     () => !(email && userName && fname && lname && acceptedTerms),
@@ -38,7 +39,7 @@ function Form() {
       localStorage.setItem('userName', userName);
       navigate(PAGES.ADDITIONAL_DETAILS, { replace: true });
     }
-    setHideLoader(true); // set to true after check
+    setHideLoader(true);
   };
 
   const navigateToLogin = () => {
@@ -46,6 +47,8 @@ function Form() {
   };
 
   const successGoogleAuth = async (response) => {
+    setHideLoaderOnGoogle(false);
+
     const profile = response.getBasicProfile();
     const emailFromGoogle = profile.getEmail();
     const userName = parseGmailToValidUserName(emailFromGoogle);
@@ -120,14 +123,20 @@ function Form() {
           )
           : <div className="loader-container"><TailSpin color={GLOBAL_SCARLET} height={40} width={30} /></div>
 }
-      <GoogleLogin
-        className="google-button"
-        clientId={process.env.REACT_APP_GOOGLE_LOGIN_KEY}
-        buttonText="Sign up with google"
-        onSuccess={successGoogleAuth}
-        onFailure={(e) => console.log(e)}
-        cookiePolicy="single_host_origin"
-      />
+      {
+        hideLoaderOnGoogle
+          ? (
+            <GoogleLogin
+              className="google-button"
+              clientId={process.env.REACT_APP_GOOGLE_LOGIN_KEY}
+              buttonText="Sign up with google"
+              onSuccess={successGoogleAuth}
+              onFailure={(e) => console.log(e)}
+              cookiePolicy="single_host_origin"
+            />
+          )
+          : <div className="loader-container"><TailSpin color={GLOBAL_SCARLET} height={40} width={30} /></div>
+}
       <div className="already-have">
         <p>Already have an account?</p>
         <div
