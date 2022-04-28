@@ -18,7 +18,7 @@ function App() {
       <Layout>
         <ToastContainer />
         <Routes>
-          <Route path="/" element={<Navigate to="/home" />} />
+          <Route path="/" element={<Navigate to={PAGES.HOME} />} />
           <Route path={PAGES.SIGN_UP} element={<SignUpPage />} />
           <Route path={PAGES.LOGIN} element={<LoginPage />} />
           <Route path={PAGES.ADDITIONAL_DETAILS} element={<AdditionalDetailsPage />} />

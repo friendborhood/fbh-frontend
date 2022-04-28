@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { PAGES } from '../../pages/consts';
-import { StyledDiv } from './main-navigation-utils';
+import { MainNavigationStyle } from './main-navigation-utils';
 
 const logo = require('../../images/logo.png');
 
@@ -8,9 +8,9 @@ const logo = require('../../images/logo.png');
 
 function MainNavigation() {
   return (
-    <StyledDiv>
+    <MainNavigationStyle>
       <section className="site-info">
-        <img src={logo} alt="logo" />
+        <Link to={PAGES.HOME}><img src={logo} alt="logo" /></Link>
         <div>About</div>
         <div>System</div>
       </section>
@@ -18,7 +18,7 @@ function MainNavigation() {
         <Link to={PAGES.SIGN_UP}><div>Sign-up</div></Link>
         <Link to={PAGES.LOGIN}><div className="login">Login</div></Link>
       </section>
-    </StyledDiv>
+    </MainNavigationStyle>
   );
 }
 

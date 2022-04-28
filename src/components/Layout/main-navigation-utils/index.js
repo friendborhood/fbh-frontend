@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 import { GLOBAL_LIGHTGRAY, GLOBAL_SCARLET } from '../../../GlobalStyling';
 
-export const StyledDiv = styled.div`
+export const MainNavigationStyle = styled.div`
   display: flex;
+  position: relative;
+  z-index: 100;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -32,8 +34,9 @@ export const StyledDiv = styled.div`
       color: ${GLOBAL_LIGHTGRAY};
       font-weight: 400, normal;
       font-style: feebo;
+
       cursor: pointer;
-      &:active, &:hover, &:focus {
+      &:active, :hover, :focus {
         color: ${GLOBAL_SCARLET};
         font-weight: bold;
         font-weight: 500, medium;

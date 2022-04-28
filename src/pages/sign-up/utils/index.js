@@ -2,9 +2,12 @@ import { toast } from 'react-toastify';
 import styled from 'styled-components';
 import { END_POINTS, network } from '../../../network';
 import { BAD_REQUEST_CODE, UNKNOWN_SERVER_ERROR } from '../../consts';
-import { GLOBAL_SCARLET, FORM_BOTTON_HEIGHT, BUTTON_RADIUS } from '../../../GlobalStyling';
+import {
+  GLOBAL_SCARLET, FORM_BOTTON_HEIGHT, BUTTON_RADIUS, FORM_MARGIN_LEFT,
+} from '../../../GlobalStyling';
 
 const COMPONENT_WIDTH = '446px';
+
 export const handleSignUp = async (data) => {
   try {
     const { data: newUserData } = await network.post(END_POINTS.USER, data);
@@ -22,7 +25,7 @@ export const handleSignUp = async (data) => {
 export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
-  margin-left: 260px;
+  margin-left: ${FORM_MARGIN_LEFT};
   font-style: heebo;
   font-weight: medium;
   width: 50%;
@@ -52,7 +55,7 @@ export const StyledForm = styled.form`
       justify-content: space-between;
     }
 
-    &.terms-agree {
+    &.checkbox {
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -71,6 +74,7 @@ export const StyledForm = styled.form`
     &.clickable {
       color: ${GLOBAL_SCARLET};
       font-weight: 500;
+      background-color: white;
     }
 
   }
@@ -80,13 +84,17 @@ export const StyledForm = styled.form`
     background-color: ${GLOBAL_SCARLET};
     height: ${FORM_BOTTON_HEIGHT};
     border-radius: ${BUTTON_RADIUS};
-    font-weight: 500;
+    font-weight: 500 !important;
     color: white;
     margin-bottom: 15px;
     
+    &:disabled {
+      background-color: grey;
+    }
 
     &.google-button {
       box-shadow: none !important;
+      color: black !important;
       border: solid black !important;
       border-radius: ${BUTTON_RADIUS} !important;
       justify-content: center !important;
@@ -97,12 +105,14 @@ export const StyledForm = styled.form`
 export const StyledCheckbox = styled.input.attrs({ type: 'checkbox' })`
   -webkit-appearance: none;
   height:16px;
-  width: 18px;
-  border: 1px solid black;
-  border-radius: 3px;
-  display: inline-block;
-  position: relative;
+  width: 16px;
+  border: 2px solid black;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-right: 4px;
+  flex-shrink: 0;
 
   &:hover, :active, :checked:active {
     background-color: #D5D5D5;
@@ -112,9 +122,9 @@ export const StyledCheckbox = styled.input.attrs({ type: 'checkbox' })`
   background-color: #e9ecee;
   color: #99a1a7;
 
-  &:after {
+  &::after {
     display:inline-block;
-    content: "V";
+    content: '\\2714';
   }
 }
 `;

@@ -5,8 +5,9 @@ import React, { useMemo, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
-import { handleSignUp, StyledCheckbox, StyledForm } from './utils';
+import { handleSignUp, StyledForm } from './utils';
 import BoxInput from '../../components/BoxInput';
+import CustomCheckBox from './CustomCheckBox';
 import { PAGES } from '../consts';
 import 'react-toastify/dist/ReactToastify.css';
 import { parseGmailToValidUserName } from '../login/utils';
@@ -31,6 +32,7 @@ function Form() {
     console.log(userName);
     const successfulSignUp = await handleSignUp(data);
     if (successfulSignUp) {
+      localStorage.setItem('userName', userName);
       navigate(PAGES.ADDITIONAL_DETAILS, { replace: true });
     }
   };
@@ -38,7 +40,7 @@ function Form() {
   const navigateToLogin = () => {
     navigate(PAGES.LOGIN);
   };
-  const handleCheckboxChange = () => { setAcceptedTerms(!acceptedTerms); };
+
   const successGoogleAuth = async (response) => {
     const profile = response.getBasicProfile();
     const emailFromGoogle = profile.getEmail();
@@ -91,11 +93,8 @@ function Form() {
           placeHolder="email"
         />
       </div>
-      <div className="terms-agree">
-        <StyledCheckbox
-          checked={acceptedTerms}
-          onChange={handleCheckboxChange}
-        />
+      <div className="checkbox">
+        <CustomCheckBox isChecked={acceptedTerms} setIsChecked={setAcceptedTerms} />
         <div>{'I\'ve read and agree with terms of service.'}</div>
       </div>
       <button

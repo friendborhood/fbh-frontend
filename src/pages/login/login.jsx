@@ -1,5 +1,6 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
-import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
 import { toast } from 'react-toastify';
@@ -8,6 +9,8 @@ import {
   handleAuthValidation, handleGoogleLogin, handleLogin, parseGmailToValidUserName,
 } from './utils';
 import { PAGES } from '../consts';
+import { StyledForm } from '../sign-up/utils';
+import CustomCheckBox from '../sign-up/CustomCheckBox';
 
 function Form() {
   const navigate = useNavigate();
@@ -29,26 +32,75 @@ function Form() {
     }
   };
 
+  const navigateToSignUp = () => {
+    navigate(PAGES.SIGN_UP);
+  };
+
+  const loginButtonClickHandler = async () => {
+    if (!codeHasBeenSent.codeWasSent) {
+      const codeWasSentSuccessfully = await handleLogin(userName);
+      if (codeWasSentSuccessfully) {
+        setCodeSent({
+          text: 'Login',
+          codeWasSent: true,
+        });
+      }
+    } else {
+      const pinCodeIsCorrect = await handleAuthValidation({ userName, code: pinCode });
+      if (pinCodeIsCorrect) {
+        console.log('success login');
+        localStorage.setItem('userName', userName);
+        navigate(PAGES.ADDITIONAL_DETAILS, { replace: true });
+      } else {
+        toast('wrong code');
+      }
+    }
+  };
+
   return (
-    <form
-      id="form"
-      className="basis-full border-8 border-green-900 rounded-lg border-double"
-    >
-      <BoxInput
-        label="Username"
-        id="username"
-        state={userName}
-        placeHolder="user name"
-        setState={setUsername}
-        isHidden={codeHasBeenSent.codeWasSent}
-      />
+    <StyledForm>
+      <h1>Welcome Back</h1>
+      <p>Welcome back! Please enter your details.</p>
+      <div className="form-wrapper">
+        <BoxInput
+          label="Username"
+          id="username"
+          state={userName}
+          placeHolder="user name"
+          setState={setUsername}
+          isHidden={codeHasBeenSent.codeWasSent}
+        />
+      </div>
+      <div className="checkbox">
+        <CustomCheckBox />
+        <div>Remember me</div>
+      </div>
+      <button
+        id="login"
+        type="button"
+        disabled={!userName && !pinCode}
+        onClick={loginButtonClickHandler}
+      >
+        {codeHasBeenSent.text}
+      </button>
       <GoogleLogin
+        className="google-button"
         clientId={process.env.REACT_APP_GOOGLE_LOGIN_KEY}
         buttonText="Sign in with google"
         onSuccess={successGoogleAuth}
         onFailure={(e) => console.log(e)}
         cookiePolicy="single_host_origin"
       />
+      <div className="already-have">
+        <p>{'Don\'t have an account?'}</p>
+        <div
+          type="button"
+          className="clickable"
+          onClick={navigateToSignUp}
+        >
+          Sign up
+        </div>
+      </div>
       <BoxInput
         label="Code from email"
         id="pinCode"
@@ -56,36 +108,7 @@ function Form() {
         setState={setPinCode}
         isHidden={!codeHasBeenSent.codeWasSent}
       />
-
-      <Button
-        id="login"
-        variant="contained"
-        disabled={!userName && !pinCode}
-        style={{ marginLeft: 150 }}
-        onClick={async () => {
-          if (!codeHasBeenSent.codeWasSent) {
-            const codeWasSentSuccessfully = await handleLogin(userName);
-            if (codeWasSentSuccessfully) {
-              setCodeSent({
-                text: 'Login',
-                codeWasSent: true,
-              });
-            }
-          } else {
-            const pinCodeIsCorrect = await handleAuthValidation({ userName, code: pinCode });
-            if (pinCodeIsCorrect) {
-              console.log('success login');
-              localStorage.setItem('userName', userName);
-              navigate(PAGES.ADDITIONAL_DETAILS, { replace: true });
-            } else {
-              toast('wrong code');
-            }
-          }
-        }}
-      >
-        {codeHasBeenSent.text}
-      </Button>
-    </form>
+    </StyledForm>
   );
 }
 
