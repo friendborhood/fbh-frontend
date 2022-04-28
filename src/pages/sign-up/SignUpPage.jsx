@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable no-shadow */
 import React, { useMemo, useState } from 'react';
-
+import { Oval } from 'react-loader-spinner';
 import { useNavigate } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
 import { handleSignUp, StyledForm } from './utils';
@@ -11,6 +11,7 @@ import CustomCheckBox from './CustomCheckBox';
 import { PAGES } from '../consts';
 import 'react-toastify/dist/ReactToastify.css';
 import { parseGmailToValidUserName } from '../login/utils';
+import { GLOBAL_SCARLET } from '../../GlobalStyling';
 
 // TODO: add style to marked checkbox
 
@@ -21,6 +22,7 @@ function Form() {
   const [userName, setuserName] = useState('');
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [email, setEmail] = useState('');
+  const [hideLoader, setHideLoader] = useState(false); // set to true after check
 
   const canSignUp = useMemo(
     () => !(email && userName && fname && lname && acceptedTerms),
@@ -30,11 +32,13 @@ function Form() {
   const trySignUp = async (data) => {
     const { userName } = data;
     console.log(userName);
+    setHideLoader(false);
     const successfulSignUp = await handleSignUp(data);
     if (successfulSignUp) {
       localStorage.setItem('userName', userName);
       navigate(PAGES.ADDITIONAL_DETAILS, { replace: true });
     }
+    setHideLoader(false); // set to true after check
   };
 
   const navigateToLogin = () => {
@@ -97,19 +101,25 @@ function Form() {
         <CustomCheckBox isChecked={acceptedTerms} setIsChecked={setAcceptedTerms} />
         <div>{'I\'ve read and agree with terms of service.'}</div>
       </div>
-      <button
-        type="button"
-        id="sign-up"
-        disabled={canSignUp}
-        onClick={() => trySignUp({
-          email,
-          userName,
-          firstName: fname,
-          lastName: lname,
-        })}
-      >
-        Sign Up!
-      </button>
+      {
+        hideLoader
+          ? (
+            <button
+              type="button"
+              id="sign-up"
+              disabled={canSignUp}
+              onClick={() => trySignUp({
+                email,
+                userName,
+                firstName: fname,
+                lastName: lname,
+              })}
+            >
+              Sign Up!
+            </button>
+          )
+          : <div className="loader-container"><Oval color={GLOBAL_SCARLET} height={30} width={30} /></div>
+}
       <GoogleLogin
         className="google-button"
         clientId={process.env.REACT_APP_GOOGLE_LOGIN_KEY}
