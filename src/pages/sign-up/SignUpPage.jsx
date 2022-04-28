@@ -32,6 +32,7 @@ function Form() {
     console.log(userName);
     const successfulSignUp = await handleSignUp(data);
     if (successfulSignUp) {
+      localStorage.setItem('userName', userName);
       navigate(PAGES.ADDITIONAL_DETAILS, { replace: true });
     }
   };
