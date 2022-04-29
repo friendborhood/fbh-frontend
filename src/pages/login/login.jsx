@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { TailSpin } from 'react-loader-spinner';
 import GoogleLogin from 'react-google-login';
 import { toast } from 'react-toastify';
 import BoxInput from '../../components/BoxInput';
@@ -11,6 +12,7 @@ import {
 import { PAGES } from '../consts';
 import { StyledForm } from '../sign-up/utils';
 import CustomCheckBox from '../sign-up/CustomCheckBox';
+import { LOADER_PARAMS } from '../../GlobalStyling';
 
 function Form() {
   const navigate = useNavigate();
@@ -20,8 +22,11 @@ function Form() {
     codeWasSent: false,
     text: 'Send Login Code!',
   });
+  const [hideLoader, setHideLoader] = useState(true);
+
   const successGoogleAuth = async (response) => {
     console.log(response);
+    setHideLoader(false);
     const profile = response.getBasicProfile();
     const emailFromGoogle = profile.getEmail();
     const username = parseGmailToValidUserName(emailFromGoogle);
@@ -30,6 +35,7 @@ function Form() {
       localStorage.setItem('userName', username);
       navigate(PAGES.ADDITIONAL_DETAILS, { replace: true });
     }
+    setHideLoader(true);
   };
 
   const navigateToSignUp = () => {
@@ -37,6 +43,7 @@ function Form() {
   };
 
   const loginButtonClickHandler = async () => {
+    setHideLoader(false);
     if (!codeHasBeenSent.codeWasSent) {
       const codeWasSentSuccessfully = await handleLogin(userName);
       if (codeWasSentSuccessfully) {
@@ -55,6 +62,7 @@ function Form() {
         toast('wrong code');
       }
     }
+    setHideLoader(true);
   };
 
   return (
@@ -75,22 +83,39 @@ function Form() {
         <CustomCheckBox />
         <div>Remember me</div>
       </div>
-      <button
-        id="login"
-        type="button"
-        disabled={!userName && !pinCode}
-        onClick={loginButtonClickHandler}
-      >
-        {codeHasBeenSent.text}
-      </button>
-      <GoogleLogin
-        className="google-button"
-        clientId={process.env.REACT_APP_GOOGLE_LOGIN_KEY}
-        buttonText="Sign in with google"
-        onSuccess={successGoogleAuth}
-        onFailure={(e) => console.log(e)}
-        cookiePolicy="single_host_origin"
-      />
+      {
+        hideLoader
+          ? (
+            <>
+              <button
+                id="login"
+                type="button"
+                disabled={!userName && !pinCode}
+                onClick={loginButtonClickHandler}
+              >
+                {codeHasBeenSent.text}
+              </button>
+              <GoogleLogin
+                className="google-button"
+                clientId={process.env.REACT_APP_GOOGLE_LOGIN_KEY}
+                buttonText="Sign in with google"
+                onSuccess={successGoogleAuth}
+                onFailure={(e) => console.log(e)}
+                cookiePolicy="single_host_origin"
+              />
+            </>
+          )
+          : (
+            <div className="loader-container">
+              <TailSpin
+                color={LOADER_PARAMS.color}
+                height={LOADER_PARAMS.height}
+                width={LOADER_PARAMS.width}
+              />
+            </div>
+          )
+
+      }
       <div className="already-have">
         <p>{'Don\'t have an account?'}</p>
         <div

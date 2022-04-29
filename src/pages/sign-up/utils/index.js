@@ -77,6 +77,14 @@ export const StyledForm = styled.form`
       background-color: white;
     }
 
+    &.loader-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: ${COMPONENT_WIDTH};
+      height: calc(${FORM_BOTTON_HEIGHT} * 2);
+    }
+
   }
 
   & button {
