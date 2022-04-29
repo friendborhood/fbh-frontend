@@ -8,7 +8,7 @@ export const MainNavigationStyle = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 147px;
+  height: 127px;
 
   & section {
     gap: 50px;

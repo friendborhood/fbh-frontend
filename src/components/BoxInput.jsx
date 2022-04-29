@@ -2,12 +2,14 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import styled from 'styled-components';
-import { GLOBAL_LIGHTGRAY, BUTTON_RADIUS, GLOBAL_SCARLET } from '../GlobalStyling';
+import {
+  GLOBAL_LIGHTGRAY, BUTTON_RADIUS, GLOBAL_SCARLET, GLOBAL_FONT,
+} from '../GlobalStyling';
 
 const StyledSection = styled.section`
   display: flex;
   flex-direction: column;
-  font-style: heebo;
+  font-style: ${GLOBAL_FONT};
   margin-top: 10px;
   max-width: 446px;
   
