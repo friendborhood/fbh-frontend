@@ -3,6 +3,11 @@ export const GLOBAL_LIGHTGRAY = '#99A0A9';
 export const FORM_BOTTON_HEIGHT = '45px';
 export const BUTTON_RADIUS = '8px';
 export const GLOBAL_FONT = 'heebo';
+export const LOADER_PARAMS = {
+  height: 40,
+  width: 30,
+  color: GLOBAL_SCARLET,
+};
 
 // Form styling:
 export const FORM_MARGIN_LEFT = '260px';

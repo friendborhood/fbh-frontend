@@ -12,7 +12,7 @@ import {
 import { PAGES } from '../consts';
 import { StyledForm } from '../sign-up/utils';
 import CustomCheckBox from '../sign-up/CustomCheckBox';
-import { GLOBAL_SCARLET } from '../../GlobalStyling';
+import { LOADER_PARAMS } from '../../GlobalStyling';
 
 function Form() {
   const navigate = useNavigate();
@@ -105,7 +105,15 @@ function Form() {
               />
             </>
           )
-          : <div className="loader-container"><TailSpin color={GLOBAL_SCARLET} height={40} width={30} /></div>
+          : (
+            <div className="loader-container">
+              <TailSpin
+                color={LOADER_PARAMS.color}
+                height={LOADER_PARAMS.height}
+                width={LOADER_PARAMS.width}
+              />
+            </div>
+          )
 
       }
       <div className="already-have">

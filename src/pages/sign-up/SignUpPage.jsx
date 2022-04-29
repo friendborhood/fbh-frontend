@@ -11,7 +11,7 @@ import CustomCheckBox from './CustomCheckBox';
 import { PAGES } from '../consts';
 import 'react-toastify/dist/ReactToastify.css';
 import { parseGmailToValidUserName } from '../login/utils';
-import { GLOBAL_SCARLET } from '../../GlobalStyling';
+import { LOADER_PARAMS } from '../../GlobalStyling';
 
 // TODO: add style to marked checkbox
 
@@ -128,7 +128,15 @@ function Form() {
               />
             </>
           )
-          : <div className="loader-container"><TailSpin color={GLOBAL_SCARLET} height={40} width={30} /></div>
+          : (
+            <div className="loader-container">
+              <TailSpin
+                color={LOADER_PARAMS.color}
+                height={LOADER_PARAMS.height}
+                width={LOADER_PARAMS.width}
+              />
+            </div>
+          )
 }
 
       <div className="already-have">
