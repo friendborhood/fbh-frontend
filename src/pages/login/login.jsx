@@ -137,6 +137,7 @@ function Form() {
           state={pinCode}
           setState={setPinCode}
           isHidden={!codeHasBeenSent.codeWasSent}
+          placeHolder="code"
         />
       </StyledForm>
     </>
