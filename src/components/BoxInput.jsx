@@ -3,7 +3,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import {
-  GLOBAL_LIGHTGRAY, BUTTON_RADIUS, GLOBAL_SCARLET, GLOBAL_FONT,
+  GLOBAL_LIGHTGRAY, MOBILE_STYLE, BUTTON_RADIUS, GLOBAL_SCARLET, GLOBAL_FONT,
 } from '../GlobalStyling';
 
 const StyledSection = styled.section`
@@ -15,6 +15,10 @@ const StyledSection = styled.section`
   
   & div {
     font-weight: 500;
+    @media only screen and (max-width: ${MOBILE_STYLE.max_width})
+    {
+      display: none;
+    }
   }
 
   & input {
@@ -22,6 +26,11 @@ const StyledSection = styled.section`
     border-radius: ${BUTTON_RADIUS};
     min-width: 218px;
     padding: 4px;
+    @media only screen and (max-width: ${MOBILE_STYLE.max_width})
+    {
+      width: ${MOBILE_STYLE.form_input_width};
+      height: ${MOBILE_STYLE.form_input_height};
+    }
 
     &:focus {
       border-color: ${GLOBAL_SCARLET};

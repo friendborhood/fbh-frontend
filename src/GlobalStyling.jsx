@@ -16,4 +16,7 @@ export const FORM_MARGIN_LEFT = '260px';
 export const MOBILE_STYLE = {
   max_width: '390px',
   navigation_padding: '11px',
+  form_input_width: '356px',
+  form_input_height: '36px',
+  form_button_height: '37px',
 };
