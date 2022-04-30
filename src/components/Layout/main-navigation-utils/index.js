@@ -9,7 +9,6 @@ export const MainNavigationStyle = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 127px;
-  border: solid red; 
 
   @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
     width: 100%;
@@ -23,18 +22,20 @@ export const MainNavigationStyle = styled.div`
     gap: 50px;
 
     & img {
-      border: solid blue;
 
       &.hamburger {
-        @media only screen and (min-width: var(${MOBILE_STYLE.max_width} +1))
+        display: none;
+        @media only screen and (max-width: ${MOBILE_STYLE.max_width})
         {
-          display: none;
+          display: flex;
+          height: 30px;
+          width: 30px;
         }
-        height: 30px;
-        width: 30px;
       }
 
       &.logo {
+        width: 223px;
+         height: 102px;
         @media only screen and (max-width: ${MOBILE_STYLE.max_width})
         {
           width: 100px;
@@ -79,10 +80,6 @@ export const MainNavigationStyle = styled.div`
       }
     }
 
-  }
-  & img {
-    width: 223px;
-    height: 102px;
   }
 
   & a {
