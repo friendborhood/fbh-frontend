@@ -47,11 +47,17 @@ export const StyledForm = styled.form`
   font-weight: medium;
   width: calc(50% - ${FORM_MARGIN_LEFT});
   min-width: ${COMPONENT_WIDTH};
+
   @media only screen and (max-width: ${MOBILE_STYLE.max_width})
   {
-    margin: 0;
+    flex-direction: column;
+    margin-left: 0;
+    width: 100%;
+    min-width: ${MOBILE_STYLE.max_width};
+    align-items: center;
+    overflow-x: hidden;
   }
-
+  
   & img {
     &.items-image {
       display: none;
@@ -148,8 +154,10 @@ export const StyledForm = styled.form`
     {
       width: ${MOBILE_STYLE.form_input_width};
       height: ${MOBILE_STYLE.form_input_height};
-      & svg {
-        border: solid;
+      & div {
+        height: 100%;
+        width: 30px;
+        align-items: center !important;
       }
     }
   }

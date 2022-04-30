@@ -12,6 +12,12 @@ const StyledSection = styled.section`
   font-style: ${GLOBAL_FONT};
   margin-top: 10px;
   max-width: 446px;
+
+  @media only screen and (max-width: ${MOBILE_STYLE.max_width})
+  {
+    width: 100%;
+    min-width: ${MOBILE_STYLE.max_width} !important;
+  }
   
   & div {
     font-weight: 500;
@@ -30,6 +36,7 @@ const StyledSection = styled.section`
     {
       width: ${MOBILE_STYLE.form_input_width};
       height: ${MOBILE_STYLE.form_input_height};
+      align-self: center;
     }
 
     &:focus {

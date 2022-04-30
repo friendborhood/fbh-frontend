@@ -5,13 +5,13 @@ export const MainNavigationStyle = styled.div`
   display: flex;
   position: relative;
   z-index: 100;
+  width: 100%;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   height: 127px;
 
   @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
-    width: 100%;
     flex-direction: row-reverse;
     height: 68px;
     padding-right: ${MOBILE_STYLE.navigation_padding};
@@ -64,7 +64,7 @@ export const MainNavigationStyle = styled.div`
       margin-top: 45px;
       color: ${GLOBAL_LIGHTGRAY};
       font-weight: 400, normal;
-      font-style: feebo;
+      font-style: 'feebo';
 
       &.menu-item, &.login {
         @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
