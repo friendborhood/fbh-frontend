@@ -11,3 +11,9 @@ export const LOADER_PARAMS = {
 
 // Form styling:
 export const FORM_MARGIN_LEFT = '260px';
+
+// Mobile styling:
+export const MOBILE_STYLE = {
+  max_width: '390px',
+  navigation_padding: '11px',
+};

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { GLOBAL_LIGHTGRAY, GLOBAL_SCARLET } from '../../../GlobalStyling';
+import { GLOBAL_LIGHTGRAY, GLOBAL_SCARLET, MOBILE_STYLE } from '../../../GlobalStyling';
 
 export const MainNavigationStyle = styled.div`
   display: flex;
@@ -10,8 +10,32 @@ export const MainNavigationStyle = styled.div`
   align-items: center;
   height: 127px;
 
+  @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
+    width: 100%;
+    flex-direction: row-reverse;
+    height: 68px;
+    padding-right: ${MOBILE_STYLE.navigation_padding};
+    padding-left: ${MOBILE_STYLE.navigation_padding};
+  }
+
   & section {
     gap: 50px;
+
+    & img {
+
+      &.hamburger {
+        height: 30px;
+        width: 30px;
+      }
+
+      &.logo {
+        @media only screen and (max-width: ${MOBILE_STYLE.max_width})
+        {
+          width: 100px;
+          height: 46px;
+        }
+      }     
+    }
 
     &.site-info {
       display: flex;
@@ -34,6 +58,12 @@ export const MainNavigationStyle = styled.div`
       color: ${GLOBAL_LIGHTGRAY};
       font-weight: 400, normal;
       font-style: feebo;
+
+      &.menu-item, &.login {
+        @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
+          display: none;
+        }
+      }
 
       cursor: pointer;
       &:active, :hover, :focus {
