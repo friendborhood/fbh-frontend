@@ -14,7 +14,7 @@ import { PAGES } from '../consts';
 import { StyledForm, StyledBackground } from '../sign-up/utils';
 import CustomCheckBox from '../sign-up/CustomCheckBox';
 import { LOADER_PARAMS } from '../../GlobalStyling';
-import { default as BACKGROUND_IMG } from '../../images/page-background-image.png';
+import { default as MOBILE_IMG } from '../../images/mobile-package-image.png';
 
 function Form() {
   const navigate = useNavigate();
@@ -71,7 +71,7 @@ function Form() {
     <>
       <StyledBackground className="half-cover" />
       <StyledForm>
-        <img src={BACKGROUND_IMG} className="items-image" alt="decoration" />
+        <img src={MOBILE_IMG} className="items-image" alt="decoration" />
         <h1>Welcome Back</h1>
         <p>Welcome back! Please enter your details.</p>
         <div className="form-wrapper">

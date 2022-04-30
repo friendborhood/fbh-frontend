@@ -60,12 +60,13 @@ export const StyledForm = styled.form`
 
   & img {
     &.items-image {
-      visibility: hidden;
+      display: none;
       @media only screen and (max-width: ${MOBILE_STYLE.max_width})
       {
+        display: flex;
         background-size: cover;
-        visibility: visible;
-        border: solid red;
+        width: 390px;
+        height: 155px;
       }
     }
   }
@@ -82,17 +83,6 @@ export const StyledForm = styled.form`
   }
 
   & div {
-    &.image-container {
-      display: none;
-      @media only screen and (max-width: ${MOBILE_STYLE.max_width})
-      {
-        display: flex;
-        width: 100%;
-        justify-content: center;
-        height: 155px;  
-      }
-      
-    }
 
     &.form-wrapper {
       width: inherit;

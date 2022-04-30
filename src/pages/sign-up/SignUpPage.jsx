@@ -13,7 +13,7 @@ import { PAGES } from '../consts';
 import 'react-toastify/dist/ReactToastify.css';
 import { parseGmailToValidUserName } from '../login/utils';
 import { LOADER_PARAMS } from '../../GlobalStyling';
-import { default as BACKGROUND_IMG } from '../../images/page-background-image.png';
+import { default as MOBILE_IMG } from '../../images/mobile-package-image.png';
 
 // TODO: add style to marked checkbox
 
@@ -67,9 +67,7 @@ function Form() {
     <>
       <StyledBackground className="half-cover" />
       <StyledForm>
-        <div className="image-container">
-          <img src={BACKGROUND_IMG} className="items-image" alt="decoration" />
-        </div>
+        <img src={MOBILE_IMG} className="items-image" alt="decoration" />
         <h1>Sign up</h1>
         <p>Welcome! Please enter your details.</p>
         <div className="form-wrapper">
