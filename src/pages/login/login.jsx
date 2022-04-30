@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-default */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
@@ -10,9 +11,10 @@ import {
   handleAuthValidation, handleGoogleLogin, handleLogin, parseGmailToValidUserName,
 } from './utils';
 import { PAGES } from '../consts';
-import { StyledForm } from '../sign-up/utils';
+import { StyledForm, StyledBackground } from '../sign-up/utils';
 import CustomCheckBox from '../sign-up/CustomCheckBox';
 import { LOADER_PARAMS } from '../../GlobalStyling';
+import { default as BACKGROUND_IMG } from '../../images/page-background-image.png';
 
 function Form() {
   const navigate = useNavigate();
@@ -66,24 +68,27 @@ function Form() {
   };
 
   return (
-    <StyledForm>
-      <h1>Welcome Back</h1>
-      <p>Welcome back! Please enter your details.</p>
-      <div className="form-wrapper">
-        <BoxInput
-          label="Username"
-          id="username"
-          state={userName}
-          placeHolder="user name"
-          setState={setUsername}
-          isHidden={codeHasBeenSent.codeWasSent}
-        />
-      </div>
-      <div className="checkbox">
-        <CustomCheckBox />
-        <div>Remember me</div>
-      </div>
-      {
+    <>
+      <StyledBackground className="half-cover" />
+      <StyledForm>
+        <img src={BACKGROUND_IMG} className="items-image" alt="decoration" />
+        <h1>Welcome Back</h1>
+        <p>Welcome back! Please enter your details.</p>
+        <div className="form-wrapper">
+          <BoxInput
+            label="Username"
+            id="username"
+            state={userName}
+            placeHolder="user name"
+            setState={setUsername}
+            isHidden={codeHasBeenSent.codeWasSent}
+          />
+        </div>
+        <div className="checkbox">
+          <CustomCheckBox />
+          <div>Remember me</div>
+        </div>
+        {
         hideLoader
           ? (
             <>
@@ -116,24 +121,25 @@ function Form() {
           )
 
       }
-      <div className="already-have">
-        <p>{'Don\'t have an account?'}</p>
-        <div
-          type="button"
-          className="clickable"
-          onClick={navigateToSignUp}
-        >
-          Sign up
+        <div className="already-have">
+          <p>{'Don\'t have an account?'}</p>
+          <div
+            type="button"
+            className="clickable"
+            onClick={navigateToSignUp}
+          >
+            Sign up
+          </div>
         </div>
-      </div>
-      <BoxInput
-        label="Code from email"
-        id="pinCode"
-        state={pinCode}
-        setState={setPinCode}
-        isHidden={!codeHasBeenSent.codeWasSent}
-      />
-    </StyledForm>
+        <BoxInput
+          label="Code from email"
+          id="pinCode"
+          state={pinCode}
+          setState={setPinCode}
+          isHidden={!codeHasBeenSent.codeWasSent}
+        />
+      </StyledForm>
+    </>
   );
 }
 

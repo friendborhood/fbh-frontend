@@ -67,7 +67,9 @@ function Form() {
     <>
       <StyledBackground className="half-cover" />
       <StyledForm>
-        <img src={BACKGROUND_IMG} className="items-image" alt="decoration" />
+        <div className="image-container">
+          <img src={BACKGROUND_IMG} className="items-image" alt="decoration" />
+        </div>
         <h1>Sign up</h1>
         <p>Welcome! Please enter your details.</p>
         <div className="form-wrapper">
