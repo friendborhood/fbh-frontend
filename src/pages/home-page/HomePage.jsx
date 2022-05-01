@@ -1,9 +1,9 @@
 import React from 'react';
 
-function Form() {
+function HomePage() {
   return (
     <div />
   );
 }
 
-export default Form;
+export default HomePage;
