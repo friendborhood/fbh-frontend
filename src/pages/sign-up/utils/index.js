@@ -1,10 +1,12 @@
+/* eslint-disable import/no-named-default */
 import { toast } from 'react-toastify';
 import styled from 'styled-components';
 import { END_POINTS, network } from '../../../network';
 import { BAD_REQUEST_CODE, UNKNOWN_SERVER_ERROR } from '../../consts';
 import {
-  GLOBAL_SCARLET, FORM_BOTTON_HEIGHT, BUTTON_RADIUS, FORM_MARGIN_LEFT,
+  GLOBAL_SCARLET, MOBILE_STYLE, FORM_BOTTON_HEIGHT, BUTTON_RADIUS, FORM_MARGIN_LEFT,
 } from '../../../GlobalStyling';
+import { default as BACKGROUND_IMG } from '../../../images/page-background-image.png';
 
 const COMPONENT_WIDTH = '446px';
 
@@ -22,14 +24,52 @@ export const handleSignUp = async (data) => {
   }
 };
 
+export const StyledBackground = styled.div`
+  position: absolute;
+  background-image: url(${BACKGROUND_IMG});
+  background-size: cover;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  @media only screen and (max-width: ${MOBILE_STYLE.max_width})
+  {
+    display: none;
+  }
+`;
+
 export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   margin-left: ${FORM_MARGIN_LEFT};
-  font-style: heebo;
+  font-style: 'heebo';
   font-weight: medium;
-  width: 50%;
+  width: calc(50% - ${FORM_MARGIN_LEFT});
   min-width: ${COMPONENT_WIDTH};
+
+  @media only screen and (max-width: ${MOBILE_STYLE.max_width})
+  {
+    flex-direction: column;
+    margin-left: 0;
+    width: 100%;
+    min-width: ${MOBILE_STYLE.max_width};
+    align-items: center;
+    overflow-x: hidden;
+  }
+
+  & img {
+    &.items-image {
+      display: none;
+      @media only screen and (max-width: ${MOBILE_STYLE.max_width})
+      {
+        display: flex;
+        background-size: cover;
+        width: 390px;
+        height: 155px;
+      }
+    }
+  }
 
   & h1 {
     font-size: 48px;
@@ -43,6 +83,7 @@ export const StyledForm = styled.form`
   }
 
   & div {
+
     &.form-wrapper {
       width: inherit;
       width: ${COMPONENT_WIDTH};
@@ -53,6 +94,10 @@ export const StyledForm = styled.form`
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      @media only screen and (max-width: ${MOBILE_STYLE.max_width})
+      {
+        flex-direction: column;
+      }
     }
 
     &.checkbox {
@@ -106,6 +151,17 @@ export const StyledForm = styled.form`
       border: solid black !important;
       border-radius: ${BUTTON_RADIUS} !important;
       justify-content: center !important;
+    }
+
+    @media only screen and (max-width: ${MOBILE_STYLE.max_width})
+    {
+      width: ${MOBILE_STYLE.form_input_width};
+      height: ${MOBILE_STYLE.form_input_height};
+      & div {
+        height: 100%;
+        width: 30px;
+        align-items: center !important;
+      }
     }
   }
 `;

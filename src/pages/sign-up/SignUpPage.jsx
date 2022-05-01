@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-default */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable no-shadow */
@@ -5,13 +6,14 @@ import React, { useMemo, useState } from 'react';
 import { TailSpin } from 'react-loader-spinner';
 import { useNavigate } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
-import { handleSignUp, StyledForm } from './utils';
+import { handleSignUp, StyledForm, StyledBackground } from './utils';
 import BoxInput from '../../components/BoxInput';
 import CustomCheckBox from './CustomCheckBox';
 import { PAGES } from '../consts';
 import 'react-toastify/dist/ReactToastify.css';
 import { parseGmailToValidUserName } from '../login/utils';
 import { LOADER_PARAMS } from '../../GlobalStyling';
+import { default as MOBILE_IMG } from '../../images/mobile-package-image.png';
 
 // TODO: add style to marked checkbox
 
@@ -62,46 +64,49 @@ function Form() {
   };
 
   return (
-    <StyledForm>
-      <h1>Sign up</h1>
-      <p>Welcome! Please enter your details.</p>
-      <div className="form-wrapper">
-        <div className="name-wrapper">
+    <>
+      <StyledBackground className="half-cover" />
+      <StyledForm>
+        <img src={MOBILE_IMG} className="items-image" alt="decoration" />
+        <h1>Sign up</h1>
+        <p>Welcome! Please enter your details.</p>
+        <div className="form-wrapper">
+          <div className="name-wrapper">
+            <BoxInput
+              label="First Name"
+              id="fname"
+              state={fname}
+              setState={setFname}
+              placeHolder="first name"
+            />
+            <BoxInput
+              label="Last Name"
+              id="lname"
+              state={lname}
+              setState={setLname}
+              placeHolder="last name"
+            />
+          </div>
           <BoxInput
-            label="First Name"
-            id="fname"
-            state={fname}
-            setState={setFname}
-            placeHolder="first name"
+            label="User Name"
+            id="userName"
+            state={userName}
+            setState={setuserName}
+            placeHolder="user name"
           />
           <BoxInput
-            label="Last Name"
-            id="lname"
-            state={lname}
-            setState={setLname}
-            placeHolder="last name"
+            label="Email Address"
+            id="email"
+            state={email}
+            setState={setEmail}
+            placeHolder="email"
           />
         </div>
-        <BoxInput
-          label="User Name"
-          id="userName"
-          state={userName}
-          setState={setuserName}
-          placeHolder="user name"
-        />
-        <BoxInput
-          label="Email Address"
-          id="email"
-          state={email}
-          setState={setEmail}
-          placeHolder="email"
-        />
-      </div>
-      <div className="checkbox">
-        <CustomCheckBox isChecked={acceptedTerms} setIsChecked={setAcceptedTerms} />
-        <div>{'I\'ve read and agree with terms of service.'}</div>
-      </div>
-      {
+        <div className="checkbox">
+          <CustomCheckBox isChecked={acceptedTerms} setIsChecked={setAcceptedTerms} />
+          <div>{'I\'ve read and agree with terms of service.'}</div>
+        </div>
+        {
         hideLoader
           ? (
             <>
@@ -139,17 +144,18 @@ function Form() {
           )
 }
 
-      <div className="already-have">
-        <p>Already have an account?</p>
-        <div
-          type="button"
-          className="clickable"
-          onClick={navigateToLogin}
-        >
-          Sign in
+        <div className="already-have">
+          <p>Already have an account?</p>
+          <div
+            type="button"
+            className="clickable"
+            onClick={navigateToLogin}
+          >
+            Sign in
+          </div>
         </div>
-      </div>
-    </StyledForm>
+      </StyledForm>
+    </>
   );
 }
 

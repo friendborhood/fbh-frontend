@@ -2,17 +2,29 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import styled from 'styled-components';
-import { GLOBAL_LIGHTGRAY, BUTTON_RADIUS, GLOBAL_SCARLET } from '../GlobalStyling';
+import {
+  GLOBAL_LIGHTGRAY, MOBILE_STYLE, BUTTON_RADIUS, GLOBAL_SCARLET, GLOBAL_FONT,
+} from '../GlobalStyling';
 
 const StyledSection = styled.section`
   display: flex;
   flex-direction: column;
-  font-style: heebo;
+  font-style: ${GLOBAL_FONT};
   margin-top: 10px;
   max-width: 446px;
+
+  @media only screen and (max-width: ${MOBILE_STYLE.max_width})
+  {
+    width: 100%;
+    min-width: ${MOBILE_STYLE.max_width} !important;
+  }
   
   & div {
     font-weight: 500;
+    @media only screen and (max-width: ${MOBILE_STYLE.max_width})
+    {
+      display: none;
+    }
   }
 
   & input {
@@ -20,6 +32,12 @@ const StyledSection = styled.section`
     border-radius: ${BUTTON_RADIUS};
     min-width: 218px;
     padding: 4px;
+    @media only screen and (max-width: ${MOBILE_STYLE.max_width})
+    {
+      width: ${MOBILE_STYLE.form_input_width};
+      height: ${MOBILE_STYLE.form_input_height};
+      align-self: center;
+    }
 
     &:focus {
       border-color: ${GLOBAL_SCARLET};
