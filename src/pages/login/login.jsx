@@ -5,7 +5,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TailSpin } from 'react-loader-spinner';
 import GoogleLogin from 'react-google-login';
-import { toast } from 'react-toastify';
 import BoxInput from '../../components/BoxInput';
 import {
   handleAuthValidation, handleGoogleLogin, handleLogin, parseGmailToValidUserName,
@@ -15,6 +14,7 @@ import { StyledForm, StyledBackground } from '../sign-up/utils';
 import CustomCheckBox from '../sign-up/CustomCheckBox';
 import { LOADER_PARAMS } from '../../GlobalStyling';
 import { default as MOBILE_IMG } from '../../images/mobile-package-image.png';
+import { displayMessage } from '../../generic-utils/alert-message';
 
 function Form() {
   const navigate = useNavigate();
@@ -61,7 +61,7 @@ function Form() {
         localStorage.setItem('userName', userName);
         navigate(PAGES.ADDITIONAL_DETAILS, { replace: true });
       } else {
-        toast('wrong code');
+        displayMessage('wrong code');
       }
     }
     setHideLoader(true);
