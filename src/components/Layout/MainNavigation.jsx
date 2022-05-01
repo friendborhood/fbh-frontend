@@ -4,13 +4,15 @@ import { PAGES } from '../../pages/consts';
 import { MainNavigationStyle } from './main-navigation-utils';
 import { default as hamburger } from '../../images/menu-hamburger.svg';
 
+const logo = require('../../images/logo.png');
+
 // TODO: Check active-hover-focus imperfect working
 
 function MainNavigation() {
   return (
     <MainNavigationStyle>
       <section className="site-info">
-        <Link to={PAGES.HOME} />
+        <Link to={PAGES.HOME}><img src={logo} className="logo" alt="logo" /></Link>
         <div className="menu-item">About</div>
         <div className="menu-item">System</div>
       </section>
