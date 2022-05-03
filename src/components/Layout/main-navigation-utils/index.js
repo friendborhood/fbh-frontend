@@ -34,12 +34,14 @@ export const MainNavigationStyle = styled.div`
       }
 
       &.logo {
-        width: 223px;
+
+        margin-left:50px;
+        width: 102px;
          height: 102px;
         @media only screen and (max-width: ${MOBILE_STYLE.max_width})
         {
-          width: 100px;
-          height: 46px;
+          width: 55px;
+          height: 55px;
         }
       }     
     }
