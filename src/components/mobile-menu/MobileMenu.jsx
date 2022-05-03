@@ -7,9 +7,13 @@ import MenuOption from './MenuOption';
 export const StyledMenu = styled.div`
   display: flex;
   position: absolute;
+  top: 0;
+  z-index: 2000;
   width: 100%;
   height: 100%;
   flex-direction: column;
+  background-color: white;
+  border: solid;
   color: ${GLOBAL_SCARLET};
 `;
 

@@ -31,7 +31,7 @@ export const userActions = userSlice.actions;
 /// display slice:
 
 export const initialDisplayState = {
-  showMobileMenu: true,
+  showMobileMenu: false,
 };
 
 export const displaySlice = createSlice({
