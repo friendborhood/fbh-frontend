@@ -5,18 +5,23 @@ import {
   BrowserRouter, Route, Routes, Navigate,
 } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import { useSelector } from 'react-redux';
 import SignUpPage from './pages/sign-up/SignUpPage';
 import LoginPage from './pages/login/login';
 import Layout from './components/Layout/Layout';
 import NotFound from './pages/not-found';
 import AdditionalDetailsPage from './pages/additional-details';
 import { PAGES } from './pages/consts';
+import MobilMenu from './components/mobile-menu/MobileMenu';
 
 function App() {
+  const menuDisplayStatus = useSelector((state) => state.display.showMobileMenu);
+  console.log(useSelector((state) => state));
   return (
     <BrowserRouter>
       <Layout>
         <ToastContainer />
+        {menuDisplayStatus ? <MobilMenu /> : null}
         <Routes>
           <Route path="/" element={<Navigate to={PAGES.HOME} />} />
           <Route path={PAGES.SIGN_UP} element={<SignUpPage />} />

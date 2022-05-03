@@ -30,8 +30,8 @@ export const userActions = userSlice.actions;
 
 /// display slice:
 
-const initialDisplayState = {
-  showMobileMenu: false,
+export const initialDisplayState = {
+  showMobileMenu: true,
 };
 
 export const displaySlice = createSlice({
@@ -46,7 +46,7 @@ export const displaySlice = createSlice({
 });
 
 export const updateMenuDisplay = (menuState) => (dispatch) => {
-  dispatch(displaySlice.actions.switchMobileMenuState(menuState));
+  dispatch(displaySlice.actions.switchMobileMenuState({ mobileMenuState: menuState }));
 };
 
 export const displayActions = displaySlice.actions;
@@ -55,6 +55,6 @@ export const displayActions = displaySlice.actions;
 export const store = configureStore({
   reducer: {
     auth: userSlice.reducer,
-    display: displaySlice,
+    display: displaySlice.reducer,
   },
 });
