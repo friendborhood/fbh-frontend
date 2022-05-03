@@ -16,7 +16,6 @@ const StyledSection = styled.section`
   @media only screen and (max-width: ${MOBILE_STYLE.max_width})
   {
     width: 100%;
-    min-width: ${MOBILE_STYLE.max_width} !important;
   }
   
   & div {

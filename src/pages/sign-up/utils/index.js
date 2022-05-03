@@ -33,6 +33,7 @@ export const StyledBackground = styled.div`
   height: 100%;
   top: 0;
   bottom: 0;
+
   @media only screen and (max-width: ${MOBILE_STYLE.max_width})
   {
     display: none;
@@ -51,11 +52,10 @@ export const StyledForm = styled.form`
   @media only screen and (max-width: ${MOBILE_STYLE.max_width})
   {
     flex-direction: column;
-    margin-left: 0;
-    width: 100%;
-    min-width: ${MOBILE_STYLE.max_width};
+    width: 100vw;
+    margin: 0;
+    min-width: 100%;
     align-items: center;
-    overflow-x: hidden;
   }
 
   & img {
@@ -107,6 +107,12 @@ export const StyledForm = styled.form`
       font-weight: 500;
       text-decoration: underline;
       margin-bottom: 25px;
+
+      @media only screen and (max-width: ${MOBILE_STYLE.max_width})
+      {
+        width: ${MOBILE_STYLE.form_input_width};
+        justify-self: flex-start;
+      }
     }
 
     &.already-have {

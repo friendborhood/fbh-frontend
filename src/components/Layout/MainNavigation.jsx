@@ -1,12 +1,14 @@
+/* eslint-disable max-len */
 /* eslint-disable import/no-named-default */
+// import { useState } from 'react';
 import { Link } from 'react-router-dom';
+// import Hamburger from 'hamburger-react';
 import { PAGES } from '../../pages/consts';
 import { MainNavigationStyle } from './main-navigation-utils';
+// import { GLOBAL_SCARLET } from '../../GlobalStyling';
 import { default as hamburger } from '../../images/menu-hamburger.svg';
 
 const logo = require('../../images/logo.png');
-
-// TODO: Check active-hover-focus imperfect working
 
 function MainNavigation() {
   return (

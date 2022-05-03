@@ -57,6 +57,7 @@ export const MainNavigationStyle = styled.div`
       flex-direction: row;
       justify-content: flex-end;
       margin-right: 40px;
+      
       cursor: auto;
     }
 
