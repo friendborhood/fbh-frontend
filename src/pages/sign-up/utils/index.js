@@ -1,5 +1,5 @@
 /* eslint-disable import/no-named-default */
-import { toast } from 'react-toastify';
+
 import styled from 'styled-components';
 import { END_POINTS, network } from '../../../network';
 import { BAD_REQUEST_CODE, UNKNOWN_SERVER_ERROR } from '../../consts';
@@ -7,6 +7,7 @@ import {
   GLOBAL_SCARLET, MOBILE_STYLE, FORM_BOTTON_HEIGHT, BUTTON_RADIUS, FORM_MARGIN_LEFT,
 } from '../../../GlobalStyling';
 import { default as BACKGROUND_IMG } from '../../../images/page-background-image.png';
+import { displayMessage } from '../../../utils/handle-device-middleware';
 
 const COMPONENT_WIDTH = '446px';
 
@@ -18,7 +19,7 @@ export const handleSignUp = async (data) => {
   } catch (e) {
     const toastMessage = e.response.status === BAD_REQUEST_CODE
       ? e.response.data.error : UNKNOWN_SERVER_ERROR;
-    toast(toastMessage);
+    displayMessage(toastMessage);
     console.log(e);
     return false;
   }
