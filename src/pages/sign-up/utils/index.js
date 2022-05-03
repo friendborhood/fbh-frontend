@@ -7,7 +7,7 @@ import {
   GLOBAL_SCARLET, MOBILE_STYLE, FORM_BOTTON_HEIGHT, BUTTON_RADIUS, FORM_MARGIN_LEFT,
 } from '../../../GlobalStyling';
 import { default as BACKGROUND_IMG } from '../../../images/page-background-image.png';
-import { displayMessage } from '../../../generic-utils/alert-message';
+import { displayMessage } from '../../../utils/handle-device-middleware';
 
 const COMPONENT_WIDTH = '446px';
 

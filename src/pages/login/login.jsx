@@ -14,7 +14,7 @@ import { StyledForm, StyledBackground } from '../sign-up/utils';
 import CustomCheckBox from '../sign-up/CustomCheckBox';
 import { LOADER_PARAMS } from '../../GlobalStyling';
 import { default as MOBILE_IMG } from '../../images/mobile-package-image.png';
-import { displayMessage } from '../../generic-utils/alert-message';
+import { displayMessage } from '../../utils/handle-device-middleware';
 
 function Form() {
   const navigate = useNavigate();

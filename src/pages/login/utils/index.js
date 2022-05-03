@@ -1,4 +1,4 @@
-import { displayMessage } from '../../../generic-utils/alert-message';
+import { displayMessage } from '../../../utils/handle-device-middleware';
 import { network } from '../../../network';
 
 const alertNotExist = (userName) => displayMessage(`user ${userName} does not exist`);
