@@ -1,7 +1,7 @@
-import { toast } from 'react-toastify';
+import { displayMessage } from '../../../utils/handle-device-middleware';
 import { network } from '../../../network';
 
-const alertNotExist = (userName) => toast(`user ${userName} does not exist`);
+const alertNotExist = (userName) => displayMessage(`user ${userName} does not exist`);
 export const parseGmailToValidUserName = (gmail) => {
   const leftSideOfEmail = gmail.split('@')[0];
   const userNameAfterRemoveNonAlphaNum = leftSideOfEmail.replace(/[^a-z0-9]/gi, '');

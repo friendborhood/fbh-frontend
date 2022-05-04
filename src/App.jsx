@@ -7,6 +7,7 @@ import {
 import { ToastContainer } from 'react-toastify';
 import { useSelector } from 'react-redux';
 import SignUpPage from './pages/sign-up/SignUpPage';
+import HomePage from './pages/home-page/HomePage';
 import LoginPage from './pages/login/login';
 import Layout from './components/Layout/Layout';
 import NotFound from './pages/not-found';
@@ -24,6 +25,7 @@ function App() {
         {menuDisplayStatus ? <MobilMenu /> : null}
         <Routes>
           <Route path="/" element={<Navigate to={PAGES.HOME} />} />
+          <Route path={PAGES.HOME} element={<HomePage />} />
           <Route path={PAGES.SIGN_UP} element={<SignUpPage />} />
           <Route path={PAGES.LOGIN} element={<LoginPage />} />
           <Route path={PAGES.ADDITIONAL_DETAILS} element={<AdditionalDetailsPage />} />
