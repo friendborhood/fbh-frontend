@@ -19,4 +19,6 @@ export const MOBILE_STYLE = {
   form_input_width: '356px',
   form_input_height: '36px',
   form_button_height: '37px',
+  NAVIGATION_MOBILE_HEIGHT: '68px',
+  MENU_ITEM_COLOR: '#5E646B',
 };

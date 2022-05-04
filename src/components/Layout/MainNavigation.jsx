@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { PAGES } from '../../pages/consts';
 import { MainNavigationStyle } from './main-navigation-utils';
-// import { GLOBAL_SCARLET } from '../../GlobalStyling';
 import { default as hamburger } from '../../images/menu-hamburger.svg';
 import { updateMenuDisplay } from '../../Store/store';
 
