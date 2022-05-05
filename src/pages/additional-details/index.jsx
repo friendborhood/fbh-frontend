@@ -21,7 +21,7 @@ function AdditionalDetailsPage() {
   const fetchUserData = async () => {
     const { userName: extractedUserName } = jwtDecode(token);
     setUserName(extractedUserName);
-    const { data: userData } = await network.get(`${END_POINTS.USER}/${userName}`);
+    const { data: userData } = await network.get(`${END_POINTS.USER}/${extractedUserName}`);
     console.log(JSON.stringify(userData));
     console.log(userData.imageUrl);
     setImageUrl(userData.imageUrl);
