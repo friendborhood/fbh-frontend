@@ -13,7 +13,7 @@ export const MainNavigationStyle = styled.div`
 
   @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
     flex-direction: row-reverse;
-    height: 68px;
+    height: ${MOBILE_STYLE.NAVIGATION_MOBILE_HEIGHT};
     padding-right: ${MOBILE_STYLE.navigation_padding};
     padding-left: ${MOBILE_STYLE.navigation_padding};
   }
@@ -59,6 +59,7 @@ export const MainNavigationStyle = styled.div`
       flex-direction: row;
       justify-content: flex-end;
       margin-right: 40px;
+      
       cursor: auto;
     }
 
