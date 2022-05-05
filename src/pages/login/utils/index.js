@@ -1,5 +1,5 @@
 import { displayMessage } from '../../../utils/handle-device-middleware';
-import { network } from '../../../network';
+import { END_POINTS, network } from '../../../network';
 
 const alertNotExist = (userName) => displayMessage(`user ${userName} does not exist`);
 export const parseGmailToValidUserName = (gmail) => {
@@ -26,15 +26,14 @@ export const handleGoogleLogin = async (userName) => {
     return false;
   }
 };
-export const handleAuthValidation = async ({ userName, code }) => {
+export const handleAuth = async ({ userName, code, googleAuth }) => {
   try {
-    console.log(userName, code);
-    const { status } = await network.get(`/user/auth/validate/${userName}`, { params: { code } });
-    console.log(status);
+    let token = false;
+    const { status, data } = await network.post(`${END_POINTS.USER}/login`, { userName, code, googleAuth });
     if (status === 200) {
-      return true;
+      ({ token } = data);
     }
-    return false;
+    return token;
   } catch (e) {
     return false;
   }

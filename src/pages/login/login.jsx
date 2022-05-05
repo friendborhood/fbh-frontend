@@ -7,7 +7,7 @@ import { TailSpin } from 'react-loader-spinner';
 import GoogleLogin from 'react-google-login';
 import BoxInput from '../../components/BoxInput';
 import {
-  handleAuthValidation, handleGoogleLogin, handleLogin, parseGmailToValidUserName,
+  handleAuth, handleGoogleLogin, handleLogin, parseGmailToValidUserName,
 } from './utils';
 import { PAGES } from '../consts';
 import { StyledForm, StyledBackground } from '../sign-up/utils';
@@ -55,10 +55,10 @@ function Form() {
         });
       }
     } else {
-      const pinCodeIsCorrect = await handleAuthValidation({ userName, code: pinCode });
-      if (pinCodeIsCorrect) {
+      const token = await handleAuth({ userName, code: pinCode });
+      if (token) {
         console.log('success login');
-        localStorage.setItem('userName', userName);
+        localStorage.setItem('token', token);
         navigate(PAGES.ADDITIONAL_DETAILS, { replace: true });
       } else {
         displayMessage('wrong code');
