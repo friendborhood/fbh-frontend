@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 /* eslint-disable import/no-named-default */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
@@ -7,7 +8,7 @@ import { TailSpin } from 'react-loader-spinner';
 import GoogleLogin from 'react-google-login';
 import BoxInput from '../../components/BoxInput';
 import {
-  handleAuth, handleGoogleLogin, handleLogin, parseGmailToValidUserName,
+  handleAuth, handleLogin, parseGmailToValidUserName,
 } from './utils';
 import { PAGES } from '../consts';
 import { StyledForm, StyledBackground } from '../sign-up/utils';
@@ -25,19 +26,27 @@ function Form() {
     text: 'Send Login Code!',
   });
   const [hideLoader, setHideLoader] = useState(true);
-
+  const tryLoginAndStoreToken = async ({ userName, code, googleAuth }) => {
+    const token = await handleAuth({ userName, code, googleAuth });
+    if (token) {
+      console.log('success login');
+      localStorage.setItem('token', token);
+      navigate(PAGES.ADDITIONAL_DETAILS, { replace: true });
+    } else if (!googleAuth) {
+      displayMessage('wrong code');
+    } else {
+      displayMessage('failure logging with google');
+    }
+  };
   const successGoogleAuth = async (response) => {
     console.log(response);
     setHideLoader(false);
     const profile = response.getBasicProfile();
+    const googleAuth = response.getAuthResponse().id_token;
+    console.log('google auth', googleAuth);
     const emailFromGoogle = profile.getEmail();
-    const username = parseGmailToValidUserName(emailFromGoogle);
-    const successAuth = await handleGoogleLogin(username);
-    if (successAuth) {
-      localStorage.setItem('userName', username);
-      navigate(PAGES.ADDITIONAL_DETAILS, { replace: true });
-    }
-    setHideLoader(true);
+    const userName = parseGmailToValidUserName(emailFromGoogle);
+    await tryLoginAndStoreToken({ userName, googleAuth });
   };
 
   const navigateToSignUp = () => {
@@ -55,14 +64,7 @@ function Form() {
         });
       }
     } else {
-      const token = await handleAuth({ userName, code: pinCode });
-      if (token) {
-        console.log('success login');
-        localStorage.setItem('token', token);
-        navigate(PAGES.ADDITIONAL_DETAILS, { replace: true });
-      } else {
-        displayMessage('wrong code');
-      }
+      await tryLoginAndStoreToken({ userName, code: pinCode });
     }
     setHideLoader(true);
   };

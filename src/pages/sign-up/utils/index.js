@@ -13,9 +13,11 @@ const COMPONENT_WIDTH = '446px';
 
 export const handleSignUp = async (data) => {
   try {
-    const { data: newUserData } = await network.post(END_POINTS.USER, data);
-    console.log(`user has been added ${JSON.stringify(newUserData)}`);
-    return true;
+    const { data: newUserData, status } = await network.post(END_POINTS.USER, data);
+    if (status === 200) {
+      return newUserData.token;
+    }
+    return false;
   } catch (e) {
     const toastMessage = e.response.status === BAD_REQUEST_CODE
       ? e.response.data.error : UNKNOWN_SERVER_ERROR;

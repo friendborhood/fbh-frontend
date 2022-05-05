@@ -2,6 +2,7 @@ import Autocomplete from 'react-google-autocomplete';
 import React, { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
+import jwtDecode from 'jwt-decode';
 import DropDown from '../../components/drop-down';
 import BoxInput from '../../components/BoxInput';
 import { handleSubmitDetails } from './utils';
@@ -10,13 +11,16 @@ import { END_POINTS, network } from '../../network';
 
 function AdditionalDetailsPage() {
   const navigate = useNavigate();
-  const userName = localStorage.getItem('userName');
+  const token = localStorage.getItem('token');
+  const [userName, setUserName] = useState('');
   const [location, setLocation] = useState('');
   const [category, setCategory] = useState('');
   const [categories, setCategories] = useState(['Cleaning']);
   const [imageUrl, setImageUrl] = useState('');
 
   const fetchUserData = async () => {
+    const { userName: extractedUserName } = jwtDecode(token);
+    setUserName(extractedUserName);
     const { data: userData } = await network.get(`${END_POINTS.USER}/${userName}`);
     console.log(JSON.stringify(userData));
     console.log(userData.imageUrl);
@@ -27,7 +31,7 @@ function AdditionalDetailsPage() {
     console.log(currentCategories);
     setCategories(currentCategories);
   };
-  useEffect(() => (!userName
+  useEffect(() => (!token
     ? navigate(PAGES.HOME, { replace: true })
     : Promise.all([fetchUserData(), fetchCategories()])), []);
 

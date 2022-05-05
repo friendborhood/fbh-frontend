@@ -16,16 +16,7 @@ export const handleLogin = async (userName) => {
     return false;
   }
 };
-export const handleGoogleLogin = async (userName) => {
-  try {
-    await network.get(`/user/${userName}`);
-    return true;
-  } catch (e) {
-    console.log(e);
-    alertNotExist(userName);
-    return false;
-  }
-};
+
 export const handleAuth = async ({ userName, code, googleAuth }) => {
   try {
     let token = false;
