@@ -35,9 +35,9 @@ function Form() {
     const { userName } = data;
     console.log(userName);
     setHideLoader(false);
-    const successfulSignUp = await handleSignUp(data);
-    if (successfulSignUp) {
-      localStorage.setItem('userName', userName);
+    const token = await handleSignUp(data);
+    if (token) {
+      localStorage.setItem('token', token);
       navigate(PAGES.ADDITIONAL_DETAILS, { replace: true });
     }
     setHideLoader(true);
