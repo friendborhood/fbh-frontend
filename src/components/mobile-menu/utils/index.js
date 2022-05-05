@@ -25,7 +25,13 @@ export const StyledMenu = styled.div`
             display: flex;
             padding-left: ${MOBILE_STYLE.navigation_padding};
             height: ${MOBILE_STYLE.NAVIGATION_MOBILE_HEIGHT};
+            align-items: center;
             margin-bottom: 50px;
+
+            & img {
+                width: ${MOBILE_STYLE.X_WIDTH};
+                height: ${MOBILE_STYLE.X_HEIGHT};
+            }
         }
     }
 
