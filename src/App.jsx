@@ -13,7 +13,7 @@ import Layout from './components/Layout/Layout';
 import NotFound from './pages/not-found';
 import AdditionalDetailsPage from './pages/additional-details';
 import { PAGES } from './pages/consts';
-import MobilMenu from './components/mobile-menu/MobileMenu';
+import MobileMenu from './components/mobile-menu/MobileMenu';
 
 function App() {
   const menuDisplayStatus = useSelector((state) => state.display.showMobileMenu);
@@ -22,7 +22,7 @@ function App() {
     <BrowserRouter>
       <Layout>
         <ToastContainer />
-        {menuDisplayStatus ? <MobilMenu /> : null}
+        {menuDisplayStatus ? <MobileMenu /> : null}
         <Routes>
           <Route path="/" element={<Navigate to={PAGES.HOME} />} />
           <Route path={PAGES.HOME} element={<HomePage />} />
