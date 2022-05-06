@@ -16,6 +16,7 @@ import CustomCheckBox from '../SignUpForm/CustomCheckBox';
 import { LOADER_PARAMS } from '../../GlobalStyling';
 import MOBILE_IMG from '../../images/mobile-package-image.png';
 import { displayMessage } from '../../utils/handle-device-middleware';
+import { setTokenToLocalStorage } from '../../user-manager';
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ function LoginForm() {
     const token = await handleAuth({ userName, code, googleAuth });
     if (token) {
       console.log('success login');
-      localStorage.setItem('token', token);
+      setTokenToLocalStorage(token);
       navigate(PAGES.ADDITIONAL_DETAILS, { replace: true });
     } else if (!googleAuth) {
       displayMessage('wrong code');

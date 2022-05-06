@@ -2,16 +2,15 @@ import Autocomplete from 'react-google-autocomplete';
 import React, { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
-import jwtDecode from 'jwt-decode';
 import DropDown from '../../components/drop-down';
 import BoxInput from '../../components/BoxInput';
 import { handleSubmitDetails } from './utils';
 import { PAGES } from '../consts';
 import { END_POINTS, network } from '../../network';
+import { getTokenFromLocalStorage, getUserNameFromLocalStorage } from '../../user-manager';
 
 function AdditionalDetailsPage() {
   const navigate = useNavigate();
-  const token = localStorage.getItem('token');
   const [userName, setUserName] = useState('');
   const [location, setLocation] = useState('');
   const [category, setCategory] = useState('');
@@ -19,9 +18,9 @@ function AdditionalDetailsPage() {
   const [imageUrl, setImageUrl] = useState('');
 
   const fetchUserData = async () => {
-    const { userName: extractedUserName } = jwtDecode(token);
-    setUserName(extractedUserName);
-    const { data: userData } = await network.get(`${END_POINTS.USER}/${extractedUserName}`);
+    const userNameFromStorage = getUserNameFromLocalStorage();
+    setUserName(userNameFromStorage);
+    const { data: userData } = await network.get(`${END_POINTS.USER}/${userNameFromStorage}`);
     console.log(JSON.stringify(userData));
     console.log(userData.imageUrl);
     setImageUrl(userData.imageUrl);
@@ -31,7 +30,7 @@ function AdditionalDetailsPage() {
     console.log(currentCategories);
     setCategories(currentCategories);
   };
-  useEffect(() => (!token
+  useEffect(() => (!getTokenFromLocalStorage()
     ? navigate(PAGES.HOME, { replace: true })
     : Promise.all([fetchUserData(), fetchCategories()])), []);
 
