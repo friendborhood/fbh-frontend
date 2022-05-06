@@ -28,7 +28,7 @@ function Dashboard() {
         Click me for offers
 
       </button>
-      <h1>
+      <div>
         {' '}
         there are
         {' '}
@@ -36,7 +36,7 @@ function Dashboard() {
         {' '}
         offers , all offers:
         {JSON.stringify(offers)}
-      </h1>
+      </div>
     </form>
   );
 }
