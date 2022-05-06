@@ -1,14 +1,17 @@
 import Autocomplete from 'react-google-autocomplete';
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
+import { useNavigate } from 'react-router-dom';
 import DropDown from '../../components/drop-down';
 import BoxInput from '../../components/BoxInput';
 import { handleSubmitDetails } from './utils';
 import { END_POINTS, network } from '../../network';
 import { getUserNameFromLocalStorage } from '../../user-manager';
 import { useEffectOrLogout } from '../../user-manager/logout-user';
+import { PAGES } from '../consts';
 
 function AdditionalDetailsPage() {
+  const navigate = useNavigate();
   const [userName, setUserName] = useState('');
   const [location, setLocation] = useState('');
   const [category, setCategory] = useState('');
@@ -60,11 +63,14 @@ function AdditionalDetailsPage() {
         style={{ marginLeft: 150 }}
         id="more-details"
         variant="contained"
-        onClick={() => handleSubmitDetails({
-          userName,
-          favoriteCategory: category,
-          location,
-        })}
+        onClick={async () => {
+          await handleSubmitDetails({
+            userName,
+            favoriteCategory: category,
+            location,
+          });
+          navigate(PAGES.DASHBOARD);
+        }}
       >
         Submit!
       </Button>

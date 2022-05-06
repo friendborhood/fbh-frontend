@@ -14,6 +14,7 @@ import NotFound from './pages/not-found';
 import AdditionalDetailsPage from './pages/additional-details';
 import { PAGES } from './pages/consts';
 import MobileMenu from './components/mobile-menu/MobileMenu';
+import Dashboard from './pages/dashboard/HomePage';
 
 function App() {
   const menuDisplayStatus = useSelector((state) => state.display.showMobileMenu);
@@ -29,6 +30,7 @@ function App() {
           <Route path={PAGES.SIGN_UP} element={<SignUpPage />} />
           <Route path={PAGES.LOGIN} element={<LoginPage />} />
           <Route path={PAGES.ADDITIONAL_DETAILS} element={<AdditionalDetailsPage />} />
+          <Route path={PAGES.DASHBOARD} element={<Dashboard />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>
