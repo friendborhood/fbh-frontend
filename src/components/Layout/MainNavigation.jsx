@@ -1,14 +1,10 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable max-len */
-/* eslint-disable import/no-named-default */
-// import { useState } from 'react';
 import { Link } from 'react-router-dom';
-// import Hamburger from 'hamburger-react';
 import { useDispatch } from 'react-redux';
 import { PAGES } from '../../pages/consts';
 import { MainNavigationStyle } from './main-navigation-utils';
-import { default as hamburger } from '../../images/menu-hamburger.svg';
+import hamburger from '../../images/menu-hamburger.svg';
 import { updateMenuDisplay } from '../../Store/store';
 
 const logo = require('../../images/logo.png');

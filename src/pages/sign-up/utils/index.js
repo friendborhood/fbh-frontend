@@ -1,4 +1,3 @@
-/* eslint-disable import/no-named-default */
 import styled from 'styled-components';
 import BACKGROUND_IMG from '../../../images/page-background-image.png';
 import { MOBILE_STYLE } from '../../../GlobalStyling';

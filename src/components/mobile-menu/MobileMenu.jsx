@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable import/no-named-default */
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { PAGES } from '../../pages/consts';

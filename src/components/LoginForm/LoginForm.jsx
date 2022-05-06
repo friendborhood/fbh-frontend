@@ -1,5 +1,4 @@
 /* eslint-disable no-shadow */
-/* eslint-disable import/no-named-default */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
@@ -15,7 +14,7 @@ import { StyledForm } from '../SignUpForm/utils';
 import { StyledBackground } from '../../pages/sign-up/utils';
 import CustomCheckBox from '../SignUpForm/CustomCheckBox';
 import { LOADER_PARAMS } from '../../GlobalStyling';
-import { default as MOBILE_IMG } from '../../images/mobile-package-image.png';
+import MOBILE_IMG from '../../images/mobile-package-image.png';
 import { displayMessage } from '../../utils/handle-device-middleware';
 
 function LoginForm() {
