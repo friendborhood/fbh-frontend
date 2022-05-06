@@ -14,7 +14,7 @@ import NotFound from './pages/not-found';
 import AdditionalDetailsPage from './pages/additional-details';
 import { PAGES } from './pages/consts';
 import MobileMenu from './components/mobile-menu/MobileMenu';
-import Dashboard from './pages/dashboard/HomePage';
+import Dashboard from './pages/dashboard/Dashboard';
 
 function App() {
   const menuDisplayStatus = useSelector((state) => state.display.showMobileMenu);
