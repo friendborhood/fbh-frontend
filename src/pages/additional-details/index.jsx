@@ -1,16 +1,14 @@
 import Autocomplete from 'react-google-autocomplete';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Button from '@mui/material/Button';
-import { useNavigate } from 'react-router-dom';
 import DropDown from '../../components/drop-down';
 import BoxInput from '../../components/BoxInput';
 import { handleSubmitDetails } from './utils';
-import { PAGES } from '../consts';
 import { END_POINTS, network } from '../../network';
-import { getTokenFromLocalStorage, getUserNameFromLocalStorage } from '../../user-manager';
+import { getUserNameFromLocalStorage } from '../../user-manager';
+import { useEffectOrLogout } from '../../user-manager/logout-user';
 
 function AdditionalDetailsPage() {
-  const navigate = useNavigate();
   const [userName, setUserName] = useState('');
   const [location, setLocation] = useState('');
   const [category, setCategory] = useState('');
@@ -30,9 +28,7 @@ function AdditionalDetailsPage() {
     console.log(currentCategories);
     setCategories(currentCategories);
   };
-  useEffect(() => (!getTokenFromLocalStorage()
-    ? navigate(PAGES.HOME, { replace: true })
-    : Promise.all([fetchUserData(), fetchCategories()])), []);
+  useEffectOrLogout(() => Promise.all([fetchUserData(), fetchCategories()]));
 
   return (
     <form>
