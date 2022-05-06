@@ -11,7 +11,7 @@ import {
   handleAuth, handleLogin, parseGmailToValidUserName,
 } from './utils';
 import { PAGES } from '../../pages/consts';
-import { StyledForm } from '../../components/SignUpForm/utils';
+import { StyledForm } from '../SignUpForm/utils';
 import { StyledBackground } from '../../pages/sign-up/utils';
 import CustomCheckBox from '../SignUpForm/CustomCheckBox';
 import { LOADER_PARAMS } from '../../GlobalStyling';
