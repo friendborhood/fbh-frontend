@@ -26,11 +26,12 @@ const COMPONENT_WIDTH = '446px';
 
 export const StyledForm = styled.form`
   display: flex;
+  position: relative;
   flex-direction: column;
   margin-left: ${FORM_MARGIN_LEFT};
   font-style: 'heebo';
   font-weight: medium;
-  width: calc(50% - ${FORM_MARGIN_LEFT});
+  width: 50%;
   min-width: ${COMPONENT_WIDTH};
 
   @media only screen and (max-width: ${MOBILE_STYLE.max_width})

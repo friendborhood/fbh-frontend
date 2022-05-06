@@ -10,7 +10,8 @@ export const LOADER_PARAMS = {
 };
 
 // Form styling:
-export const FORM_MARGIN_LEFT = '260px';
+// export const FORM_MARGIN_LEFT = '260px';
+export const FORM_MARGIN_LEFT = 'clamp(0px, 10%, 260px)';
 
 // Mobile styling:
 export const MOBILE_STYLE = {
