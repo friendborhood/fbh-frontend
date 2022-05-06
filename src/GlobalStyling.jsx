@@ -10,7 +10,8 @@ export const LOADER_PARAMS = {
 };
 
 // Form styling:
-export const FORM_MARGIN_LEFT = '260px';
+// export const FORM_MARGIN_LEFT = '260px';
+export const FORM_MARGIN_LEFT = 'clamp(0px, 10%, 260px)';
 
 // Mobile styling:
 export const MOBILE_STYLE = {
@@ -21,4 +22,6 @@ export const MOBILE_STYLE = {
   form_button_height: '37px',
   NAVIGATION_MOBILE_HEIGHT: '68px',
   MENU_ITEM_COLOR: '#5E646B',
+  X_HEIGHT: '14.14px',
+  X_WIDTH: '14.14px',
 };
