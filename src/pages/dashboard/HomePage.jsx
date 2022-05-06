@@ -1,24 +1,43 @@
 import React, { useState } from 'react';
+import BoxInput from '../../components/BoxInput';
 import { END_POINTS, network } from '../../network';
 import { useEffectOrLogout } from '../../user-manager/logout-user';
 
 function Dashboard() {
   useEffectOrLogout();
-  const [radius] = useState(5000);
+  const [radius, setRadius] = useState(5000);
+  const [offers, setOffers] = useState([]);
   return (
-    <div>
+    <form>
+      <BoxInput
+        label="Select radius"
+        id="radius"
+        state={radius}
+        setState={setRadius}
+        placeHolder="radius"
+      />
       <button
         type="button"
         onClick={async () => {
-          const { data: offers } = await network.get(`${END_POINTS.OFFERS}/in-area`, { params: { radius } });
-          alert(JSON.stringify(offers, null, 2));
+          const { data: fetchedOffers } = await network.get(`${END_POINTS.OFFERS}/in-area`, { params: { radius } });
+          setOffers(fetchedOffers);
+          alert(JSON.stringify(fetchedOffers, null, 2));
         }}
       >
 
         Click me for offers
 
       </button>
-    </div>
+      <h1>
+        {' '}
+        there are
+        {' '}
+        {offers.length}
+        {' '}
+        offers , all offers:
+        {JSON.stringify(offers)}
+      </h1>
+    </form>
   );
 }
 
