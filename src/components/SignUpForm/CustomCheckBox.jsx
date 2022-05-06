@@ -1,4 +1,4 @@
-import { StyledCheckbox } from "./utils";
+import { StyledCheckbox } from './utils';
 
 function CustomCheckBox(props) {
   const { isChecked, setIsChecked } = props;
