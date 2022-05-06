@@ -6,18 +6,19 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TailSpin } from 'react-loader-spinner';
 import GoogleLogin from 'react-google-login';
-import BoxInput from '../../components/BoxInput';
+import BoxInput from '../BoxInput';
 import {
   handleAuth, handleLogin, parseGmailToValidUserName,
 } from './utils';
-import { PAGES } from '../consts';
-import { StyledForm, StyledBackground } from '../sign-up/utils';
-import CustomCheckBox from '../sign-up/CustomCheckBox';
+import { PAGES } from '../../pages/consts';
+import { StyledForm } from '../../components/SignUpForm/utils';
+import { StyledBackground } from '../../pages/sign-up/utils';
+import CustomCheckBox from '../SignUpForm/CustomCheckBox';
 import { LOADER_PARAMS } from '../../GlobalStyling';
 import { default as MOBILE_IMG } from '../../images/mobile-package-image.png';
 import { displayMessage } from '../../utils/handle-device-middleware';
 
-function Form() {
+function LoginForm() {
   const navigate = useNavigate();
   const [userName, setUsername] = useState('');
   const [pinCode, setPinCode] = useState('');
@@ -91,38 +92,38 @@ function Form() {
           <div>Remember me</div>
         </div>
         {
-        hideLoader
-          ? (
-            <>
-              <button
-                id="login"
-                type="button"
-                disabled={!userName && !pinCode}
-                onClick={loginButtonClickHandler}
-              >
-                {codeHasBeenSent.text}
-              </button>
-              <GoogleLogin
-                className="google-button"
-                clientId={process.env.REACT_APP_GOOGLE_LOGIN_KEY}
-                buttonText="Sign in with google"
-                onSuccess={successGoogleAuth}
-                onFailure={(e) => console.log(e)}
-                cookiePolicy="single_host_origin"
-              />
-            </>
-          )
-          : (
-            <div className="loader-container">
-              <TailSpin
-                color={LOADER_PARAMS.color}
-                height={LOADER_PARAMS.height}
-                width={LOADER_PARAMS.width}
-              />
-            </div>
-          )
+          hideLoader
+            ? (
+              <>
+                <button
+                  id="login"
+                  type="button"
+                  disabled={!userName && !pinCode}
+                  onClick={loginButtonClickHandler}
+                >
+                  {codeHasBeenSent.text}
+                </button>
+                <GoogleLogin
+                  className="google-button"
+                  clientId={process.env.REACT_APP_GOOGLE_LOGIN_KEY}
+                  buttonText="Sign in with google"
+                  onSuccess={successGoogleAuth}
+                  onFailure={(e) => console.log(e)}
+                  cookiePolicy="single_host_origin"
+                />
+              </>
+            )
+            : (
+              <div className="loader-container">
+                <TailSpin
+                  color={LOADER_PARAMS.color}
+                  height={LOADER_PARAMS.height}
+                  width={LOADER_PARAMS.width}
+                />
+              </div>
+            )
 
-      }
+        }
         <div className="already-have">
           <p>{'Don\'t have an account?'}</p>
           <div
@@ -146,4 +147,4 @@ function Form() {
   );
 }
 
-export default Form;
+export default LoginForm;
