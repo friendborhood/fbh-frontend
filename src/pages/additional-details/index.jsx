@@ -21,7 +21,7 @@ function AdditionalDetailsPage() {
   const fetchUserData = async () => {
     const userNameFromStorage = getUserNameFromLocalStorage();
     setUserName(userNameFromStorage);
-    const { data: userData } = await network.get(`${END_POINTS.USER}/${userNameFromStorage}`);
+    const { data: userData } = await network.get(END_POINTS.ME);
     console.log(JSON.stringify(userData));
     console.log(userData.imageUrl);
     setImageUrl(userData.imageUrl);

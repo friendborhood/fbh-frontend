@@ -7,6 +7,7 @@ const END_POINTS = {
   ITEM: 'item',
   CATEGORIES: 'item/categories',
   OFFERS: 'offers',
+  ME: 'user/me',
 };
 const network = axios.create({ baseURL: BACKEND_URL });
 network.interceptors.request.use((request) => {

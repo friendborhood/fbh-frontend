@@ -1,11 +1,10 @@
 /* eslint-disable no-param-reassign */
-import { network } from '../../../network';
+import { END_POINTS, network } from '../../../network';
 
 export const handleSubmitDetails = async (data) => {
-  const { userName } = data;
   delete data.userName;
   try {
-    await network.patch(`/user/${userName}`, data);
+    await network.patch(END_POINTS.ME, data);
   } catch (e) {
     console.log(e);
   }
