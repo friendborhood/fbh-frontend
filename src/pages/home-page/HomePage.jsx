@@ -1,13 +1,25 @@
-/* eslint-disable react/button-has-type */
 import React, { useState } from 'react';
 
+const convertToBase64 = (file) => new Promise((resolve, reject) => {
+  const fileReader = new FileReader();
+  fileReader.readAsDataURL(file);
+  fileReader.onload = () => {
+    resolve(fileReader.result);
+  };
+  fileReader.onerror = (error) => {
+    reject(error);
+  };
+});
 function FileUploadPage() {
   const [selectedFile, setSelectedFile] = useState();
   const [isSelected, setIsSelected] = useState(false);
 
-  const changeHandler = (event) => {
+  const changeHandler = async (event) => {
     setSelectedFile(event.target.files[0]);
     setIsSelected(true);
+    const file = event.target.files[0];
+    const base64 = await convertToBase64(file);
+    console.log(base64);
   };
 
   const handleSubmission = () => {
@@ -43,7 +55,7 @@ function FileUploadPage() {
         <p>Select a file to show details</p>
       )}
       <div>
-        <button onClick={handleSubmission}>Submit</button>
+        <button type="button" onClick={handleSubmission}>Submit</button>
       </div>
     </div>
   );
