@@ -13,13 +13,15 @@ const convertToBase64 = (file) => new Promise((resolve, reject) => {
 function FileUploadPage() {
   const [selectedFile, setSelectedFile] = useState();
   const [isSelected, setIsSelected] = useState(false);
+  const [fileToShow, setFileToShow] = useState('');
 
   const changeHandler = async (event) => {
     setSelectedFile(event.target.files[0]);
-    setIsSelected(true);
     const file = event.target.files[0];
     const base64 = await convertToBase64(file);
+    setIsSelected(true);
     console.log(base64);
+    setFileToShow(base64);
   };
 
   const handleSubmission = () => {
@@ -27,6 +29,10 @@ function FileUploadPage() {
 
   return (
     <div>
+      <img
+        src={fileToShow}
+        alt="Red dot"
+      />
       <input type="file" name="file" onChange={changeHandler} />
       {isSelected ? (
         <div>
