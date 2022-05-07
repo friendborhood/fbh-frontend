@@ -21,7 +21,6 @@ function Dashboard() {
         onClick={async () => {
           const { data: fetchedOffers } = await network.get(`${END_POINTS.OFFERS}/in-area`, { params: { radius } });
           setOffers(fetchedOffers);
-          alert(JSON.stringify(fetchedOffers, null, 2));
         }}
       >
 
