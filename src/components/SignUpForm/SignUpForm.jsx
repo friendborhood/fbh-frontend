@@ -13,6 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { parseGmailToValidUserName } from '../LoginForm/utils';
 import { LOADER_PARAMS } from '../../GlobalStyling';
 import MOBILE_IMG from '../../images/mobile-package-image.png';
+import { setTokenToLocalStorage } from '../../user-manager';
 
 function SignUpForm() {
   const navigate = useNavigate();
@@ -34,7 +35,7 @@ function SignUpForm() {
     setHideLoader(false);
     const token = await handleSignUp(data);
     if (token) {
-      localStorage.setItem('token', token);
+      setTokenToLocalStorage(token);
       navigate(PAGES.ADDITIONAL_DETAILS, { replace: true });
     }
     setHideLoader(true);
