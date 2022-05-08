@@ -9,6 +9,7 @@ import { END_POINTS, network } from '../../network';
 import { getUserNameFromLocalStorage } from '../../user-manager';
 import { useEffectOrLogout } from '../../user-manager/logout-user';
 import { PAGES } from '../consts';
+import { displayMessage } from '../../utils/handle-device-middleware';
 
 function AdditionalDetailsPage() {
   const navigate = useNavigate();
@@ -64,12 +65,16 @@ function AdditionalDetailsPage() {
         id="more-details"
         variant="contained"
         onClick={async () => {
-          await handleSubmitDetails({
+          const response = await handleSubmitDetails({
             userName,
             favoriteCategory: category,
             location,
           });
-          navigate(PAGES.DASHBOARD);
+          if (response.status === 200) {
+            navigate(PAGES.DASHBOARD);
+          } else {
+            displayMessage(response);
+          }
         }}
       >
         Submit!

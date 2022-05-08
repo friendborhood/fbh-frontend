@@ -3,9 +3,11 @@ import { END_POINTS, network } from '../../../network';
 
 export const handleSubmitDetails = async (data) => {
   delete data.userName;
+  let response;
   try {
-    await network.patch(END_POINTS.ME, data);
+    response = await network.patch(END_POINTS.ME, data);
   } catch (e) {
-    console.log(e);
+    response = e.response.data.error;
   }
+  return response;
 };
