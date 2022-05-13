@@ -29,7 +29,7 @@ function AdditionalDetailsPage() {
   };
   const fetchCategories = async () => {
     const { data: currentCategories } = await network.get(END_POINTS.CATEGORIES);
-    console.log(currentCategories);
+    console.log('fetched categories from backend', currentCategories);
     setCategories(currentCategories);
   };
   useEffectOrLogout(() => Promise.all([fetchUserData(), fetchCategories()]));
