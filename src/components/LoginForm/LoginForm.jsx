@@ -7,6 +7,7 @@ import { TailSpin } from 'react-loader-spinner';
 import GoogleLogin from 'react-google-login';
 import BoxInput from '../BoxInput';
 import {
+  checkIfUserFinishedRegistration,
   handleAuth, handleLogin, parseGmailToValidUserName,
 } from './utils';
 import { PAGES } from '../../pages/consts';
@@ -32,7 +33,12 @@ function LoginForm() {
     if (token) {
       console.log('success login');
       setTokenToLocalStorage(token);
-      navigate(PAGES.ADDITIONAL_DETAILS, { replace: true });
+      const userFinishedRegistration = checkIfUserFinishedRegistration();
+      if (userFinishedRegistration) {
+        navigate(PAGES.DASHBOARD, { replace: true });
+      } else {
+        navigate(PAGES.ADDITIONAL_DETAILS, { replace: true });
+      }
     } else if (!googleAuth) {
       displayMessage('wrong code');
     } else {
