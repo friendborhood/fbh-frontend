@@ -32,7 +32,12 @@ function AdditionalDetailsPage() {
     console.log('fetched categories from backend', currentCategories);
     setCategories(currentCategories);
   };
-  useEffectOrLogout(() => Promise.all([fetchUserData(), fetchCategories()]));
+  useEffectOrLogout(() => {
+    const interval = setInterval(() => {
+      Promise.all([fetchUserData(), fetchCategories()]);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <form>
