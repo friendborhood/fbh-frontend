@@ -40,22 +40,15 @@ function MobileMenu() {
           <img src={x} alt="exit" onClick={closingHandler} />
         </div>
         <div className="options-container">
+          <MenuOption label="About" icon={info} onClick={navigateTo} param={PAGES.LOGIN} />
           {userName
-            ? (
-              <>
-
-                <MenuOption label="Dashboard" icon={logout} onClick={navigateTo} param={PAGES.DASHBOARD} />
-                <MenuOption label="Your Info" icon={logout} onClick={navigateTo} param={PAGES.ADDITIONAL_DETAILS} />
-                <MenuOption label="Logout" icon={logout} onClick={logoutHandler} param={PAGES.LOGIN} />
-              </>
-            )
+            ? <MenuOption label="Logout" icon={logout} onClick={logoutHandler} param={PAGES.LOGIN} />
             : (
               <>
                 <MenuOption label="Login" icon={login} onClick={navigateTo} param={PAGES.LOGIN} />
                 <MenuOption label="Sign up" icon={signup} onClick={navigateTo} param={PAGES.SIGN_UP} />
               </>
             )}
-          <MenuOption label="About" icon={info} onClick={navigateTo} param={PAGES.LOGIN} />
         </div>
         <img className="cameo" src={fox} alt="fox" />
       </StyledMenu>

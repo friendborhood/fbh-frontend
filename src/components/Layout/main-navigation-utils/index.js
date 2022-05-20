@@ -59,6 +59,7 @@ export const MainNavigationStyle = styled.div`
       flex-direction: row;
       justify-content: flex-end;
       margin-right: 40px;
+      
       cursor: auto;
     }
 
@@ -70,17 +71,12 @@ export const MainNavigationStyle = styled.div`
       @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
           display: none;
       }
-      &.menu-item, &.login, &.logout {
-        min-width: 100px;
-        display:inline-block;
-        padding:3px;
-        text-align: center;
+      &.menu-item, &.login {
         cursor: pointer;
         &:active, :hover, :focus {
           color: ${GLOBAL_SCARLET};
           font-weight: bold;
           font-weight: 500, medium;
-          cursor: pointer;
         }
       }
     }
