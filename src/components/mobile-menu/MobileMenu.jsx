@@ -40,8 +40,8 @@ function MobileMenu() {
           <img src={x} alt="exit" onClick={closingHandler} />
         </div>
         <div className="options-container">
+          {`Hello, ${userName || 'guest'}`}
           <MenuOption label="About" icon={info} onClick={navigateTo} param={PAGES.LOGIN} />
-
           {userName
             ? (
               <>
