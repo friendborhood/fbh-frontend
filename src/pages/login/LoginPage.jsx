@@ -1,11 +1,11 @@
 import React from 'react';
 import LoginForm from '../../components/LoginForm/LoginForm';
-import { StyledBackground } from '../sign-up/utils';
+import HalfPageImage from '../../components/HalfPageImage/HalfPageImage';
 
 function LoginPage() {
   return (
     <>
-      <StyledBackground />
+      <HalfPageImage />
       <LoginForm />
     </>
   );
