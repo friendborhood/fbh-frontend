@@ -71,7 +71,8 @@ export const MainNavigationStyle = styled.div`
       @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
           display: none;
       }
-      &.menu-item, &.login {
+      &.menu-item, &.login, &.logout {
+        width: 100px;
         cursor: pointer;
         &:active, :hover, :focus {
           color: ${GLOBAL_SCARLET};
