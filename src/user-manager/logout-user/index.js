@@ -10,7 +10,6 @@ export const redirectLoggedOutUser = () => {
   useEffect(() => {
     const url = window.location.href;
     const isUrlPublicPage = PUBLIC_PAGES.some((page) => url.includes(page));
-    console.log(`checking if user logged in , url is ${url}`);
     if (!isUrlPublicPage) {
       const userHasToken = getTokenFromLocalStorage();
       if (!userHasToken) {
