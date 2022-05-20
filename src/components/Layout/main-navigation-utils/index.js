@@ -85,6 +85,14 @@ export const MainNavigationStyle = styled.div`
 
   }
 
+  & p {
+    margin-top: 45px;
+    color: ${GLOBAL_LIGHTGRAY};
+    font-weight: 400, normal;
+    font-style: 'feebo';
+    border: solid;
+  }
+
   & a {
     &:link {
       text-decoration: none; 

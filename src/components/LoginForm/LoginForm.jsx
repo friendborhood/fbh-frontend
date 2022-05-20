@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TailSpin } from 'react-loader-spinner';
 import GoogleLogin from 'react-google-login';
+import { useDispatch } from 'react-redux';
 import BoxInput from '../BoxInput';
 import {
   handleAuth, handleLogin, parseGmailToValidUserName,
@@ -17,6 +18,7 @@ import { LOADER_PARAMS } from '../../GlobalStyling';
 import MOBILE_IMG from '../../images/mobile-package-image.png';
 import { displayMessage } from '../../utils/handle-device-middleware';
 import { setTokenToLocalStorage } from '../../user-manager';
+import { updateLoginState } from '../../Store/store';
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -27,11 +29,13 @@ function LoginForm() {
     text: 'Send Login Code!',
   });
   const [hideLoader, setHideLoader] = useState(true);
+  const dispatch = useDispatch();
   const tryLoginAndStoreToken = async ({ userName, code, googleAuth }) => {
     const token = await handleAuth({ userName, code, googleAuth });
     if (token) {
       console.log('success login');
       setTokenToLocalStorage(token);
+      dispatch(updateLoginState(token));
       navigate(PAGES.ADDITIONAL_DETAILS, { replace: true });
     } else if (!googleAuth) {
       displayMessage('wrong code');
