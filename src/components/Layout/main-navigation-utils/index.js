@@ -73,13 +73,12 @@ export const MainNavigationStyle = styled.div`
         @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
           display: none;
         }
-      }
-
-      cursor: pointer;
-      &:active, :hover, :focus {
-        color: ${GLOBAL_SCARLET};
-        font-weight: bold;
-        font-weight: 500, medium;
+        cursor: pointer;
+        &:active, :hover, :focus {
+          color: ${GLOBAL_SCARLET};
+          font-weight: bold;
+          font-weight: 500, medium;
+        }
       }
     }
 
