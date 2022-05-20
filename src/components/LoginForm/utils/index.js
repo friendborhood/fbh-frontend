@@ -7,6 +7,13 @@ export const parseGmailToValidUserName = (gmail) => {
   const userNameAfterRemoveNonAlphaNum = leftSideOfEmail.replace(/[^a-z0-9]/gi, '');
   return userNameAfterRemoveNonAlphaNum;
 };
+export const checkIfUserFinishedRegistration = async () => {
+  const { data } = await network.get(END_POINTS.ME);
+  if (data && data.location) {
+    return true;
+  }
+  return false;
+};
 export const handleLogin = async (userName) => {
   try {
     await network.post(`/user/auth/${userName}`);

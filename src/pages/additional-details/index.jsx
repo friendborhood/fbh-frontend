@@ -9,6 +9,7 @@ import { END_POINTS, network } from '../../network';
 import { getUserNameFromLocalStorage } from '../../user-manager';
 import { useEffectOrLogout } from '../../user-manager/logout-user';
 import { PAGES } from '../consts';
+import { displayMessage } from '../../utils/handle-device-middleware';
 
 function AdditionalDetailsPage() {
   const navigate = useNavigate();
@@ -21,14 +22,14 @@ function AdditionalDetailsPage() {
   const fetchUserData = async () => {
     const userNameFromStorage = getUserNameFromLocalStorage();
     setUserName(userNameFromStorage);
-    const { data: userData } = await network.get(`${END_POINTS.USER}/${userNameFromStorage}`);
+    const { data: userData } = await network.get(END_POINTS.ME);
     console.log(JSON.stringify(userData));
     console.log(userData.imageUrl);
     setImageUrl(userData.imageUrl);
   };
   const fetchCategories = async () => {
     const { data: currentCategories } = await network.get(END_POINTS.CATEGORIES);
-    console.log(currentCategories);
+    console.log('fetched categories from backend', currentCategories);
     setCategories(currentCategories);
   };
   useEffectOrLogout(() => Promise.all([fetchUserData(), fetchCategories()]));
@@ -64,12 +65,16 @@ function AdditionalDetailsPage() {
         id="more-details"
         variant="contained"
         onClick={async () => {
-          await handleSubmitDetails({
+          const response = await handleSubmitDetails({
             userName,
             favoriteCategory: category,
             location,
           });
-          navigate(PAGES.DASHBOARD);
+          if (response.status === 200) {
+            navigate(PAGES.DASHBOARD);
+          } else {
+            displayMessage(response);
+          }
         }}
       >
         Submit!

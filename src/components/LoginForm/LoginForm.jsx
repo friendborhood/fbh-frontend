@@ -8,6 +8,7 @@ import GoogleLogin from 'react-google-login';
 import { useDispatch } from 'react-redux';
 import BoxInput from '../BoxInput';
 import {
+  checkIfUserFinishedRegistration,
   handleAuth, handleLogin, parseGmailToValidUserName,
 } from './utils';
 import { PAGES } from '../../pages/consts';
@@ -36,7 +37,12 @@ function LoginForm() {
       console.log('success login');
       setTokenToLocalStorage(token);
       dispatch(updateLoginState(token));
-      navigate(PAGES.ADDITIONAL_DETAILS, { replace: true });
+      const userFinishedRegistration = checkIfUserFinishedRegistration();
+      if (userFinishedRegistration) {
+        navigate(PAGES.DASHBOARD, { replace: true });
+      } else {
+        navigate(PAGES.ADDITIONAL_DETAILS, { replace: true });
+      }
     } else if (!googleAuth) {
       displayMessage('wrong code');
     } else {

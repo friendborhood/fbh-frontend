@@ -5,8 +5,9 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://api-friendborh
 const END_POINTS = {
   USER: 'user',
   ITEM: 'item',
-  CATEGORIES: 'item/categories',
+  CATEGORIES: 'categories',
   OFFERS: 'offers',
+  ME: 'user/me',
 };
 const network = axios.create({ baseURL: BACKEND_URL });
 network.interceptors.request.use((request) => {
