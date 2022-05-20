@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import MainNavigation from './MainNavigation';
 import { MOBILE_STYLE } from '../../GlobalStyling';
+import Footer from '../Footer/Footer';
 
 const StyledLayout = styled.main`
   width: 100%;
@@ -15,6 +16,7 @@ function Layout({ children }) {
     <StyledLayout>
       <MainNavigation />
       {children}
+      <Footer />
     </StyledLayout>
   );
 }
