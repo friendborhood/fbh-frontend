@@ -21,7 +21,7 @@ function MainNavigation() {
   const logoutHandler = () => {
     deleteTokenFromLocalStorage();
     dispatch(updateLoginState(null));
-    navigate(PAGES.HOME, { replace: true });
+    navigate(PAGES.LOGIN, { replace: true });
   };
 
   return (
