@@ -7,6 +7,7 @@ import { PAGES } from '../../pages/consts';
 import { MainNavigationStyle } from './main-navigation-utils';
 import hamburger from '../../images/menu-hamburger.svg';
 import { updateMenuDisplay, updateLogoutState } from '../../Store/store';
+import { redirectLoggedOutUser } from '../../user-manager/logout-user';
 
 const logo = require('../../images/logo.png');
 
@@ -21,6 +22,7 @@ function MainNavigation() {
     dispatch(updateLogoutState());
     navigate(PAGES.LOGIN, { replace: true });
   };
+  redirectLoggedOutUser();
 
   return (
     <MainNavigationStyle>

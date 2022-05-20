@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import BoxInput from '../../components/BoxInput';
 import { END_POINTS, network } from '../../network';
-import { useEffectOrLogout } from '../../user-manager/logout-user';
 
 function Dashboard() {
-  useEffectOrLogout();
   const [radius, setRadius] = useState(5000);
   const [offers, setOffers] = useState([]);
   return (
