@@ -6,8 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { PAGES } from '../../pages/consts';
 import { MainNavigationStyle } from './main-navigation-utils';
 import hamburger from '../../images/menu-hamburger.svg';
-import { updateMenuDisplay, updateLoginState } from '../../Store/store';
-import { deleteTokenFromLocalStorage } from '../../user-manager';
+import { updateMenuDisplay, updateLogoutState } from '../../Store/store';
 
 const logo = require('../../images/logo.png');
 
@@ -19,8 +18,7 @@ function MainNavigation() {
     dispatch(updateMenuDisplay(true));
   };
   const logoutHandler = () => {
-    deleteTokenFromLocalStorage();
-    dispatch(updateLoginState(null));
+    dispatch(updateLogoutState());
     navigate(PAGES.LOGIN, { replace: true });
   };
 
@@ -46,7 +44,6 @@ function MainNavigation() {
               <div className="login" onClick={logoutHandler}>Logout</div>
             </>
           )}
-
       </section>
     </MainNavigationStyle>
   );

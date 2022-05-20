@@ -18,7 +18,6 @@ import CustomCheckBox from '../SignUpForm/CustomCheckBox';
 import { LOADER_PARAMS } from '../../GlobalStyling';
 import MOBILE_IMG from '../../images/mobile-package-image.png';
 import { displayMessage } from '../../utils/handle-device-middleware';
-import { setTokenToLocalStorage } from '../../user-manager';
 import { updateLoginState } from '../../Store/store';
 
 function LoginForm() {
@@ -35,7 +34,6 @@ function LoginForm() {
     const token = await handleAuth({ userName, code, googleAuth });
     if (token) {
       console.log('success login');
-      setTokenToLocalStorage(token);
       dispatch(updateLoginState(token));
       const userFinishedRegistration = checkIfUserFinishedRegistration();
       if (userFinishedRegistration) {

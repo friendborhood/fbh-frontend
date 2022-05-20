@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, configureStore } from '@reduxjs/toolkit';
-import { getUserNameFromLocalStorage } from '../user-manager';
+import { getUserNameFromLocalStorage, deleteTokenFromLocalStorage, setTokenToLocalStorage } from '../user-manager';
 /// auth slice:
 
 const initialAuthState = {
@@ -20,8 +20,14 @@ export const userSlice = createSlice({
 });
 
 export const updateLoginState = (token) => (dispatch) => {
+  setTokenToLocalStorage(token);
   const userName = getUserNameFromLocalStorage(token);
   dispatch(userSlice.actions.loginSetter({ userName, token }));
+};
+
+export const updateLogoutState = () => (dispatch) => {
+  deleteTokenFromLocalStorage();
+  dispatch(userSlice.actions.loginSetter({ userName: null, token: null }));
 };
 
 export const userActions = userSlice.actions;
