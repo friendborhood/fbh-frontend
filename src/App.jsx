@@ -1,11 +1,11 @@
 import './App.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   BrowserRouter, Route, Routes, Navigate,
 } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import SignUpPage from './pages/sign-up/SignUpPage';
 import HomePage from './pages/home-page/HomePage';
 import LoginPage from './pages/login/LoginPage';
@@ -15,9 +15,16 @@ import AdditionalDetailsPage from './pages/additional-details';
 import { PAGES } from './pages/consts';
 import MobileMenu from './components/mobile-menu/MobileMenu';
 import Dashboard from './pages/dashboard/Dashboard';
+import { getTokenFromLocalStorage } from './user-manager';
+import { updateLoginState } from './Store/store';
 
 function App() {
   const menuDisplayStatus = useSelector((state) => state.display.showMobileMenu);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const token = getTokenFromLocalStorage();
+    if (token) { dispatch(updateLoginState(token)); }
+  }, []);
 
   return (
     <BrowserRouter>

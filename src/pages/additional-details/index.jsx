@@ -1,5 +1,5 @@
 import Autocomplete from 'react-google-autocomplete';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
 import DropDown from '../../components/drop-down';
@@ -7,7 +7,6 @@ import BoxInput from '../../components/BoxInput';
 import { handleSubmitDetails } from './utils';
 import { END_POINTS, network } from '../../network';
 import { getUserNameFromLocalStorage } from '../../user-manager';
-import { useEffectOrLogout } from '../../user-manager/logout-user';
 import { PAGES } from '../consts';
 import { displayMessage } from '../../utils/handle-device-middleware';
 
@@ -32,7 +31,7 @@ function AdditionalDetailsPage() {
     console.log('fetched categories from backend', currentCategories);
     setCategories(currentCategories);
   };
-  useEffectOrLogout(() => Promise.all([fetchUserData(), fetchCategories()]));
+  useEffect(() => Promise.all([fetchUserData(), fetchCategories()]));
 
   return (
     <form>
