@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { PAGES } from '../../pages/consts';
 import MenuOption from './MenuOption';
 import { updateMenuDisplay } from '../../Store/store';
@@ -14,7 +14,7 @@ import { StyledMenu, BlackScreen } from './utils';
 
 function MobileMenu() {
   const dispatch = useDispatch();
-
+  const userName = useSelector((state) => state.auth.userName);
   const closingHandler = () => {
     dispatch(updateMenuDisplay(false));
   };
@@ -26,8 +26,12 @@ function MobileMenu() {
         </div>
         <div className="options-container">
           <MenuOption label="About" icon={info} navigateTo={PAGES.HOME} />
-          <MenuOption label="Login" icon={login} navigateTo={PAGES.LOGIN} />
-          <MenuOption label="Sign up" icon={signup} navigateTo={PAGES.SIGN_UP} />
+          {!userName && (
+          <>
+            <MenuOption label="Login" icon={login} navigateTo={PAGES.LOGIN} />
+            <MenuOption label="Sign up" icon={signup} navigateTo={PAGES.SIGN_UP} />
+          </>
+          )}
         </div>
         <img className="cameo" src={fox} alt="fox" />
       </StyledMenu>
