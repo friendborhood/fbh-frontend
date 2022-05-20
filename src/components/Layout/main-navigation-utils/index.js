@@ -68,11 +68,10 @@ export const MainNavigationStyle = styled.div`
       color: ${GLOBAL_LIGHTGRAY};
       font-weight: 400, normal;
       font-style: 'feebo';
-
-      &.menu-item, &.login {
-        @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
+      @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
           display: none;
-        }
+      }
+      &.menu-item, &.login {
         cursor: pointer;
         &:active, :hover, :focus {
           color: ${GLOBAL_SCARLET};
@@ -81,15 +80,6 @@ export const MainNavigationStyle = styled.div`
         }
       }
     }
-
-  }
-
-  & p {
-    margin-top: 45px;
-    color: ${GLOBAL_LIGHTGRAY};
-    font-weight: 400, normal;
-    font-style: 'feebo';
-    border: solid;
   }
 
   & a {

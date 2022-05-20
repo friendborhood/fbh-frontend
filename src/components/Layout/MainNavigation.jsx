@@ -42,7 +42,7 @@ function MainNavigation() {
           )
           : (
             <>
-              <div className="welcome">{`Welcome, ${userName}`}</div>
+              <div>{`Welcome, ${userName}`}</div>
               <div className="login" onClick={logoutHandler}>Logout</div>
             </>
           )}
