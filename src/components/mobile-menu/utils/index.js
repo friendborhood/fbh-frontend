@@ -1,9 +1,10 @@
 import styled from 'styled-components';
-import { MOBILE_STYLE } from '../../../GlobalStyling';
+import { GLOBAL_FONT, MOBILE_STYLE } from '../../../GlobalStyling';
 
 export const StyledMenu = styled.div`
     display: flex;
     position: absolute;
+    font-style: ${GLOBAL_FONT};
     top: 0;
     z-index: 1003;
     width: 50%;

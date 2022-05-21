@@ -29,7 +29,7 @@ export const StyledForm = styled.form`
   position: relative;
   flex-direction: column;
   margin-left: ${FORM_MARGIN_LEFT};
-  font-style: 'heebo';
+  font-style: 'Heebo';
   font-weight: medium;
   width: 50%;
   min-width: ${COMPONENT_WIDTH};
