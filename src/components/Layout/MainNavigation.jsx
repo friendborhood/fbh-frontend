@@ -43,7 +43,9 @@ function MainNavigation() {
           : (
             <>
               <div>{`Welcome, ${userName}`}</div>
-              <div className="login" onClick={logoutHandler}>Logout</div>
+              <Link to={PAGES.DASHBOARD}><div className="menu-item">Dashboard</div></Link>
+              <Link to={PAGES.ADDITIONAL_DETAILS}><div className="menu-item">Your Info</div></Link>
+              <div className="logout" onClick={logoutHandler}>Logout</div>
             </>
           )}
       </section>

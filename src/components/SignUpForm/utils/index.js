@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import {
-  GLOBAL_SCARLET, MOBILE_STYLE, FORM_BOTTON_HEIGHT, BUTTON_RADIUS, FORM_MARGIN_LEFT,
+  GLOBAL_SCARLET, MOBILE_STYLE, FORM_BOTTON_HEIGHT, BUTTON_RADIUS, FORM_MARGIN_LEFT, GLOBAL_FONT,
 } from '../../../GlobalStyling';
 import { END_POINTS, network } from '../../../network';
 import { BAD_REQUEST_CODE, UNKNOWN_SERVER_ERROR } from '../../../pages/consts';
@@ -29,7 +29,7 @@ export const StyledForm = styled.form`
   position: relative;
   flex-direction: column;
   margin-left: ${FORM_MARGIN_LEFT};
-  font-style: 'Heebo';
+  font-style: ${GLOBAL_FONT};
   font-weight: medium;
   width: 50%;
   min-width: ${COMPONENT_WIDTH};

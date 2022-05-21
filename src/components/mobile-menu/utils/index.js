@@ -13,6 +13,10 @@ export const StyledMenu = styled.div`
     background-color: white;
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
+    font-family: 'Heebo';
+    font-weight: 400;
+    color: ${MOBILE_STYLE.MENU_ITEM_COLOR};
+    padding-left: 10px;
 
     & div {
         &.options-container {

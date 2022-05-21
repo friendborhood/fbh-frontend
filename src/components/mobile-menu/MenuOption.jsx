@@ -1,16 +1,13 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { MOBILE_STYLE } from '../../GlobalStyling';
-import { updateMenuDisplay } from '../../Store/store';
+import { GLOBAL_FONT, MOBILE_STYLE } from '../../GlobalStyling';
 
-const StyledOption = styled.div`
+export const StyledOption = styled.div`
     display: flex;
     color: ${MOBILE_STYLE.MENU_ITEM_COLOR};
     background-color: inherit;
-    font-family: 'Heebo';
+    font-family: ${GLOBAL_FONT};
     font-weight: 400;
     width: 100%;
     padding-left: 10px;
@@ -18,22 +15,22 @@ const StyledOption = styled.div`
     & div {
       &.icon-container {
         display: flex;
-        width: 30px;
+        width: 28px;
+        & img{
+          width:20px;
+          height: 20px;
+        }
       }
     }
 `;
 
 function MenuOption(props) {
   const {
-    label, navigateTo, icon,
+    label, onClick, icon, param,
   } = props;
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
   const onClickHandler = () => {
-    dispatch(updateMenuDisplay(false));
-    navigate(navigateTo);
+    onClick(param);
   };
 
   return (
