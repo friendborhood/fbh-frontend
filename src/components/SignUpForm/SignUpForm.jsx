@@ -5,6 +5,7 @@ import React, { useMemo, useState } from 'react';
 import { TailSpin } from 'react-loader-spinner';
 import { useNavigate } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
+import { useDispatch } from 'react-redux';
 import { handleSignUp, StyledForm } from './utils';
 import BoxInput from '../BoxInput';
 import CustomCheckBox from './CustomCheckBox';
@@ -13,7 +14,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { parseGmailToValidUserName } from '../LoginForm/utils';
 import { LOADER_PARAMS } from '../../GlobalStyling';
 import MOBILE_IMG from '../../images/mobile-package-image.png';
-import { setTokenToLocalStorage } from '../../user-manager';
+import { updateLoginState } from '../../Store/store';
 
 function SignUpForm() {
   const navigate = useNavigate();
@@ -23,6 +24,7 @@ function SignUpForm() {
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [email, setEmail] = useState('');
   const [hideLoader, setHideLoader] = useState(true);
+  const dispatch = useDispatch();
 
   const canSignUp = useMemo(
     () => !(email && userName && fname && lname && acceptedTerms),
@@ -35,7 +37,7 @@ function SignUpForm() {
     setHideLoader(false);
     const token = await handleSignUp(data);
     if (token) {
-      setTokenToLocalStorage(token);
+      dispatch(updateLoginState(token));
       navigate(PAGES.ADDITIONAL_DETAILS, { replace: true });
     }
     setHideLoader(true);
