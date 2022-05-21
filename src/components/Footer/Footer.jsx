@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import styled from 'styled-components';
+import { GLOBAL_FONT } from '../../GlobalStyling';
 
 const StyledFooter = styled.footer`
   display: flex;
@@ -9,7 +10,7 @@ const StyledFooter = styled.footer`
   width: 100%;
   height: 88px;
   justify-content: center;
-  font-family: 'Heebo';
+  font-family: ${GLOBAL_FONT};
   font-style: normal;
   font-weight: 300;
   font-size: 12px;

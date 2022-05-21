@@ -12,6 +12,8 @@ import signup from '../../images/sign-up.svg';
 import x from '../../images/x.svg';
 import fox from '../../images/icon-removebg.png';
 import logout from '../../images/logout.svg';
+import userInfo from '../../images/your-info.svg';
+import dashboard from '../../images/dashboard.svg';
 import { StyledMenu, BlackScreen } from './utils';
 
 function MobileMenu() {
@@ -45,8 +47,8 @@ function MobileMenu() {
           {userName
             ? (
               <>
-                <MenuOption label="Dashboard" icon={logout} onClick={navigateTo} param={PAGES.DASHBOARD} />
-                <MenuOption label="Your Info" icon={logout} onClick={navigateTo} param={PAGES.ADDITIONAL_DETAILS} />
+                <MenuOption label="Dashboard" icon={dashboard} onClick={navigateTo} param={PAGES.DASHBOARD} />
+                <MenuOption label="Your Info" icon={userInfo} onClick={navigateTo} param={PAGES.ADDITIONAL_DETAILS} />
                 <MenuOption label="Logout" icon={logout} onClick={logoutHandler} param={PAGES.LOGIN} />
               </>
             )
