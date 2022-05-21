@@ -13,7 +13,6 @@ import {
 } from './utils';
 import { PAGES } from '../../pages/consts';
 import { StyledForm } from '../SignUpForm/utils';
-import { StyledBackground } from '../../pages/sign-up/utils';
 import CustomCheckBox from '../SignUpForm/CustomCheckBox';
 import { LOADER_PARAMS } from '../../GlobalStyling';
 import MOBILE_IMG from '../../images/mobile-package-image.png';
@@ -79,27 +78,25 @@ function LoginForm() {
   };
 
   return (
-    <>
-      <StyledBackground className="half-cover" />
-      <StyledForm>
-        <img src={MOBILE_IMG} className="items-image" alt="decoration" />
-        <h1>Welcome Back</h1>
-        <p>Welcome back! Please enter your details.</p>
-        <div className="form-wrapper">
-          <BoxInput
-            label="Username"
-            id="username"
-            state={userName}
-            placeHolder="user name"
-            setState={setUsername}
-            isHidden={codeHasBeenSent.codeWasSent}
-          />
-        </div>
-        <div className="checkbox">
-          <CustomCheckBox />
-          <div>Remember me</div>
-        </div>
-        {
+    <StyledForm>
+      <img src={MOBILE_IMG} className="items-image" alt="decoration" />
+      <h1>Welcome Back</h1>
+      <p>Welcome back! Please enter your details.</p>
+      <div className="form-wrapper">
+        <BoxInput
+          label="Username"
+          id="username"
+          state={userName}
+          placeHolder="user name"
+          setState={setUsername}
+          isHidden={codeHasBeenSent.codeWasSent}
+        />
+      </div>
+      <div className="checkbox">
+        <CustomCheckBox />
+        <div>Remember me</div>
+      </div>
+      {
           hideLoader
             ? (
               <>
@@ -132,26 +129,25 @@ function LoginForm() {
             )
 
         }
-        <div className="already-have">
-          <p>{'Don\'t have an account?'}</p>
-          <div
-            type="button"
-            className="clickable"
-            onClick={navigateToSignUp}
-          >
-            Sign up
-          </div>
+      <div className="already-have">
+        <p>{'Don\'t have an account?'}</p>
+        <div
+          type="button"
+          className="clickable"
+          onClick={navigateToSignUp}
+        >
+          Sign up
         </div>
-        <BoxInput
-          label="Code from email"
-          id="pinCode"
-          state={pinCode}
-          setState={setPinCode}
-          isHidden={!codeHasBeenSent.codeWasSent}
-          placeHolder="code"
-        />
-      </StyledForm>
-    </>
+      </div>
+      <BoxInput
+        label="Code from email"
+        id="pinCode"
+        state={pinCode}
+        setState={setPinCode}
+        isHidden={!codeHasBeenSent.codeWasSent}
+        placeHolder="code"
+      />
+    </StyledForm>
   );
 }
 

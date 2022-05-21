@@ -1,12 +1,11 @@
-import { StyledBackground } from './utils';
 import SignUpForm from '../../components/SignUpForm/SignUpForm';
-
-// TODO: add style to marked checkbox
+import 'react-lazy-load-image-component/src/effects/blur.css';
+import HalfPageImage from '../../components/HalfPageImage/HalfPageImage';
 
 function Form() {
   return (
     <>
-      <StyledBackground className="half-cover" />
+      <HalfPageImage />
       <SignUpForm />
     </>
   );
