@@ -67,8 +67,9 @@ export const MainNavigationStyle = styled.div`
       margin-top: 45px;
       color: ${GLOBAL_LIGHTGRAY};
       font-weight: 400, normal;
-      font-style: 'feebo';
-      @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
+      font-style: 'Heebo';
+      &.menu-item, &.login {
+        @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
           display: none;
       }
       &.menu-item, &.login {
