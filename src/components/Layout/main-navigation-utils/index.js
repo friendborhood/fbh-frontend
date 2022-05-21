@@ -1,5 +1,7 @@
 import styled from 'styled-components';
-import { GLOBAL_LIGHTGRAY, GLOBAL_SCARLET, MOBILE_STYLE } from '../../../GlobalStyling';
+import {
+  GLOBAL_FONT, GLOBAL_LIGHTGRAY, GLOBAL_SCARLET, MOBILE_STYLE,
+} from '../../../GlobalStyling';
 
 export const MainNavigationStyle = styled.div`
   display: flex;
@@ -67,7 +69,7 @@ export const MainNavigationStyle = styled.div`
       margin-top: 45px;
       color: ${GLOBAL_LIGHTGRAY};
       font-weight: 400, normal;
-      font-style: 'Heebo';
+      font-style: ${GLOBAL_FONT};
       @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
           display: none;
       }
