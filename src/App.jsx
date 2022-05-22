@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { useSelector, useDispatch } from 'react-redux';
+import { isMobile } from 'react-device-detect';
 import SignUpPage from './pages/sign-up/SignUpPage';
 import HomePage from './pages/home-page/HomePage';
 import LoginPage from './pages/login/LoginPage';
@@ -30,7 +31,7 @@ function App() {
     <BrowserRouter>
       <Layout>
         <ToastContainer />
-        {menuDisplayStatus && <MobileMenu />}
+        {isMobile && <MobileMenu showMobileMenu={menuDisplayStatus} />}
         <Routes>
           <Route path="/" element={<Navigate to={PAGES.HOME} />} />
           <Route path={PAGES.HOME} element={<HomePage />} />
