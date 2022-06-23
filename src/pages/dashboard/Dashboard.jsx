@@ -1,18 +1,19 @@
 // import React, { useState } from 'react';
 import styled from 'styled-components';
+import CategoryMenu from '../../components/Categories/CategoryMenu';
 // import BoxInput from '../../components/BoxInput';
 // import { END_POINTS, network } from '../../network';
 import { SECONDARY_BACKGROUND } from '../../GlobalStyling';
 
 const DashboardPage = styled.div`
   position: absolute;
+  z-index: 0;
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100%;  
+  /* opacity: 11%; */
   background-color: ${SECONDARY_BACKGROUND};
-  opacity: 11%;
-  border: solid;
 `;
 
 function Dashboard() {
@@ -20,7 +21,7 @@ function Dashboard() {
   // const [offers, setOffers] = useState([]);
   return (
     <DashboardPage>
-      <div />
+      <CategoryMenu />
     </DashboardPage>
 
   // <form>
