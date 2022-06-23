@@ -36,14 +36,11 @@ export const MainNavigationStyle = styled.div`
       }
 
       &.logo {
-
         margin-left:50px;
-        width: 102px;
-         height: 102px;
+        width: 190px;
         @media only screen and (max-width: ${MOBILE_STYLE.max_width})
         {
-          width: 55px;
-          height: 55px;
+          width: 105px;
         }
       }     
     }

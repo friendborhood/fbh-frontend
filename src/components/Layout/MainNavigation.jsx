@@ -9,7 +9,7 @@ import hamburger from '../../images/menu-hamburger.svg';
 import { updateMenuDisplay, updateLogoutState } from '../../Store/store';
 import { redirectLoggedOutUser } from '../../user-manager/logout-user';
 
-const logo = require('../../images/logo.png');
+const logo = require('../../images/fbh-logo.png');
 
 function MainNavigation() {
   const dispatch = useDispatch();
