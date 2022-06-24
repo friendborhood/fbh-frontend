@@ -27,28 +27,60 @@ const CustomDropdown = styled.div`
       & img {
         &.open{
           transform : rotate(180deg);
-          transition: transform 0.2s ease;
+          transition: transform 300ms ease;
         }
         &.close {
           transform : rotate(0deg);
-          transition: transform 0.2s ease;
+          transition: transform 300ms ease;
         }
       }
   }
-  & div {
+  & ul {
     &.dropdown-content {
       position: relative;
-        display: ${(props) => (props.isOpen ? 'flex' : 'flex')};
-        height: ${(props) => (props.isOpen ? '100px' : '0')};
-        transition: height 0.2s ease;
-        margin-top: 10px;
-        background-color: white;
-        min-width: 160px;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      top: 100%;
+      width: 100%;
+      perspective: 1000px;
+      display: none;
+      background-color: white;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      border-radius: 70px; 
+      margin-top: 10px;
+    }
+    &.dropdown_content--animated {
+      display: block;
+    }
+    &.dropdown_menu-6{
+      animation: ${(props) => (props.isOpen ? 'growDown 300ms ease-in-out forwards' : 'growUp 200ms ease-out forwards')};
+      transform-origin: top center;
+    }
+
+    @keyframes growDown {
+      0% {
+        transform: scaleY(0)
+      }
+      80% {
+        transform: scaleY(0.7)
+      }
+      100% {
+        transform: scaleY(1)
+      }
+    }
+    @keyframes growUp {
+      0% {
+        transform: scaleY(1)
+      }
+      80% {
+        transform: scaleY(1.1)
+      }
+      100% {
+        transform: scaleY(0)
+      }
     }
   }
 `;
-export function Dropdown({ chosen = '', setChosen }) {
+export function Dropdown({ options, chosen = '', setChosen }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const onClickHandler = async () => {
@@ -61,9 +93,9 @@ export function Dropdown({ chosen = '', setChosen }) {
         <div>{chosen}</div>
         <img src={dropdownarrow} alt="arrow" className={isOpen ? 'open' : 'close'} />
       </button>
-      <div className="dropdown-content">
-        <div />
-      </div>
+      <ul className={`dropdown-content dropdown_content--animated dropdown_menu-6 ${isOpen ? 'open' : 'close'}`}>
+        {options.map((option) => <li>{option}</li>)}
+      </ul>
     </CustomDropdown>
   );
 }

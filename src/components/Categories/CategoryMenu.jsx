@@ -28,6 +28,7 @@ export default function CategoryMenu() {
   const [cooking, setcooking] = useState(false);
 
   const [chosen, setChosen] = useState('Nearest First');
+  const sortingOptions = ['Nearest First', 'Newest First'];
 
   return (
     <CategoryMenuStyle>
@@ -40,7 +41,7 @@ export default function CategoryMenu() {
         <CategoryTag name="Cooking" icon={CATEGORY_ICON.COOKING} isChosen={cooking} onClickFunc={setcooking} />
       </div>
       <div className="sort">
-        <Dropdown chosen={chosen} setChosen={setChosen} />
+        <Dropdown chosen={chosen} setChosen={setChosen} options={sortingOptions} />
       </div>
     </CategoryMenuStyle>
   );
