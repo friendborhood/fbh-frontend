@@ -10,7 +10,6 @@ const CategoryMenuStyle = styled.div`
   justify-content: space-between;
   padding: 32px 20px;
   gap: 16px;
-
   & div {
     &.category-ruler {
       display: flex;

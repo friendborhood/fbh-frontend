@@ -4,9 +4,9 @@ import { GLOBAL_FONT, GLOBAL_SCARLET } from '../../GlobalStyling';
 export const CustomDropdown = styled.div`
     font-family: ${GLOBAL_FONT};
     font-weight: 400;
+    position: relative;
   & button {
       display: flex;
-      position: relative;
       flex-direction: row;
       align-items: center;
       padding: 8px 16px;
@@ -33,7 +33,7 @@ export const CustomDropdown = styled.div`
   }
   & ul {
     &.dropdown-content {
-      position: relative;
+      position: absolute;
       top: 100%;
       width: 100%;
       perspective: 1000px;

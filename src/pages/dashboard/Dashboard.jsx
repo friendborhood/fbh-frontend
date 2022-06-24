@@ -1,9 +1,11 @@
-// import React, { useState } from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import CategoryMenu from '../../components/Categories/CategoryMenu';
+import DashboardWrapper from '../../components/DashboardWrapper/DashboardWrapper';
 import ItemCard from '../../components/ItemCard/ItemCard';
-// import BoxInput from '../../components/BoxInput';
-// import { END_POINTS, network } from '../../network';
+import BoxInput from '../../components/BoxInput';
+import { END_POINTS, network } from '../../network';
 import { SECONDARY_BACKGROUND } from '../../GlobalStyling';
 
 const DashboardPage = styled.div`
@@ -18,13 +20,12 @@ const DashboardPage = styled.div`
 `;
 
 function Dashboard() {
-  // const [radius, setRadius] = useState(5000);
-  // const [offers, setOffers] = useState([]);
+  const [radius, setRadius] = useState(5000);
+  const [offers, setOffers] = useState([]);
   return (
-    <DashboardPage>
-      <CategoryMenu />
+    <DashboardWrapper>
       <ItemCard />
-    </DashboardPage>
+    </DashboardWrapper>
 
   // <form>
   //   <BoxInput
@@ -37,8 +38,10 @@ function Dashboard() {
   //   <button
   //     type="button"
   //     onClick={async () => {
-  //       const { data: fetchedOffers } = await network.get(`${END_POINTS.OFFERS}/in-area`,
-  // { params: { radius } });
+  //       const { data: fetchedOffers } = await network.get(
+  //         `${END_POINTS.OFFERS}/in-area`,
+  //         { params: { radius } },
+  //       );
   //       setOffers(fetchedOffers);
   //     }}
   //   >
