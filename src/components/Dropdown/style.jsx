@@ -48,7 +48,7 @@ export const CustomDropdown = styled.div`
       display: block;
     }
     &.dropdown_menu-6{
-      animation: ${(props) => (props.isOpen ? 'growDown 200ms ease-in-out forwards' : 'growUp 100ms ease-out forwards')};
+      animation: ${(props) => (props.isOpen ? 'growDown 200ms ease-in-out forwards' : 'growUp 150ms ease-out forwards')};
       transform-origin: top center;
     }
 
@@ -78,6 +78,12 @@ export const CustomDropdown = styled.div`
     & li {
         line-height: 25px;
         font-size: 15px;
+        cursor: pointer;
+        &:hover {
+          color: ${GLOBAL_SCARLET};
+          font-weight: 600;
+          transition: color 0.1s ease;
+        }
     }
   }
 `;
