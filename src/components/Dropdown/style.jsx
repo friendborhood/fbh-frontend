@@ -47,11 +47,12 @@ export const CustomDropdown = styled.div`
     &.dropdown_content--animated {
       display: block;
     }
-    &.dropdown_menu-6{
+    &.dropdown_menu-0{
       animation: ${(props) => (props.isOpen ? 'growDown 200ms ease-in-out forwards' : 'growUp 150ms ease-out forwards')};
       transform-origin: top center;
     }
-
+    &.dropdown_menu-1{
+    }
     @keyframes growDown {
       0% {
         transform: scaleY(0)
