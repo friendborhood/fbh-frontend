@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/button-has-type */
 import { useState, useEffect } from 'react';
@@ -13,8 +15,6 @@ export function Dropdown({ options, chosen = '', setChosen }) {
     setFirstlyClicked(true);
   };
 
-  useEffect(() => { console.log(isOpen); }, [isOpen]);
-
   return (
     <CustomDropdown isOpen={isOpen} firstClick={firstlyClicked}>
       <button className="dropbtn" onClick={onClickHandler}>
@@ -22,7 +22,18 @@ export function Dropdown({ options, chosen = '', setChosen }) {
         <img src={dropdownarrow} alt="arrow" className={isOpen ? 'open' : 'close'} />
       </button>
       <ul className={`dropdown-content ${firstlyClicked ? 'dropdown_content--animated dropdown_menu-0' : ''} ${isOpen ? 'open' : 'close'}`}>
-        {options.map((option) => <li>{option}</li>)}
+        {options.map((option) => (
+          <li
+            value={option}
+            key={option}
+            onClick={() => {
+              setChosen(option);
+              setIsOpen(false);
+            }}
+          >
+            {option}
+          </li>
+        ))}
       </ul>
     </CustomDropdown>
   );
