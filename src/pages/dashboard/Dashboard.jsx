@@ -1,6 +1,7 @@
 // import React, { useState } from 'react';
 import styled from 'styled-components';
 import CategoryMenu from '../../components/Categories/CategoryMenu';
+import ItemCard from '../../components/ItemCard/ItemCard';
 // import BoxInput from '../../components/BoxInput';
 // import { END_POINTS, network } from '../../network';
 import { SECONDARY_BACKGROUND } from '../../GlobalStyling';
@@ -22,6 +23,7 @@ function Dashboard() {
   return (
     <DashboardPage>
       <CategoryMenu />
+      <ItemCard />
     </DashboardPage>
 
   // <form>
