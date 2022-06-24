@@ -15,9 +15,10 @@ function ItemCard() {
     (async () => {
       const { data } = await network.get(
         `${END_POINTS.OFFERS}/in-area`,
-        { params: { radius: 100000000000000000000000 } },
+        { params: { radius: 1000000000000000000000000000000000 } },
       );
-      console.log(data);
+      const user = await network.get(`${END_POINTS.USER}/me`);
+      console.log(user);
     })();
   });
 
