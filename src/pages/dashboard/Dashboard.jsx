@@ -9,14 +9,10 @@ import { END_POINTS, network } from '../../network';
 import { SECONDARY_BACKGROUND } from '../../GlobalStyling';
 
 const DashboardPage = styled.div`
-  position: absolute;
-  z-index: 0;
   display: flex;
+  position: relative;
   flex-direction: column;
   width: 100%;
-  height: 100%;  
-  /* opacity: 11%; */
-  background-color: ${SECONDARY_BACKGROUND};
 `;
 
 function Dashboard() {
@@ -24,7 +20,9 @@ function Dashboard() {
   const [offers, setOffers] = useState([]);
   return (
     <DashboardWrapper>
-      <ItemCard />
+      <DashboardPage>
+        <ItemCard />
+      </DashboardPage>
     </DashboardWrapper>
 
   // <form>
