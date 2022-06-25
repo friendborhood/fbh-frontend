@@ -23,16 +23,20 @@ export function Dropdown({ options, chosen = '', setChosen }) {
       </button>
       <ul className={`dropdown-content ${firstlyClicked ? 'dropdown_content--animated dropdown_menu-0' : ''} ${isOpen ? 'open' : 'close'}`}>
         {options.map((option) => (
-          <li
-            value={option}
-            key={option}
-            onClick={() => {
-              setChosen(option);
-              setIsOpen(false);
-            }}
-          >
-            {option}
-          </li>
+          <>
+            <li
+              value={option}
+              key={option}
+              onClick={() => {
+                setChosen(option);
+                setIsOpen(false);
+              }}
+              className={chosen === option ? 'chosen' : ''}
+            >
+              {option}
+            </li>
+            <div id="borderLeft" />
+          </>
         ))}
       </ul>
     </CustomDropdown>
