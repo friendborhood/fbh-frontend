@@ -94,7 +94,7 @@ export const CustomDropdown = styled.div`
       &.chosen{
         color: #14171C;
         background-image: url(${check});
-        background-position: right 4px;
+        background-position: right center;
         background-repeat: no-repeat; 
       }
       &:hover {

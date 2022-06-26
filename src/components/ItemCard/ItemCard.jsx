@@ -18,7 +18,7 @@ function ItemCard() {
         { params: { radius: 1000000000000000000000000000000000 } },
       );
       const user = await network.get(`${END_POINTS.USER}/me`);
-      console.log(user);
+      console.log(data);
     })();
   });
 
