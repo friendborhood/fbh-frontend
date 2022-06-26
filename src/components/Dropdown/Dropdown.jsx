@@ -3,10 +3,13 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/button-has-type */
 import { useState, useEffect } from 'react';
+import { isMobile } from 'react-device-detect';
 import { CustomDropdown } from './style';
 import dropdownarrow from '../../images/dropdown-arrow.svg';
 
-export function Dropdown({ options, chosen = '', setChosen }) {
+export function Dropdown({
+  options, chosen = '', setChosen, mobileDisplay = chosen,
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const [firstlyClicked, setFirstlyClicked] = useState(false);
 
@@ -18,8 +21,8 @@ export function Dropdown({ options, chosen = '', setChosen }) {
   return (
     <CustomDropdown isOpen={isOpen} firstClick={firstlyClicked}>
       <button className="dropbtn" onClick={onClickHandler}>
-        <div>{chosen}</div>
-        <img src={dropdownarrow} alt="arrow" className={isOpen ? 'open' : 'close'} />
+        <div className="button-display">{isMobile ? mobileDisplay : chosen}</div>
+        {!isMobile && <img src={dropdownarrow} alt="arrow" className={isOpen ? 'open' : 'close'} />}
       </button>
       <ul className={`dropdown-content ${firstlyClicked ? 'dropdown_content--animated dropdown_menu-0' : ''} ${isOpen ? 'open' : 'close'}`}>
         {options.map((option) => (

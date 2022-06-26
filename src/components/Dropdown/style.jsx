@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { GLOBAL_FONT, GLOBAL_SCARLET } from '../../GlobalStyling';
+import { GLOBAL_FONT, GLOBAL_SCARLET, MOBILE_STYLE } from '../../GlobalStyling';
 import check from '../../images/check.svg';
 
 export const CustomDropdown = styled.div`
@@ -21,6 +21,15 @@ export const CustomDropdown = styled.div`
       font-size: 20px;
       line-height: 29px;
 
+      @media only screen and (max-width: ${MOBILE_STYLE.max_width})
+      {
+        justify-content: center;
+        gap: 10px;
+        width: 59px;
+        min-width: 59px;
+        height: 40px;
+      }
+
       & img {
         &.open{
           transform : rotate(180deg);
@@ -31,6 +40,18 @@ export const CustomDropdown = styled.div`
           transition: transform 200ms ease;
         }
       }
+      @media only screen and (max-width: ${MOBILE_STYLE.max_width})
+      {
+        & div {
+        &.button-display {
+          & img {
+            width: 28px;
+            height: 28px;
+          }
+        }
+      }
+      }
+
   }
   & ul {
     &.dropdown-content {

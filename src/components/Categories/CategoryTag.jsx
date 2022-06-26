@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styled from 'styled-components';
-import { GLOBAL_FONT, GLOBAL_SCARLET } from '../../GlobalStyling';
+import { GLOBAL_FONT, GLOBAL_SCARLET, MOBILE_STYLE } from '../../GlobalStyling';
 
 const StyledCategory = styled.div`
     display: inline-flex;
@@ -15,14 +15,23 @@ const StyledCategory = styled.div`
     font-family: ${GLOBAL_FONT};
     font-style: normal;
     font-weight: 400;
-    font-size: 20px;
+    font-size: clamp(1vw, 1vw, 20px);
     line-height: 29px;
+    transition: font-size 0.1s ease;
     transition: background-color 0.1s ease;
     cursor: pointer;
     background-color: ${(props) => (props.isChosen ? GLOBAL_SCARLET : 'white')};
     border: 1.5px solid ${(props) => (props.isChosen ? GLOBAL_SCARLET : '#14171C')};
     color: ${(props) => (props.isChosen ? 'white' : 'black')};
     user-select: none;
+    @media only screen and (max-width: ${MOBILE_STYLE.max_width})
+    {
+      height: 37px;
+      font-size: 14px;
+      line-height: 21px;
+      justify-content: space-around;
+      white-space: nowrap;
+    }
     & img {
         width: 17px;
         height: 17px;

@@ -21,7 +21,7 @@ function Dashboard() {
   return (
     <DashboardWrapper>
       <DashboardPage>
-        <ItemCard />
+        {/* <ItemCard /> */}
       </DashboardPage>
     </DashboardWrapper>
 
