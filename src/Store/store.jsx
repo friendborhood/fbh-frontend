@@ -36,6 +36,7 @@ export const userActions = userSlice.actions;
 
 export const initialDisplayState = {
   showMobileMenu: false,
+  showMobileSortDropdown: false,
 };
 
 export const displaySlice = createSlice({
@@ -45,12 +46,19 @@ export const displaySlice = createSlice({
     switchMobileMenuState: (state, action) => {
       state.showMobileMenu = action.payload.mobileMenuState;
     },
+    switchMobileSortState: (state, action) => {
+      state.showMobileSortDropdown = action.payload.mobileSortState;
+      console.log('sort menu set to ', state.showMobileSortDropdown);
+    },
 
   },
 });
 
 export const updateMenuDisplay = (menuState) => (dispatch) => {
   dispatch(displaySlice.actions.switchMobileMenuState({ mobileMenuState: menuState }));
+};
+export const updateSortDisplay = (menuState) => (dispatch) => {
+  dispatch(displaySlice.actions.switchMobileSortState({ mobileSortState: menuState }));
 };
 
 export const displayActions = displaySlice.actions;

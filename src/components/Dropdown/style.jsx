@@ -3,9 +3,9 @@ import { GLOBAL_FONT, GLOBAL_SCARLET, MOBILE_STYLE } from '../../GlobalStyling';
 import check from '../../images/check.svg';
 
 export const CustomDropdown = styled.div`
-    font-family: ${GLOBAL_FONT};
-    font-weight: 400;
-    position: relative;
+  font-family: ${GLOBAL_FONT};
+  font-weight: 400;
+  position: relative;
   & button {
       display: flex;
       flex-direction: row;
@@ -20,7 +20,7 @@ export const CustomDropdown = styled.div`
       font-style: normal;
       font-size: 20px;
       line-height: 29px;
-
+    
       @media only screen and (max-width: ${MOBILE_STYLE.max_width})
       {
         justify-content: center;
@@ -70,6 +70,10 @@ export const CustomDropdown = styled.div`
     }
     &.dropdown_content--animated {
       display: block;
+      @media only screen and (max-width: ${MOBILE_STYLE.max_width})
+      {
+        position: static;
+      }
     }
     &.dropdown_menu-0{
       animation: ${(props) => (props.isOpen ? 'growDown 200ms ease-in-out forwards' : 'growUp 150ms ease-out forwards')};

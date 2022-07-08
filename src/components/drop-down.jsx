@@ -17,9 +17,7 @@ function DropDown({ options, setState, state }) {
           value={state}
           onChange={handleChange}
         >
-
           {menuItems}
-
         </Select>
       </FormControl>
 

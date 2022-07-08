@@ -11,22 +11,27 @@ const CategoryMenuStyle = styled.div`
   justify-content: space-between;
   padding: 32px 20px;
   gap: 16px;
+
   @media only screen and (max-width: ${MOBILE_STYLE.max_width})
   {
     flex-direction: column;
     align-items: flex-start;
+    justify-content: flex-start;
     padding: 0px;
     gap: 16px;
-    width: 367px;
-    overflow-x: scroll;
+    width: 100vw;
   }
   & div {
     &.category-ruler {
       display: flex;
       gap: 16px;
       height: 37px;
+      @media only screen and (max-width: ${MOBILE_STYLE.max_width})
+      {
+        overflow-x: scroll;
+        width: 100vw;
+      }
     }
-
     &.sort {
       flex-direction: column;
       align-items: flex-start;

@@ -8,6 +8,7 @@ import cleaning from './images/tags/cleaning.svg';
 export const GLOBAL_SCARLET = '#AA332F';
 export const GLOBAL_LIGHTGRAY = '#99A0A9';
 export const SECONDARY_BACKGROUND = 'RGBA(153,160,169,0.11)';
+export const DARK_GRAY = '#5E646B';
 export const FORM_BOTTON_HEIGHT = '45px';
 export const BUTTON_RADIUS = '8px';
 export const GLOBAL_FONT = 'Heebo';

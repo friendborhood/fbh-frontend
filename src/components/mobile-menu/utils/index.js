@@ -67,7 +67,8 @@ export const BlackScreen = styled.div`
         animation-duration: 0.2s;
 
         @keyframes transformToBlack {
-            0%   {background-color: rgba(0,0,0, 0);}
+            0%   {background-color: transparent;}
+            50%  {background-color: rgba(0,0,0, 0.4);;}
             100% {background-color: rgba(0,0,0, 0.6);}
         }
     }
