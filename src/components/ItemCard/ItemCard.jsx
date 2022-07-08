@@ -9,7 +9,7 @@ const me = require('../../images/mock/square-photo.jpg');
 function ItemCard({ offerData }) {
   console.log(offerData);
   const {
-    description: itemName, distanceFromUser, name, price = 400,
+    description: itemName, distanceFromUser, name, priceAsked: price,
   } = offerData;
   const distance = distanceFromUser.toFixed(2);
   return (
