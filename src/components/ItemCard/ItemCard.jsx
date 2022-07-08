@@ -22,7 +22,7 @@ function ItemCard({ offerData }) {
         </div>
         <div className="info-line">
           <div className="text user-info">
-            <img className="user-icon" src={me} alt="giver" />
+            {/* <img className="user-icon" src={me} alt="giver" /> */}
             <div className="text">{name}</div>
           </div>
           <div className="text small">{`${price}$/day`}</div>
