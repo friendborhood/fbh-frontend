@@ -74,6 +74,8 @@ export const MainNavigationStyle = styled.div`
         width: 100px;
         cursor: pointer;
         &:active, :hover, :focus {
+          transition: color 0.2s ease;
+          transition: font-weight 0.1s ease;
           color: ${GLOBAL_SCARLET};
           font-weight: bold;
           font-weight: 500, medium;

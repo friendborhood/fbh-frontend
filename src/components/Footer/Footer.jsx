@@ -5,9 +5,8 @@ import { GLOBAL_FONT } from '../../GlobalStyling';
 
 const StyledFooter = styled.footer`
   display: flex;
-  position: absolute;
+  position: fixed;
   flex-direction: column;
-  width: 100%;
   height: 88px;
   justify-content: center;
   font-family: ${GLOBAL_FONT};
@@ -15,6 +14,8 @@ const StyledFooter = styled.footer`
   font-weight: 300;
   font-size: 12px;
   bottom: 0;
+  opacity:80%;
+  pointer-events: none;
   & div {
       &.rights{
         margin-left:32px;   

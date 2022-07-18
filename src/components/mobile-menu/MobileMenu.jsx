@@ -16,7 +16,10 @@ import userInfo from '../../images/your-info.svg';
 import dashboard from '../../images/dashboard.svg';
 import { StyledMenu, BlackScreen } from './utils';
 
-function MobileMenu() {
+function MobileMenu(props) {
+  const {
+    showMobileMenu,
+  } = props;
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -37,7 +40,7 @@ function MobileMenu() {
   };
   return (
     <>
-      <StyledMenu>
+      <StyledMenu showMobileMenu={showMobileMenu}>
         <div className="x-container">
           <img src={x} alt="exit" onClick={closingHandler} />
         </div>
@@ -61,7 +64,7 @@ function MobileMenu() {
         </div>
         <img className="cameo" src={fox} alt="fox" />
       </StyledMenu>
-      <BlackScreen onClick={closingHandler} />
+      {showMobileMenu && <BlackScreen onClick={closingHandler} />}
     </>
   );
 }
