@@ -28,27 +28,27 @@ function UploadOffer() {
   };
 
   const handleSubmission = async () => {
-     try {
-    const { status } = await network.post(`${END_POINTS.OFFERS}`, {
-      imageBase64: fileToShow,
-      itemId: '038840e1-3f62-4e35-a88d-781a691fe358',
-      priceAsked: 0,
-      categoryName: 'Cleaning',
-      description,
-      condition: 'string',
-      state: 'string',
-      location: {
-        address: 'string',
-        geoCode: {
-          lat: 32.05922334509145,
-          lng: 34.76625321109972,
+    let status = 500;
+    try {
+      ({ status } = await network.post(`${END_POINTS.OFFERS}`, {
+        imageBase64: fileToShow,
+        itemId: '038840e1-3f62-4e35-a88d-781a691fe358',
+        priceAsked: 60,
+        categoryName: 'Cleaning',
+        description,
+        condition: 'string',
+        state: 'string',
+        location: {
+          address: 'string',
+          geoCode: {
+            lat: 32.05922334509145,
+            lng: 34.76625321109972,
+          },
         },
-      },
-    });
-  } catch (e) {
-    console.log(e);
-    
-  }
+      }));
+    } catch (e) {
+      console.log(e);
+    }
     alert('uploaded to backend, stauts is', status);
   };
 
