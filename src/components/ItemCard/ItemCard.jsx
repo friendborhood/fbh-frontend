@@ -3,20 +3,28 @@ import React, { useEffect, useState } from 'react';
 import { Card } from './style';
 import { network, END_POINTS } from '../../network';
 
-const image = require('../../images/mock/vacume.png');
+const fallBackImage = require('../../images/mock/vacume.png');
 const me = require('../../images/mock/square-photo.jpg');
 
 function ItemCard({ offerData }) {
   console.log(offerData);
   const {
-    itemData, offererUserData, distanceFromUser, name, priceAsked: price,
+    imageBase64,
+    itemData,
+    offererUserData,
+    distanceFromUser,
+    name,
+    priceAsked: price,
   } = offerData;
   const { itemName } = itemData;
   const { firstName } = offererUserData;
   const distance = (distanceFromUser / 1000).toFixed(2);
   return (
     <Card>
-      <img className="item" src={image} alt="Item" />
+      <img
+        src={imageBase64 || fallBackImage}
+        alt="item"
+      />
       <div className="item-details">
         <div className="info-line">
           <div className="text large">{itemName}</div>
