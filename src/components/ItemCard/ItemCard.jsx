@@ -15,6 +15,7 @@ function ItemCard({ offerData }) {
     distanceFromUser,
     name,
     priceAsked: price,
+    description,
   } = offerData;
   const { itemName } = itemData;
   const { firstName } = offererUserData;
@@ -29,6 +30,7 @@ function ItemCard({ offerData }) {
         <div className="info-line">
           <div className="text large">{itemName}</div>
           <div className="text small">{`${distance} km`}</div>
+          <div className="text small">{description}</div>
         </div>
         <div className="info-line">
           <div className="text small">{`${firstName}`}</div>
