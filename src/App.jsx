@@ -7,6 +7,7 @@ import {
 import { ToastContainer } from 'react-toastify';
 import { useSelector, useDispatch } from 'react-redux';
 import { isMobile } from 'react-device-detect';
+import UploadOffer from './pages/upload-offer/UploadOffer';
 import SignUpPage from './pages/sign-up/SignUpPage';
 import HomePage from './pages/home-page/HomePage';
 import LoginPage from './pages/login/LoginPage';
@@ -19,7 +20,6 @@ import Dashboard from './pages/dashboard/Dashboard';
 import { getTokenFromLocalStorage } from './user-manager';
 import { updateLoginState } from './Store/store';
 import { MobileDropdownMenu } from './components/Dropdown/MobileDropdownMenu';
-import UploadOffer from './pages/upload-offer/UploadOffer';
 
 function App() {
   const menuDisplayStatus = useSelector((state) => state.display.showMobileMenu);
