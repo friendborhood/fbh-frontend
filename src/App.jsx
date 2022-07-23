@@ -7,7 +7,7 @@ import {
 import { ToastContainer } from 'react-toastify';
 import { useSelector, useDispatch } from 'react-redux';
 import { isMobile } from 'react-device-detect';
-import UploadOffer from './pages/Upload-offer/uploadOffer';
+import UploadOffer from './pages/upload-offer/uploadOffer';
 import SignUpPage from './pages/sign-up/SignUpPage';
 import HomePage from './pages/home-page/HomePage';
 import LoginPage from './pages/login/LoginPage';
