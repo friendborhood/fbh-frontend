@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Card } from './style';
 import { network, END_POINTS } from '../../network';
 
-const fallBackImage = require('../../images/mock/vacume.png');
+const fallBackImage = require('../../images/mock/fallback.png');
 const me = require('../../images/mock/square-photo.jpg');
 
 function ItemCard({ offerData }) {
