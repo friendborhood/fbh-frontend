@@ -7,10 +7,12 @@ const OfferTableStyle = styled.div`
 display: flex;
   gap: 15px;
   flex-wrap: wrap;
+  gap: 40px;
   padding-left: 23px;
   padding-right: 21px;
   overflow-y: scroll;
   height: 100%;
+  justify-content: center;
 `;
 
 function OffersTable({ radius }) {
