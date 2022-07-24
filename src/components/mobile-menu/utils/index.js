@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { GLOBAL_FONT, MOBILE_STYLE } from '../../../GlobalStyling';
 
 export const StyledMenu = styled.div`
+@media only screen and (max-width: ${MOBILE_STYLE.max_width})
+{
     display: flex;
     position: absolute;
     font-style: ${GLOBAL_FONT};
@@ -17,6 +19,8 @@ export const StyledMenu = styled.div`
     font-weight: 400;
     color: ${MOBILE_STYLE.MENU_ITEM_COLOR};
     padding-left: 10px;
+    transition: 0.2s ease-out;
+    transform: ${(props) => (props.showMobileMenu ? 'translateX(0%)' : 'translateX(-100%)')} ;
 
     & div {
         &.options-container {
@@ -46,15 +50,26 @@ export const StyledMenu = styled.div`
         height: 60px;
         width: 60px;
     }
+}
 `;
 
 export const BlackScreen = styled.div`
-    display: flex;
-    position: absolute;
-    top: 0;
-    z-index: 1002;
-    width: 100%;
-    height: 100%;
-    flex-direction: column;
-    background-color: rgba(0,0,0, 0.6);
+    @media only screen and (max-width: ${MOBILE_STYLE.max_width}){
+        display: flex;
+        position: absolute;
+        top: 0;
+        z-index: 1002;
+        width: 100%;
+        height: 100%;
+        flex-direction: column;
+        background-color: rgba(0,0,0, 0.6);
+        animation-name: transformToBlack;
+        animation-duration: 0.2s;
+
+        @keyframes transformToBlack {
+            0%   {background-color: transparent;}
+            50%  {background-color: rgba(0,0,0, 0.4);;}
+            100% {background-color: rgba(0,0,0, 0.6);}
+        }
+    }
 `;

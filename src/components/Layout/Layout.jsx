@@ -7,6 +7,8 @@ const StyledLayout = styled.main`
   width: 100%;
   @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
     overflow-x: hidden;
+    height: ${MOBILE_STYLE.NAVIGATION_MOBILE_HEIGHT};
+    
   }
   
 `;

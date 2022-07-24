@@ -37,7 +37,7 @@ export const StyledForm = styled.form`
   @media only screen and (max-width: ${MOBILE_STYLE.max_width})
   {
     flex-direction: column;
-    width: 100vw;
+    width: 100%;
     margin: 0;
     min-width: 100%;
     align-items: center;
