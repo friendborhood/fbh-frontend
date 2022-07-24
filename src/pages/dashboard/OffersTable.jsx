@@ -1,6 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 import { network, END_POINTS } from '../../network';
 import ItemCard from '../../components/ItemCard/ItemCard';
+
+const OfferTableStyle = styled.div`
+display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  padding-left: 23px;
+  padding-right: 21px;
+  overflow-y: scroll;
+  height: 100%;
+`;
 
 function OffersTable({ radius }) {
   const [offers, setOffers] = useState([]);
@@ -14,9 +25,9 @@ function OffersTable({ radius }) {
   const items = offers.map((offer) => <ItemCard offerData={offer} />);
 
   return (
-    <div>
+    <OfferTableStyle>
       {items}
-    </div>
+    </OfferTableStyle>
   );
 }
 
