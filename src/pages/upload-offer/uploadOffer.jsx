@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import BoxInput from '../../components/BoxInput';
-import { network, END_POINTS } from '../../network';
+// import { network, END_POINTS } from '../../network';
 
 const convertToBase64 = (file) => new Promise((resolve, reject) => {
   const fileReader = new FileReader();
@@ -28,30 +29,39 @@ function UploadOffer() {
   };
 
   const handleSubmission = async () => {
-    let status = 500;
     try {
-      ({ status } = await network.post(`${END_POINTS.OFFERS}`, {
-        imageBase64: fileToShow,
-        itemId: '038840e1-3f62-4e35-a88d-781a691fe358',
-        priceAsked: 60,
-        categoryName: 'Cleaning',
-        description,
-        condition: 'string',
-        state: 'string',
-        location: {
-          address: 'string',
-          geoCode: {
-            lat: 32.05922334509145,
-            lng: 34.76625321109972,
-          },
-        },
-      }));
+      const data = new FormData();
+      data.append('file', fileToShow);
+      data.append('upload_preset', 'default-preset');
+      await axios.post('https://api.cloudinary.com/v1_1/dxjhkogtp/image/upload', {
+        method: 'post',
+        body: data,
+      });
     } catch (e) {
-      console.log(e);
+      alert(JSON.stringify(e.response.data));
     }
-    alert('uploaded to backend, stauts is', status);
+    // try {
+    //   ({ status } = await network.post(`${END_POINTS.OFFERS}`, {
+    //     imageBase64: fileToShow,
+    //     itemId: '038840e1-3f62-4e35-a88d-781a691fe358',
+    //     priceAsked: 60,
+    //     categoryName: 'Cleaning',
+    //     description,
+    //     condition: 'string',
+    //     state: 'string',
+    //     location: {
+    //       address: 'string',
+    //       geoCode: {
+    //         lat: 32.05922334509145,
+    //         lng: 34.76625321109972,
+    //       },
+    //     },
+    //   }));
+    // } catch (e) {
+    //   console.log(e);
+    // }
+    alert('uploaded to backend');
   };
-
   return (
     <div>
       <img
