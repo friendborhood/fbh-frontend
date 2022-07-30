@@ -47,7 +47,7 @@ function AdditionalDetailsPage() {
     <>
       <HalfPageImage />
       <StyledForm style={{ gap: '5px' }}>
-        <h1>Additional Details</h1>
+        <h1>Personal Info</h1>
         <h2 className="sub-headline">Profile Picture</h2>
         <img
           className="user-icon"
