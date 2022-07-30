@@ -17,10 +17,11 @@ display: flex;
 
 function OffersTable({ radius, sortMethod = false }) {
   const [offers, setOffers] = useState([]);
+  const newest = sortMethod === 'Newest First';
   useEffect(async () => {
     const { data } = await network.get(
       `${END_POINTS.OFFERS}/in-area`,
-      { params: { radius, newest: sortMethod === 'Newest First' } },
+      { params: { radius, newest } },
     );
     setOffers(data);
   }, [offers]);
