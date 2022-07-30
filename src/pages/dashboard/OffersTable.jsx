@@ -24,13 +24,16 @@ function OffersTable({ radius }) {
     );
     setOffers(data);
   }, [offers]);
-  const items = offers.map((offer, index) => <ItemCard offerData={offer} key={index} />);
 
-  return (
-    <OfferTableStyle>
-      {items}
-    </OfferTableStyle>
-  );
+  if (offers.length) {
+    const items = offers.map((offer, index) => <ItemCard offerData={offer} key={index} />);
+    return (
+      <OfferTableStyle>
+        {items}
+      </OfferTableStyle>
+    );
+  }
+  return <div><h1>No Offers In your area :( </h1></div>;
 }
 
 export default OffersTable;

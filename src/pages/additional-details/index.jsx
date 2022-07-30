@@ -28,10 +28,12 @@ function AdditionalDetailsPage() {
     }));
     setCategories(formattedCategories);
     const categoriesSelected = {};
-    formattedCategories.forEach(
-      (category) => { categoriesSelected[category.name] = true; },
-    );
-    localStorage.setItem('selectedCategories', JSON.stringify(categoriesSelected));
+    if (!localStorage.getItem('selectedCategories')) {
+      formattedCategories.forEach(
+        (category) => { categoriesSelected[category.name] = true; },
+      );
+      localStorage.setItem('selectedCategories', JSON.stringify(categoriesSelected));
+    }
   }, []);
   useEffect(async () => {
     // eslint-disable-next-line max-len
