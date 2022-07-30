@@ -18,7 +18,7 @@ function AdditionalDetailsPage() {
   const [location, setLocation] = useState('');
   const [imageUrl, setImageUrl] = useState('');
 
-  useEffect(() => Promise.all([fetchUserData(setUserName, setImageUrl)]));
+  useEffect(() => Promise.all([fetchUserData({ setUserName, setImageUrl })]));
 
   useEffect(async () => {
     const fetchedCategories = await fetchCategories();
