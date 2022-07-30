@@ -63,7 +63,7 @@ function UploadOffer() {
       });
       displayMessage('Offer uploaded successfully');
     } catch (e) {
-      console.error(`Error uploading offer ${JSON.stringify(e.response.data)}`);
+      alert.error(`Error uploading offer ${JSON.stringify(e.response.data)}`);
     }
   };
   return (
