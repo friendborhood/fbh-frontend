@@ -29,7 +29,6 @@ function MainNavigation() {
       <section className="site-info">
         <Link to={PAGES.HOME}><img src={logo} className="logo" alt="logo" /></Link>
         <div className="menu-item">About</div>
-        <div className="menu-item">System</div>
       </section>
       <section className="user-usage">
         <img src={hamburger} className="hamburger" alt="menu-button" onClick={onHamburgerClicked} />

@@ -1,102 +1,106 @@
-import React, { useState } from 'react';
+/* eslint-disable no-shadow */
+/* eslint-disable react/button-has-type */
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import BoxInput from '../../components/BoxInput';
-import { network, END_POINTS } from '../../network';
+import DropDown from '../../components/drop-down';
+import { END_POINTS, fetchUserData, network } from '../../network';
+import { displayMessage } from '../../utils/handle-device-middleware';
 
-const convertToBase64 = (file) => new Promise((resolve, reject) => {
-  const fileReader = new FileReader();
-  fileReader.readAsDataURL(file);
-  fileReader.onload = () => {
-    resolve(fileReader.result);
-  };
-  fileReader.onerror = (error) => {
-    reject(error);
-  };
-});
 function UploadOffer() {
+  const CLOUD_NAME = 'dxjhkogtp';
+  const PRESET = 'tc7nz7hr';
+  const [condition, setCondition] = useState('');
+  const [image, setImage] = useState('');
+  const [item, setItem] = useState('');
+  const [itemNames, setItemNames] = useState(['Driller']);
   const [description, setDescription] = useState('');
-  const [selectedFile, setSelectedFile] = useState();
-  const [isSelected, setIsSelected] = useState(false);
-  const [fileToShow, setFileToShow] = useState('');
+  const [price, setPrice] = useState('');
+  const [cloudinaryUrl, setCloudinaryUrl] = useState('');
+  const [itemsMap, setItemsMap] = useState({});
+  const [userLocation, setUserLocation] = useState({});
 
-  const changeHandler = async (event) => {
-    setSelectedFile(event.target.files[0]);
-    const file = event.target.files[0];
-    const base64 = await convertToBase64(file);
-    setIsSelected(true);
-    console.log(base64);
-    setFileToShow(base64);
+  const swapKeysAndValues = (obj) => {
+    const swapped = Object.entries(obj).map(
+      ([key, value]) => [value.itemName, key],
+    );
+
+    return Object.fromEntries(swapped);
+  };
+  const fetchItems = async () => {
+    const { data: currentItems } = await network.get(END_POINTS.ITEM);
+    const itemsNamesFormatted = Object.values(currentItems).map((item) => item.itemName);
+    setItemNames(itemsNamesFormatted);
+    const itemsFormattedForMapping = swapKeysAndValues(currentItems);
+    setItemsMap(itemsFormattedForMapping);
   };
 
-  const handleSubmission = async () => {
-    let status = 500;
+  useEffect(() => Promise.all([
+    fetchItems(),
+    fetchUserData({ setUserLocation }),
+  ]), []);
+
+  const uploadToCloudinary = async (base64Image) => {
+    const data = new FormData();
+    data.append('file', base64Image);
+    data.append('upload_preset', PRESET);
+    data.append('cloud_name', CLOUD_NAME);
+    const { data: cloudinaryResponse } = await axios.post(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`, data);
+    const { secure_url: cloudinaryUrlResult } = cloudinaryResponse;
+    setCloudinaryUrl(cloudinaryUrlResult);
+  };
+  const uploadOffer = async () => {
     try {
-      ({ status } = await network.post(`${END_POINTS.OFFERS}`, {
-        imageBase64: fileToShow,
-        itemId: '038840e1-3f62-4e35-a88d-781a691fe358',
-        priceAsked: 60,
-        categoryName: 'Cleaning',
+      await uploadToCloudinary(image);
+      await network.post(`${END_POINTS.OFFERS}`, {
+        imageUrl: cloudinaryUrl,
+        itemId: itemsMap[item],
+        priceAsked: price,
         description,
-        condition: 'string',
-        state: 'string',
-        location: {
-          address: 'string',
-          geoCode: {
-            lat: 32.05922334509145,
-            lng: 34.76625321109972,
-          },
-        },
-      }));
+        condition,
+        state: 'Available',
+        location: userLocation,
+      });
+      displayMessage('Offer uploaded successfully');
     } catch (e) {
-      console.log(e);
+      alert.error(`Error uploading offer ${JSON.stringify(e.response.data)}`);
     }
-    alert('uploaded to backend, stauts is', status);
   };
-
   return (
     <div>
-      <img
-        max-width={500}
-        max-height={500}
-        hidden={!isSelected}
-        src={fileToShow}
-        alt="file"
-      />
-      <BoxInput
-        label="Offer Description"
-        id="pinCode"
-        state={description}
-        setState={setDescription}
-        placeHolder="Describe the item..."
-      />
-      <input type="file" name="file" onChange={changeHandler} />
-      {isSelected ? (
-        <div>
-          <p>
-            Filename:
-            {' '}
-            {selectedFile.name}
-          </p>
-          <p>
-            Filetype:
-            {' '}
-            {selectedFile.type}
-          </p>
-          <p>
-            Size in bytes:
-            {' '}
-            {selectedFile.size}
-          </p>
-          <p>
-            lastModifiedDate:
-            {' '}
-            {selectedFile.lastModifiedDate.toLocaleDateString()}
-          </p>
-        </div>
-      ) : (
-        <p>Select a file to show details</p>
-      )}
+      <h1>Upload an offer</h1>
       <div>
-        <button disabled={!isSelected} type="button" onClick={handleSubmission}>Submit</button>
+        <h4>Select an item</h4>
+        <DropDown options={itemNames} setState={setItem} state={item} />
+        <BoxInput
+          label="Condition"
+          id="Condtion"
+          state={condition}
+          placeHolder="Condition"
+          setState={setCondition}
+        />
+        <BoxInput
+          label="Description"
+          id="description"
+          state={description}
+          placeHolder="description"
+          setState={setDescription}
+        />
+        <BoxInput
+          label="Price"
+          id="price"
+          state={price}
+          placeHolder="Price"
+          setState={setPrice}
+        />
+
+        <input type="file" onChange={(e) => setImage(e.target.files[0])} />
+        <button onClick={uploadOffer}>Upload</button>
+
+      </div>
+      <div>
+
+        <img hidden={!image} alt="offer" src={image} />
       </div>
     </div>
   );
