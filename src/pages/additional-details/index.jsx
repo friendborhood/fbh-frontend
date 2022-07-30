@@ -19,16 +19,26 @@ function AdditionalDetailsPage() {
   const [imageUrl, setImageUrl] = useState('');
 
   useEffect(() => Promise.all([fetchUserData(setUserName, setImageUrl)]));
-
   useEffect(async () => {
     const fetchedCategories = await fetchCategories();
-    setCategories(fetchedCategories);
-    const tagElements = Object.entries(categories).map(([categoryName, iconUrl], index) => {
-      const isClicked = false;
-      return <CategoryTag name={categoryName} icon={iconUrl} isChosen={isClicked} key={index} />;
-    });
+    const formattedCategories = Object.entries(fetchedCategories).map(([name, url]) => ({
+      name,
+      url,
+    }));
+    setCategories(formattedCategories);
+    const categoriesSelected = {};
+    formattedCategories.forEach(
+      (category) => { categoriesSelected[category.name] = true; },
+    );
+    localStorage.setItem('selectedCategories', JSON.stringify(categoriesSelected));
+  }, []);
+  useEffect(async () => {
+    // eslint-disable-next-line max-len
+    const tagElements = categories.map(({ name, url }) => <CategoryTag name={name} icon={url} key={name} />);
     setTags(tagElements);
   }, [categories]);
+
+  const selectedCategories = () => JSON.parse(localStorage.getItem('selectedCategories'));
 
   return (
     <>
@@ -70,12 +80,12 @@ function AdditionalDetailsPage() {
         </div>
         <button
           type="button"
-          // id="more-details"
           variant="contained"
           onClick={async () => {
             const response = await handleSubmitDetails({
               userName,
               location,
+              favoriteCategory: selectedCategories(),
             });
             if (response.status === 200) {
               navigate(PAGES.DASHBOARD);

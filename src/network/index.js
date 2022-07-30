@@ -22,13 +22,10 @@ const fetchUserData = async (setUserName, setImageUrl) => {
   const userNameFromStorage = getUserNameFromLocalStorage();
   setUserName(userNameFromStorage);
   const { data: userData } = await network.get(END_POINTS.ME);
-  console.log(JSON.stringify(userData));
-  console.log(userData.imageUrl);
   setImageUrl(userData.imageUrl);
 };
 const fetchCategories = async () => {
   const { data: currentCategories } = await network.get(END_POINTS.CATEGORIES);
-  // console.log('fetched categories from backend', currentCategories);
   return currentCategories;
 };
 
