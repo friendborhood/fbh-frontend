@@ -1,9 +1,11 @@
-import { React, useState } from 'react';
+/* eslint-disable operator-linebreak */
+import { React, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { CategoryTag } from './CategoryTag';
-import { CATEGORY_ICON, MOBILE_STYLE } from '../../GlobalStyling';
+import { MOBILE_STYLE } from '../../GlobalStyling';
 import { Dropdown } from '../Dropdown/Dropdown';
 import sortIcon from '../../images/tags/sort.svg';
+import { fetchCategories } from '../../network';
 
 const CategoryMenuStyle = styled.div`
   display: flex;
@@ -40,12 +42,18 @@ const CategoryMenuStyle = styled.div`
 `;
 
 export default function CategoryMenu() {
-  const [cleaning, setCleaning] = useState(false);
-  const [electronics, setElectronics] = useState(false);
-  const [party, setparty] = useState(false);
-  const [clothing, setclothing] = useState(false);
-  const [tools, settools] = useState(false);
-  const [cooking, setcooking] = useState(false);
+  const [tags, setTags] = useState(false);
+
+  useEffect(async () => {
+    const categories = await fetchCategories();
+    console.log(categories);
+    const categoriesCards = Object.entries(categories).map(([categoryName, iconUrl], index) => {
+      const isClicked = false;
+      return <CategoryTag name={categoryName} icon={iconUrl} isChosen={isClicked} key={index} />;
+    });
+    console.log(categoriesCards);
+    setTags(categoriesCards);
+  }, []);
 
   const [chosen, setChosen] = useState('Nearest First');
   const sortingOptions = ['Nearest First', 'Newest First'];
@@ -61,12 +69,7 @@ export default function CategoryMenu() {
         />
       </div>
       <div className="category-ruler">
-        <CategoryTag name="Household & Cleaning" icon={CATEGORY_ICON.CLEANING} isChosen={cleaning} onClickFunc={setCleaning} />
-        <CategoryTag name="Electronics" icon={CATEGORY_ICON.ELECTRONICS} isChosen={electronics} onClickFunc={setElectronics} />
-        <CategoryTag name="Event & Party" icon={CATEGORY_ICON.PARTY} isChosen={party} onClickFunc={setparty} />
-        <CategoryTag name="Clothing" icon={CATEGORY_ICON.CLOTHING} isChosen={clothing} onClickFunc={setclothing} />
-        <CategoryTag name="Tools" icon={CATEGORY_ICON.TOOLS} isChosen={tools} onClickFunc={settools} />
-        <CategoryTag name="Cooking" icon={CATEGORY_ICON.COOKING} isChosen={cooking} onClickFunc={setcooking} />
+        {tags}
       </div>
     </CategoryMenuStyle>
   );

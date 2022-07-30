@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getTokenFromLocalStorage } from '../user-manager';
+import { getTokenFromLocalStorage, getUserNameFromLocalStorage } from '../user-manager';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://api-friendborhood.herokuapp.com/';
 const END_POINTS = {
@@ -17,4 +17,21 @@ network.interceptors.request.use((request) => {
   }
   return request;
 });
-export { network, END_POINTS };
+
+const fetchUserData = async (setUserName, setImageUrl) => {
+  const userNameFromStorage = getUserNameFromLocalStorage();
+  setUserName(userNameFromStorage);
+  const { data: userData } = await network.get(END_POINTS.ME);
+  console.log(JSON.stringify(userData));
+  console.log(userData.imageUrl);
+  setImageUrl(userData.imageUrl);
+};
+const fetchCategories = async () => {
+  const { data: currentCategories } = await network.get(END_POINTS.CATEGORIES);
+  // console.log('fetched categories from backend', currentCategories);
+  return currentCategories;
+};
+
+export {
+  network, END_POINTS, fetchUserData, fetchCategories,
+};

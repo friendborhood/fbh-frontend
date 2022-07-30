@@ -1,5 +1,5 @@
-import React from 'react';
-
+/* eslint-disable no-param-reassign */
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { GLOBAL_FONT, GLOBAL_SCARLET, MOBILE_STYLE } from '../../GlobalStyling';
 
@@ -42,12 +42,14 @@ const StyledCategory = styled.div`
 `;
 
 export function CategoryTag({
-  icon, name, onClickFunc, isChosen = false,
+  icon, name, isChosen = false,
 }) {
+  const [localChosen, setLocalChosen] = useState(isChosen);
+
   return (
     <StyledCategory
-      onClick={() => { onClickFunc(!isChosen); }}
-      isChosen={isChosen}
+      onClick={() => { isChosen = !isChosen; setLocalChosen(!localChosen); }}
+      isChosen={localChosen}
     >
       <img src={icon} alt="icon" />
       <div>{name}</div>

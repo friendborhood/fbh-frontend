@@ -24,7 +24,7 @@ function OffersTable({ radius }) {
     );
     setOffers(data);
   }, [offers]);
-  const items = offers.map((offer) => <ItemCard offerData={offer} />);
+  const items = offers.map((offer, index) => <ItemCard offerData={offer} key={index} />);
 
   return (
     <OfferTableStyle>
