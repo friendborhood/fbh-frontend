@@ -5,7 +5,7 @@ import {
   GLOBAL_LIGHTGRAY, MOBILE_STYLE, BUTTON_RADIUS, GLOBAL_SCARLET, GLOBAL_FONT,
 } from '../GlobalStyling';
 
-const StyledSection = styled.section`
+export const StyledSection = styled.section`
   display: flex;
   flex-direction: column;
   font-style: ${GLOBAL_FONT};
