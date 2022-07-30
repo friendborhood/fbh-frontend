@@ -9,7 +9,7 @@ const me = require('../../images/mock/square-photo.jpg');
 function ItemCard({ offerData }) {
   console.log(offerData);
   const {
-    imageBase64,
+    imageUrl,
     itemData,
     offererUserData,
     distanceFromUser,
@@ -18,12 +18,12 @@ function ItemCard({ offerData }) {
     description,
   } = offerData;
   const { itemName } = itemData;
-  const { firstName, lastName, imageUrl } = offererUserData;
+  const { firstName, lastName, imageUrl: offererUserIconUrl } = offererUserData;
   const distance = (distanceFromUser / 1000).toFixed(2);
   return (
     <Card>
       <img
-        src={imageBase64 || fallBackImage}
+        src={imageUrl || fallBackImage}
         alt="item"
         className="item"
       />
@@ -34,7 +34,7 @@ function ItemCard({ offerData }) {
         </div>
         <div className="info-line">
           <div className="text user-info">
-            <img className="user-icon" src={imageUrl} alt="" />
+            <img className="user-icon" src={offererUserIconUrl} alt="" />
             <div className="text">{`${firstName} ${lastName}`}</div>
           </div>
           <div className="text small">{`${price}₪/hour`}</div>
