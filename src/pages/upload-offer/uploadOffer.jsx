@@ -1,11 +1,15 @@
 /* eslint-disable react/button-has-type */
 import axios from 'axios';
 import React, { useState } from 'react';
+import BoxInput from '../../components/BoxInput';
+import { END_POINTS, network } from '../../network';
 
-function App() {
+function UploadOffer() {
   const CLOUD_NAME = 'dxjhkogtp';
   const PRESET = 'tc7nz7hr';
   const [image, setImage] = useState('');
+  const [itemId, setItemId] = useState('');
+  const [description, setDescription] = useState('');
   const [cloudinaryUrl, setCloudinaryUrl] = useState('');
   const uploadToCloudinary = async (base64Image) => {
     const data = new FormData();
@@ -17,20 +21,54 @@ function App() {
     alert(cloudinaryUrlResult);
     setCloudinaryUrl(cloudinaryUrlResult);
   };
-  const uploadItem = async () => {
+  const uploadOffer = async () => {
     uploadToCloudinary(image);
+    try {
+      await network.post(`${END_POINTS.OFFERS}`, {
+        imageUrl: cloudinaryUrl,
+        itemId,
+        priceAsked: 60,
+        description,
+        condition: 'string',
+        state: 'string',
+        location: {
+          address: 'string',
+          geoCode: {
+            lat: 32.05922334509145,
+            lng: 34.76625321109972,
+          },
+        },
+      });
+    } catch (e) {
+      console.log(e);
+    }
   };
   return (
     <div>
+      <h1>Upload an offer</h1>
       <div>
+        <BoxInput
+          label="Item Id"
+          id="itemName"
+          state={itemId}
+          placeHolder="item id"
+          setState={setItemId}
+        />
+        <BoxInput
+          label="Description"
+          id="description"
+          state={setDescription}
+          placeHolder="description"
+          setState={setItemId}
+        />
         <input type="file" onChange={(e) => setImage(e.target.files[0])} />
-        <button onClick={uploadItem}>Upload</button>
+        <button onClick={uploadOffer}>Upload</button>
       </div>
       <div>
-        <h1>Uploaded image will be displayed here</h1>
-        <img hidden={!cloudinaryUrl} alt="offer" src={image} />
+
+        <img hidden={!image} alt="offer" src={image} />
       </div>
     </div>
   );
 }
-export default App;
+export default UploadOffer;
