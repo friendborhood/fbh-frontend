@@ -54,6 +54,12 @@ export const StyledForm = styled.form`
         height: 155px;
       }
     }
+
+    &.user-icon {
+        width: 78px;
+        height: 78px;
+        border-radius: 40px;
+    }
   }
 
   & h1 {
@@ -62,12 +68,30 @@ export const StyledForm = styled.form`
     line-height: 70.5px;
   }
 
+  & h2 {
+    &.sub-headline {
+      font-size: 18px;
+      line-height: 26px;
+      vertical-align: top;
+      @media only screen and (max-width: ${MOBILE_STYLE.max_width})
+      {
+        font-size: 20px;
+       line-height: 29px;
+      }
+    }
+  }
+
   & p {
     size: 20px;
     font-weight: 400;
   }
 
   & div {
+
+    &.categories {
+      width: 70%;
+      line-height: 50px;
+    }
 
     &.form-wrapper {
       width: inherit;
