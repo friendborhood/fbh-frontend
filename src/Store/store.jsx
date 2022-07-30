@@ -63,10 +63,33 @@ export const updateSortDisplay = (menuState) => (dispatch) => {
 
 export const displayActions = displaySlice.actions;
 
+/// categories slice:
+
+export const initialCategoriesState = {
+  categories: [],
+};
+
+export const categoriesSlice = createSlice({
+  name: 'categories',
+  initialState: initialCategoriesState,
+  reducers: {
+    setCategories: (state, action) => {
+      state.categories = action.payload.categories;
+    },
+  },
+});
+
+export const setCategories = (categories) => (dispatch) => {
+  dispatch(categoriesSlice.actions.setCategories({ categories }));
+};
+
+export const categorySlice = categoriesSlice.actions;
+
 /// CONFIGURE STORE:
 export const store = configureStore({
   reducer: {
     auth: userSlice.reducer,
     display: displaySlice.reducer,
+    categories: categorySlice.reducer,
   },
 });
