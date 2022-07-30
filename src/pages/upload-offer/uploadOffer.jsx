@@ -4,13 +4,13 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import BoxInput from '../../components/BoxInput';
 import DropDown from '../../components/drop-down';
-// import DropDown from '../../components/drop-down';
 import { END_POINTS, network } from '../../network';
 import { displayMessage } from '../../utils/handle-device-middleware';
 
 function UploadOffer() {
   const CLOUD_NAME = 'dxjhkogtp';
   const PRESET = 'tc7nz7hr';
+  const [condition, setCondition] = useState('');
   const [image, setImage] = useState('');
   const [item, setItem] = useState('');
   const [itemNames, setItemNames] = useState(['Driller']);
@@ -55,8 +55,8 @@ function UploadOffer() {
         itemId: itemsMap[item],
         priceAsked: price,
         description,
-        condition: 'string',
-        state: 'string',
+        condition,
+        state: 'Available',
         location: {
           address: 'string',
           geoCode: {
@@ -74,6 +74,15 @@ function UploadOffer() {
     <div>
       <h1>Upload an offer</h1>
       <div>
+        <h4>Select an item</h4>
+        <DropDown options={itemNames} setState={setItem} state={item} />
+        <BoxInput
+          label="Condition"
+          id="Condtion"
+          state={condition}
+          placeHolder="Condition"
+          setState={setCondition}
+        />
         <BoxInput
           label="Description"
           id="description"
@@ -88,7 +97,7 @@ function UploadOffer() {
           placeHolder="Price"
           setState={setPrice}
         />
-        <DropDown options={itemNames} setState={setItem} state={item} />
+
         <input type="file" onChange={(e) => setImage(e.target.files[0])} />
         <button onClick={uploadOffer}>Upload</button>
 
