@@ -56,6 +56,11 @@ export default function CategoryMenu() {
   const [chosen, setChosen] = useState('Nearest First');
   const sortingOptions = ['Nearest First', 'Newest First'];
 
+  useEffect(() => {
+    console.log(`change sort method to ${chosen}`);
+    localStorage.setItem('sortMethod', chosen);
+  }, [chosen]);
+
   return (
     <CategoryMenuStyle>
       <div className="sort">

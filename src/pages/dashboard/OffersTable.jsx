@@ -15,12 +15,12 @@ display: flex;
   justify-content: center;
 `;
 
-function OffersTable({ radius }) {
+function OffersTable({ radius, sortMethod = false }) {
   const [offers, setOffers] = useState([]);
   useEffect(async () => {
     const { data } = await network.get(
       `${END_POINTS.OFFERS}/in-area`,
-      { params: { radius } },
+      { params: { radius, newest: sortMethod === 'Newest First' } },
     );
     setOffers(data);
   }, [offers]);
@@ -33,7 +33,7 @@ function OffersTable({ radius }) {
       </OfferTableStyle>
     );
   }
-  return <div><h1>No Offers In your area :( </h1></div>;
+  return <div><h1>Currently No Offers In your area :( </h1></div>;
 }
 
 export default OffersTable;

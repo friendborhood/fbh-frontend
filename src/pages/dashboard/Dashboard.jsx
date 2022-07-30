@@ -28,11 +28,11 @@ const DashboardStyle = styled.div`
 function Dashboard() {
   const [radius, setRadius] = useState(5000);
   const [offers, setOffers] = useState([]);
-
+  const [sortMethod, setSortMethod] = useState(localStorage.getItem('sortMethod') || 'Newest First');
   return (
     <DashboardWrapper>
       <DashboardStyle>
-        <OffersTable radius={radius} />
+        <OffersTable sortMethod={sortMethod} radius={radius} />
       </DashboardStyle>
     </DashboardWrapper>
   );
