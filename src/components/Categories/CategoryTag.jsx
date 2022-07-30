@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { GLOBAL_FONT, GLOBAL_SCARLET, MOBILE_STYLE } from '../../GlobalStyling';
 
@@ -42,14 +42,26 @@ const StyledCategory = styled.div`
 `;
 
 export function CategoryTag({
-  icon, name, isChosen = false,
+  icon, name,
 }) {
-  const [localChosen, setLocalChosen] = useState(isChosen);
+  const selectedCategoriesFromLocalStorage = JSON.parse(localStorage.getItem('selectedCategories'));
+  console.log(selectedCategoriesFromLocalStorage);
+  console.log(selectedCategoriesFromLocalStorage[name]);
+  const [selected, setSelected] = useState(selectedCategoriesFromLocalStorage[name]);
+  const onClickHandler = () => {
+    console.log('clicked ', name);
+    setSelected(!selected);
+    const currentSelectionState = JSON.parse(localStorage.getItem('selectedCategories'));
+    currentSelectionState[name] = !currentSelectionState[name];
+    localStorage.setItem('selectedCategories', JSON.stringify(currentSelectionState));
+  };
+  useEffect(() => {
 
+  });
   return (
     <StyledCategory
-      onClick={() => { isChosen = !isChosen; setLocalChosen(!localChosen); }}
-      isChosen={localChosen}
+      onClick={onClickHandler}
+      isChosen={selected}
     >
       <img src={icon} alt="icon" />
       <div>{name}</div>

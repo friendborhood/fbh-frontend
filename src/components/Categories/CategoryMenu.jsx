@@ -46,12 +46,10 @@ export default function CategoryMenu() {
 
   useEffect(async () => {
     const categories = await fetchCategories();
-    console.log(categories);
     const categoriesCards = Object.entries(categories).map(([categoryName, iconUrl], index) => {
       const isClicked = false;
       return <CategoryTag name={categoryName} icon={iconUrl} isChosen={isClicked} key={index} />;
     });
-    console.log(categoriesCards);
     setTags(categoriesCards);
   }, []);
 

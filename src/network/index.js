@@ -33,7 +33,6 @@ const fetchUserData = async ({ setUserName, setImageUrl, setUserLocation }) => {
 };
 const fetchCategories = async () => {
   const { data: currentCategories } = await network.get(END_POINTS.CATEGORIES);
-  // console.log('fetched categories from backend', currentCategories);
   return currentCategories;
 };
 
