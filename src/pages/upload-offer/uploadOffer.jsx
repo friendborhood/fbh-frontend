@@ -4,7 +4,7 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import BoxInput from '../../components/BoxInput';
 import DropDown from '../../components/drop-down';
-import { END_POINTS, network } from '../../network';
+import { END_POINTS, fetchUserData, network } from '../../network';
 import { displayMessage } from '../../utils/handle-device-middleware';
 
 function UploadOffer() {
@@ -18,6 +18,7 @@ function UploadOffer() {
   const [price, setPrice] = useState('');
   const [cloudinaryUrl, setCloudinaryUrl] = useState('');
   const [itemsMap, setItemsMap] = useState({});
+  const [userLocation, setUserLocation] = useState({});
 
   const swapKeysAndValues = (obj) => {
     const swapped = Object.entries(obj).map(
@@ -34,9 +35,10 @@ function UploadOffer() {
     setItemsMap(itemsFormattedForMapping);
   };
 
-  useEffect(async () => {
-    fetchItems();
-  }, []);
+  useEffect(() => Promise.all([
+    fetchItems(),
+    fetchUserData({ setUserLocation }),
+  ]), []);
 
   const uploadToCloudinary = async (base64Image) => {
     const data = new FormData();
@@ -57,13 +59,7 @@ function UploadOffer() {
         description,
         condition,
         state: 'Available',
-        location: {
-          address: 'string',
-          geoCode: {
-            lat: 32.05922334509145,
-            lng: 34.76625321109972,
-          },
-        },
+        location: userLocation,
       });
       displayMessage('Offer uploaded successfully');
     } catch (e) {

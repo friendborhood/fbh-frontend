@@ -18,13 +18,18 @@ network.interceptors.request.use((request) => {
   return request;
 });
 
-const fetchUserData = async (setUserName, setImageUrl) => {
+const fetchUserData = async ({ setUserName, setImageUrl, setUserLocation }) => {
   const userNameFromStorage = getUserNameFromLocalStorage();
-  setUserName(userNameFromStorage);
+  if (setUserName) {
+    setUserName(userNameFromStorage);
+  }
   const { data: userData } = await network.get(END_POINTS.ME);
-  console.log(JSON.stringify(userData));
-  console.log(userData.imageUrl);
-  setImageUrl(userData.imageUrl);
+  if (setImageUrl) {
+    setImageUrl(userData.imageUrl);
+  }
+  if (setUserLocation) {
+    setUserLocation(userData.location);
+  }
 };
 const fetchCategories = async () => {
   const { data: currentCategories } = await network.get(END_POINTS.CATEGORIES);
