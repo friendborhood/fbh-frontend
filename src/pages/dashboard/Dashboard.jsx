@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { click } from '@testing-library/user-event/dist/click';
 import CategoryMenu from '../../components/Categories/CategoryMenu';
@@ -28,11 +28,10 @@ const DashboardStyle = styled.div`
 function Dashboard() {
   const [radius, setRadius] = useState(5000);
   const [offers, setOffers] = useState([]);
-  const [sortMethod, setSortMethod] = useState(localStorage.getItem('sortMethod') || 'Newest First');
   return (
     <DashboardWrapper>
       <DashboardStyle>
-        <OffersTable sortMethod={sortMethod} radius={radius} />
+        <OffersTable radius={radius} />
       </DashboardStyle>
     </DashboardWrapper>
   );

@@ -15,13 +15,19 @@ display: flex;
   justify-content: center;
 `;
 
-function OffersTable({ radius, sortMethod = false }) {
+function OffersTable({ radius }) {
   const [offers, setOffers] = useState([]);
-  const newest = sortMethod === 'Newest First';
+
   useEffect(async () => {
+    const sortMethod = localStorage.getItem('sortMethod');
+    const params = { radius };
+    if (sortMethod === 'Newest First') {
+      params.newest = true;
+    }
+    console.log(JSON.stringify(params));
     const { data } = await network.get(
       `${END_POINTS.OFFERS}/in-area`,
-      { params: { radius, newest } },
+      { params },
     );
     setOffers(data);
   }, [offers]);
