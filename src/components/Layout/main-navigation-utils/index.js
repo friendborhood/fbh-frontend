@@ -5,7 +5,7 @@ import {
 
 export const MainNavigationStyle = styled.div`
   display: flex;
-  position: relative;
+  position: sticky;
   z-index: 100;
   width: 100%;
   flex-direction: row;
