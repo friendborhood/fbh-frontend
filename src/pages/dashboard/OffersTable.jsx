@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { network, END_POINTS } from '../../network';
 import ItemCard from '../../components/ItemCard/ItemCard';
@@ -18,7 +18,7 @@ display: flex;
 function OffersTable({ radius }) {
   const [offers, setOffers] = useState([]);
 
-  useEffect(async () => {
+  const fetchOffersHandler = async () => {
     const sortMethod = localStorage.getItem('sortMethod');
     const params = { radius };
     if (sortMethod === 'Newest First') {
@@ -30,17 +30,17 @@ function OffersTable({ radius }) {
       { params },
     );
     setOffers(data);
-  }, [offers]);
-
-  if (offers.length) {
-    const items = offers.map((offer, index) => <ItemCard offerData={offer} key={index} />);
-    return (
+  };
+  const items = offers.map((offer, index) => <ItemCard offerData={offer} key={index} />);
+  return (
+    <div>
+      <button type="button" onClick={fetchOffersHandler}>Click to get offers!</button>
       <OfferTableStyle>
-        {items}
+        {items || 'No offers found'}
       </OfferTableStyle>
-    );
-  }
-  return <div><h1>Currently No Offers In your area :( </h1></div>;
+
+    </div>
+  );
 }
 
 export default OffersTable;
