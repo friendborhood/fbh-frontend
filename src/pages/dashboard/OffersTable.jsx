@@ -37,11 +37,12 @@ const OfferTableStyle = styled.div`
 `;
 
 function OffersTable() {
-  const [slider, setSlider] = useState(50);
-  const [radius, setRadius] = useState(5);
+  const sliderPercent = localStorage.getItem('sliderPercent') || 50;
+  const [slider, setSlider] = useState(sliderPercent);
+  const [radius, setRadius] = useState(sliderPercent / 10);
   const [offers, setOffers] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState({});
-  const [sortMethod, setSelectedSortMethod] = useState('Nearest First');
+  const [sortMethod, setSelectedSortMethod] = useState(localStorage.getItem('sortMethod') || 'Nearest First');
 
   const fetchSelectedCategories = () => {
     const relevantCategories = [];
@@ -73,11 +74,13 @@ function OffersTable() {
   };
   useEffect(() => {
     console.log('offers dashboard use effect run');
+    localStorage.setItem('sortMethod', sortMethod);
     fetchOffersHandler();
   }, [radius, sortMethod, selectedCategories]);
   const sliderHandler = (event, newValue) => {
     setSlider(newValue);
     setRadius(newValue / 10);
+    localStorage.setItem('sliderPercent', newValue);
   };
   const items = offers.map((offer, index) => <ItemCard offerData={offer} key={index} />);
   return (

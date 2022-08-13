@@ -54,11 +54,10 @@ export function Hero() {
     <HeroStyle>
       <div className="content">
         <div className="text-content">
-          <h1>share with your neigborhood anything</h1>
+          <h1>share stuff easily with people around you</h1>
           <p className="description">
-            bla bla bla bla bla bla bla bla
-            bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            {' '}
+            Just click, upload and share.
+            <br />
           </p>
         </div>
         <img src={pan} alt="" />
