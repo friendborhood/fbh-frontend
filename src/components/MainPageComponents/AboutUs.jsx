@@ -50,7 +50,7 @@ export const AboutUs = () => {
       <p>
         Overconsumption is a big problem.
         We buy so many items and just store them for a long time, while rarely actually using them.
-        <b>Obvious Solution? Sharing!</b>
+        <b> Obvious Solution? Sharing!</b>
       </p>
       <p />
       <p>
