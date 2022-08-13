@@ -73,7 +73,7 @@ function OffersTable() {
       />
       <Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center" />
       <div style={{ maxWidth: 500 }}>
-        <p>{`Search Radius: ${radius}`}</p>
+        <p>{`Search Radius: ${radius} Kilometers`}</p>
         <Slider size="small" value={slider} onChange={sliderHandler} />
 
       </div>
