@@ -3,6 +3,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { RecommendationCard } from './RecommendationCard';
+import Nitzan from '../../images/mock/Nitzan.png';
 
 const StyledRecommendations = styled.div`
     display: flex;
@@ -23,6 +24,13 @@ const StyledRecommendations = styled.div`
       font-size: 64px;
       line-height: 79px;
     }
+
+    & div.cards-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      gap: 5%;
+    }
 `;
 
 export const Recommendations = () => {
@@ -30,6 +38,8 @@ export const Recommendations = () => {
     <StyledRecommendations>
       <h1>Why Users love Friendborhood</h1>
       <div className="cards-container">
+        <RecommendationCard name="Nitzan Fridman" image={Nitzan} content="The most amazing website, you sould give them the beautiful mark of 103" />
+        <RecommendationCard />
         <RecommendationCard />
       </div>
     </StyledRecommendations>
