@@ -2,9 +2,11 @@
 /* eslint-disable react/function-component-definition */
 import React from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 import { RecommendationCard } from './RecommendationCard';
 import Nitzan from '../../images/mock/Nitzan.png';
 import { GLOBAL_FONT, GLOBAL_SCARLET } from '../../GlobalStyling';
+import { PAGES } from '../../pages/consts';
 
 const StyledRecommendations = styled.div`
     display: flex;
@@ -51,6 +53,12 @@ const StyledRecommendations = styled.div`
 `;
 
 export const Recommendations = () => {
+  const navigate = useNavigate();
+
+  const goToSignUp = () => {
+    navigate(PAGES.SIGN_UP, { replace: true });
+  };
+
   return (
     <StyledRecommendations>
       <h1>Why Users love Friendborhood</h1>
@@ -65,7 +73,7 @@ export const Recommendations = () => {
         <RecommendationCard />
         <RecommendationCard />
       </div>
-      <button type="button">Sign Up</button>
+      <button type="button" onClick={goToSignUp}>Sign Up</button>
     </StyledRecommendations>
   );
 };
