@@ -38,7 +38,7 @@ export const Recommendations = () => {
     <StyledRecommendations>
       <h1>Why Users love Friendborhood</h1>
       <div className="cards-container">
-        <RecommendationCard name="Nitzan Fridman" image={Nitzan} content="The most amazing website, you sould give them the beautiful mark of 103" />
+        <RecommendationCard name="Nitzan Fridman" image={Nitzan} content="A Great website to find stuff you need easily, and help the planet a little bit on the way" />
         <RecommendationCard />
         <RecommendationCard />
       </div>
