@@ -41,14 +41,28 @@ const CategoryMenuStyle = styled.div`
   }
 `;
 
-export default function CategoryMenu({ selectedSortMethod, setSelectedSortMethod }) {
+export default function CategoryMenu({
+  categoriesChanged,
+  setCategoriesChanged,
+  selectedSortMethod,
+  setSelectedSortMethod,
+}) {
   const [tags, setTags] = useState(false);
 
   useEffect(async () => {
     const categories = await fetchCategories();
     const categoriesCards = Object.entries(categories).map(([categoryName, iconUrl], index) => {
       const isClicked = false;
-      return <CategoryTag name={categoryName} icon={iconUrl} isChosen={isClicked} key={index} />;
+      return (
+        <CategoryTag
+          name={categoryName}
+          icon={iconUrl}
+          value={categoriesChanged}
+          setValue={setCategoriesChanged}
+          isChosen={isClicked}
+          key={index}
+        />
+      );
     });
     setTags(categoriesCards);
   }, []);

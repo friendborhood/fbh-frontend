@@ -42,15 +42,15 @@ const StyledCategory = styled.div`
 `;
 
 export function CategoryTag({
-  icon, name,
+  icon, name, setValue, value,
 }) {
   const selectedCategoriesFromLocalStorage = JSON.parse(localStorage.getItem('selectedCategories'));
   const [selected, setSelected] = useState(
     selectedCategoriesFromLocalStorage ? selectedCategoriesFromLocalStorage[name] : false,
   );
   const onClickHandler = () => {
-    console.log('clicked ', name);
     setSelected(!selected);
+    setValue({ ...value, [name]: !selected });
     const currentSelectionState = JSON.parse(localStorage.getItem('selectedCategories'));
     currentSelectionState[name] = !currentSelectionState[name];
     localStorage.setItem('selectedCategories', JSON.stringify(currentSelectionState));

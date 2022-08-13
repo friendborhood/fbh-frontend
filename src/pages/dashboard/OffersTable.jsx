@@ -22,6 +22,7 @@ function OffersTable() {
   const [slider, setSlider] = useState(50);
   const [radius, setRadius] = useState(5);
   const [offers, setOffers] = useState([]);
+  const [selectedCategories, setSelectedCategories] = useState({});
   const [sortMethod, setSelectedSortMethod] = useState('Nearest First');
 
   const fetchOffersHandler = async () => {
@@ -37,8 +38,9 @@ function OffersTable() {
     setOffers(data);
   };
   useEffect(() => {
+    console.log('offers dashboard use effect run');
     fetchOffersHandler();
-  }, [radius, sortMethod]);
+  }, [radius, sortMethod, selectedCategories]);
   const sliderHandler = (event, newValue) => {
     setSlider(newValue);
     setRadius(newValue / 10);
@@ -47,7 +49,12 @@ function OffersTable() {
   return (
     <div>
 
-      <CategoryMenu selectedSortMethod={sortMethod} setSelectedSortMethod={setSelectedSortMethod} />
+      <CategoryMenu
+        categoriesChanged={selectedCategories}
+        setCategoriesChanged={setSelectedCategories}
+        selectedSortMethod={sortMethod}
+        setSelectedSortMethod={setSelectedSortMethod}
+      />
       <Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center" />
       <div style={{ maxWidth: 500 }}>
         <p>{`Search Radius: ${radius}`}</p>
