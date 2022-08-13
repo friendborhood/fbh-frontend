@@ -38,10 +38,17 @@ export const MainNavigationStyle = styled.div`
       &.logo {
         margin-left:50px;
         width: 190px;
+        transform: scale(1);
+        transition: transform 0.2s ease;
         @media only screen and (max-width: ${MOBILE_STYLE.max_width})
         {
           width: 105px;
         }
+        &:hover {
+          transform: scale(1.1);
+          transition: transform 0.2s ease;
+        }
+        
       }     
     }
 
