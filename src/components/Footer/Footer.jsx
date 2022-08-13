@@ -14,7 +14,7 @@ const StyledFooter = styled.footer`
   font-weight: 300;
   font-size: 12px;
   bottom: 0;
-  opacity:80%;
+  opacity:30%;
   pointer-events: none;
   & div {
       &.rights{
