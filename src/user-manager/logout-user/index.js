@@ -14,7 +14,7 @@ export const redirectLoggedOutUser = () => {
       const userHasToken = getTokenFromLocalStorage();
       if (!userHasToken) {
         console.log(`user should be logged in at ${url} redirecting user to ${PAGES.HOME}`);
-        navigate(PAGES.HOME, { replace: true });
+        navigate(PAGES.LOGIN, { replace: true });
       }
     }
   });
