@@ -25,12 +25,28 @@ function OffersTable() {
   const [selectedCategories, setSelectedCategories] = useState({});
   const [sortMethod, setSelectedSortMethod] = useState('Nearest First');
 
+  const fetchSelectedCategories = () => {
+    const relevantCategories = [];
+    const rawCategoriesFromLocalStorage = localStorage.getItem('selectedCategories');
+    if (rawCategoriesFromLocalStorage) {
+      const categoriesFromLocalStorage = JSON.parse(rawCategoriesFromLocalStorage);
+      Object.keys(categoriesFromLocalStorage).forEach((category) => {
+        if (categoriesFromLocalStorage[category]) {
+          relevantCategories.push(category);
+        }
+      });
+    }
+    console.log(relevantCategories);
+    return relevantCategories;
+  };
   const fetchOffersHandler = async () => {
     const params = {};
     params.radius = radius * 1000;
     if (sortMethod === 'Newest First') {
       params.newest = true;
     }
+
+    params.categories = fetchSelectedCategories();
     const { data } = await network.get(
       `${END_POINTS.OFFERS}/in-area`,
       { params },
