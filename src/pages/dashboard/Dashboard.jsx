@@ -26,14 +26,10 @@ const DashboardStyle = styled.div`
 `;
 
 function Dashboard() {
-  const [radius, setRadius] = useState(5000);
-  const [offers, setOffers] = useState([]);
   return (
-    <DashboardWrapper>
-      <DashboardStyle>
-        <OffersTable radius={radius} />
-      </DashboardStyle>
-    </DashboardWrapper>
+    <DashboardStyle>
+      <OffersTable />
+    </DashboardStyle>
   );
 }
 

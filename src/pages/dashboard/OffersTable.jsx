@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+/* eslint-disable react/style-prop-object */
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { Slider, Stack } from '@mui/material';
 import { network, END_POINTS } from '../../network';
 import ItemCard from '../../components/ItemCard/ItemCard';
+import CategoryMenu from '../../components/Categories/CategoryMenu';
 
 const OfferTableStyle = styled.div`
 display: flex;
@@ -15,26 +18,42 @@ display: flex;
   justify-content: center;
 `;
 
-function OffersTable({ radius }) {
+function OffersTable() {
+  const [slider, setSlider] = useState(50);
+  const [radius, setRadius] = useState(5);
   const [offers, setOffers] = useState([]);
+  const [sortMethod, setSelectedSortMethod] = useState('Nearest First');
 
   const fetchOffersHandler = async () => {
-    const sortMethod = localStorage.getItem('sortMethod');
-    const params = { radius };
+    const params = {};
+    params.radius = radius * 1000;
     if (sortMethod === 'Newest First') {
       params.newest = true;
     }
-    console.log(JSON.stringify(params));
     const { data } = await network.get(
       `${END_POINTS.OFFERS}/in-area`,
       { params },
     );
     setOffers(data);
   };
+  useEffect(() => {
+    fetchOffersHandler();
+  }, [radius, sortMethod]);
+  const sliderHandler = (event, newValue) => {
+    setSlider(newValue);
+    setRadius(newValue / 10);
+  };
   const items = offers.map((offer, index) => <ItemCard offerData={offer} key={index} />);
   return (
     <div>
-      <button type="button" onClick={fetchOffersHandler}>Click to get offers!</button>
+
+      <CategoryMenu selectedSortMethod={sortMethod} setSelectedSortMethod={setSelectedSortMethod} />
+      <Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center" />
+      <div style={{ maxWidth: 500 }}>
+        <p>{`Search Radius: ${radius}`}</p>
+        <Slider size="small" value={slider} onChange={sliderHandler} />
+
+      </div>
       <OfferTableStyle>
         {items || 'No offers found'}
       </OfferTableStyle>

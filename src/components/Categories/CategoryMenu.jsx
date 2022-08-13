@@ -41,7 +41,7 @@ const CategoryMenuStyle = styled.div`
   }
 `;
 
-export default function CategoryMenu() {
+export default function CategoryMenu({ selectedSortMethod, setSelectedSortMethod }) {
   const [tags, setTags] = useState(false);
 
   useEffect(async () => {
@@ -52,21 +52,20 @@ export default function CategoryMenu() {
     });
     setTags(categoriesCards);
   }, []);
-
-  const [chosen, setChosen] = useState('Nearest First');
   const sortingOptions = ['Nearest First', 'Newest First'];
 
   useEffect(() => {
-    console.log(`change sort method to ${chosen}`);
-    localStorage.setItem('sortMethod', chosen);
-  }, [chosen]);
+    console.log(`change sort method to ${selectedSortMethod}`);
+    localStorage.setItem('sortMethod', selectedSortMethod);
+    setSelectedSortMethod(selectedSortMethod);
+  }, []);
 
   return (
     <CategoryMenuStyle>
       <div className="sort">
         <Dropdown
-          chosen={chosen}
-          setChosen={setChosen}
+          chosen={selectedSortMethod}
+          setChosen={setSelectedSortMethod}
           options={sortingOptions}
           mobileDisplay={<img src={sortIcon} alt="sort icon" />}
         />
