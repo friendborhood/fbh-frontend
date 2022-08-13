@@ -13,7 +13,7 @@ const StyledRecommendationCard = styled.div`
     width: 517px;
     height: 318px;
     align-content: space-between;
-    padding-left: 30px;
+    padding-left: 40px;
 
     & p.content {
         font-family: ${GLOBAL_FONT};
@@ -25,6 +25,7 @@ const StyledRecommendationCard = styled.div`
         padding-top: 13px;
         text-align: left;
         padding-right: 10px;
+        padding: 30px 40px 10px 0;
     }
 
     & div {
@@ -56,14 +57,14 @@ const StyledRecommendationCard = styled.div`
 `;
 
 export const RecommendationCard = ({
-  content, name, image,
+  content, name, image, location,
 }) => {
   return (
     <StyledRecommendationCard>
       <p className="content">{`"${content}"`}</p>
       <div className="details-container">
         <img src={image} alt="" />
-        <p>{`${name}`}</p>
+        <p>{`${name}, ${location}`}</p>
       </div>
     </StyledRecommendationCard>
   );

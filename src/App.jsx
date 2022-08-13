@@ -56,6 +56,7 @@ function App() {
           <Route path={PAGES.ADDITIONAL_DETAILS} element={<AdditionalDetailsPage />} />
           <Route path={PAGES.DASHBOARD} element={<Dashboard />} />
           <Route path={PAGES.UPLOAD_OFFER} element={<UploadOffer />} />
+          <Route path={PAGES.ABOUT_US} element={<NotFound />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>

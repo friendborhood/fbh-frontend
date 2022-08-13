@@ -5,9 +5,27 @@ import { Slider, Stack } from '@mui/material';
 import { network, END_POINTS } from '../../network';
 import ItemCard from '../../components/ItemCard/ItemCard';
 import CategoryMenu from '../../components/Categories/CategoryMenu';
+import { GLOBAL_FONT, GLOBAL_SCARLET } from '../../GlobalStyling';
+// import { GLOBAL_SCARLET } from '../../GlobalStyling';
+
+const SliderContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 14%;
+  font-family: ${GLOBAL_FONT};
+  font-style: normal;
+  font-weight: 500;
+  font-size: 19.5px;
+  line-height: 41px;
+  color: #14171C;
+  padding-top: 13px;
+  text-align: left;
+  padding-right: 10px;
+  padding: 30px 40px 10px 0; 
+`;
 
 const OfferTableStyle = styled.div`
-display: flex;
+  display: flex;
   gap: 15px;
   flex-wrap: wrap;
   gap: 40px;
@@ -73,9 +91,17 @@ function OffersTable() {
       />
       <Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center" />
       <div style={{ maxWidth: 500 }}>
-        <p>{`Search Radius: ${radius} Kilometers`}</p>
-        <Slider size="small" value={slider} onChange={sliderHandler} />
-
+        <SliderContainer>
+          <p>{`Search Radius: ${radius} Kilometers`}</p>
+          <Slider
+            value={slider}
+            onChange={sliderHandler}
+            sx={{
+              width: 300,
+              color: GLOBAL_SCARLET,
+            }}
+          />
+        </SliderContainer>
       </div>
       <OfferTableStyle>
         {items || 'No offers found'}
