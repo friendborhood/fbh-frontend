@@ -13,11 +13,11 @@ const StyledDashboardWrapper = styled.div`
   }
 `;
 
-function DashboardWrapper({ children }) {
+function DashboardWrapper() {
   return (
     <StyledDashboardWrapper>
       <CategoryMenu />
-      {children}
+      {/* {children} */}
     </StyledDashboardWrapper>
   );
 }

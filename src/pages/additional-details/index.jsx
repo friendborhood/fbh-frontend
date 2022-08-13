@@ -17,6 +17,7 @@ function AdditionalDetailsPage() {
   const [userName, setUserName] = useState('');
   const [location, setLocation] = useState('');
   const [imageUrl, setImageUrl] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
 
   useEffect(() => Promise.all([fetchUserData({ setUserName, setImageUrl })]));
 
@@ -58,10 +59,18 @@ function AdditionalDetailsPage() {
           height="120"
         />
         <BoxInput
+          label="Phone Number"
+          id="phoneNumber"
+          state={phoneNumber}
+          setState={setPhoneNumber}
+          placeHolder="Phone Number"
+        />
+        <BoxInput
           noInput
           label="Base Address"
           id="location"
         />
+
         <StyledSection>
           <Autocomplete
             options={
@@ -86,6 +95,7 @@ function AdditionalDetailsPage() {
           variant="contained"
           onClick={async () => {
             const response = await handleSubmitDetails({
+              phoneNumber,
               userName,
               location,
               favoriteCategory: selectedCategories(),

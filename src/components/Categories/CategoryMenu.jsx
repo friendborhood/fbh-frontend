@@ -41,32 +41,45 @@ const CategoryMenuStyle = styled.div`
   }
 `;
 
-export default function CategoryMenu() {
+export default function CategoryMenu({
+  categoriesChanged,
+  setCategoriesChanged,
+  selectedSortMethod,
+  setSelectedSortMethod,
+}) {
   const [tags, setTags] = useState(false);
 
   useEffect(async () => {
     const categories = await fetchCategories();
     const categoriesCards = Object.entries(categories).map(([categoryName, iconUrl], index) => {
       const isClicked = false;
-      return <CategoryTag name={categoryName} icon={iconUrl} isChosen={isClicked} key={index} />;
+      return (
+        <CategoryTag
+          name={categoryName}
+          icon={iconUrl}
+          value={categoriesChanged}
+          setValue={setCategoriesChanged}
+          isChosen={isClicked}
+          key={index}
+        />
+      );
     });
     setTags(categoriesCards);
   }, []);
-
-  const [chosen, setChosen] = useState('Nearest First');
   const sortingOptions = ['Nearest First', 'Newest First'];
 
   useEffect(() => {
-    console.log(`change sort method to ${chosen}`);
-    localStorage.setItem('sortMethod', chosen);
-  }, [chosen]);
+    console.log(`change sort method to ${selectedSortMethod}`);
+    localStorage.setItem('sortMethod', selectedSortMethod);
+    setSelectedSortMethod(selectedSortMethod);
+  }, []);
 
   return (
     <CategoryMenuStyle>
       <div className="sort">
         <Dropdown
-          chosen={chosen}
-          setChosen={setChosen}
+          chosen={selectedSortMethod}
+          setChosen={setSelectedSortMethod}
           options={sortingOptions}
           mobileDisplay={<img src={sortIcon} alt="sort icon" />}
         />
