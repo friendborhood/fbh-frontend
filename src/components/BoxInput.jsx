@@ -49,6 +49,7 @@ function BoxInput(props) {
   const {
     setState, label, id: idBox, isHidden = false, noInput,
     placeHolder,
+    placeHolderPrefix = 'Enter your',
   } = props;
 
   const onChangeHandler = (event) => {
@@ -62,7 +63,7 @@ function BoxInput(props) {
         hidden={isHidden || noInput}
         id={idBox}
         onChange={onChangeHandler}
-        placeholder={`Enter your ${placeHolder}`}
+        placeholder={`${placeHolderPrefix} ${placeHolder}`}
       />
     </StyledSection>
   );

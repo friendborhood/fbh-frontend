@@ -16,7 +16,10 @@ function ItemCard({ offerData }) {
     priceAsked: price,
     description,
   } = offerData;
-  const { itemName } = itemData;
+  let itemName;
+  if (itemData) {
+    ({ itemName } = itemData);
+  }
   const { firstName, lastName, imageUrl: offererUserIconUrl } = offererUserData;
   const distance = (distanceFromUser / 1000).toFixed(2);
   return (
