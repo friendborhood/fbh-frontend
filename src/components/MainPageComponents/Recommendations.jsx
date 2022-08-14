@@ -33,7 +33,7 @@ const StyledRecommendations = styled.div`
       display: flex;
       flex-direction: row;
       justify-content: space-evenly;
-      gap: 5%;
+      gap: 2%;
     }
 
     & button {

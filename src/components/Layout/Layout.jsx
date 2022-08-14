@@ -5,6 +5,7 @@ import Footer from '../Footer/Footer';
 
 const StyledLayout = styled.main`
   width: 100%;
+  height: 100vh;
   @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
     overflow-x: hidden;
   }

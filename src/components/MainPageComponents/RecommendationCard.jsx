@@ -10,7 +10,7 @@ const StyledRecommendationCard = styled.div`
     position: relative;
     background-color: rgba(159, 166, 174, 0.1);
     border-radius: 8px;
-    width: 517px;
+   width: 517px;
     height: 318px;
     align-content: space-between;
     padding-left: 40px;
