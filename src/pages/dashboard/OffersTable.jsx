@@ -60,7 +60,10 @@ function OffersTable() {
     return relevantCategories;
   };
   const fetchOffersHandler = async () => {
-    const params = { filterSelf };
+    const params = { };
+    if (filterSelf) {
+      params.filterSelf = true;
+    }
     params.radius = radius * 1000;
     if (sortMethod === 'Newest First') {
       params.newest = true;
