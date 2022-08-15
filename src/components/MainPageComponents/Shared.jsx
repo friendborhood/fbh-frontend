@@ -2,17 +2,11 @@
 /* eslint-disable react/function-component-definition */
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-// import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useNavigate } from 'react-router-dom';
 import { fetchCategories } from '../../network';
 import { MOBILE_STYLE } from '../../GlobalStyling';
 import { CategoryTag } from '../Categories/CategoryTag';
-import vaccum from '../../images/vaccum.svg';
-// import card1 from '../../images/card1.svg';
-// import card2 from '../../images/card2.svg';
-// import card3 from '../../images/card3.svg';
-// import card4 from '../../images/card4.svg';
-// import card5 from '../../images/card5.svg';
+import vaccum from '../../images/mock/vaccum.jpeg';
 import { PAGES } from '../../pages/consts';
 import ItemCard from '../ItemCard/ItemCard';
 import Profile1 from '../../images/mock/profile1.png';
@@ -109,7 +103,7 @@ export const Shared = () => {
         <ItemCard
           offerData={
           {
-            imageUrl: { vaccum },
+            imageUrl: vaccum,
             itemData: { itemName: 'Vaccum cleaner' },
             offererUserData: mockOfferer1,
             distanceFromUser: 3100,
@@ -120,73 +114,6 @@ export const Shared = () => {
         }
 
         />
-        {/*
-
-        <LazyLoadImage
-          alt="item card"
-          effect="opacity"
-          src={card1}
-          threshold="10"
-          style={
-            {
-              objectFit: 'cover',
-              width: '330px',
-              height: '381px',
-            }
-        }
-        />
-        <LazyLoadImage
-          alt="item card"
-          effect="opacity"
-          src={card2}
-          threshold="10"
-          style={
-            {
-              objectFit: 'cover',
-              width: '330px',
-              height: '381px',
-            }
-        }
-        />
-        <LazyLoadImage
-          alt="item card"
-          effect="opacity"
-          src={card3}
-          threshold="10"
-          style={
-            {
-              objectFit: 'cover',
-              width: '330px',
-              height: '381px',
-            }
-        }
-        />
-        <LazyLoadImage
-          alt="item card"
-          effect="opacity"
-          src={card4}
-          threshold="10"
-          style={
-            {
-              objectFit: 'cover',
-              width: '330px',
-              height: '381px',
-            }
-        }
-        />
-        <LazyLoadImage
-          alt="item card"
-          effect="opacity"
-          src={card5}
-          threshold="10"
-          style={
-            {
-              objectFit: 'cover',
-              width: '330px',
-              height: '381px',
-            }
-      }
-        /> */}
       </div>
       <button type="button" onClick={goToDashboard}>Show More</button>
     </StyledShared>
