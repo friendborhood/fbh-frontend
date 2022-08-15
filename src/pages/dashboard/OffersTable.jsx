@@ -1,7 +1,7 @@
 /* eslint-disable react/style-prop-object */
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Slider, Stack } from '@mui/material';
+import { Checkbox, Slider, Stack } from '@mui/material';
 import { network, END_POINTS } from '../../network';
 import ItemCard from '../../components/ItemCard/ItemCard';
 import CategoryMenu from '../../components/Categories/CategoryMenu';
@@ -41,6 +41,7 @@ function OffersTable() {
   const [slider, setSlider] = useState(sliderPercent);
   const [radius, setRadius] = useState(sliderPercent / 10);
   const [offers, setOffers] = useState([]);
+  const [filterSelf, setFilterSelf] = useState(true);
   const [selectedCategories, setSelectedCategories] = useState({});
   const [sortMethod, setSelectedSortMethod] = useState(localStorage.getItem('sortMethod') || 'Nearest First');
 
@@ -59,7 +60,7 @@ function OffersTable() {
     return relevantCategories;
   };
   const fetchOffersHandler = async () => {
-    const params = {};
+    const params = { filterSelf };
     params.radius = radius * 1000;
     if (sortMethod === 'Newest First') {
       params.newest = true;
@@ -76,7 +77,7 @@ function OffersTable() {
     console.log('offers dashboard use effect run');
     localStorage.setItem('sortMethod', sortMethod);
     fetchOffersHandler();
-  }, [radius, sortMethod, selectedCategories]);
+  }, [radius, sortMethod, selectedCategories, filterSelf]);
   const sliderHandler = (event, newValue) => {
     setSlider(newValue);
     setRadius(newValue / 10);
@@ -85,7 +86,9 @@ function OffersTable() {
   const items = offers.map((offer, index) => <ItemCard offerData={offer} key={index} />);
   return (
     <div>
+      Filter My Offers
 
+      <Checkbox checked={filterSelf} onChange={() => setFilterSelf(!filterSelf)} />
       <CategoryMenu
         categoriesChanged={selectedCategories}
         setCategoriesChanged={setSelectedCategories}
