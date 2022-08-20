@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/style-prop-object */
 /* eslint-disable no-shadow */
@@ -13,6 +14,7 @@ import 'react-step-progress-bar/styles.css';
 import { GLOBAL_SCARLET } from '../../GlobalStyling';
 import { UploadOfferStyle } from './uploadOfferStyle';
 import miniIcon from '../../images/mini-icon-removebg.png';
+import uploadButton from '../../images/upload-img-button.svg';
 import 'animate.css';
 
 function UploadOffer() {
@@ -89,10 +91,12 @@ function UploadOffer() {
       setStepOne(false);
       setStepTwo(true);
       setCurrentStep(2);
+      setProgressPrecent(50);
     } else if (currentStep === 2) {
       setStepTwo(false);
       setStepThree(true);
       setCurrentStep(3);
+      setProgressPrecent(100);
     } else if (currentStep === 3) {
       setStepThree(false);
       setCurrentStep(4);
@@ -111,7 +115,7 @@ function UploadOffer() {
             {({ accomplished }) => (
               <img
                 style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
-                width="32"
+                width="35"
                 src={miniIcon}
                 alt=""
               />
@@ -120,8 +124,8 @@ function UploadOffer() {
           <Step transition="scale">
             {({ accomplished }) => (
               <img
-                style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
-                width="32"
+                style={{ filter: `grayscale(${accomplished ? 0 : 30}%)` }}
+                width="35"
                 src={miniIcon}
                 alt=""
               />
@@ -130,8 +134,8 @@ function UploadOffer() {
           <Step transition="scale">
             {({ accomplished }) => (
               <img
-                style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
-                width="32"
+                style={{ filter: `grayscale(${accomplished ? 0 : 30}%)` }}
+                width="35"
                 src={miniIcon}
                 alt=""
               />
@@ -142,7 +146,7 @@ function UploadOffer() {
       <div className="main-panel">
         {/* Step One: */}
         <div className={`single-step ${stepOne === true ? 'displayOnStart' : 'displayOff'}`}>
-          <DropDown className="item-selection" options={itemNames} setState={setItem} state={item} />
+          <DropDown className="item-selection on-top" options={itemNames} setState={setItem} state={item} />
           <BoxInput
             borderWidth="1px"
             label="Condition"
@@ -163,10 +167,26 @@ function UploadOffer() {
         </div>
         {/* Step Two: */}
         <div className={`single-step ${stepTwo === true ? 'displayOn' : 'displayOff'}`}>
-          <div>hello</div>
+          <div className="single-field">
+            <div className="field-title">Upload an image</div>
+            <label htmlFor="image-upload">
+              <img src={uploadButton} alt="" />
+              <input type="file" id="image-upload" onChange={(e) => setImage(e.target.files[0])} />
+            </label>
+          </div>
+          <BoxInput
+            borderWidth="1px"
+            label="Item's price"
+            id="price"
+            state={price}
+            placeHolder="Price"
+            setState={setPrice}
+          />
         </div>
         {/* "Next Step" Button: */}
         <button className="step" onClick={clickHandler}>Next Step</button>
+        <img hidden={!image} alt="offer" src={image} />
+
       </div>
       {/* h1>Upload an offer</h1>
       <div>
@@ -200,7 +220,6 @@ function UploadOffer() {
       </div>
       <div>
 
-        <img hidden={!image} alt="offer" src={image} />
       </div> */}
     </UploadOfferStyle>
   );

@@ -13,16 +13,23 @@ export const UploadOfferStyle = styled.div`
     width: 100vw;
     height: 100%;
 
+    & div.single-field {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
     & div.single-step {
         display: none;
         position: absolute;
+        gap: 20px;
     }
 
     & div.displayOnStart {
         display: flex;
         flex-direction: column;
         animation-name: fadeInLeft;
-        animation-duration: 1s;
+        animation-duration: 0.5s;
         animation-timing-function: ease-in;
         animation-delay: 0s;
         animation-direction: alternate;
@@ -35,18 +42,21 @@ export const UploadOfferStyle = styled.div`
         opacity: 0;
         flex-direction: column;
         animation-name: fadeInLeft;
-        animation-duration: 1s;
-        animation-timing-function: ease-in;
-        animation-delay: 1s;
+        animation-duration: 0.5s;
+        animation-timing-function: linear;
+        animation-delay: 0.2s;
         animation-direction: alternate;
         animation-iteration-count: 1;
         animation-fill-mode: forwards;
     }
 
     & div.displayOff {
+        display: flex;
+        opacity: 1;
+        flex-direction: column;
         animation-name: fadeOutRight;
-        animation-duration: 1s;
-        animation-timing-function: ease;
+        animation-duration: 0.4s;
+        animation-timing-function: linear;
         animation-delay: 0s;
         animation-direction: alternate;
         animation-iteration-count: 1;
@@ -69,13 +79,34 @@ export const UploadOfferStyle = styled.div`
             padding: 100px 75px 100px 200px;
             box-shadow: 0px 0px 10px 0px #14171C1A;
 
-            &.field-title {
+            & div.field-title {
                 color: #14171C;
                 text-align: left;
-                font-size: 20px;
+                font-size: 17px;
                 line-height: 29px;
                 font-family: ${GLOBAL_FONT};
                 font-weight: 500;
+            }
+
+            & div.below {
+                margin-top: 20px;
+            }
+
+            & label {
+                cursor: pointer;
+                & button {
+                    display: flex;
+                    width: 80px;
+                    height: 80px;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 30px;
+                    border: solid red;
+                }
+            }
+
+            & #image-upload {
+                display: none;
             }
 
             & div.description-container {
