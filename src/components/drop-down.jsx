@@ -11,7 +11,7 @@ function DropDown({ options, setState, state }) {
   const menuItems = options.map((option) => <MenuItem value={option}>{option}</MenuItem>);
   return (
 
-    <Box sx={{ minWidth: 120 }}>
+    <Box sx={{ minWidth: 520 }}>
       <FormControl>
         <Select
           value={state}

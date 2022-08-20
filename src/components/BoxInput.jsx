@@ -27,6 +27,7 @@ export const StyledSection = styled.section`
 
   & input {
     border: solid ${GLOBAL_LIGHTGRAY};
+    border-width:${(props) => props.border};
     border-radius: ${BUTTON_RADIUS};
     min-width: 218px;
     padding: 4px;
@@ -47,7 +48,7 @@ export const StyledSection = styled.section`
 
 function BoxInput(props) {
   const {
-    setState, label, id: idBox, isHidden = false, noInput,
+    setState, label, id: idBox, isHidden = false, noInput, borderWidth = 'BUTTON_RADIUS',
     placeHolder,
     placeHolderPrefix = 'Enter your',
   } = props;
@@ -57,7 +58,7 @@ function BoxInput(props) {
   };
 
   return (
-    <StyledSection>
+    <StyledSection border={borderWidth}>
       <div hidden={isHidden}>{label}</div>
       <input
         hidden={isHidden || noInput}

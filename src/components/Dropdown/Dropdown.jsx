@@ -8,9 +8,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { CustomDropdown } from './style';
 import dropdownarrow from '../../images/dropdown-arrow.svg';
 import { updateSortDisplay } from '../../Store/store';
+import { GLOBAL_SCARLET } from '../../GlobalStyling';
 
 export function Dropdown({
-  options, chosen = '', setChosen, mobileDisplay = chosen,
+  options, chosen = '', setChosen, mobileDisplay = chosen, backgroundColor = GLOBAL_SCARLET,
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [firstlyClicked, setFirstlyClicked] = useState(false);
@@ -23,7 +24,7 @@ export function Dropdown({
   };
 
   return (
-    <CustomDropdown isOpen={isOpen} firstClick={firstlyClicked}>
+    <CustomDropdown isOpen={isOpen} firstClick={firstlyClicked} backgroundColor={backgroundColor}>
       <button className="dropbtn" onClick={onClickHandler}>
         <div className="button-display">{isMobile ? mobileDisplay : chosen}</div>
         {!isMobile && <img src={dropdownarrow} alt="arrow" className={isOpen ? 'open' : 'close'} />}

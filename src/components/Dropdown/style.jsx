@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { GLOBAL_FONT, GLOBAL_SCARLET, MOBILE_STYLE } from '../../GlobalStyling';
+import { GLOBAL_FONT, MOBILE_STYLE } from '../../GlobalStyling';
 import check from '../../images/check.svg';
 
 export const CustomDropdown = styled.div`
@@ -14,7 +14,8 @@ export const CustomDropdown = styled.div`
       gap: 8px;
       min-width: 163px;
       height: 45px;
-      background: ${GLOBAL_SCARLET}; 
+      
+      background: ${(props) => (props.backgroundColor)};; 
       color: white;
       border-radius: 70px;
       font-style: normal;
