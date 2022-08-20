@@ -171,7 +171,14 @@ function UploadOffer() {
             <div className="field-title">Upload an image</div>
             <label htmlFor="image-upload">
               <img src={uploadButton} alt="" />
-              <input type="file" id="image-upload" onChange={(e) => setImage(e.target.files[0])} />
+              <input
+                type="file"
+                id="image-upload"
+                onChange={async (e) => {
+                  setImage(e.target.files[0]);
+                  await uploadToCloudinary(image);
+                }}
+              />
             </label>
           </div>
           <BoxInput
@@ -185,7 +192,7 @@ function UploadOffer() {
         </div>
         {/* "Next Step" Button: */}
         <button className="step" onClick={clickHandler}>Next Step</button>
-        <img hidden={!image} alt="offer" src={image} />
+        <img hidden={!cloudinaryUrl} style={{ maxHeight: 300, maxWidth: 300 }} alt="offer" src={cloudinaryUrl} />
 
       </div>
       {/* h1>Upload an offer</h1>
