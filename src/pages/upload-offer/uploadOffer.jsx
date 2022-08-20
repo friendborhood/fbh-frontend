@@ -65,7 +65,7 @@ function UploadOffer() {
   };
   const uploadOffer = async () => {
     try {
-      if (cloudinaryUrl) {
+      if (cloudinaryUrl && price && condition) {
         await network.post(`${END_POINTS.OFFERS}`, {
           imageUrl: cloudinaryUrl,
           itemId: itemsMap[item],
@@ -75,10 +75,11 @@ function UploadOffer() {
           state: 'Available',
           location: userLocation,
         });
+        displayMessage('Offer uploaded successfully');
       } else {
         console.warn('No image uploaded');
+        displayMessage('Please fill all the required fields');
       }
-      displayMessage('Offer uploaded successfully');
     } catch (e) {
       displayMessage(`Error uploading offer ${JSON.stringify(e.response.data)}`);
     }
@@ -197,7 +198,7 @@ function UploadOffer() {
           />
         </div>
         {/* "Next Step" Button: */}
-        <button className="step" onClick={clickHandler}>Next Step</button>
+        <button className="step" onClick={stepTwo ? uploadOffer : clickHandler}>{stepTwo ? 'Submit Offer' : 'Next Step'}</button>
         <img hidden={!cloudinaryUrl} style={{ maxHeight: 300, maxWidth: 300 }} alt="offer" src={cloudinaryUrl} />
 
       </div>
