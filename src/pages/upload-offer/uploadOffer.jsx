@@ -21,7 +21,6 @@ function UploadOffer() {
   const CLOUD_NAME = 'dxjhkogtp';
   const PRESET = 'tc7nz7hr';
   const [condition, setCondition] = useState('');
-  const [image, setImage] = useState('');
   const [item, setItem] = useState('');
   const [itemNames, setItemNames] = useState(['Driller']);
   const [description, setDescription] = useState('');
@@ -66,16 +65,19 @@ function UploadOffer() {
   };
   const uploadOffer = async () => {
     try {
-      await uploadToCloudinary(image);
-      await network.post(`${END_POINTS.OFFERS}`, {
-        imageUrl: cloudinaryUrl,
-        itemId: itemsMap[item],
-        priceAsked: price,
-        description,
-        condition,
-        state: 'Available',
-        location: userLocation,
-      });
+      if (cloudinaryUrl) {
+        await network.post(`${END_POINTS.OFFERS}`, {
+          imageUrl: cloudinaryUrl,
+          itemId: itemsMap[item],
+          priceAsked: price,
+          description,
+          condition,
+          state: 'Available',
+          location: userLocation,
+        });
+      } else {
+        console.warn('No image uploaded');
+      }
       displayMessage('Offer uploaded successfully');
     } catch (e) {
       displayMessage(`Error uploading offer ${JSON.stringify(e.response.data)}`);
@@ -174,9 +176,13 @@ function UploadOffer() {
               <input
                 type="file"
                 id="image-upload"
-                onChange={async (e) => {
-                  setImage(e.target.files[0]);
-                  await uploadToCloudinary(image);
+                onChange={(e) => {
+                  const uploadedImage = e.target.files[0];
+                  if (uploadedImage) {
+                    uploadToCloudinary(uploadedImage);
+                  } else {
+                    console.warn('no image on upload event');
+                  }
                 }}
               />
             </label>
