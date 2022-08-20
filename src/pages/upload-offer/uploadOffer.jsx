@@ -1,11 +1,17 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/style-prop-object */
 /* eslint-disable no-shadow */
 /* eslint-disable react/button-has-type */
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import { ProgressBar, Step } from 'react-step-progress-bar';
 import BoxInput from '../../components/BoxInput';
 import DropDown from '../../components/drop-down';
 import { END_POINTS, fetchUserData, network } from '../../network';
 import { displayMessage } from '../../utils/handle-device-middleware';
+import 'react-step-progress-bar/styles.css';
+import { GLOBAL_SCARLET } from '../../GlobalStyling';
+import { UploadOfferStyle } from './uploadOfferStyle';
 
 function UploadOffer() {
   const CLOUD_NAME = 'dxjhkogtp';
@@ -67,8 +73,49 @@ function UploadOffer() {
     }
   };
   return (
-    <div>
-      <h1>Upload an offer</h1>
+    <UploadOfferStyle>
+      <div className="progress-bar-container">
+        <ProgressBar
+          percent={23}
+          width="60vw"
+          filledBackground={`linear-gradient(to right, ${GLOBAL_SCARLET}, ${GLOBAL_SCARLET}`}
+        >
+          <Step transition="scale">
+            {({ accomplished }) => (
+              <img
+                style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
+                width="30"
+                src="https://vignette.wikia.nocookie.net/pkmnshuffle/images/9/9d/Pichu.png/revision/latest?cb=20170407222851"
+                alt=""
+              />
+            )}
+          </Step>
+          <Step transition="scale">
+            {({ accomplished }) => (
+              <img
+                style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
+                width="30"
+                src="https://vignette.wikia.nocookie.net/pkmnshuffle/images/9/97/Pikachu_%28Smiling%29.png/revision/latest?cb=20170410234508"
+                alt=""
+              />
+            )}
+          </Step>
+          <Step transition="scale">
+            {({ accomplished }) => (
+              <img
+                style={{ filter: `grayscale(${accomplished ? 0 : 100}%)` }}
+                width="30"
+                src="https://vignette.wikia.nocookie.net/pkmnshuffle/images/9/97/Pikachu_%28Smiling%29.png/revision/latest?cb=20170410234508"
+                alt=""
+              />
+            )}
+          </Step>
+        </ProgressBar>
+      </div>
+      <div className="main-panel">
+        <DropDown className="item-selection" options={itemNames} setState={setItem} state={item} />
+      </div>
+      {/* h1>Upload an offer</h1>
       <div>
         <h4>Select an item</h4>
         <DropDown options={itemNames} setState={setItem} state={item} />
@@ -101,8 +148,8 @@ function UploadOffer() {
       <div>
 
         <img hidden={!image} alt="offer" src={image} />
-      </div>
-    </div>
+      </div> */}
+    </UploadOfferStyle>
   );
 }
 export default UploadOffer;
