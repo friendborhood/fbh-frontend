@@ -7,6 +7,7 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { ProgressBar, Step } from 'react-step-progress-bar';
+import { isMobile } from 'react-device-detect';
 import BoxInput from '../../components/BoxInput';
 import DropDown from '../../components/drop-down';
 import { END_POINTS, fetchUserData, network } from '../../network';
@@ -101,9 +102,6 @@ function UploadOffer() {
       setStepThree(true);
       setCurrentStep(3);
       setProgressPrecent(100);
-    } else if (currentStep === 3) {
-      setStepThree(false);
-      setCurrentStep(4);
     }
   };
 
@@ -112,7 +110,7 @@ function UploadOffer() {
       <div className="progress-bar-container">
         <ProgressBar
           percent={progressPrecent}
-          width="876px"
+          width={isMobile ? '300px' : '876px'}
           filledBackground={`linear-gradient(to right, ${GLOBAL_SCARLET}, ${GLOBAL_SCARLET}`}
         >
           <Step transition="scale">

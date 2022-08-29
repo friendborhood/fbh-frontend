@@ -5,7 +5,7 @@ import { GLOBAL_FONT } from '../../GlobalStyling';
 
 const StyledFooter = styled.footer`
   display: flex;
-  position: absolute;
+  position: sticky;
   background-color: transparent;
   flex-direction: column;
   height: 88px;
