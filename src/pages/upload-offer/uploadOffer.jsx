@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable quotes */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/style-prop-object */
@@ -169,7 +170,7 @@ function UploadOffer() {
           </div>
         </div>
         {/* Step Two: */}
-        <div className={`single-step ${stepTwo === true ? 'displayOn' : 'displayOff'}`}>
+        <div className={`single-step ${stepOne ? "displayNone" : (stepTwo === true ? 'displayOn' : 'displayOff')}`}>
           <div className="single-field">
             <div className="field-title">Upload an image</div>
             <label htmlFor="image-upload">
@@ -199,42 +200,19 @@ function UploadOffer() {
         </div>
         {/* "Next Step" Button: */}
         <button className="step" onClick={stepTwo ? uploadOffer : clickHandler}>{stepTwo ? 'Submit Offer' : 'Next Step'}</button>
-        <img hidden={!cloudinaryUrl} style={{ maxHeight: 300, maxWidth: 300 }} alt="offer" src={cloudinaryUrl} />
+        <div className="img-container">
+          <img
+            hidden={!cloudinaryUrl}
+            style={{
+              maxHeight: 400,
+              maxWidth: 400,
+            }}
+            alt="offer"
+            src={cloudinaryUrl}
+          />
+        </div>
 
       </div>
-      {/* h1>Upload an offer</h1>
-      <div>
-        <h4>Select an item</h4>
-        <DropDown options={itemNames} setState={setItem} state={item} />
-        <BoxInput
-          label="Condition"
-          id="Condtion"
-          state={condition}
-          placeHolder="Condition"
-          setState={setCondition}
-        />
-        <BoxInput
-          label="Description"
-          id="description"
-          state={description}
-          placeHolder="description"
-          setState={setDescription}
-        />
-        <BoxInput
-          label="Price"
-          id="price"
-          state={price}
-          placeHolder="Price"
-          setState={setPrice}
-        />
-
-        <input type="file" onChange={(e) => setImage(e.target.files[0])} />
-        <button onClick={uploadOffer}>Upload</button>
-
-      </div>
-      <div>
-
-      </div> */}
     </UploadOfferStyle>
   );
 }

@@ -37,6 +37,10 @@ export const UploadOfferStyle = styled.div`
         animation-fill-mode: forwards;
     }
 
+    & div.display-none {
+        display: none;
+    }
+
     & div.displayOn {
         display: flex;
         opacity: 0;
@@ -144,6 +148,12 @@ export const UploadOfferStyle = styled.div`
                 font-weight: 500;
                 right: 71px;
                 bottom: 70px;
+            }
+
+            & div.img-container {
+                position: absolute;
+                right: 10%;
+                top: 10%;
             }
 
             & button {
