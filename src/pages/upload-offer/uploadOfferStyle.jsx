@@ -1,5 +1,8 @@
+/* eslint-disable indent */
 import styled from 'styled-components';
-import { GLOBAL_FONT, GLOBAL_SCARLET, SECONDARY_BACKGROUND } from '../../GlobalStyling';
+import {
+    GLOBAL_FONT, GLOBAL_SCARLET, MOBILE_STYLE, SECONDARY_BACKGROUND,
+} from '../../GlobalStyling';
 
 export const UploadOfferStyle = styled.div`
     display: flex;
@@ -23,6 +26,13 @@ export const UploadOfferStyle = styled.div`
         display: none;
         position: absolute;
         gap: 20px;
+
+        @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
+            & input {
+                align-self: flex-start;
+                width: 280px !important;
+            }
+        }
     }
 
     & div.displayOnStart {
@@ -80,8 +90,11 @@ export const UploadOfferStyle = styled.div`
             max-height: 60%;
             background-color: white;
             border-radius: 10px;
-            padding: 100px 75px 100px 200px;
+            padding: 50px 75px 100px 200px;
             box-shadow: 0px 0px 10px 0px #14171C1A;
+            @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
+                padding: 50px 75px 100px 20px;
+            }
 
             & div.field-title {
                 color: #14171C;
@@ -124,7 +137,11 @@ export const UploadOfferStyle = styled.div`
                     width: 446px;
                     height: 114px;
                     border-radius: 8px;
+                    resize: none;
                     border: solid 1px #99A0A9;
+                    @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
+                        width: 280px;
+                    }
                 }
 
                 & textarea.description-input:focus {

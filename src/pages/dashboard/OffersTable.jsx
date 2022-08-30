@@ -60,7 +60,7 @@ function OffersTable() {
     return relevantCategories;
   };
   const fetchOffersHandler = async () => {
-    const params = { };
+    const params = {};
     if (filterSelf) {
       params.filterSelf = true;
     }

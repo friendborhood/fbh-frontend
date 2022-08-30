@@ -110,7 +110,7 @@ function UploadOffer() {
       <div className="progress-bar-container">
         <ProgressBar
           percent={progressPrecent}
-          width={isMobile ? '300px' : '876px'}
+          width={isMobile ? '280px' : '876px'}
           filledBackground={`linear-gradient(to right, ${GLOBAL_SCARLET}, ${GLOBAL_SCARLET}`}
         >
           <Step transition="scale">
