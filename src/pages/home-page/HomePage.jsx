@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 import React from 'react';
+import { isMobile } from 'react-device-detect';
 import styled from 'styled-components';
 import { AboutUs } from '../../components/MainPageComponents/AboutUs';
 import { Hero } from '../../components/MainPageComponents/Hero';
@@ -22,7 +23,7 @@ const QuartSphere = styled.div`
 function HomePage() {
   return (
     <>
-      <QuartSphere />
+      {!isMobile && <QuartSphere />}
       <Hero />
       <Purpose />
       <Shared />
