@@ -1,7 +1,6 @@
-/* eslint-disable indent */
 import styled from 'styled-components';
 import {
-    GLOBAL_FONT, GLOBAL_SCARLET, MOBILE_STYLE, SECONDARY_BACKGROUND,
+  GLOBAL_FONT, GLOBAL_SCARLET, MOBILE_STYLE, SECONDARY_BACKGROUND,
 } from '../../GlobalStyling';
 
 export const UploadOfferStyle = styled.div`
