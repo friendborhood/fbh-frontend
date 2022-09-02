@@ -24,12 +24,17 @@ export function Dropdown({
   };
 
   return (
-    <CustomDropdown isOpen={isOpen} firstClick={firstlyClicked} backgroundColor={backgroundColor}>
-      <button className="dropbtn" onClick={onClickHandler}>
-        <div className="button-display">{isMobile ? mobileDisplay : chosen}</div>
-        {!isMobile && <img src={dropdownarrow} alt="arrow" className={isOpen ? 'open' : 'close'} />}
+    <CustomDropdown
+      isMobile={isMobile}
+      isOpen={isOpen}
+      firstClick={firstlyClicked}
+      backgroundColor={backgroundColor}
+    >
+      <button style={isMobile ? { width: 180 } : {}} className="dropbtn" onClick={onClickHandler}>
+        <div className="button-display">{ chosen}</div>
+        <img src={dropdownarrow} alt="arrow" className={isOpen ? 'open' : 'close'} />
       </button>
-      { !isMobile && (
+
       <ul className={`dropdown-content ${firstlyClicked ? 'dropdown_content--animated dropdown_menu-0' : ''} ${isOpen ? 'open' : 'close'}`}>
         {options.map((option) => (
           <li
@@ -45,7 +50,7 @@ export function Dropdown({
           </li>
         ))}
       </ul>
-      )}
+
     </CustomDropdown>
   );
 }

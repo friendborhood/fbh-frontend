@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   BrowserRouter, Route, Routes, Navigate,
@@ -19,11 +19,9 @@ import MobileMenu from './components/mobile-menu/MobileMenu';
 import Dashboard from './pages/dashboard/Dashboard';
 import { getTokenFromLocalStorage } from './user-manager';
 import { updateLoginState } from './Store/store';
-import { MobileDropdownMenu } from './components/Dropdown/MobileDropdownMenu';
 
 function App() {
   const menuDisplayStatus = useSelector((state) => state.display.showMobileMenu);
-  const mobileSortMenuDisplayStatus = useSelector((state) => state.display.showMobileSortDropdown);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -31,23 +29,11 @@ function App() {
     if (token) { dispatch(updateLoginState(token)); }
   }, []);
 
-  const [chosen, setChosen] = useState('Nearest First');
-  const sortingOptions = ['Nearest First', 'Newest First'];
-
   return (
     <BrowserRouter>
       <Layout>
         <ToastContainer />
         {isMobile && <MobileMenu showMobileMenu={menuDisplayStatus} />}
-        {isMobile
-        && (
-        <MobileDropdownMenu
-          chosen={chosen}
-          setChosen={setChosen}
-          options={sortingOptions}
-          showMenu={mobileSortMenuDisplayStatus}
-        />
-        )}
         <Routes>
           <Route path="/" element={<Navigate to={PAGES.HOME} />} />
           <Route path={PAGES.HOME} element={<HomePage />} />

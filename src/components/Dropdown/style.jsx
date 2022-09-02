@@ -3,6 +3,8 @@ import { GLOBAL_FONT, MOBILE_STYLE } from '../../GlobalStyling';
 import check from '../../images/check.svg';
 
 export const CustomDropdown = styled.div`
+  height: ${(props) => ((props.isMobile && props.isOpen) ? '150px' : '30px')};
+  transition: 0.2s ease-out;
   font-family: ${GLOBAL_FONT};
   font-weight: 400;
   position: relative;

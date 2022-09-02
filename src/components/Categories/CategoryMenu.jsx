@@ -1,6 +1,7 @@
 /* eslint-disable operator-linebreak */
 import { React, useState, useEffect } from 'react';
 import styled from 'styled-components';
+
 import { CategoryTag } from './CategoryTag';
 import { MOBILE_STYLE } from '../../GlobalStyling';
 import { Dropdown } from '../Dropdown/Dropdown';
@@ -78,12 +79,14 @@ export default function CategoryMenu({
   return (
     <CategoryMenuStyle>
       <div className="sort">
+
         <Dropdown
           chosen={selectedSortMethod}
           setChosen={setSelectedSortMethod}
           options={sortingOptions}
           mobileDisplay={<img src={sortIcon} alt="sort icon" />}
         />
+
       </div>
       <div className="category-ruler">
         {tags}
