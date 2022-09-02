@@ -21,55 +21,68 @@ const StyledShared = styled.div`
     padding-bottom: 8%;
     width: 100vw;
     gap: 43px;
+    @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
+    gap: 23px;
+
+    }
     & h1 {
-                width: 100vw;
-                font-family: 'Anomalia ML v2 AAA';
-                text-transform: uppercase;
-                font-style: normal;
-                font-weight: 700;
-                font-size: 64px;
-                line-height: 79px;
+      width: 100vw;
+      font-family: 'Anomalia ML v2 AAA';
+      text-transform: uppercase;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 64px;
+      line-height: 79px;
+      @media only screen and (max-width: ${MOBILE_STYLE.max_width})
+      {
+        font-size: 20px;
+        line-height: 100%;
+        margin-top: 4%;
+      }
     }
 
     & div {
-        .category-ruler {
-            display: flex;
-            flex-direction: row;
-            height: 37px;
-            justify-content: center;
-            @media only screen and (max-width: ${MOBILE_STYLE.max_width})
-            {
-                overflow-x: scroll;
-                width: 100vw;
-            }
-        }  
-
-        &.card-container {
-            display: flex;
-            flex-direction: row;
+      &.category-ruler {
+          display: flex;
+          flex-direction: row;
+          height: 37px;
+          justify-content: center;
+          gap: 5px;
+          @media only screen and (max-width: ${MOBILE_STYLE.max_width})
+          {
+            overflow-x: scroll;
             width: 100vw;
-            justify-content: center;
-        }
+          }
+      }  
+
+      &.card-container {
+          display: flex;
+          flex-direction: row;
+          width: 100vw;
+          justify-content: center;
+      }
     }
 
     & button {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        padding: 8px;
-        width: 154px;
-        height: 45px;
-        left: 883px;
-        top: 2198px;
-        border: 1.5px solid #14171C;
-        border-radius: 8px;
-        font-family: 'Heebo';
-        font-style: normal;
-        font-weight: 500;
-        font-size: 20px;
-        line-height: 29px;
-        color: #14171C;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 8px;
+      width: 154px;
+      height: 45px;
+      left: 883px;
+      top: 2777px;
+      background: #FFFFFF;
+      border: 1px solid #14171C;
+      color: #14171C;
+      border-radius: 8px;
+      margin-top: 3%;
+      font-weight: 700;
+      @media only screen and (max-width: ${MOBILE_STYLE.max_width}){
+        font-size: 14px; 
+        width: 141px;
+        height: 37px;
+      }
     }
 `;
 
@@ -102,16 +115,16 @@ export const Shared = () => {
       <div className="card-container">
         <ItemCard
           offerData={
-          {
-            imageUrl: vaccum,
-            itemData: { itemName: 'Vaccum cleaner' },
-            offererUserData: mockOfferer1,
-            distanceFromUser: 3100,
-            name: 'Omer',
-            priceAsked: 0,
-            description: 'good as new',
+            {
+              imageUrl: vaccum,
+              itemData: { itemName: 'Vaccum cleaner' },
+              offererUserData: mockOfferer1,
+              distanceFromUser: 3100,
+              name: 'Omer',
+              priceAsked: 0,
+              description: 'good as new',
+            }
           }
-        }
 
         />
       </div>

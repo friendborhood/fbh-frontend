@@ -3,7 +3,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import { GLOBAL_FONT, GLOBAL_SCARLET } from '../../GlobalStyling';
+import { isMobile } from 'react-device-detect';
+import { GLOBAL_FONT, GLOBAL_SCARLET, MOBILE_STYLE } from '../../GlobalStyling';
 import { PAGES } from '../../pages/consts';
 
 const StyledAboutUs = styled.div`
@@ -18,15 +19,23 @@ const StyledAboutUs = styled.div`
     padding-bottom: 10%;
     align-items: center;
 
+    @media only screen and (max-width: ${MOBILE_STYLE.max_width}){
+      padding-bottom: 7%;
+    }
+
     & h1 {
-            width: 100vw;
-            font-family: 'Anomalia ML v2 AAA';
-            text-transform: uppercase;
-            font-style: normal;
-            font-weight: 700;
-            font-size: 64px;
-            color: white;
-            margin-bottom: 40px;
+      width: 100vw;
+      font-family: 'Anomalia ML v2 AAA';
+      text-transform: uppercase;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 64px;
+      color: white;
+      margin-bottom: 40px;
+      @media only screen and (max-width: ${MOBILE_STYLE.max_width}){
+        font-size: 20px;
+        line-height: 100%;
+      }
     }
 
     & p {
@@ -39,6 +48,12 @@ const StyledAboutUs = styled.div`
         padding-right: 20%;
         padding-left: 20%;
         text-align: left;
+
+        @media only screen and (max-width: ${MOBILE_STYLE.max_width}){
+          font-size: 14px;
+          line-height: 130%;
+          padding: 0 5%;
+        }
 
         &.bold {
             font-weight: 700;
@@ -56,8 +71,16 @@ const StyledAboutUs = styled.div`
       top: 2777px;
       background: #FFFFFF;
       border: 1px solid #14171C;
+      color: #14171C;
       border-radius: 8px;
       margin-top: 3%;
+      font-weight: 700;
+
+      @media only screen and (max-width: ${MOBILE_STYLE.max_width}){
+        font-size: 14px;
+        width: 141px;
+        height: 37px;
+      }
     }
 `;
 
@@ -75,12 +98,14 @@ export const AboutUs = () => {
         <b> Obvious Solution? Sharing!</b>
       </p>
       <p />
-      <p>
-        Using Friendborhood’s platform,
-        users can easily find and offer items to and from people nearby.
-        Friendborhood is saving money for its users,
-        freeing them from the hassle of buying and storing items they rarely use.
-      </p>
+      {!isMobile && (
+        <p>
+          Using Friendborhood’s platform,
+          users can easily find and offer items to and from people nearby.
+          Friendborhood is saving money for its users,
+          freeing them from the hassle of buying and storing items they rarely use.
+        </p>
+      )}
       <button type="button" onClick={goToAbout}>Learn More</button>
     </StyledAboutUs>
   );
