@@ -4,6 +4,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
+import { isMobile } from 'react-device-detect';
 import { PAGES } from '../../pages/consts';
 import { MainNavigationStyle } from './main-navigation-utils';
 import hamburger from '../../images/menu-hamburger.svg';
@@ -48,7 +49,7 @@ function MainNavigation() {
           )
           : (
             <>
-              <img className="user" src={userImg} alt="" />
+              {!isMobile && <img className="user" src={userImg} alt="" />}
               <div>{`Welcome, ${userName}`}</div>
               <Link to={PAGES.DASHBOARD}><div className="menu-item">Dashboard</div></Link>
               <Link to={PAGES.ADDITIONAL_DETAILS}><div className="menu-item">Your Info</div></Link>
