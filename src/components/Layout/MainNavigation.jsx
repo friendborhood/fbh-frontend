@@ -23,7 +23,7 @@ function MainNavigation() {
   const [userName, setUserName] = useState('');
   const [userData, setUserData] = useState({});
 
-  useEffect(() => fetchUserData({ setUserData, setUserName, setImageUrl: setUserImg }, []));
+  useEffect(() => fetchUserData({ setUserData, setUserName, setImageUrl: setUserImg }), []);
   const onHamburgerClicked = () => {
     dispatch(updateMenuDisplay(true));
   };
