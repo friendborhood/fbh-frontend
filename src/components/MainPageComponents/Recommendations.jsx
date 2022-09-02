@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { RecommendationCard } from './RecommendationCard';
 import Nitzan from '../../images/mock/Nitzan.png';
-import { GLOBAL_FONT, GLOBAL_SCARLET } from '../../GlobalStyling';
+import { GLOBAL_FONT, GLOBAL_SCARLET, MOBILE_STYLE } from '../../GlobalStyling';
 import { PAGES } from '../../pages/consts';
 
 const StyledRecommendations = styled.div`
@@ -14,11 +14,14 @@ const StyledRecommendations = styled.div`
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding-top: 4%;
-    padding-bottom: 8%;
+    padding-top: 2% 0;
     width: 100vw;
     gap: 75px;
     margin-bottom: 10%;
+    @media only screen and (max-width: ${MOBILE_STYLE.max_width}){
+      gap: 0;
+    }
+
     & h1 {
       width: 100vw;
       font-family: 'Anomalia ML v2 AAA';
@@ -27,6 +30,10 @@ const StyledRecommendations = styled.div`
       font-weight: 700;
       font-size: 64px;
       line-height: 79px;
+
+      @media only screen and (max-width: ${MOBILE_STYLE.max_width}){
+        font-size: 20px;
+      }
     }
 
     & div.cards-container {
@@ -48,7 +55,14 @@ const StyledRecommendations = styled.div`
       font-weight: 500;
       font-size: 20px;
       line-height: 29px;
+      font-weight: 600;
       color: #FFFFFF;
+
+      @media only screen and (max-width: ${MOBILE_STYLE.max_width}){
+        font-size: 14px;
+        width: 141px;
+        height: 37px;
+      }
     }
 `;
 

@@ -2,7 +2,7 @@
 /* eslint-disable react/function-component-definition */
 import React from 'react';
 import styled from 'styled-components';
-import { GLOBAL_FONT } from '../../GlobalStyling';
+import { GLOBAL_FONT, MOBILE_STYLE } from '../../GlobalStyling';
 
 const StyledRecommendationCard = styled.div`
     display: flex;
@@ -10,10 +10,13 @@ const StyledRecommendationCard = styled.div`
     position: relative;
     background-color: rgba(159, 166, 174, 0.1);
     border-radius: 8px;
-   width: 517px;
+    width: 517px;
     height: 318px;
     align-content: space-between;
     padding-left: 40px;
+    @media only screen and (max-width: ${MOBILE_STYLE.max_width}){
+      transform: scale(0.7);
+    }
 
     & p.content {
         font-family: ${GLOBAL_FONT};
