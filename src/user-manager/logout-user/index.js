@@ -17,5 +17,5 @@ export const redirectLoggedOutUser = () => {
         navigate(PAGES.LOGIN, { replace: true });
       }
     }
-  });
+  }, []);
 };

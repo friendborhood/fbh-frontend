@@ -59,9 +59,6 @@ export function CategoryTag({
       localStorage.setItem('selectedCategories', JSON.stringify(currentSelectionState));
     }
   };
-  useEffect(() => {
-
-  });
   return (
     <StyledCategory
       onClick={onClickHandler}

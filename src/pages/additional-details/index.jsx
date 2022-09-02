@@ -19,7 +19,7 @@ function AdditionalDetailsPage() {
   const [imageUrl, setImageUrl] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
 
-  useEffect(() => Promise.all([fetchUserData({ setUserName, setImageUrl })]));
+  useEffect(() => fetchUserData({ setUserName, setImageUrl }), []);
 
   useEffect(async () => {
     const fetchedCategories = await fetchCategories();

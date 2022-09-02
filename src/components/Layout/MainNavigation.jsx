@@ -20,8 +20,9 @@ function MainNavigation() {
   // const userName = useSelector((state) => state.auth.userName);
   const [userImg, setUserImg] = useState('');
   const [userName, setUserName] = useState('');
+  const [userData, setUserData] = useState({});
 
-  useEffect(() => Promise.all([fetchUserData({ setUserName, setImageUrl: setUserImg })]));
+  useEffect(() => fetchUserData({ setUserData, setUserName, setImageUrl: setUserImg }, []));
   const onHamburgerClicked = () => {
     dispatch(updateMenuDisplay(true));
   };
@@ -50,7 +51,7 @@ function MainNavigation() {
           : (
             <>
               {!isMobile && <img className="user" src={userImg} alt="" />}
-              <div>{`Welcome, ${userName}`}</div>
+              <div>{userData.firstName ? `Welcome, ${userData.firstName}` : ''}</div>
               <Link to={PAGES.DASHBOARD}><div className="menu-item">Dashboard</div></Link>
               <Link to={PAGES.ADDITIONAL_DETAILS}><div className="menu-item">Your Info</div></Link>
               <Link to={PAGES.UPLOAD_OFFER}><div className="menu-item">Add Item</div></Link>
