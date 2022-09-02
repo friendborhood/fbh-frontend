@@ -69,8 +69,8 @@ function OffersTable() {
   };
   const fetchOffersHandler = async () => {
     const params = {};
-    if (filterSelf) {
-      params.filterSelf = true;
+    if (!filterSelf) {
+      params.filterSelf = false;
     }
     params.radius = radius * 1000;
     if (sortMethod === 'Newest First') {
@@ -98,7 +98,7 @@ function OffersTable() {
   return (
     <StyledOffersTable>
       <p className="filter-checkbox">
-        Filter My Offers
+        Include My Offers?
         <Checkbox
           checked={filterSelf}
           onChange={() => setFilterSelf(!filterSelf)}
