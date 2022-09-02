@@ -7,8 +7,9 @@ const HeroStyle = styled.div`
     display: flex;
     justify-content: center;
     width: 100vw;
-    height: 55vh;
+    height: 65vh;
     @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
+      height: 45vh;
       justify-content: space-between;
     }
 
@@ -23,7 +24,18 @@ const HeroStyle = styled.div`
         & div.text-content {
             display: flex;
             flex-direction: column;
-            width: 100vw;
+            align-items: center;
+            width: 50vw;
+            flex-grow: 1;
+
+            @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
+              font-size: 20px;
+              font-weight: 700;
+              line-height: 100%;
+              width: 50vw;
+              align-items: flex-start;
+              padding-left: 5%;
+            }
             & h1 {
                 width: 670px;
                 font-family: 'Anomalia ML v2 AAA';
@@ -38,7 +50,6 @@ const HeroStyle = styled.div`
                   font-weight: 700;
                   line-height: 100%;
                   width: 100%;
-                  padding: 0 20px;
                  }
 
             }
@@ -51,16 +62,24 @@ const HeroStyle = styled.div`
                 font-size: 19px;
                 line-height: 34px;
                 color: #99A0A9;
+                @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
+                  font-size: 20px;
+                  line-height: 100%;
+                }
             }
         }
-
-        & img {
-            width: 400px;
-            height: 400px;
-            z-index: 1;
+        & div.img-container {
+          flex-grow: 1;
+          width: 50vw;
+          & img {
+            position: relative;
+            width: 65%;
+            height: 65%;
+            z-index: 2;
             @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
               width: 200px;
               height: 200px;
+            }
           }
         }
     }
@@ -77,7 +96,9 @@ export function Hero() {
             <br />
           </p>
         </div>
-        <img src={pan} alt="" />
+        <div className="img-container">
+          <img src={pan} alt="" />
+        </div>
       </div>
     </HeroStyle>
   );
