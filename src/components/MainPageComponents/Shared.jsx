@@ -64,23 +64,25 @@ const StyledShared = styled.div`
     }
 
     & button {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        padding: 8px;
-        width: 154px;
-        height: 45px;
-        left: 883px;
-        top: 2198px;
-        border: 1.5px solid #14171C;
-        border-radius: 8px;
-        font-family: 'Heebo';
-        font-style: normal;
-        font-weight: 500;
-        font-size: 20px;
-        line-height: 29px;
-        color: #14171C;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 8px;
+      width: 154px;
+      height: 45px;
+      left: 883px;
+      top: 2777px;
+      background: #FFFFFF;
+      border: 1px solid #14171C;
+      color: #14171C;
+      border-radius: 8px;
+      margin-top: 3%;
+      font-weight: 700;
+      @media only screen and (max-width: ${MOBILE_STYLE.max_width}){
+        font-size: 14px; 
+        width: 141px;
+        height: 37px;
+      }
     }
 `;
 
