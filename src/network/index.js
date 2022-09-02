@@ -26,7 +26,9 @@ const fetchUserData = async ({
     setUserName(userNameFromStorage);
   }
   const { data: userData } = await network.get(END_POINTS.ME);
-  setUserData(userData);
+  if (setUserData) {
+    setUserData(userData);
+  }
   if (setImageUrl) {
     setImageUrl(userData.imageUrl);
   }
