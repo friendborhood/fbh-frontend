@@ -5,6 +5,8 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { RecommendationCard } from './RecommendationCard';
 import Nitzan from '../../images/mock/Nitzan.png';
+import irad from '../../images/mock/irad.jpg';
+
 import { GLOBAL_FONT, GLOBAL_SCARLET, MOBILE_STYLE } from '../../GlobalStyling';
 import { PAGES } from '../../pages/consts';
 
@@ -84,8 +86,18 @@ export const Recommendations = () => {
         and thank to friendborhood we borrow items only when we need."
           location="Nirit"
         />
-        <RecommendationCard />
-        <RecommendationCard />
+        <RecommendationCard
+          name="Irad"
+          image={irad}
+          content="Great website- serve it's purpose and easy to use."
+          location="Rosh Ha'Ayin"
+        />
+        <RecommendationCard
+          name="She-Hulk"
+          // image={shehulk}
+          content="Great website- serve it's purpose and easy to use."
+          location="New York"
+        />
       </div>
       <button type="button" onClick={goToSignUp}>Sign Up</button>
     </StyledRecommendations>

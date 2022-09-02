@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { isMobile } from 'react-device-detect';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { PAGES } from '../../pages/consts';
 import { MainNavigationStyle } from './main-navigation-utils';
 import hamburger from '../../images/menu-hamburger.svg';
@@ -50,7 +51,21 @@ function MainNavigation() {
           )
           : (
             <>
-              {!isMobile && <img className="user" src={userImg} alt="" />}
+              {!isMobile && (
+                <LazyLoadImage
+                  alt="side image"
+                  effect="opacity"
+                  src={userImg}
+                  style={
+                    {
+                      objectFit: 'cover',
+                      width: '45px',
+                      height: '45px',
+                      'border-radius': '40px',
+                    }
+                  }
+                />
+              )}
               <div>{userData.firstName ? `Welcome, ${userData.firstName}` : ''}</div>
               <Link to={PAGES.DASHBOARD}><div className="menu-item">Dashboard</div></Link>
               <Link to={PAGES.ADDITIONAL_DETAILS}><div className="menu-item">Your Info</div></Link>
