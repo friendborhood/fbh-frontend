@@ -68,7 +68,7 @@ export function MobileDropdownMenu({
 
   return (
     <>
-      <p>{chosen}</p>
+      { isMobile && <p>{`Sorting by ${chosen}`}</p>}
       {showMenu && <BlackScreen onClick={closeScreen} />}
       <StyledMobileDropdownMenu isMobile={isMobile} showMenu={showMenu}>
         (
