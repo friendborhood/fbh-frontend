@@ -51,9 +51,13 @@ export function CategoryTag({
   const onClickHandler = () => {
     setSelected(!selected);
     setValue({ ...value, [name]: !selected });
-    const currentSelectionState = JSON.parse(localStorage.getItem('selectedCategories'));
-    currentSelectionState[name] = !currentSelectionState[name];
-    localStorage.setItem('selectedCategories', JSON.stringify(currentSelectionState));
+    if (!localStorage.getItem('selectedCategories')) {
+      localStorage.setItem('selectedCategories', JSON.stringify({ [name]: true }));
+    } else {
+      const currentSelectionState = JSON.parse(localStorage.getItem('selectedCategories'));
+      currentSelectionState[name] = !currentSelectionState[name];
+      localStorage.setItem('selectedCategories', JSON.stringify(currentSelectionState));
+    }
   };
   useEffect(() => {
 
