@@ -21,7 +21,7 @@ transition: transform 200ms ease;
 @media only screen and (min-width: ${MOBILE_STYLE.max_width})
 {
     &:hover {
-        transform: scale(1.055);
+        transform: scale(1.02);
         filter: drop-shadow(0px 0px 7px rgba(20, 23, 28, 0.4));
         transition: transform 200ms ease;
     }
