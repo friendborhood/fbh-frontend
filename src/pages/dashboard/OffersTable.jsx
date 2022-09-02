@@ -29,8 +29,8 @@ const OfferTableStyle = styled.div`
   gap: 15px;
   flex-wrap: wrap;
   gap: 40px;
-  padding-left: 23px;
-  padding-right: 21px;
+  padding: 15px 21px;
+  padding-top: 22px;
   overflow-y: scroll;
   height: 100%;
   justify-content: center;
