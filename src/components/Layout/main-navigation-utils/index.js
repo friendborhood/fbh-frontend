@@ -22,7 +22,7 @@ export const MainNavigationStyle = styled.div`
   }
 
   & section {
-    gap: 50px;
+    gap: 45px;
 
     & img {
 
@@ -66,7 +66,7 @@ export const MainNavigationStyle = styled.div`
       flex-direction: row;
       justify-content: flex-end;
       margin-right: 40px;
-      
+      align-items: flex-end;
       cursor: auto;
     }
 
@@ -89,6 +89,14 @@ export const MainNavigationStyle = styled.div`
           font-weight: 500, medium;
         }
       }
+    }
+
+    & img.user {
+        width: 45px;
+        height: 45px;
+        border-radius: 40px;
+        justify-self: flex-end;
+        bottom: 0;
     }
   }
 

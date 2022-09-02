@@ -50,6 +50,7 @@ const StyledShared = styled.div`
           gap: 5px;
           @media only screen and (max-width: ${MOBILE_STYLE.max_width})
           {
+            justify-content: flex-start;
             overflow-x: scroll;
             width: 100vw;
           }
