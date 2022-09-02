@@ -12,6 +12,7 @@ const CategoryMenuStyle = styled.div`
   flex-direction: row-reverse;
   justify-content: space-between;
   padding: 32px 20px;
+  padding-top: 5px;
   gap: 16px;
 
   @media only screen and (max-width: ${MOBILE_STYLE.max_width})
