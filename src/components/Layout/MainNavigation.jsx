@@ -48,7 +48,7 @@ function MainNavigation() {
           )
           : (
             <>
-              <img style={{ maxHeight: 100, maxWidth: 100 }} src={userImg} alt="" />
+              <img className="user" src={userImg} alt="" />
               <div>{`Welcome, ${userName}`}</div>
               <Link to={PAGES.DASHBOARD}><div className="menu-item">Dashboard</div></Link>
               <Link to={PAGES.ADDITIONAL_DETAILS}><div className="menu-item">Your Info</div></Link>
