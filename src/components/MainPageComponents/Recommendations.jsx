@@ -94,7 +94,7 @@ export const Recommendations = () => {
           location="Rosh Ha'Ayin"
         />
         <RecommendationCard
-          name="She-Hulk"
+          name="Shahar"
           image={shahar}
           content="Great idea, wish it will be mass-used so it will fulfill full potential."
           location="Tel Aviv"
