@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
+import ReactCardFlip from 'react-card-flip';
 import { Card } from './style';
 import { network, END_POINTS } from '../../network';
 
@@ -16,33 +17,58 @@ function ItemCard({ offerData }) {
     priceAsked: price,
     description,
   } = offerData;
+
   let itemName;
   if (itemData) {
     ({ itemName } = itemData);
   }
-  const { firstName, lastName, imageUrl: offererUserIconUrl } = offererUserData;
+  const [flipped, setFlipped] = useState(false);
+  const {
+    phoneNumber, email, firstName, lastName, imageUrl: offererUserIconUrl,
+  } = offererUserData;
   const distance = (distanceFromUser / 1000).toFixed(2);
   return (
-    <Card>
-      <img
-        src={imageUrl || fallBackImage}
-        alt="item"
-        className="item"
-      />
-      <div className="item-details">
-        <div className="info-line">
-          <div className="text large">{itemName}</div>
-          <div className="text small">{`${distance} km`}</div>
-        </div>
-        <div className="info-line">
-          <div className="text user-info">
-            <img className="user-icon" src={offererUserIconUrl} alt="" />
-            <div className="text">{`${firstName} ${lastName}`}</div>
+    <ReactCardFlip isFlipped={flipped} flipDirection="horizontal">
+      <Card onClick={() => setFlipped(!flipped)}>
+        <img
+          src={imageUrl || fallBackImage}
+          alt="item"
+          className="item"
+        />
+        <div className="item-details">
+          <div className="info-line">
+            <div className="text large">{itemName}</div>
+            <div className="text small">{`${distance} km`}</div>
           </div>
-          <div className="text small">{`${price}₪/hour`}</div>
+          <div className="info-line">
+            <div className="text user-info">
+              <img className="user-icon" src={offererUserIconUrl} alt="" />
+              <div className="text">{`${firstName} ${lastName}`}</div>
+            </div>
+            <div className="text small">{`${price}₪/hour`}</div>
+          </div>
         </div>
-      </div>
-    </Card>
+      </Card>
+      <Card onClick={() => setFlipped(!flipped)}>
+        <h4>
+          {' '}
+          {`Contact ${firstName}: \n ${phoneNumber ? `\n phone number is ${phoneNumber}` : ''} ${email ? `\n email is ${email}` : ''}`}
+        </h4>
+        <div className="item-details">
+          <div className="info-line">
+            <div className="text large">{itemName}</div>
+            <div className="text large">{`${distance} km`}</div>
+          </div>
+          <div className="info-line">
+            <div className="text user-info">
+              <img className="user-icon" src={offererUserIconUrl} alt="" />
+              <div className="medium">{`${firstName} ${lastName}`}</div>
+            </div>
+            <div className="text large">{`${price}₪/hour`}</div>
+          </div>
+        </div>
+      </Card>
+    </ReactCardFlip>
   );
 }
 
