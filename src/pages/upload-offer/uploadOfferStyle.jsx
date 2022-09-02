@@ -166,6 +166,16 @@ export const UploadOfferStyle = styled.div`
                 bottom: 70px;
             }
 
+            & div.loader-container {
+                display: flex;
+                position: absolute;
+                width: 137px;
+                height: 45px;
+                right: 71px;
+                bottom: 70px;
+                justify-content: center;
+            }
+
             & div.img-container {
                 position: absolute;
                 right: 10%;

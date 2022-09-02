@@ -8,16 +8,18 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { ProgressBar, Step } from 'react-step-progress-bar';
 import { isMobile } from 'react-device-detect';
+import { TailSpin } from 'react-loader-spinner';
+import { useNavigate } from 'react-router-dom';
 import BoxInput from '../../components/BoxInput';
 import DropDown from '../../components/drop-down';
 import { END_POINTS, fetchUserData, network } from '../../network';
 import { displayMessage } from '../../utils/handle-device-middleware';
 import 'react-step-progress-bar/styles.css';
-import { GLOBAL_SCARLET } from '../../GlobalStyling';
+import { GLOBAL_SCARLET, LOADER_PARAMS } from '../../GlobalStyling';
 import { UploadOfferStyle } from './uploadOfferStyle';
 import miniIcon from '../../images/mini-icon-removebg.png';
 import uploadButton from '../../images/upload-img-button.svg';
-import 'animate.css';
+import { PAGES } from '../consts';
 
 function UploadOffer() {
   const CLOUD_NAME = 'dxjhkogtp';
@@ -35,6 +37,9 @@ function UploadOffer() {
   const [stepThree, setStepThree] = useState(false);
   const [progressPrecent, setProgressPrecent] = useState(0);
   const [currentStep, setCurrentStep] = useState(1);
+  const [disableButton, setDisableButton] = useState(false);
+  const navigate = useNavigate();
+
   const swapKeysAndValues = (obj) => {
     const swapped = Object.entries(obj).map(
       ([key, value]) => [value.itemName, key],
@@ -55,6 +60,35 @@ function UploadOffer() {
     fetchItems(),
     fetchUserData({ setUserLocation }),
   ]), []);
+
+  useEffect(() => {
+    if (currentStep === 1) {
+      if (item === '' || condition === '' || description === '' || description.length <= 3) {
+        setDisableButton(true);
+      } else {
+        setDisableButton(false);
+      }
+    } else if (currentStep === 2) {
+      if (price === '' || cloudinaryUrl === '') {
+        setDisableButton(true);
+      } else {
+        setDisableButton(false);
+      }
+    } else if (currentStep === 3) {
+      setProgressPrecent(66.8);
+      setStepTwo(false);
+      setStepThree(true);
+      setTimeout(() => {
+        setProgressPrecent(100);
+        setStepThree(false);
+        setCurrentStep(4);
+      }, 1200);
+    } else if (currentStep === 4) {
+      setTimeout(() => {
+        navigate(PAGES.DASHBOARD, { replace: true });
+      }, 500);
+    }
+  }, [currentStep, condition, description, price, cloudinaryUrl]);
 
   const uploadToCloudinary = async (base64Image) => {
     const data = new FormData();
@@ -77,7 +111,7 @@ function UploadOffer() {
           state: 'Available',
           location: userLocation,
         });
-        displayMessage('Offer uploaded successfully');
+        setCurrentStep(3);
       } else {
         console.warn('No image uploaded');
         displayMessage('Please fill all the required fields');
@@ -96,12 +130,11 @@ function UploadOffer() {
       setStepOne(false);
       setStepTwo(true);
       setCurrentStep(2);
-      setProgressPrecent(50);
+      setProgressPrecent(33.4);
     } else if (currentStep === 2) {
       setStepTwo(false);
       setStepThree(true);
       setCurrentStep(3);
-      setProgressPrecent(100);
     }
   };
 
@@ -126,7 +159,7 @@ function UploadOffer() {
           <Step transition="scale">
             {({ accomplished }) => (
               <img
-                style={{ filter: `grayscale(${accomplished ? 0 : 30}%)` }}
+                style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
                 width="35"
                 src={miniIcon}
                 alt=""
@@ -136,7 +169,17 @@ function UploadOffer() {
           <Step transition="scale">
             {({ accomplished }) => (
               <img
-                style={{ filter: `grayscale(${accomplished ? 0 : 30}%)` }}
+                style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
+                width="35"
+                src={miniIcon}
+                alt=""
+              />
+            )}
+          </Step>
+          <Step transition="scale">
+            {({ accomplished }) => (
+              <img
+                style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
                 width="35"
                 src={miniIcon}
                 alt=""
@@ -196,14 +239,38 @@ function UploadOffer() {
             setState={setPrice}
           />
         </div>
+        {/* Step Three */}
+        <div className={`single-step ${stepOne || stepTwo ? "displayNone" : (stepThree === true ? 'displayOn' : 'displayOff')}`}>
+          <p style={{ "font-weight": 500 }}>Uploading your offer...</p>
+        </div>
+        <div className={`single-step ${stepOne || stepTwo || stepThree ? "displayNone" : (currentStep === 4 ? 'displayOn' : 'displayOff')}`}>
+          <p>Navigating to homepage...</p>
+        </div>
         {/* "Next Step" Button: */}
-        <button className="step" onClick={stepTwo ? uploadOffer : clickHandler}>{stepTwo ? 'Submit Offer' : 'Next Step'}</button>
-        <div className="img-container">
+        {currentStep < 3 ? (
+          <button
+            className="step"
+            onClick={stepTwo ? uploadOffer : clickHandler}
+            disabled={disableButton}
+          >
+            {stepTwo ? 'Submit Offer' : 'Next Step'}
+          </button>
+        )
+          : (
+            <div className="loader-container">
+              <TailSpin
+                color={LOADER_PARAMS.color}
+                height={LOADER_PARAMS.height}
+                width={LOADER_PARAMS.width}
+              />
+            </div>
+          )}
+        <div className={`img-container ${stepTwo === true ? 'displayOn' : 'displayOff'}`}>
           <img
             hidden={!cloudinaryUrl}
             style={{
-              maxHeight: 400,
-              maxWidth: 400,
+              maxHeight: 350,
+              maxWidth: 350,
             }}
             alt="offer"
             src={cloudinaryUrl}
