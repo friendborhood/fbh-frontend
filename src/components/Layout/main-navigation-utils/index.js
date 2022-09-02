@@ -45,11 +45,13 @@ export const MainNavigationStyle = styled.div`
         {
           width: 105px;
         }
-        &:hover {
-          transform: scale(1.1);
-          transition: transform 0.2s ease;
-        }
-        
+        @media only screen and (min-width: ${MOBILE_STYLE.max_width})
+        {
+          &:hover {
+            transform: scale(1.1);
+            transition: transform 0.2s ease;
+          }
+        }      
       }     
     }
 
