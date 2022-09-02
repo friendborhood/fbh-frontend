@@ -18,12 +18,15 @@ network.interceptors.request.use((request) => {
   return request;
 });
 
-const fetchUserData = async ({ setUserName, setImageUrl, setUserLocation }) => {
+const fetchUserData = async ({
+  setUserName, setImageUrl, setUserLocation, setUserData,
+}) => {
   const userNameFromStorage = getUserNameFromLocalStorage();
   if (setUserName) {
     setUserName(userNameFromStorage);
   }
   const { data: userData } = await network.get(END_POINTS.ME);
+  setUserData(userData);
   if (setImageUrl) {
     setImageUrl(userData.imageUrl);
   }
