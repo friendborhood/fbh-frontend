@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Anomalia ML v2 AAA';
-  src: local('anomalia-bold-aaa'), url(../public/fonts/anomalia-bold-aaa.ttf) format('opentype');
+  src: url(../public/fonts/anomalia-bold-aaa.ttf) format('opentype');
 }
 .App {
   text-align: center;
