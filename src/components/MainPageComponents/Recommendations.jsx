@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { RecommendationCard } from './RecommendationCard';
 import Nitzan from '../../images/mock/Nitzan.png';
 import irad from '../../images/mock/irad.jpg';
+import shahar from '../../images/mock/shahar.jpeg';
 
 import { GLOBAL_FONT, GLOBAL_SCARLET, MOBILE_STYLE } from '../../GlobalStyling';
 import { PAGES } from '../../pages/consts';
@@ -94,9 +95,9 @@ export const Recommendations = () => {
         />
         <RecommendationCard
           name="She-Hulk"
-          // image={shehulk}
-          content="Great website- serve it's purpose and easy to use."
-          location="New York"
+          image={shahar}
+          content="Great idea, wish it will be mass-used so it will fulfill full potential."
+          location="Tel Aviv"
         />
       </div>
       <button type="button" onClick={goToSignUp}>Sign Up</button>
