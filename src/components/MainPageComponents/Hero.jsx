@@ -24,7 +24,8 @@ const HeroStyle = styled.div`
         & div.text-content {
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: flex-start;
+            padding-left: 10%;
             width: 50vw;
             flex-grow: 1;
 
