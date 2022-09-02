@@ -68,30 +68,31 @@ export function MobileDropdownMenu({
 
   return (
     <>
+      <p>{chosen}</p>
       {showMenu && <BlackScreen onClick={closeScreen} />}
       <StyledMobileDropdownMenu isMobile={isMobile} showMenu={showMenu}>
-        {isMobile && (
-          <ul className={`dropdown-content ${firstlyClicked ? `dropdown_content--animated dropdown_menu-0 ${showMenu ? 'active' : ''}` : ''} ${isOpen ? 'open' : 'close'}`}>
-            <div className="headline">
-              <p>Sort by</p>
-              <img src={close} alt="close menu" />
-            </div>
-            {options.map((option) => (
-              <li
-                value={option}
-                key={option}
-                onClick={() => {
-                  localStorage.setItem('sortMethod', option);
-                  setChosen(option);
-                  dispatch(updateSortDisplay(false));
-                }}
-                className={chosen === option ? 'chosen' : ''}
-              >
-                {option}
-              </li>
-            ))}
-          </ul>
-        )}
+        (
+        <ul className={`dropdown-content ${firstlyClicked ? `dropdown_content--animated dropdown_menu-0 ${showMenu ? 'active' : ''}` : ''} ${isOpen ? 'open' : 'close'}`}>
+          <div className="headline">
+            <p>Sort by</p>
+            <img src={close} alt="close menu" />
+          </div>
+          {options.map((option) => (
+            <li
+              value={option}
+              key={option}
+              onClick={() => {
+                localStorage.setItem('sortMethod', option);
+                setChosen(option);
+                dispatch(updateSortDisplay(false));
+              }}
+              className={chosen === option ? 'chosen' : ''}
+            >
+              {option}
+            </li>
+          ))}
+        </ul>
+        )
       </StyledMobileDropdownMenu>
     </>
   );

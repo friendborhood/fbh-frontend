@@ -29,7 +29,6 @@ export function Dropdown({
         <div className="button-display">{isMobile ? mobileDisplay : chosen}</div>
         {!isMobile && <img src={dropdownarrow} alt="arrow" className={isOpen ? 'open' : 'close'} />}
       </button>
-      <p>{localStorage.getItem('sortMethod')}</p>
       { !isMobile && (
       <ul className={`dropdown-content ${firstlyClicked ? 'dropdown_content--animated dropdown_menu-0' : ''} ${isOpen ? 'open' : 'close'}`}>
         {options.map((option) => (

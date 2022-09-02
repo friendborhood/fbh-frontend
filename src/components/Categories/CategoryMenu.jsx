@@ -1,11 +1,14 @@
 /* eslint-disable operator-linebreak */
 import { React, useState, useEffect } from 'react';
 import styled from 'styled-components';
+
+import { useSelector } from 'react-redux';
 import { CategoryTag } from './CategoryTag';
 import { MOBILE_STYLE } from '../../GlobalStyling';
 import { Dropdown } from '../Dropdown/Dropdown';
 import sortIcon from '../../images/tags/sort.svg';
 import { fetchCategories } from '../../network';
+import { MobileDropdownMenu } from '../Dropdown/MobileDropdownMenu';
 
 const CategoryMenuStyle = styled.div`
   display: flex;
@@ -48,6 +51,7 @@ export default function CategoryMenu({
   selectedSortMethod,
   setSelectedSortMethod,
 }) {
+  const mobileSortMenuDisplayStatus = useSelector((state) => state.display.showMobileSortDropdown);
   const [tags, setTags] = useState(false);
 
   useEffect(async () => {
@@ -78,12 +82,21 @@ export default function CategoryMenu({
   return (
     <CategoryMenuStyle>
       <div className="sort">
+
+        <MobileDropdownMenu
+          chosen={selectedSortMethod}
+          setChosen={setSelectedSortMethod}
+          options={sortingOptions}
+          showMenu={mobileSortMenuDisplayStatus}
+        />
+
         <Dropdown
           chosen={selectedSortMethod}
           setChosen={setSelectedSortMethod}
           options={sortingOptions}
           mobileDisplay={<img src={sortIcon} alt="sort icon" />}
         />
+
       </div>
       <div className="category-ruler">
         {tags}
