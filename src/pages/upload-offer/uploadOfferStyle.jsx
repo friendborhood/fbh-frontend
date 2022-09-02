@@ -166,6 +166,12 @@ export const UploadOfferStyle = styled.div`
                 bottom: 70px;
             }
 
+            & button:disabled,
+                button[disabled]{
+                background-color: #cccccc;
+                color: #666666;
+                }
+
             & div.loader-container {
                 display: flex;
                 position: absolute;
