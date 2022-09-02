@@ -8,6 +8,14 @@ import CategoryMenu from '../../components/Categories/CategoryMenu';
 import { GLOBAL_FONT, GLOBAL_SCARLET } from '../../GlobalStyling';
 // import { GLOBAL_SCARLET } from '../../GlobalStyling';
 
+const StyledOffersTable = styled.div`
+  & p.filter-checkbox {
+    margin-top: 20px;
+    margin-left: 23px;
+    font-weight: 600;
+  }
+`;
+
 const SliderContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -61,8 +69,8 @@ function OffersTable() {
   };
   const fetchOffersHandler = async () => {
     const params = {};
-    if (filterSelf) {
-      params.filterSelf = true;
+    if (!filterSelf) {
+      params.filterSelf = false;
     }
     params.radius = radius * 1000;
     if (sortMethod === 'Newest First') {
@@ -88,10 +96,21 @@ function OffersTable() {
   };
   const items = offers.map((offer, index) => <ItemCard offerData={offer} key={index} />);
   return (
-    <div>
-      Filter My Offers
+    <StyledOffersTable>
+      <p className="filter-checkbox">
+        Include My Offers?
+        <Checkbox
+          checked={filterSelf}
+          onChange={() => setFilterSelf(!filterSelf)}
+          sx={{
+            color: GLOBAL_SCARLET,
+            '&.Mui-checked': {
+              color: GLOBAL_SCARLET,
+            },
+          }}
+        />
+      </p>
 
-      <Checkbox checked={filterSelf} onChange={() => setFilterSelf(!filterSelf)} />
       <CategoryMenu
         categoriesChanged={selectedCategories}
         setCategoriesChanged={setSelectedCategories}
@@ -116,7 +135,7 @@ function OffersTable() {
         {items || 'No offers found'}
       </OfferTableStyle>
 
-    </div>
+    </StyledOffersTable>
   );
 }
 
