@@ -20,7 +20,7 @@ function MainNavigation() {
   const [userImg, setUserImg] = useState('');
   const [userName, setUserName] = useState('');
 
-  useEffect(() => Promise.all([fetchUserData({ setUserName, setUserImg })]));
+  useEffect(() => Promise.all([fetchUserData({ setUserName, setImageUrl: setUserImg })]));
   const onHamburgerClicked = () => {
     dispatch(updateMenuDisplay(true));
   };
@@ -48,7 +48,7 @@ function MainNavigation() {
           )
           : (
             <>
-              <img src={userImg} alt="" />
+              <img style={{ maxHeight: 100, maxWidth: 100 }} src={userImg} alt="" />
               <div>{`Welcome, ${userName}`}</div>
               <Link to={PAGES.DASHBOARD}><div className="menu-item">Dashboard</div></Link>
               <Link to={PAGES.ADDITIONAL_DETAILS}><div className="menu-item">Your Info</div></Link>
