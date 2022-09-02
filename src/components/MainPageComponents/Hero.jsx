@@ -9,7 +9,7 @@ const HeroStyle = styled.div`
     width: 100vw;
     height: 65vh;
     @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
-      height: 45vh;
+      height: 35vh;
       justify-content: space-between;
     }
 

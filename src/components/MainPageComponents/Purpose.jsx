@@ -6,12 +6,16 @@ import styled from 'styled-components';
 import box from '../../images/box.svg';
 import handshake from '../../images/handshake.svg';
 import planet from '../../images/Planet.svg';
+import { MOBILE_STYLE } from '../../GlobalStyling';
 
 const StyledPurpose = styled.div`
   display: flex;
   height: 35vh;
   width: 100vw;
   justify-content: center;
+  @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
+    height: 30vh;
+  }
 
   & div {
     &.display-box {
@@ -22,6 +26,10 @@ const StyledPurpose = styled.div`
       background-color: rgba(159, 166, 174, 0.1);
       justify-content: space-evenly;
       border-radius: 8px;
+
+      @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
+        width: 100vw;
+      }
 
       & div.essence {
         display: flex;
@@ -37,6 +45,16 @@ const StyledPurpose = styled.div`
           font-weight: 700;
           font-size: 40px;
           line-height: 45px;
+          @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
+            display: flex;
+            font-size: 18px;
+            line-height: 100%;
+            text-align: center;
+            align-items: center;
+            height: 25px;
+            width: 70%;
+            margin-bottom: 1%;
+          }
         }
 
         & p {
@@ -49,11 +67,19 @@ const StyledPurpose = styled.div`
           line-height: 29px;
           text-align: center;
           color: #000000;
+          @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
+            font-size: 12px;
+            line-height: 100%;
+          }
         }
 
         & img {
           width: 100px;
           height: 100px;
+          @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
+            width: 38px;
+            height: 38px;
+          }
         }
       }
     }
