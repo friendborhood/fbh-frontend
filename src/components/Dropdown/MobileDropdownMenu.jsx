@@ -81,6 +81,7 @@ export function MobileDropdownMenu({
                 value={option}
                 key={option}
                 onClick={() => {
+                  localStorage.setItem('sortMethod', option);
                   setChosen(option);
                   dispatch(updateSortDisplay(false));
                 }}
