@@ -40,20 +40,11 @@ function UploadOffer() {
   const [disableButton, setDisableButton] = useState(false);
   const navigate = useNavigate();
 
-  const swapKeysAndValues = (obj) => {
-    const swapped = Object.entries(obj).map(
-      ([key, value]) => [value.itemName, key],
-    );
-
-    return Object.fromEntries(swapped);
-  };
-
   const fetchItems = async () => {
     const { data: currentItems } = await network.get(END_POINTS.ITEM);
     const itemsNamesFormatted = currentItems.map((item) => item.itemName);
     setItemNames(itemsNamesFormatted);
-    const itemsFormattedForMapping = swapKeysAndValues(currentItems);
-    setItemsMap(itemsFormattedForMapping);
+    setItemsMap(currentItems);
   };
 
   useEffect(() => Promise.all([
