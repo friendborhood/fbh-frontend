@@ -50,7 +50,7 @@ function UploadOffer() {
 
   const fetchItems = async () => {
     const { data: currentItems } = await network.get(END_POINTS.ITEM);
-    const itemsNamesFormatted = Object.values(currentItems).map((item) => item.itemName);
+    const itemsNamesFormatted = currentItems.map((item) => item.itemName);
     setItemNames(itemsNamesFormatted);
     const itemsFormattedForMapping = swapKeysAndValues(currentItems);
     setItemsMap(itemsFormattedForMapping);
