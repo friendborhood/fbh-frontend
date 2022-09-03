@@ -43,7 +43,7 @@ const OfferTableStyle = styled.div`
   justify-content: center;
 `;
 
-function OffersTable() {
+function OffersTable({ myOffers = false }) {
   const sliderPercent = localStorage.getItem('sliderPercent') || 50;
   const [slider, setSlider] = useState(sliderPercent);
   const [radius, setRadius] = useState(sliderPercent / 10);
@@ -78,8 +78,8 @@ function OffersTable() {
 
     params.categories = fetchSelectedCategories();
     const { data } = await network.get(
-      `${END_POINTS.OFFERS}/in-area`,
-      { params },
+      myOffers ? `${END_POINTS.OFFERS}/me` : `${END_POINTS.OFFERS}/in-area`,
+      { params: myOffers ? {} : params },
     );
     setOffers(data);
   };
@@ -93,9 +93,16 @@ function OffersTable() {
     setRadius(newValue / 10);
     localStorage.setItem('sliderPercent', newValue);
   };
-  const items = offers.map((offer, index) => <ItemCard offerData={offer} key={index} />);
+  const items = offers.map((offer, index) => (
+    <ItemCard
+      myOffers={myOffers}
+      offerData={offer}
+      key={index}
+    />
+  ));
   return (
     <StyledOffersTable>
+      {!myOffers && (
       <p className="filter-checkbox">
         Include My Offers?
         <Checkbox
@@ -109,14 +116,18 @@ function OffersTable() {
           }}
         />
       </p>
+      )}
 
+      {!myOffers && (
       <CategoryMenu
         categoriesChanged={selectedCategories}
         setCategoriesChanged={setSelectedCategories}
         selectedSortMethod={sortMethod}
         setSelectedSortMethod={setSelectedSortMethod}
       />
+      )}
       <Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center" />
+      {!myOffers && (
       <div style={{ maxWidth: 500 }}>
         <SliderContainer>
           <p>{`Search Radius: ${radius} Kilometers`}</p>
@@ -128,8 +139,10 @@ function OffersTable() {
               color: GLOBAL_SCARLET,
             }}
           />
+
         </SliderContainer>
       </div>
+      )}
       <OfferTableStyle>
         {items || 'No offers found'}
       </OfferTableStyle>

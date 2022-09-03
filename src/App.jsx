@@ -19,6 +19,7 @@ import MobileMenu from './components/mobile-menu/MobileMenu';
 import Dashboard from './pages/dashboard/Dashboard';
 import { getTokenFromLocalStorage } from './user-manager';
 import { updateLoginState } from './Store/store';
+import MyOffers from './pages/myOffers/MyOffers';
 
 function App() {
   const menuDisplayStatus = useSelector((state) => state.display.showMobileMenu);
@@ -41,6 +42,7 @@ function App() {
           <Route path={PAGES.LOGIN} element={<LoginPage />} />
           <Route path={PAGES.ADDITIONAL_DETAILS} element={<AdditionalDetailsPage />} />
           <Route path={PAGES.DASHBOARD} element={<Dashboard />} />
+          <Route path={PAGES.MY_OFFERS} element={<MyOffers />} />
           <Route path={PAGES.UPLOAD_OFFER} element={<UploadOffer />} />
           <Route path={PAGES.ABOUT_US} element={<NotFound />} />
           <Route path="*" element={<NotFound />} />

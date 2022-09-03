@@ -1,13 +1,21 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import ReactCardFlip from 'react-card-flip';
 import { Card } from './style';
 import { network, END_POINTS } from '../../network';
+import { displayMessage } from '../../utils/handle-device-middleware';
 
 const fallBackImage = require('../../images/mock/fallback.png');
-const me = require('../../images/mock/square-photo.jpg');
 
-function ItemCard({ offerData }) {
+const handleDeleteOffer = async (offerId) => {
+  try {
+    await network.delete(`${END_POINTS.OFFERS}/${offerId}`);
+    displayMessage('offer deleted successfully');
+  } catch (error) {
+    displayMessage('error deleting offer');
+  }
+};
+function ItemCard({ myOffers, offerData }) {
   const {
     imageUrl,
     itemData,
@@ -16,8 +24,9 @@ function ItemCard({ offerData }) {
     name,
     priceAsked: price,
     description,
+    id,
   } = offerData;
-
+  console.log('my offers is', myOffers);
   let itemName;
   if (itemData) {
     ({ itemName } = itemData);
@@ -38,7 +47,7 @@ function ItemCard({ offerData }) {
         <div className="item-details">
           <div className="info-line">
             <div className="text large">{itemName}</div>
-            <div className="text small">{`${distance} km`}</div>
+            {(!myOffers && <div className="text small">{`${distance} km`}</div>)}
           </div>
           <div className="info-line">
             <div className="text user-info">
@@ -50,10 +59,18 @@ function ItemCard({ offerData }) {
         </div>
       </Card>
       <Card onClick={() => setFlipped(!flipped)}>
-        <h4>
-          {' '}
-          {`Contact ${firstName}: \n ${phoneNumber ? `\n phone number is ${phoneNumber}` : ''} ${email ? `\n email is ${email}` : ''}`}
-        </h4>
+        {!myOffers ? (
+          <h4>
+            {' '}
+            {`Contact ${firstName}: \n ${phoneNumber ? `\n phone number is ${phoneNumber}` : ''} ${email ? `\n email is ${email}` : ''}`}
+          </h4>
+        ) : (
+          <>
+            <button type="button" onClick={() => handleDeleteOffer(id)}>Delete Offer</button>
+            <button type="button" onClick={() => alert('hi')}>Disable Offer</button>
+          </>
+        )}
+        {!myOffers && (
         <div className="item-details">
           <div className="info-line">
             <div className="text large">{itemName}</div>
@@ -67,6 +84,7 @@ function ItemCard({ offerData }) {
             <div className="text large">{`${price}₪/hour`}</div>
           </div>
         </div>
+        )}
       </Card>
     </ReactCardFlip>
   );
