@@ -67,7 +67,7 @@ function AdditionalDetailsPage() {
         />
         <BoxInput
           noInput
-          label="Base Address"
+          label="Address"
           id="location"
         />
 
