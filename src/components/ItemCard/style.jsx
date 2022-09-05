@@ -34,11 +34,11 @@ transition: transform 200ms ease;
     {
         display: flex;
         flex-direction: row;
-        width: unset;
-        height: unset;
-        /* gap: unset; */
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        gap: unset;
         padding: unset;
-        border: solid red
     }
 
     & button {
@@ -58,6 +58,11 @@ transition: transform 200ms ease;
                 font-weight: 700;
             }
         }
+
+    @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
+        height: fit-content;
+        width: fit-content;
+    }
     }
 }
 
