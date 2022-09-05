@@ -1,5 +1,7 @@
 import styled from 'styled-components';
-import { GLOBAL_FONT, MOBILE_STYLE } from '../../GlobalStyling';
+import {
+  GLOBAL_FONT, GLOBAL_LIGHTGRAY, GLOBAL_SCARLET, MOBILE_STYLE,
+} from '../../GlobalStyling';
 import generalImage from '../../images/mini-icon-removebg.png';
 
 export const Card = styled.div`
@@ -17,6 +19,50 @@ cursor: pointer;
 filter: drop-shadow(0px 0px 10px rgba(20, 23, 28, 0.1));
 transform: scale(1);
 transition: transform 200ms ease;
+
+& div.flipped-side {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    gap: 40%;
+    padding: 25%;
+    font-weight: 700;
+
+
+    @media only screen and (max-width: ${MOBILE_STYLE.max_width}) 
+    {
+        flex-direction: row;
+        width: unset;
+        height: unset;
+        gap: unset;
+        padding: unset;
+    }
+
+    & button {
+
+        @media only screen and (max-width: ${MOBILE_STYLE.max_width}) 
+        {
+            border: solid red;
+        }
+        &.delete-offer {
+            font-weight: 400;
+            color: ${GLOBAL_LIGHTGRAY};
+
+            &:hover {
+                font-weight: 500;
+            }
+        }
+
+        &.disable-offer {
+            font-weight: 500;
+            color: ${GLOBAL_SCARLET};
+            &:hover {
+                font-weight: 700;
+            }
+        }
+    }
+}
 
 
 @media only screen and (min-width: ${MOBILE_STYLE.max_width})

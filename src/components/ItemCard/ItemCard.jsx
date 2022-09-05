@@ -81,17 +81,10 @@ function ItemCard({ myOffers, offerData }) {
                 {`Contact ${firstName}: \n ${phoneNumber ? `\n phone number is ${phoneNumber}` : ''} ${email ? `\n email is ${email}` : ''}`}
               </h4>
             ) : (
-              <>
-                <br />
-                <br />
-                <br />
-                <button type="button" onClick={() => handleDeleteOffer(id)}>Delete Offer</button>
-                <br />
-                <br />
-                <br />
-                <br />
-                <button type="button" onClick={() => patchOffer(id, updatedState === 'Disabled' ? 'Available' : 'Disabled')}>{`${updatedState === 'Disabled' ? 'Enable' : 'Disable'} Offer`}</button>
-              </>
+              <div className="flipped-side">
+                <button type="button" className="delete-offer" onClick={() => handleDeleteOffer(id)}>Delete Offer</button>
+                <button type="button" className="disable-offer" onClick={() => patchOffer(id, updatedState === 'Disabled' ? 'Available' : 'Disabled')}>{`${updatedState === 'Disabled' ? 'Enable' : 'Disable'} Offer`}</button>
+              </div>
             )}
             {!myOffers && (
             <div className="item-details">
