@@ -83,7 +83,7 @@ function ItemCard({ myOffers, offerData }) {
             <br />
             <br />
             <br />
-            <button type="button" onClick={() => patchOffer(id, state === 'Disabled' ? 'Available' : 'Enabled')}>{`${state === 'Disabled' ? 'Enable' : 'Disable'} Offer`}</button>
+            <button type="button" onClick={() => patchOffer(id, state === 'Disabled' ? 'Available' : 'Disabled')}>{`${state === 'Disabled' ? 'Enable' : 'Disable'} Offer`}</button>
           </>
         )}
         {!myOffers && (
