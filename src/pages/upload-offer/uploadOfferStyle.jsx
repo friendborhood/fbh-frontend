@@ -27,6 +27,7 @@ export const UploadOfferStyle = styled.div`
         gap: 20px;
 
         @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
+            position: unset;
             & input {
                 align-self: flex-start;
                 width: 280px !important;
@@ -164,6 +165,13 @@ export const UploadOfferStyle = styled.div`
                 font-weight: 500;
                 right: 71px;
                 bottom: 70px;
+                @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
+                    position: unset;
+                    margin-top: 30px;
+                    justify-self: center;
+                    margin-left: 30%;
+                    margin-right: 30%;
+                }
             }
 
             & button:disabled,
