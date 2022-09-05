@@ -32,19 +32,16 @@ transition: transform 200ms ease;
 
     @media only screen and (max-width: ${MOBILE_STYLE.max_width}) 
     {
+        display: flex;
         flex-direction: row;
         width: unset;
         height: unset;
-        gap: unset;
+        /* gap: unset; */
         padding: unset;
+        border: solid red
     }
 
     & button {
-
-        @media only screen and (max-width: ${MOBILE_STYLE.max_width}) 
-        {
-            border: solid red;
-        }
         &.delete-offer {
             font-weight: 400;
             color: ${GLOBAL_LIGHTGRAY};
