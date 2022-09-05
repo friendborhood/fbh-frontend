@@ -15,6 +15,7 @@ export const MainNavigationStyle = styled.div`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
   @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
+    width: 100vw;
     flex-direction: row-reverse;
     height: ${MOBILE_STYLE.NAVIGATION_MOBILE_HEIGHT};
     padding-right: ${MOBILE_STYLE.navigation_padding};
@@ -43,6 +44,7 @@ export const MainNavigationStyle = styled.div`
         transition: transform 0.2s ease;
         @media only screen and (max-width: ${MOBILE_STYLE.max_width})
         {
+          margin-left: 0;
           width: 105px;
         }
         @media only screen and (min-width: ${MOBILE_STYLE.max_width})
