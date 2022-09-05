@@ -15,6 +15,14 @@ const handleDeleteOffer = async (offerId) => {
     displayMessage('error deleting offer');
   }
 };
+const patchOffer = async (offerId, newState) => {
+  try {
+    await network.patch(`${END_POINTS.OFFERS}/${offerId}`, { state: newState });
+    displayMessage(`offer changed to ${newState} successfully`);
+  } catch (error) {
+    displayMessage('error changing offer state');
+  }
+};
 function ItemCard({ myOffers, offerData }) {
   const {
     imageUrl,
@@ -25,8 +33,8 @@ function ItemCard({ myOffers, offerData }) {
     priceAsked: price,
     description,
     id,
+    state,
   } = offerData;
-  console.log('my offers is', myOffers);
   let itemName;
   if (itemData) {
     ({ itemName } = itemData);
@@ -38,7 +46,7 @@ function ItemCard({ myOffers, offerData }) {
   const distance = (distanceFromUser / 1000).toFixed(2);
   return (
     <ReactCardFlip isFlipped={flipped} flipDirection="horizontal">
-      <Card onClick={() => setFlipped(!flipped)}>
+      <Card disabled={state === 'Disabled' && true} onClick={() => setFlipped(!flipped)}>
         <img
           src={imageUrl || fallBackImage}
           alt="item"
@@ -48,6 +56,7 @@ function ItemCard({ myOffers, offerData }) {
           <div className="info-line">
             <div className="text large">{itemName}</div>
             {(!myOffers && <div className="text small">{`${distance} km`}</div>)}
+            <div className="text small">{state}</div>
           </div>
           <div className="info-line">
             <div className="text user-info">
@@ -66,8 +75,15 @@ function ItemCard({ myOffers, offerData }) {
           </h4>
         ) : (
           <>
+            <br />
+            <br />
+            <br />
             <button type="button" onClick={() => handleDeleteOffer(id)}>Delete Offer</button>
-            <button type="button" onClick={() => alert('hi')}>Disable Offer</button>
+            <br />
+            <br />
+            <br />
+            <br />
+            <button type="button" onClick={() => patchOffer(id, state === 'Disabled' ? 'Available' : 'Enabled')}>{`${state === 'Disabled' ? 'Enable' : 'Disable'} Offer`}</button>
           </>
         )}
         {!myOffers && (

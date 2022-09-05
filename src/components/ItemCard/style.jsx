@@ -11,12 +11,13 @@ box-sizing: border-box;
 padding: 0px;
 width: 330px;
 height: 381px;
-background-color: white;
+background-color: ${(props) => (props.disabled ? 'gray' : 'white')};
 border-radius: 17px;
 cursor: pointer;
 filter: drop-shadow(0px 0px 10px rgba(20, 23, 28, 0.1));
 transform: scale(1);
 transition: transform 200ms ease;
+
 
 @media only screen and (min-width: ${MOBILE_STYLE.max_width})
 {
