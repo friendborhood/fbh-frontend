@@ -30,7 +30,7 @@ function UploadOffer() {
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
   const [cloudinaryUrl, setCloudinaryUrl] = useState('');
-  const [itemsMap, setItemsMap] = useState({});
+  const [itemsArray, setItemsArray] = useState([]);
   const [userLocation, setUserLocation] = useState({});
   const [stepOne, setStepOne] = useState(true);
   const [stepTwo, setStepTwo] = useState(false);
@@ -44,7 +44,7 @@ function UploadOffer() {
     const { data: currentItems } = await network.get(END_POINTS.ITEM);
     const itemsNamesFormatted = currentItems.map((item) => item.itemName);
     setItemNames(itemsNamesFormatted);
-    setItemsMap(currentItems);
+    setItemsArray(currentItems);
   };
 
   useEffect(() => Promise.all([
@@ -92,10 +92,11 @@ function UploadOffer() {
   };
   const uploadOffer = async () => {
     try {
+      const { id: selectedItemId } = itemsArray.find((itemObj) => itemObj.itemName === item);
       if (cloudinaryUrl && price && condition) {
-        await network.post(`${END_POINTS.OFFERS}`, {
+        await network.post(END_POINTS.OFFERS, {
           imageUrl: cloudinaryUrl,
-          itemId: itemsMap[item],
+          itemId: selectedItemId,
           priceAsked: price,
           description,
           condition,
