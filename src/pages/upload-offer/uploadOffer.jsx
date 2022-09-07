@@ -257,16 +257,26 @@ function UploadOffer() {
               />
             </div>
           )}
-        <div className={`img-container ${stepTwo === true ? 'displayOn' : 'displayOff'}`}>
-          <img
+        <div
+          className={`img-container ${stepTwo === true ? 'displayOn' : 'displayOff'}`}
+          style={{
+            height: '55%',
+            width: '30%',
+            backgroundImage: `url(${cloudinaryUrl})`,
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
+            backgroundSize: 'contain',
+          }}
+        >
+          {/* <img
             hidden={!cloudinaryUrl}
             style={{
-              maxHeight: 350,
-              maxWidth: 350,
+              maxHeight: '30%',
+              maxWidth: '30%',
             }}
             alt="offer"
             src={cloudinaryUrl}
-          />
+          /> */}
         </div>
 
       </div>

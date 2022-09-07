@@ -4,6 +4,8 @@ import ReactCardFlip from 'react-card-flip';
 import { Card } from './style';
 import { network, END_POINTS } from '../../network';
 import { displayMessage } from '../../utils/handle-device-middleware';
+import phone from '../../images/tags/phone.svg';
+import emailIcon from '../../images/tags/mail.svg';
 
 const fallBackImage = require('../../images/mock/fallback.png');
 
@@ -76,31 +78,47 @@ function ItemCard({ myOffers, offerData }) {
           </Card>
           <Card onClick={() => setFlipped(!flipped)}>
             {!myOffers ? (
-              <h4>
-                {' '}
-                {`Contact ${firstName}: \n ${phoneNumber ? `\n phone number is ${phoneNumber}` : ''} ${email ? `\n email is ${email}` : ''}`}
-              </h4>
+              <>
+                <div className="text large" style={{ 'justify-content': 'center', 'padding-top': '10%' }}>
+                  Contact Information
+                </div>
+                <div className="personal-details">
+                  <div className="first-row">
+                    <div className="name">
+                      {`${firstName} ${lastName}`}
+                    </div>
+                    <div className="phone">
+                      <img src={phone} alt="" />
+                      {phoneNumber ? `${phoneNumber}` : ''}
+                    </div>
+                  </div>
+                  <div className="email">
+                    <img src={emailIcon} alt="" />
+                    {email ? `${email}` : ''}
+                  </div>
+                </div>
+              </>
             ) : (
               <div className="flipped-side">
                 <button type="button" className="delete-offer" onClick={() => handleDeleteOffer(id)}>Delete Offer</button>
                 <button type="button" className="disable-offer" onClick={() => patchOffer(id, updatedState === 'Disabled' ? 'Available' : 'Disabled')}>{`${updatedState === 'Disabled' ? 'Enable' : 'Disable'} Offer`}</button>
               </div>
             )}
-            {!myOffers && (
-            <div className="item-details">
-              <div className="info-line">
-                <div className="text large">{itemName}</div>
-                <div className="text large">{`${distance} km`}</div>
-              </div>
-              <div className="info-line">
-                <div className="text user-info">
-                  <img className="user-icon" src={offererUserIconUrl} alt="" />
-                  <div className="medium">{`${firstName} ${lastName}`}</div>
+            {/* {!myOffers && (
+              <div className="item-details">
+                <div className="info-line">
+                  <div className="text large">{itemName}</div>
+                  <div className="text large">{`${distance} km`}</div>
                 </div>
-                <div className="text large">{`${price}₪/hour`}</div>
+                <div className="info-line">
+                  <div className="text user-info">
+                    <img className="user-icon" src={offererUserIconUrl} alt="" />
+                    <div className="medium">{`${firstName} ${lastName}`}</div>
+                  </div>
+                  <div className="text large">{`${price}₪/hour`}</div>
+                </div>
               </div>
-            </div>
-            )}
+            )} */}
           </Card>
         </ReactCardFlip>
       ));

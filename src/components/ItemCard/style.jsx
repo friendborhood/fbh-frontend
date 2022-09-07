@@ -20,6 +20,45 @@ filter: drop-shadow(0px 0px 10px rgba(20, 23, 28, 0.1));
 transform: scale(1);
 transition: transform 200ms ease;
 
+& div.personal-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    & div.first-row {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 4%;
+
+        & div.name {
+            margin-top: 12%;
+            font-family: ${GLOBAL_FONT};
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 100%;
+            width: fit-content;
+            white-space: nowrap;
+        }
+
+        & div.phone {
+            margin-top: 12%;
+            flex-direction: row;
+            font-family: ${GLOBAL_FONT};
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 100%;
+            width: fit-content;
+            white-space: nowrap;
+            gap: 3px;
+            margin-left: 5%;
+        }
+    }
+    & div.email {
+        gap: 3px;
+    }
+}
+
 & div.flipped-side {
     display: flex;
     flex-direction: column;
@@ -44,7 +83,7 @@ transition: transform 200ms ease;
     & button {
         &.delete-offer {
             font-weight: 400;
-            color: ${GLOBAL_LIGHTGRAY};
+            color: ${GLOBAL_SCARLET};
 
             &:hover {
                 font-weight: 500;
@@ -53,7 +92,7 @@ transition: transform 200ms ease;
 
         &.disable-offer {
             font-weight: 500;
-            color: ${GLOBAL_SCARLET};
+            color: ${GLOBAL_LIGHTGRAY};
             &:hover {
                 font-weight: 700;
             }

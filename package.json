@@ -30,6 +30,7 @@
     "react-lazy-load-image-component": "^1.5.4",
     "react-loader-spinner": "^6.0.0-0",
     "react-redux": "^7.2.6",
+    "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.2.2",
     "react-scripts": "5.0.0",
     "react-step-progress-bar": "^1.0.3",
