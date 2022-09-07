@@ -252,7 +252,9 @@ function UploadOffer() {
           className={`img-container ${stepTwo === true ? 'displayOn' : 'displayOff'}`}
           style={{
             backgroundImage: `url(${cloudinaryUrl})`,
-            backgroundSize: `${isMobile ? 'contain' : ''}`,
+            backgroundSize: 'contain',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
           }}
         />
         {/* Step Three */}

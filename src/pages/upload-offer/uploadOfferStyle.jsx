@@ -213,9 +213,6 @@ export const UploadOfferStyle = styled.div`
                     margin-top: 4%;
                     height: 50%;
                     width: 90%;
-                    background-repeat: 'no-repeat';
-                    background-position: 'center';
-                    background-size: 'contain';
                 }
             }
 
