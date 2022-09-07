@@ -20,6 +20,24 @@ filter: drop-shadow(0px 0px 10px rgba(20, 23, 28, 0.1));
 transform: scale(1);
 transition: transform 200ms ease;
 
+& div.personal-details {
+    & div.first-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+        & div.name {
+            font-family: ${GLOBAL_FONT};
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 100%;
+        }
+    }
+    & display.email {
+
+    }
+}
+
 & div.flipped-side {
     display: flex;
     flex-direction: column;
