@@ -8,7 +8,6 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a lo
 import Nitzan from '../../images/mock/Nitzan.png';
 import irad from '../../images/mock/irad.jpg';
 import shahar from '../../images/mock/shahar.jpeg';
-
 import { GLOBAL_FONT, GLOBAL_SCARLET, MOBILE_STYLE } from '../../GlobalStyling';
 import { PAGES } from '../../pages/consts';
 
