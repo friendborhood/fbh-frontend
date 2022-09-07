@@ -21,20 +21,41 @@ transform: scale(1);
 transition: transform 200ms ease;
 
 & div.personal-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     & div.first-row {
         display: flex;
         flex-direction: row;
+        width: 100%;
         justify-content: center;
+        margin-bottom: 4%;
 
         & div.name {
+            margin-top: 12%;
             font-family: ${GLOBAL_FONT};
             font-weight: 700;
             font-size: 18px;
             line-height: 100%;
+            width: fit-content;
+            white-space: nowrap;
+        }
+
+        & div.phone {
+            margin-top: 12%;
+            flex-direction: row;
+            font-family: ${GLOBAL_FONT};
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 100%;
+            width: fit-content;
+            white-space: nowrap;
+            gap: 3px;
+            margin-left: 5%;
         }
     }
-    & display.email {
-
+    & div.email {
+        gap: 3px;
     }
 }
 

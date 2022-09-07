@@ -4,6 +4,8 @@ import ReactCardFlip from 'react-card-flip';
 import { Card } from './style';
 import { network, END_POINTS } from '../../network';
 import { displayMessage } from '../../utils/handle-device-middleware';
+import phone from '../../images/tags/phone.svg';
+import emailIcon from '../../images/tags/mail.svg';
 
 const fallBackImage = require('../../images/mock/fallback.png');
 
@@ -79,14 +81,20 @@ function ItemCard({ myOffers, offerData }) {
               <>
                 <div className="text large" style={{ 'justify-content': 'center', 'padding-top': '10%' }}>
                   Contact Information
-                  {/* {`Contact ${firstName}: \n ${phoneNumber ?
-              `\n phone number is ${phoneNumber}` : ''} ${email ? `\n email is ${email}` : ''}`} */}
                 </div>
                 <div className="personal-details">
                   <div className="first-row">
                     <div className="name">
                       {`${firstName} ${lastName}`}
                     </div>
+                    <div className="phone">
+                      <img src={phone} alt="" />
+                      {`${phoneNumber}`}
+                    </div>
+                  </div>
+                  <div className="email">
+                    <img src={emailIcon} alt="" />
+                    {`${email}`}
                   </div>
                 </div>
               </>
@@ -96,7 +104,7 @@ function ItemCard({ myOffers, offerData }) {
                 <button type="button" className="disable-offer" onClick={() => patchOffer(id, updatedState === 'Disabled' ? 'Available' : 'Disabled')}>{`${updatedState === 'Disabled' ? 'Enable' : 'Disable'} Offer`}</button>
               </div>
             )}
-            {!myOffers && (
+            {/* {!myOffers && (
               <div className="item-details">
                 <div className="info-line">
                   <div className="text large">{itemName}</div>
@@ -110,7 +118,7 @@ function ItemCard({ myOffers, offerData }) {
                   <div className="text large">{`${price}₪/hour`}</div>
                 </div>
               </div>
-            )}
+            )} */}
           </Card>
         </ReactCardFlip>
       ));
