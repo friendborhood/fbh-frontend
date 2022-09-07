@@ -89,12 +89,12 @@ function ItemCard({ myOffers, offerData }) {
                     </div>
                     <div className="phone">
                       <img src={phone} alt="" />
-                      {`${phoneNumber}`}
+                      {phoneNumber ? `${phoneNumber}` : ''}
                     </div>
                   </div>
                   <div className="email">
                     <img src={emailIcon} alt="" />
-                    {`${email}`}
+                    {email ? `${email}` : ''}
                   </div>
                 </div>
               </>

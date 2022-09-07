@@ -83,7 +83,7 @@ transition: transform 200ms ease;
     & button {
         &.delete-offer {
             font-weight: 400;
-            color: ${GLOBAL_LIGHTGRAY};
+            color: ${GLOBAL_SCARLET};
 
             &:hover {
                 font-weight: 500;
@@ -92,7 +92,7 @@ transition: transform 200ms ease;
 
         &.disable-offer {
             font-weight: 500;
-            color: ${GLOBAL_SCARLET};
+            color: ${GLOBAL_LIGHTGRAY};
             &:hover {
                 font-weight: 700;
             }
