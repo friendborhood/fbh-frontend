@@ -249,6 +249,7 @@ function UploadOffer() {
             setState={setPrice}
           />
         </div>
+        {stepTwo && (
         <div
           className={`img-container ${stepTwo === true ? 'displayOn' : 'displayOff'}`}
           style={{
@@ -258,6 +259,7 @@ function UploadOffer() {
             backgroundPosition: 'center',
           }}
         />
+        )}
         {/* Step Three */}
         <div className={`single-step ${stepOne || stepTwo ? "displayNone" : (stepThree === true ? 'displayOn' : 'displayOff')}`}>
           <p style={{ "font-weight": 500 }}>Uploading your offer...</p>
