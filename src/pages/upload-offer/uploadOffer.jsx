@@ -7,7 +7,7 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { ProgressBar, Step } from 'react-step-progress-bar';
-import { isMobile } from 'react-device-detect';
+import { isDesktop, isMobile } from 'react-device-detect';
 import { TailSpin } from 'react-loader-spinner';
 import { useNavigate } from 'react-router-dom';
 import BoxInput from '../../components/BoxInput';
@@ -38,6 +38,7 @@ function UploadOffer() {
   const [progressPrecent, setProgressPrecent] = useState(0);
   const [currentStep, setCurrentStep] = useState(1);
   const [disableButton, setDisableButton] = useState(false);
+  const [toRender, setToRender] = useState(true);
   const navigate = useNavigate();
 
   const fetchItems = async () => {
@@ -46,6 +47,17 @@ function UploadOffer() {
     setItemNames(itemsNamesFormatted);
     setItemsMap(currentItems);
   };
+
+  useEffect(() => {
+    console.log('here');
+    if (stepOne) {
+      setToRender(true);
+    } else {
+      setTimeout(() => {
+        setToRender(false);
+      }, 0);
+    }
+  }, [stepOne]);
 
   useEffect(() => Promise.all([
     fetchItems(),
@@ -182,7 +194,8 @@ function UploadOffer() {
       <div className="main-panel">
         {/* Step One: */}
         <div className={`single-step ${stepOne === true ? 'displayOnStart' : 'displayOff'}`}>
-          <DropDown className="item-selection on-top" options={itemNames} setState={setItem} state={item} />
+          {toRender && <DropDown className="item-selection on-top" options={itemNames} setState={setItem} state={item} />}
+          { toRender && (
           <BoxInput
             borderWidth="1px"
             label="Condition"
@@ -191,6 +204,8 @@ function UploadOffer() {
             placeHolder="Condition"
             setState={setCondition}
           />
+          )}
+          {toRender && (
           <div className="description-container">
             <div className="field-title">About the item</div>
             <textarea
@@ -200,12 +215,15 @@ function UploadOffer() {
               placeholder="  Describe your item"
             />
           </div>
+          )}
         </div>
         {/* Step Two: */}
-        <div className={`single-step ${stepOne ? "displayNone" : (stepTwo === true ? 'displayOn' : 'displayOff')}`}>
+        <div
+          className={`single-step ${stepOne ? "displayNone" : (stepTwo === true ? 'displayOn' : 'displayOff')}`}
+        >
           <div className="single-field">
             <div className="field-title">Upload an image</div>
-            <label htmlFor="image-upload">
+            <label htmlFor="image-upload" style={{ width: "fit-content" }}>
               <img src={uploadButton} alt="" />
               <input
                 type="file"
@@ -230,6 +248,13 @@ function UploadOffer() {
             setState={setPrice}
           />
         </div>
+        <div
+          className={`img-container ${stepTwo === true ? 'displayOn' : 'displayOff'}`}
+          style={{
+            backgroundImage: `url(${cloudinaryUrl})`,
+            backgroundSize: `${isMobile ? 'contain' : ''}`,
+          }}
+        />
         {/* Step Three */}
         <div className={`single-step ${stepOne || stepTwo ? "displayNone" : (stepThree === true ? 'displayOn' : 'displayOff')}`}>
           <p style={{ "font-weight": 500 }}>Uploading your offer...</p>
@@ -256,27 +281,6 @@ function UploadOffer() {
               />
             </div>
           )}
-        <div
-          className={`img-container ${stepTwo === true ? 'displayOn' : 'displayOff'}`}
-          style={{
-            height: '55%',
-            width: '30%',
-            backgroundImage: `url(${cloudinaryUrl})`,
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center',
-            backgroundSize: 'contain',
-          }}
-        >
-          {/* <img
-            hidden={!cloudinaryUrl}
-            style={{
-              maxHeight: '30%',
-              maxWidth: '30%',
-            }}
-            alt="offer"
-            src={cloudinaryUrl}
-          /> */}
-        </div>
 
       </div>
     </UploadOfferStyle>

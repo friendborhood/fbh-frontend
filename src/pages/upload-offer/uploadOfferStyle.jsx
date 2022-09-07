@@ -7,13 +7,19 @@ export const UploadOfferStyle = styled.div`
     display: flex;
     flex-direction: column;
     padding-top: 6%;
-    /* justify-items: center; */
     align-items: center;
-    /* align-content: center; */
     position: relative;
     background-color: ${SECONDARY_BACKGROUND};
     width: 100vw;
     height: 100%;
+
+    @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
+        height: 110vh;
+    }
+
+    & .display-none {
+        display: none;
+    }
 
     & div.single-field {
         display: flex;
@@ -62,6 +68,9 @@ export const UploadOfferStyle = styled.div`
         animation-direction: alternate;
         animation-iteration-count: 1;
         animation-fill-mode: forwards;
+        @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
+            animation-duration: 0.6s;
+        }
     }
 
     & div.displayOff {
@@ -118,7 +127,6 @@ export const UploadOfferStyle = styled.div`
                     justify-content: center;
                     align-items: center;
                     font-size: 30px;
-                    border: solid red;
                 }
             }
 
@@ -194,10 +202,25 @@ export const UploadOfferStyle = styled.div`
                 position: absolute;
                 right: 10%;
                 top: 10%;
+                height: 55%;
+                width: 30%;
+                border-radius: 10px;
+                background-repeat: 'no-repeat';
+                background-position: 'center';
+                background-size: 'contain';
+                @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
+                    position: static;
+                    margin-top: 4%;
+                    height: 50%;
+                    width: 90%;
+                    background-repeat: 'no-repeat';
+                    background-position: 'center';
+                    background-size: 'contain';
+                }
             }
 
             & button {
-
+                
             }
         }
     }
@@ -220,10 +243,13 @@ export const UploadOfferStyle = styled.div`
             opacity: 1;
             transform: translateX(0);
         }
+        99% {
+        opacity: 0;
+        transform: translateX(60px);
+        }
         100% {
-            display: none;
+            display: none;     
             opacity: 0;
-            transform: translateX(60px);
         }
     }   
 `;
