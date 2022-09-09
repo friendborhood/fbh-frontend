@@ -4,7 +4,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { RecommendationCard } from './RecommendationCard';
-import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import Nitzan from '../../images/mock/Nitzan.png';
 import irad from '../../images/mock/irad.jpg';
 import shahar from '../../images/mock/shahar.jpeg';

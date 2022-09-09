@@ -8,7 +8,6 @@ import GoogleLogin from 'react-google-login';
 import { useDispatch } from 'react-redux';
 import { handleSignUp, StyledForm } from './utils';
 import BoxInput from '../BoxInput';
-import CustomCheckBox from './CustomCheckBox';
 import { PAGES } from '../../pages/consts';
 import 'react-toastify/dist/ReactToastify.css';
 import { parseGmailToValidUserName } from '../LoginForm/utils';
@@ -21,14 +20,13 @@ function SignUpForm() {
   const [fname, setFname] = useState('');
   const [lname, setLname] = useState('');
   const [userName, setuserName] = useState('');
-  const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [email, setEmail] = useState('');
   const [hideLoader, setHideLoader] = useState(true);
   const dispatch = useDispatch();
 
   const canSignUp = useMemo(
-    () => !(email && userName && fname && lname && acceptedTerms),
-    [email, userName, fname, lname, acceptedTerms],
+    () => !(email && userName && fname && lname),
+    [email, userName, fname, lname],
   );
 
   const trySignUp = async (data) => {
@@ -39,6 +37,7 @@ function SignUpForm() {
     if (token) {
       dispatch(updateLoginState(token));
       navigate(PAGES.ADDITIONAL_DETAILS, { replace: true });
+      window.location.reload();
     }
     setHideLoader(true);
   };
@@ -99,10 +98,6 @@ function SignUpForm() {
           setState={setEmail}
           placeHolder="email"
         />
-      </div>
-      <div className="checkbox">
-        <CustomCheckBox isChecked={acceptedTerms} setIsChecked={setAcceptedTerms} />
-        <div>{'I\'ve read and agree with terms of service.'}</div>
       </div>
       {
                 hideLoader

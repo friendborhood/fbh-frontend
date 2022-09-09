@@ -37,8 +37,10 @@ function LoginForm() {
       const userFinishedRegistration = checkIfUserFinishedRegistration();
       if (userFinishedRegistration) {
         navigate(PAGES.DASHBOARD, { replace: true });
+        window.location.reload();
       } else {
         navigate(PAGES.ADDITIONAL_DETAILS, { replace: true });
+        window.location.reload();
       }
     } else if (!googleAuth) {
       displayMessage('wrong code');

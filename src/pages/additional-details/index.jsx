@@ -49,15 +49,17 @@ function AdditionalDetailsPage() {
       <HalfPageImage />
       <StyledForm style={{ gap: '5px' }}>
         <h1>Personal Info</h1>
-        <h2 className="sub-headline">Profile Picture</h2>
-        <img
-          className="user-icon"
-          alt="profile"
-          src={imageUrl}
-          referrerpolicy="no-referrer"
-          width="120"
-          height="120"
-        />
+        <div hidden={!imageUrl}>
+          <h2 className="sub-headline">Profile Picture</h2>
+          <img
+            className="user-icon"
+            alt="profile"
+            src={imageUrl}
+            referrerpolicy="no-referrer"
+            width="120"
+            height="120"
+          />
+        </div>
         <BoxInput
           label="Phone Number"
           id="phoneNumber"

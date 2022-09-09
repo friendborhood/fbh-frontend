@@ -63,7 +63,6 @@ function OffersTable({ myOffers = false }) {
         }
       });
     }
-    console.log(relevantCategories);
     return relevantCategories;
   };
   const fetchOffersHandler = async () => {

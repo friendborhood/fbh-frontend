@@ -18,7 +18,6 @@ const logo = require('../../images/fbh-logo.png');
 function MainNavigation() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const userName = useSelector((state) => state.auth.userName);
   const [userImg, setUserImg] = useState('');
   const [userName, setUserName] = useState('');
   const [userData, setUserData] = useState({});
@@ -29,6 +28,7 @@ function MainNavigation() {
   };
   const logoutHandler = () => {
     dispatch(updateLogoutState());
+    fetchUserData({ setUserData, setUserName, setImageUrl: setUserImg });
     navigate(PAGES.LOGIN, { replace: true });
   };
   redirectLoggedOutUser();
