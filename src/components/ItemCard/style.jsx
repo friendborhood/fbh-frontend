@@ -8,6 +8,7 @@ export const Card = styled.div`
 display: flex;
 flex: none;
 flex-grow: 0;
+z-index: 20;
 flex-direction: column;
 box-sizing: border-box;
 padding: 0px;

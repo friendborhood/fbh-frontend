@@ -48,7 +48,7 @@ function MobileMenu(props) {
         </div>
         <div className="options-container">
           {`Hello, ${userName || 'guest'}`}
-          <MenuOption label="About" icon={info} onClick={navigateTo} param={PAGES.LOGIN} />
+          <MenuOption label="About" icon={info} onClick={navigateTo} param={PAGES.ABOUT_US} />
           {userName
             ? (
               <>
