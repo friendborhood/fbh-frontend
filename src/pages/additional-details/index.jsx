@@ -18,9 +18,11 @@ function AdditionalDetailsPage() {
   const [location, setLocation] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [address, setAddress] = useState('');
 
-  useEffect(() => fetchUserData({ setUserName, setImageUrl }), []);
-
+  useEffect(() => fetchUserData({
+    setUserName, setImageUrl, setPhoneNumber, setAddress,
+  }), []);
   useEffect(async () => {
     const fetchedCategories = await fetchCategories();
     const formattedCategories = Object.entries(fetchedCategories).map(([name, url]) => ({
@@ -78,14 +80,19 @@ function AdditionalDetailsPage() {
             options={
               { types: ['address'] }
             }
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
             apiKey={process.env.REACT_APP_GOOGLE_API_KEY}
-            onPlaceSelected={(place) => setLocation({
-              address: place.formatted_address,
-              geoCode: {
-                lat: place.geometry.location.lat(),
-                lng: place.geometry.location.lng(),
-              },
-            })}
+            onPlaceSelected={(place) => {
+              setAddress(place.address);
+              setLocation({
+                address: place.formatted_address,
+                geoCode: {
+                  lat: place.geometry.location.lat(),
+                  lng: place.geometry.location.lng(),
+                },
+              });
+            }}
           />
         </StyledSection>
         <h2 className="sub-headline">Favorite Categories</h2>
@@ -95,6 +102,7 @@ function AdditionalDetailsPage() {
         <button
           type="button"
           variant="contained"
+          disabled={!phoneNumber || !location}
           onClick={async () => {
             const response = await handleSubmitDetails({
               phoneNumber,

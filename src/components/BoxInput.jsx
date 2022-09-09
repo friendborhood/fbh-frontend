@@ -48,6 +48,7 @@ export const StyledSection = styled.section`
 
 function BoxInput(props) {
   const {
+    state,
     setState, label, id: idBox, isHidden = false, noInput, borderWidth = 'BUTTON_RADIUS',
     placeHolder,
     placeHolderPrefix = 'Enter your',
@@ -61,6 +62,7 @@ function BoxInput(props) {
     <StyledSection border={borderWidth}>
       <div hidden={isHidden}>{label}</div>
       <input
+        value={state}
         hidden={isHidden || noInput}
         id={idBox}
         onChange={onChangeHandler}

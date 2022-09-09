@@ -19,15 +19,28 @@ network.interceptors.request.use((request) => {
 });
 
 const fetchUserData = async ({
-  setUserName, setImageUrl, setUserLocation, setUserData,
+  setUserName,
+  setImageUrl,
+  setUserLocation,
+  setUserData,
+  setAddress,
+  setPhoneNumber,
 }) => {
   const userNameFromStorage = getUserNameFromLocalStorage();
   if (setUserName) {
     setUserName(userNameFromStorage);
   }
   const { data: userData } = await network.get(END_POINTS.ME);
+
   if (setUserData) {
     setUserData(userData);
+  }
+  if (setPhoneNumber) {
+    console.log(userData.phoneNumber);
+    setPhoneNumber(userData.phoneNumber);
+  }
+  if (setAddress) {
+    setAddress(userData.location.address);
   }
   if (setImageUrl) {
     setImageUrl(userData.imageUrl);
