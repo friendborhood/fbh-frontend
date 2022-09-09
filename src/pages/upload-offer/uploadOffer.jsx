@@ -7,9 +7,12 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { ProgressBar, Step } from 'react-step-progress-bar';
-import { isDesktop, isMobile } from 'react-device-detect';
+import { isMobile } from 'react-device-detect';
 import { TailSpin } from 'react-loader-spinner';
 import { useNavigate } from 'react-router-dom';
+import { FormControlLabel, FormGroup, Switch } from '@mui/material';
+import { alpha, styled } from '@mui/material/styles';
+import { red } from '@mui/material/colors';
 import BoxInput from '../../components/BoxInput';
 import DropDown from '../../components/drop-down';
 import { END_POINTS, fetchUserData, network } from '../../network';
@@ -21,6 +24,17 @@ import miniIcon from '../../images/mini-icon-removebg.png';
 import uploadButton from '../../images/upload-img-button.svg';
 import { PAGES } from '../consts';
 
+const RedSwitch = styled(Switch)(({ theme }) => ({
+  '& .MuiSwitch-switchBase.Mui-checked': {
+    color: GLOBAL_SCARLET,
+    '&:hover': {
+      backgroundColor: alpha(GLOBAL_SCARLET, theme.palette.action.hoverOpacity),
+    },
+  },
+  '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
+    backgroundColor: GLOBAL_SCARLET,
+  },
+}));
 function UploadOffer() {
   const CLOUD_NAME = 'dxjhkogtp';
   const PRESET = 'tc7nz7hr';
@@ -39,8 +53,8 @@ function UploadOffer() {
   const [currentStep, setCurrentStep] = useState(1);
   const [disableButton, setDisableButton] = useState(false);
   const [toRender, setToRender] = useState(true);
+  const [free, setFree] = useState(false);
   const navigate = useNavigate();
-
   const fetchItems = async () => {
     const { data: currentItems } = await network.get(END_POINTS.ITEM);
     const itemsNamesFormatted = currentItems.map((item) => item.itemName);
@@ -48,6 +62,7 @@ function UploadOffer() {
     setItemsArray(currentItems);
   };
 
+  useEffect(() => free && setPrice('0'), [free]);
   useEffect(() => {
     console.log('here');
     if (stepOne) {
@@ -66,7 +81,7 @@ function UploadOffer() {
 
   useEffect(() => {
     if (currentStep === 1) {
-      if (item === '' || condition === '' || description === '' || description.length <= 3) {
+      if (item === '' || condition === '') {
         setDisableButton(true);
       } else {
         setDisableButton(false);
@@ -104,6 +119,7 @@ function UploadOffer() {
   };
   const uploadOffer = async () => {
     try {
+      setDisableButton(true);
       const { id: selectedItemId } = itemsArray.find((itemObj) => itemObj.itemName === item);
       if (cloudinaryUrl && price && condition) {
         await network.post(END_POINTS.OFFERS, {
@@ -123,6 +139,7 @@ function UploadOffer() {
     } catch (e) {
       displayMessage(`Error uploading offer ${JSON.stringify(e.response.data)}`);
     }
+    setDisableButton(false);
   };
 
   const onDescriptionChangeHandler = (event) => {
@@ -240,10 +257,14 @@ function UploadOffer() {
               />
             </label>
           </div>
+          <FormGroup>
+            <FormControlLabel control={<RedSwitch />} onChange={() => (setFree(!free))} value={free} label="Free & Friendly 😊" />
+          </FormGroup>
           <BoxInput
             borderWidth="1px"
-            label="Item's price"
+            label="Item's price (per rental day)"
             id="price"
+            isHidden={free}
             state={price}
             placeHolder="Price"
             setState={setPrice}

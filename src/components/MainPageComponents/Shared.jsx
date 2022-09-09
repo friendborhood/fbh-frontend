@@ -60,6 +60,7 @@ const StyledShared = styled.div`
           display: flex;
           flex-direction: row;
           width: 100vw;
+          gap: 30px;
           justify-content: center;
       }
     }
@@ -119,6 +120,20 @@ export const Shared = () => {
             {
               imageUrl: vaccum,
               itemData: { itemName: 'Vaccum cleaner' },
+              offererUserData: mockOfferer1,
+              distanceFromUser: 3100,
+              name: 'Omer',
+              priceAsked: 0,
+              description: 'good as new',
+            }
+          }
+
+        />
+        <ItemCard
+          offerData={
+            {
+              imageUrl: vaccum,
+              itemData: { itemName: 'Boomerim' },
               offererUserData: mockOfferer1,
               distanceFromUser: 3100,
               name: 'Omer',

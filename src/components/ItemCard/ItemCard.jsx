@@ -21,6 +21,7 @@ function ItemCard({ myOffers, offerData }) {
     description,
     id,
     state,
+    condition,
   } = offerData;
   let itemName;
   if (itemData) {
@@ -66,14 +67,14 @@ function ItemCard({ myOffers, offerData }) {
               <div className="info-line">
                 <div className="text large">{itemName}</div>
                 {(!myOffers && <div className="text small">{`${distance} km`}</div>)}
-                <div className="text small">{updatedState}</div>
+                <div className="text small">{myOffers ? updatedState : condition}</div>
               </div>
               <div className="info-line">
                 <div className="text user-info">
                   <img className="user-icon" src={offererUserIconUrl || userFallBackImage} alt="" />
                   <div className="text">{`${firstName} ${lastName}`}</div>
                 </div>
-                <div className="text small">{`${price}₪/hour`}</div>
+                <div style={{ fontWeight: price === '0' ? 'bold' : '400', color: price === '0' ? 'green' : 'black' }} className="text small">{price === '0' ? 'Free!' : `${price}₪/A Day`}</div>
               </div>
             </div>
           </Card>
