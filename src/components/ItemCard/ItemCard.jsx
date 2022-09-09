@@ -8,6 +8,7 @@ import phone from '../../images/tags/phone.svg';
 import emailIcon from '../../images/tags/mail.svg';
 
 const fallBackImage = require('../../images/mock/fallback.png');
+const userFallBackImage = require('../../images/mock/user_fallback.png');
 
 function ItemCard({ myOffers, offerData }) {
   const {
@@ -69,7 +70,7 @@ function ItemCard({ myOffers, offerData }) {
               </div>
               <div className="info-line">
                 <div className="text user-info">
-                  <img className="user-icon" src={offererUserIconUrl} alt="" />
+                  <img className="user-icon" src={offererUserIconUrl || userFallBackImage} alt="" />
                   <div className="text">{`${firstName} ${lastName}`}</div>
                 </div>
                 <div className="text small">{`${price}₪/hour`}</div>
@@ -104,21 +105,6 @@ function ItemCard({ myOffers, offerData }) {
                 <button type="button" className="disable-offer" onClick={() => patchOffer(id, updatedState === 'Disabled' ? 'Available' : 'Disabled')}>{`${updatedState === 'Disabled' ? 'Enable' : 'Disable'} Offer`}</button>
               </div>
             )}
-            {/* {!myOffers && (
-              <div className="item-details">
-                <div className="info-line">
-                  <div className="text large">{itemName}</div>
-                  <div className="text large">{`${distance} km`}</div>
-                </div>
-                <div className="info-line">
-                  <div className="text user-info">
-                    <img className="user-icon" src={offererUserIconUrl} alt="" />
-                    <div className="medium">{`${firstName} ${lastName}`}</div>
-                  </div>
-                  <div className="text large">{`${price}₪/hour`}</div>
-                </div>
-              </div>
-            )} */}
           </Card>
         </ReactCardFlip>
       ));
