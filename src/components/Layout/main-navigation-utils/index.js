@@ -5,7 +5,9 @@ import {
 
 export const MainNavigationStyle = styled.div`
   display: flex;
-  position: sticky;
+  position: fixed;
+  margin-bottom: 127px;
+  background-color: white;
   z-index: 2000000000000;
   width: 100%;
   flex-direction: row;

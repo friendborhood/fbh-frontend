@@ -16,7 +16,7 @@ function Layout({ children }) {
   return (
     <StyledLayout>
       <MainNavigation />
-      {children}
+      <div style={{ 'padding-top': '127px' }}>{children}</div>
       <Footer />
     </StyledLayout>
   );
