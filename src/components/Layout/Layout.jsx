@@ -9,6 +9,13 @@ const StyledLayout = styled.main`
   @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
     overflow-x: hidden;
   }
+
+  & div.padder {
+    padding-top: 127px;
+    @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
+      padding-top: 68px;
+    }
+  }
   
 `;
 
@@ -16,7 +23,7 @@ function Layout({ children }) {
   return (
     <StyledLayout>
       <MainNavigation />
-      {children}
+      <div className="padder">{children}</div>
       <Footer />
     </StyledLayout>
   );
