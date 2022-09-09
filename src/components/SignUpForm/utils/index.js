@@ -33,6 +33,7 @@ export const StyledForm = styled.form`
   font-weight: medium;
   width: 50%;
   min-width: ${COMPONENT_WIDTH};
+  height: 80vh;
 
   @media only screen and (max-width: ${MOBILE_STYLE.max_width})
   {
