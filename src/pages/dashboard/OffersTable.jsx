@@ -131,10 +131,11 @@ function OffersTable({ myOffers = false }) {
         <SliderContainer>
           <p>{`Search Radius: ${radius} Kilometers`}</p>
           <Slider
+            max={1000}
             value={slider}
             onChange={sliderHandler}
             sx={{
-              width: 300,
+              width: 600,
               color: GLOBAL_SCARLET,
             }}
           />
