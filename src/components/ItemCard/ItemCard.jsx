@@ -102,7 +102,7 @@ function ItemCard({ myOffers, offerData }) {
             ) : (
               <div className="flipped-side">
                 <button type="button" className="delete-offer" onClick={() => handleDeleteOffer(id)}>Delete Offer</button>
-                <button type="button" className="disable-offer" onClick={() => patchOffer(id, updatedState === 'Disabled' ? 'Available' : 'Disabled')}>{`${updatedState === 'Disabled' ? 'Enable' : 'Disable'} Offer`}</button>
+                <button type="button" className="disable-offer" onClick={() => patchOffer(id, updatedState === 'Disabled' ? 'Available' : 'Disabled')}>{`${updatedState === 'Disabled' ? 'Mark as available' : 'Mark as unavailable'}`}</button>
               </div>
             )}
           </Card>
