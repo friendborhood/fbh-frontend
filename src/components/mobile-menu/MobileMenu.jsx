@@ -15,6 +15,7 @@ import logout from '../../images/logout.svg';
 import userInfo from '../../images/your-info.svg';
 import dashboard from '../../images/dashboard.svg';
 import addItem from '../../images/add-item-icon.svg';
+import myItems from '../../images/my-items.svg';
 import { StyledMenu, BlackScreen } from './utils';
 
 function MobileMenu(props) {
@@ -51,7 +52,8 @@ function MobileMenu(props) {
           {userName
             ? (
               <>
-                <MenuOption label="Dashboard" icon={dashboard} onClick={navigateTo} param={PAGES.DASHBOARD} />
+                <MenuOption label="Rent Items" icon={dashboard} onClick={navigateTo} param={PAGES.DASHBOARD} />
+                <MenuOption label="My Items" icon={myItems} onClick={navigateTo} param={PAGES.MY_OFFERS} />
                 <MenuOption label="Add Item" icon={addItem} onClick={navigateTo} param={PAGES.UPLOAD_OFFER} />
                 <MenuOption label="Your Info" icon={userInfo} onClick={navigateTo} param={PAGES.ADDITIONAL_DETAILS} />
                 <MenuOption label="Logout" icon={logout} onClick={logoutHandler} param={PAGES.LOGIN} />
