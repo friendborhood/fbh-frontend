@@ -87,7 +87,7 @@ const AboutUsStyle = styled.div`
             border-top-left-radius: inherit;
             border-bottom-left-radius: inherit;
             @media only screen and (max-width: ${MOBILE_STYLE.max_width}){
-              min-width: 150px;
+              min-width: 130px;
               }
 
             & img {
