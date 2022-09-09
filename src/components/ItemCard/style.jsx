@@ -8,6 +8,7 @@ export const Card = styled.div`
 display: flex;
 flex: none;
 flex-grow: 0;
+z-index: 20;
 flex-direction: column;
 box-sizing: border-box;
 padding: 0px;
@@ -76,7 +77,8 @@ transition: transform 200ms ease;
         align-items: center;
         width: 100%;
         height: 100%;
-        gap: unset;
+        margin: 0 50px;
+        gap: 50%;
         padding: unset;
     }
 
@@ -192,6 +194,10 @@ transition: transform 200ms ease;
         flex-direction: column;
         gap: 8px;
         padding: 16px;
+        @media only screen and (max-width: ${MOBILE_STYLE.max_width}){
+            padding: 16px;
+            padding-top: 8px;
+        }
     }
     &.info-line {
         flex-direction: row;
