@@ -53,6 +53,11 @@ transition: transform 200ms ease;
             white-space: nowrap;
             gap: 3px;
             margin-left: 5%;
+            @media only screen and (max-width: ${MOBILE_STYLE.max_width}) 
+            {
+                font-size: 14px;
+                margin-left: 1%;
+            }
         }
     }
     & div.email {

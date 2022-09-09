@@ -101,8 +101,10 @@ export const UploadOfferStyle = styled.div`
             border-radius: 10px;
             padding: 50px 75px 100px 200px;
             box-shadow: 0px 0px 10px 0px #14171C1A;
+            margin-bottom: 10%;
             @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
                 padding: 50px 75px 100px 20px;
+                margin: auto;
             }
 
             & div.field-title {
