@@ -8,7 +8,7 @@ export const StyledMenu = styled.div`
     position: absolute;
     font-style: ${GLOBAL_FONT};
     top: 0;
-    z-index: 2000000000001;
+    z-index: 4000000000001;
     width: 50%;
     height: 100%;
     flex-direction: column;
