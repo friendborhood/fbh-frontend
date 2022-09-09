@@ -28,6 +28,7 @@ function MainNavigation() {
   };
   const logoutHandler = () => {
     dispatch(updateLogoutState());
+    fetchUserData({ setUserData, setUserName, setImageUrl: setUserImg });
     navigate(PAGES.LOGIN, { replace: true });
   };
   redirectLoggedOutUser();
