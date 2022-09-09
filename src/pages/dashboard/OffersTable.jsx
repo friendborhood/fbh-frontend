@@ -136,7 +136,7 @@ function OffersTable({ myOffers = false }) {
             onChange={(event, value) => setSlider(value)}
             onChangeCommitted={sliderHandler}
             sx={{
-              width: 400,
+              width: 300,
               color: GLOBAL_SCARLET,
             }}
           />
