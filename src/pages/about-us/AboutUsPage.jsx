@@ -4,20 +4,22 @@ import styled from 'styled-components';
 import { GLOBAL_FONT, GLOBAL_SCARLET, MOBILE_STYLE } from '../../GlobalStyling';
 import Daniel from '../../images/mock/Daniel.jpeg';
 import Gery from '../../images/mock/Gery.jpeg';
+import Arzi from '../../images/mock/Arzi2.jpeg';
 
 const AboutUsStyle = styled.div`
   display: flex;
   flex-direction: column;
   padding-left: 50px;
-  padding-top: 2%;
   font-family: 'Heebo';
   right: 0;
   top: 0;
   z-index: 0;
   width: 100vw;
   height: 100vh;
+  padding-top: 0.5%;
 
   @media only screen and (max-width: ${MOBILE_STYLE.max_width}){
+    padding-top: 2%;
     padding-left: 6px;
     padding-top: 0;
   }
@@ -31,6 +33,7 @@ const AboutUsStyle = styled.div`
       font-size: 64px;
       color: ${GLOBAL_SCARLET};
       margin-bottom: 40px;
+      margin-bottom: 10px;
       @media only screen and (max-width: ${MOBILE_STYLE.max_width}){
         font-size: 20px;
         padding-left: 20px;
@@ -64,7 +67,7 @@ const AboutUsStyle = styled.div`
         flex-direction: row;
         width: 30%;
         height: 20%;
-        border: solid;
+        border: solid 1.5px ${GLOBAL_SCARLET};
         border-top-left-radius: 120px;
         border-bottom-left-radius: 120px;
         border-top-right-radius: 20px;
@@ -80,18 +83,19 @@ const AboutUsStyle = styled.div`
         & div.img-container {
             height: 100%;
             width: 32%;
+            min-width: 200px;
             border-top-left-radius: inherit;
             border-bottom-left-radius: inherit;
+            @media only screen and (max-width: ${MOBILE_STYLE.max_width}){
+              min-width: 150px;
+              }
 
             & img {
-                width: 100%;
-                height: 100%;
-                border-top-left-radius: inherit;
-                border-bottom-left-radius: inherit;
-                min-width: 200px;
-                @media only screen and (max-width: ${MOBILE_STYLE.max_width}){
-                  min-width: auto;
-                }
+              width: 100%;
+              height: 100%;
+              min-width: inherit;
+              border-top-left-radius: inherit;
+              border-bottom-left-radius: inherit;
             }
         }
         & div.info {
@@ -108,6 +112,7 @@ const AboutUsStyle = styled.div`
             font-family: 'Anomalia ML v2 AAA';
             font-size: 29px;
             margin-bottom: 0;
+            font-weight: 600;
             color: black;
             @media only screen and (max-width: ${MOBILE_STYLE.max_width}){
               font-size: 25px;
@@ -164,6 +169,15 @@ function AboutUsPage() {
         <div className="info">
           <h1>Omer Gery</h1>
           <h2>Backend Developer & CI/CD</h2>
+        </div>
+      </div>
+      <div className="person-card">
+        <div className="img-container">
+          <img src={Arzi} alt="" />
+        </div>
+        <div className="info">
+          <h1>Omer Arzi</h1>
+          <h2>Frontend Developer</h2>
         </div>
       </div>
     </AboutUsStyle>
