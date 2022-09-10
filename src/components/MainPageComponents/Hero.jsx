@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import pan from '../../images/pan.png';
+import gif from '../../images/Things.gif';
 import { GLOBAL_FONT, MOBILE_STYLE } from '../../GlobalStyling';
 
 const HeroStyle = styled.div`
@@ -98,7 +98,7 @@ export function Hero() {
           </p>
         </div>
         <div className="img-container">
-          <img src={pan} alt="" />
+          <img src={gif} alt="" />
         </div>
       </div>
     </HeroStyle>
