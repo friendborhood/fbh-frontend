@@ -34,7 +34,7 @@ function AdditionalDetailsPage() {
     const categoriesSelected = {};
     if (!localStorage.getItem('selectedCategories')) {
       formattedCategories.forEach(
-        (category) => { categoriesSelected[category.name] = false; },
+        (category) => { categoriesSelected[category.name] = true; },
       );
       localStorage.setItem('selectedCategories', JSON.stringify(categoriesSelected));
     }
