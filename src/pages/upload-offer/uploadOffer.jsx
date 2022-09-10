@@ -226,63 +226,62 @@ function UploadOffer() {
           </Step>
         </ProgressBar>
       </div>
-      <div className="main-panel">
+      <div className="main-panel" style={{ marginBottom: "20%" }}>
         {/* Step One: */}
 
-        <div className={`single-step ${stepOne === true ? 'displayOnStart' : 'displayOff'}`}>
+        <div className={`single-step ${stepOne === true ? 'displayOnStart' : 'displayOff'}`} style={{ marginBottom: `${stepOne && isMobile ? '40%' : 'auto'}` }}>
           {toRender && (
-          <>
-            <Label
-              borderWidth="1px"
-              label="Select Category"
-            />
-            <DropDown className="item-selection on-top" options={categories} setState={setCategory} state={category} />
-            <Label
-              borderWidth="1px"
-              label="Select Item"
-            />
-          </>
+            <>
+              <Label
+                borderWidth="1px"
+                label="Select Category"
+              />
+              <DropDown className="item-selection on-top" options={categories} setState={setCategory} state={category} />
+              <Label
+                borderWidth="1px"
+                label="Select Item"
+              />
+            </>
           )}
           {toRender && <DropDown className="item-selection on-top" options={itemNames} setState={setItem} state={item} />}
-          { toRender && (
-          <Label
-            borderWidth="1px"
-            label="Condition"
-          />
+          {toRender && (
+            <Label
+              borderWidth="1px"
+              label="Condition"
+            />
           )}
-          {toRender && <DropDown className="item-selection on-top" options={['Like New', 'Good', 'Used', 'Bad']} setState={setCondition} state={condition} />}
-          <div className="img-container displayOn" />
+          {toRender && <DropDown className="item-selection on-top" options={['Like New', 'Good', 'Used', 'Bad']} setState={setCondition} state={condition} style={{ marginBottom: '10px' }} />}
         </div>
         {/* Step Two: */}
         <div
           className={`single-step ${stepOne ? "displayNone" : (stepTwo === true ? 'displayOn' : 'displayOff')}`}
         >
           {!isUploadingImage && (
-          <div className="single-field">
-            <div className="field-title">Upload an image</div>
-            <label htmlFor="image-upload" style={{ width: "fit-content" }}>
-              {' '}
-              <img src={uploadButton} alt="" />
-              <input
-                type="file"
-                id="image-upload"
-                onChange={async (e) => {
-                  const uploadedImage = e.target.files[0];
-                  if (uploadedImage) {
-                    setIsUploadingImage(true);
-                    try {
-                      await uploadToCloudinary(uploadedImage);
-                    } catch (e) {
-                      console.error(e);
+            <div className="single-field">
+              <div className="field-title">Upload an image</div>
+              <label htmlFor="image-upload" style={{ width: "fit-content" }}>
+                {' '}
+                <img src={uploadButton} alt="" />
+                <input
+                  type="file"
+                  id="image-upload"
+                  onChange={async (e) => {
+                    const uploadedImage = e.target.files[0];
+                    if (uploadedImage) {
+                      setIsUploadingImage(true);
+                      try {
+                        await uploadToCloudinary(uploadedImage);
+                      } catch (e) {
+                        console.error(e);
+                      }
+                      setIsUploadingImage(false);
+                    } else {
+                      console.warn('no image on upload event');
                     }
-                    setIsUploadingImage(false);
-                  } else {
-                    console.warn('no image on upload event');
-                  }
-                }}
-              />
-            </label>
-          </div>
+                  }}
+                />
+              </label>
+            </div>
           )}
           <FormGroup>
             <FormControlLabel control={<RedSwitch />} onChange={() => (setFree(!free))} value={free} label="Free & Friendly 😊" />

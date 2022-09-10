@@ -6,7 +6,7 @@ import {
 export const UploadOfferStyle = styled.div`
     display: flex;
     flex-direction: column;
-    padding-top: 6%;
+    padding-top: 2%;
     align-items: center;
     position: relative;
     background-color: ${SECONDARY_BACKGROUND};
@@ -205,6 +205,8 @@ export const UploadOfferStyle = styled.div`
                 background-repeat: 'no-repeat';
                 background-position: 'center';
                 background-size: 'contain';
+                border: solid grey;
+                margin-bottom: 10px;
                 @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
                     position: static;
                     margin-top: 4%;
