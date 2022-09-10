@@ -12,7 +12,6 @@ import { TailSpin } from 'react-loader-spinner';
 import { useNavigate } from 'react-router-dom';
 import { FormControlLabel, FormGroup, Switch } from '@mui/material';
 import { alpha, styled } from '@mui/material/styles';
-import { red } from '@mui/material/colors';
 import BoxInput from '../../components/BoxInput';
 import DropDown from '../../components/drop-down';
 import { END_POINTS, fetchUserData, network } from '../../network';
@@ -40,7 +39,7 @@ function UploadOffer() {
   const PRESET = 'tc7nz7hr';
   const [condition, setCondition] = useState('');
   const [item, setItem] = useState('');
-  const [itemNames, setItemNames] = useState(['Driller']);
+  const [itemNames, setItemNames] = useState([]);
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
   const [cloudinaryUrl, setCloudinaryUrl] = useState('');
@@ -54,17 +53,32 @@ function UploadOffer() {
   const [disableButton, setDisableButton] = useState(false);
   const [toRender, setToRender] = useState(true);
   const [free, setFree] = useState(false);
+  const [categories, setCategories] = useState(['Other']);
+  const [category, setCategory] = useState('');
   const navigate = useNavigate();
   const fetchItems = async () => {
-    const { data: currentItems } = await network.get(END_POINTS.ITEM);
+    const [{ data: currentItems }, { data: fetchedCategories }] = await Promise.all([
+      network.get(END_POINTS.ITEM),
+      network.get(END_POINTS.CATEGORIES)]);
+
+    setCategories(Object.keys(fetchedCategories).map((categoryName) => categoryName));
+
     const itemsNamesFormatted = currentItems.map((item) => item.itemName);
     setItemNames(itemsNamesFormatted);
     setItemsArray(currentItems);
   };
-
+  useEffect(async () => {
+    const { data: items } = await network.get(
+      END_POINTS.ITEM,
+      { params: { categoryName: category } },
+    );
+    const itemsNamesFormatted = items.map((item) => item.itemName);
+    setItem(itemsNamesFormatted[0]);
+    setItemNames(itemsNamesFormatted);
+    setItemsArray(items);
+  }, [category]);
   useEffect(() => free && setPrice('0'), [free]);
   useEffect(() => {
-    console.log('here');
     if (stepOne) {
       setToRender(true);
     } else {
@@ -211,7 +225,19 @@ function UploadOffer() {
       </div>
       <div className="main-panel">
         {/* Step One: */}
+
         <div className={`single-step ${stepOne === true ? 'displayOnStart' : 'displayOff'}`}>
+          <BoxInput
+            borderWidth="1px"
+            label="Select Category"
+            noInput
+          />
+          <DropDown className="item-selection on-top" options={categories} setState={setCategory} state={category} />
+          <BoxInput
+            borderWidth="1px"
+            label="Select Item"
+            noInput
+          />
           {toRender && <DropDown className="item-selection on-top" options={itemNames} setState={setItem} state={item} />}
           { toRender && (
           <BoxInput
@@ -223,7 +249,7 @@ function UploadOffer() {
           />
           )}
           <DropDown className="item-selection on-top" options={['Like New', 'Good', 'Used', 'Bad']} setState={setCondition} state={condition} />
-          {toRender && (
+          {/* {toRender && (
           <div className="description-container">
             <div className="field-title">About the item</div>
             <textarea
@@ -233,7 +259,7 @@ function UploadOffer() {
               placeholder="  Describe your item"
             />
           </div>
-          )}
+          )} */}
         </div>
         {/* Step Two: */}
         <div
