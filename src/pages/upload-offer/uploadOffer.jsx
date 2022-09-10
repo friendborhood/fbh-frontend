@@ -287,6 +287,7 @@ function UploadOffer() {
             <FormControlLabel control={<RedSwitch />} onChange={() => (setFree(!free))} value={free} label="Free & Friendly 😊" />
           </FormGroup>
           <BoxInput
+            showLabel
             borderWidth="1px"
             label="Item's price (per rental day)"
             id="price"
