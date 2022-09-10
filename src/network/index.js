@@ -36,7 +36,6 @@ const fetchUserData = async ({
     setUserData(userData);
   }
   if (setPhoneNumber) {
-    console.log(userData.phoneNumber);
     setPhoneNumber(userData.phoneNumber);
   }
   if (setAddress) {
