@@ -23,6 +23,7 @@ import miniIcon from '../../images/mini-icon-removebg.png';
 import uploadButton from '../../images/upload-img-button.svg';
 import { PAGES } from '../consts';
 import loaderGif from '../../images/loader.gif';
+import Label from '../../components/Label';
 
 const RedSwitch = styled(Switch)(({ theme }) => ({
   '& .MuiSwitch-switchBase.Mui-checked': {
@@ -229,25 +230,21 @@ function UploadOffer() {
         {/* Step One: */}
 
         <div className={`single-step ${stepOne === true ? 'displayOnStart' : 'displayOff'}`}>
-          <BoxInput
+          <Label
             borderWidth="1px"
             label="Select Category"
-            noInput
+
           />
           <DropDown className="item-selection on-top" options={categories} setState={setCategory} state={category} />
-          <BoxInput
+          <Label
             borderWidth="1px"
             label="Select Item"
-            noInput
           />
           {toRender && <DropDown className="item-selection on-top" options={itemNames} setState={setItem} state={item} />}
           { toRender && (
-          <BoxInput
+          <Label
             borderWidth="1px"
             label="Condition"
-            id="Condtion"
-            placeHolder="Condition"
-            noInput
           />
           )}
           <DropDown className="item-selection on-top" options={['Like New', 'Good', 'Used', 'Bad']} setState={setCondition} state={condition} />

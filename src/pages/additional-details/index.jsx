@@ -9,6 +9,7 @@ import { StyledForm } from '../../components/SignUpForm/utils';
 import HalfPageImage from '../../components/HalfPageImage/HalfPageImage';
 import { fetchUserData, fetchCategories } from '../../network';
 import { CategoryTag } from '../../components/Categories/CategoryTag';
+import Label from '../../components/Label';
 
 function AdditionalDetailsPage() {
   const navigate = useNavigate();
@@ -69,11 +70,7 @@ function AdditionalDetailsPage() {
           setState={setPhoneNumber}
           placeHolder="Phone Number"
         />
-        <BoxInput
-          noInput
-          label="Address"
-          id="location"
-        />
+        <Label label="Address" />
 
         <StyledSection>
           <Autocomplete
