@@ -234,7 +234,7 @@ function UploadOffer() {
             label="Select Category"
             noInput
           />
-          <DropDown className="item-selection on-top" options={categories} setState={setCategory} state={category} />
+          {toRender && <DropDown className="item-selection on-top" options={categories} setState={setCategory} state={category} />}
           <BoxInput
             borderWidth="1px"
             label="Select Item"
@@ -250,7 +250,7 @@ function UploadOffer() {
             noInput
           />
           )}
-          <DropDown className="item-selection on-top" options={['Like New', 'Good', 'Used', 'Bad']} setState={setCondition} state={condition} />
+          {toRender && <DropDown className="item-selection on-top" options={['Like New', 'Good', 'Used', 'Bad']} setState={setCondition} state={condition} />}
           {/* {toRender && (
           <div className="description-container">
             <div className="field-title">About the item</div>
