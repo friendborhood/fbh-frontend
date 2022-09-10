@@ -70,12 +70,15 @@ const HeroStyle = styled.div`
             }
         }
         & div.img-container {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
           flex-grow: 1;
           width: 50vw;
           & img {
             position: relative;
-            width: 65%;
-            height: 65%;
+            width: 40%;
+            height: 40%;
             z-index: 2;
             @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
               width: 200px;
