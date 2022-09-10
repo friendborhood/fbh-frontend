@@ -230,16 +230,19 @@ function UploadOffer() {
         {/* Step One: */}
 
         <div className={`single-step ${stepOne === true ? 'displayOnStart' : 'displayOff'}`}>
-          <Label
-            borderWidth="1px"
-            label="Select Category"
-
-          />
-          <DropDown className="item-selection on-top" options={categories} setState={setCategory} state={category} />
-          <Label
-            borderWidth="1px"
-            label="Select Item"
-          />
+          {toRender && (
+          <>
+            <Label
+              borderWidth="1px"
+              label="Select Category"
+            />
+            <DropDown className="item-selection on-top" options={categories} setState={setCategory} state={category} />
+            <Label
+              borderWidth="1px"
+              label="Select Item"
+            />
+          </>
+          )}
           {toRender && <DropDown className="item-selection on-top" options={itemNames} setState={setItem} state={item} />}
           { toRender && (
           <Label
