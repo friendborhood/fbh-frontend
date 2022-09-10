@@ -144,10 +144,13 @@ function AboutUsPage() {
       <p>
         The idea was born out of the frustrating experience of moving to the big city,
         encountering many situations when you need to use an item
+        <br />
         only a single use – but buying it just for this cause would be
         a waste of time, money, and space.
+        <br />
         In that case, the rational action would be to borrow it from
         one of your friends or neighbors – The problem is that in modern urban life,
+        <br />
         {'it\'s not easy to get to know the people around you.'}
       </p>
       <p>
