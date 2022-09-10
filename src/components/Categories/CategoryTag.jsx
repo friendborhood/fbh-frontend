@@ -46,7 +46,7 @@ export function CategoryTag({
 }) {
   const selectedCategoriesFromLocalStorage = JSON.parse(localStorage.getItem('selectedCategories'));
   const [selected, setSelected] = useState(
-    selectedCategoriesFromLocalStorage ? selectedCategoriesFromLocalStorage[name] : false,
+    selectedCategoriesFromLocalStorage ? selectedCategoriesFromLocalStorage[name] : true,
   );
   const onClickHandler = () => {
     setSelected(!selected);
