@@ -22,7 +22,6 @@ import { UploadOfferStyle } from './uploadOfferStyle';
 import miniIcon from '../../images/mini-icon-removebg.png';
 import uploadButton from '../../images/upload-img-button.svg';
 import { PAGES } from '../consts';
-import loaderGif from '../../images/loader.gif';
 import Label from '../../components/Label';
 
 const RedSwitch = styled(Switch)(({ theme }) => ({
@@ -289,7 +288,7 @@ function UploadOffer() {
           <BoxInput
             showLabel
             borderWidth="1px"
-            label="Item's price (per rental day)"
+            label="Item's price (per day)"
             id="price"
             isHidden={free}
             state={price}
