@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import ReactCardFlip from 'react-card-flip';
+import { isMobile } from 'react-device-detect';
 import { Card } from './style';
 import { network, END_POINTS } from '../../network';
 import { displayMessage } from '../../utils/handle-device-middleware';
@@ -81,7 +82,12 @@ function ItemCard({ myOffers, offerData }) {
           <Card onClick={() => setFlipped(!flipped)}>
             {!myOffers ? (
               <>
-                <div className="text large" style={{ 'justify-content': 'center', 'padding-top': '10%' }}>
+                <div
+                  className="text large"
+                  style={{
+                    justifyContent: 'center', paddingTop: '10%', paddingLeft: `${isMobile ? '2%' : 'auto'}`, width: `${isMobile ? '32%' : 'auto'}`,
+                  }}
+                >
                   Contact Information
                 </div>
                 <div className="personal-details">
