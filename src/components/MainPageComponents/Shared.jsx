@@ -7,9 +7,11 @@ import { fetchCategories } from '../../network';
 import { MOBILE_STYLE } from '../../GlobalStyling';
 import { CategoryTag } from '../Categories/CategoryTag';
 import vaccum from '../../images/mock/vaccum.jpeg';
+import souvlaki from '../../images/mock/souvlaki.jpg';
 import { PAGES } from '../../pages/consts';
 import ItemCard from '../ItemCard/ItemCard';
 import Profile1 from '../../images/mock/profile1.png';
+import Profile2 from '../../images/mock/Profile2.png';
 
 const StyledShared = styled.div`
     display: flex;
@@ -107,6 +109,15 @@ export const Shared = () => {
     firstName: 'Omer',
     lastName: 'Arzi',
     imageUrl: Profile1,
+    phoneNumber: '0542002434',
+    email: 'arzi@friendborhood.io',
+  };
+  const mockOfferer2 = {
+    firstName: 'Daniel',
+    lastName: 'Dolev',
+    imageUrl: Profile2,
+    phoneNumber: '0503777105',
+    email: 'dolev@friendborhood.io',
   };
   return (
     <StyledShared>
@@ -121,28 +132,27 @@ export const Shared = () => {
               imageUrl: vaccum,
               itemData: { itemName: 'Vaccum cleaner' },
               offererUserData: mockOfferer1,
-              distanceFromUser: 3100,
+              distanceFromUser: 700,
               name: 'Omer',
-              priceAsked: 0,
+              priceAsked: '2',
               description: 'good as new',
             }
           }
 
         />
-        {/* <ItemCard
+        <ItemCard
           offerData={
             {
-              imageUrl: vaccum,
-              itemData: { itemName: 'Boomerim' },
-              offererUserData: mockOfferer1,
+              imageUrl: souvlaki,
+              itemData: { itemName: 'Vinyl Record' },
+              offererUserData: mockOfferer2,
               distanceFromUser: 3100,
-              name: 'Omer',
-              priceAsked: 0,
+              name: 'Daniel',
+              priceAsked: '0',
               description: 'good as new',
             }
           }
-
-        /> */}
+        />
       </div>
       <button type="button" onClick={goToDashboard}>Show More</button>
     </StyledShared>
