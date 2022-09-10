@@ -22,6 +22,7 @@ import { UploadOfferStyle } from './uploadOfferStyle';
 import miniIcon from '../../images/mini-icon-removebg.png';
 import uploadButton from '../../images/upload-img-button.svg';
 import { PAGES } from '../consts';
+import loaderGif from '../../images/loader.gif';
 
 const RedSwitch = styled(Switch)(({ theme }) => ({
   '& .MuiSwitch-switchBase.Mui-checked': {
@@ -43,6 +44,7 @@ function UploadOffer() {
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
   const [cloudinaryUrl, setCloudinaryUrl] = useState('');
+  const [isUploadingImage, setIsUploadingImage] = useState(false);
   const [itemsArray, setItemsArray] = useState([]);
   const [userLocation, setUserLocation] = useState({});
   const [stepOne, setStepOne] = useState(true);
@@ -265,17 +267,25 @@ function UploadOffer() {
         <div
           className={`single-step ${stepOne ? "displayNone" : (stepTwo === true ? 'displayOn' : 'displayOff')}`}
         >
+          {!isUploadingImage && (
           <div className="single-field">
             <div className="field-title">Upload an image</div>
             <label htmlFor="image-upload" style={{ width: "fit-content" }}>
+              {' '}
               <img src={uploadButton} alt="" />
               <input
                 type="file"
                 id="image-upload"
-                onChange={(e) => {
+                onChange={async (e) => {
                   const uploadedImage = e.target.files[0];
                   if (uploadedImage) {
-                    uploadToCloudinary(uploadedImage);
+                    setIsUploadingImage(true);
+                    try {
+                      await uploadToCloudinary(uploadedImage);
+                    } catch (e) {
+                      console.error(e);
+                    }
+                    setIsUploadingImage(false);
                   } else {
                     console.warn('no image on upload event');
                   }
@@ -283,6 +293,7 @@ function UploadOffer() {
               />
             </label>
           </div>
+          )}
           <FormGroup>
             <FormControlLabel control={<RedSwitch />} onChange={() => (setFree(!free))} value={free} label="Free & Friendly 😊" />
           </FormGroup>
@@ -297,16 +308,31 @@ function UploadOffer() {
           />
         </div>
         {stepTwo && (
-        <div
-          className={`img-container ${stepTwo === true ? 'displayOn' : 'displayOff'}`}
-          style={{
-            backgroundImage: `url(${cloudinaryUrl})`,
-            backgroundSize: 'contain',
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center',
-          }}
-        />
-        )}
+          (isUploadingImage
+            ? (
+              <div
+                className={`img-container ${stepTwo === true ? 'displayOn' : 'displayOff'}`}
+                style={{
+                  backgroundImage: 'url(https://i.gifer.com/origin/b4/b4d657e7ef262b88eb5f7ac021edda87.gif)',
+                  backgroundSize: 'contain',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'center',
+                  width: '5%',
+                }}
+              />
+            )
+            : (
+              <div
+                className={`img-container ${stepTwo === true ? 'displayOn' : 'displayOff'}`}
+                style={{
+                  backgroundImage: `url(${cloudinaryUrl})`,
+                  backgroundSize: 'contain',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'center',
+                }}
+              />
+            )
+          ))}
         {/* Step Three */}
         <div className={`single-step ${stepOne || stepTwo ? "displayNone" : (stepThree === true ? 'displayOn' : 'displayOff')}`}>
           <p style={{ "font-weight": 500 }}>Uploading your offer...</p>
