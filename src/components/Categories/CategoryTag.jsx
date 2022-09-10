@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { GLOBAL_FONT, MOBILE_STYLE } from '../../GlobalStyling';
+import { GLOBAL_FONT, GLOBAL_SCARLET, MOBILE_STYLE } from '../../GlobalStyling';
 
 const StyledCategory = styled.div`
     display: inline-flex;
@@ -18,12 +18,12 @@ const StyledCategory = styled.div`
     font-size: clamp(1vw, 1vw, 20px);
     line-height: 29px;
     transition: font-size 0.1s ease;
-    transition: opacity 0.1s ease;
+    transition: background-color 0.1s ease;
     cursor: pointer;
-    background-color:  'white';
-    opacity: ${(props) => (!props.isChosen && 0.13)};
-    border: 1.5px solid black;
-    color: ${(props) => (props.isChosen ? 'black' : 'black')};
+    background-color: ${(props) => (props.isChosen ? GLOBAL_SCARLET : 'white')};
+    opacity: ${(props) => (props.isChosen ? 1 : 0.15)};
+    border: 1.5px solid ${(props) => (props.isChosen ? GLOBAL_SCARLET : '#14171C')};
+    color: ${(props) => (props.isChosen ? 'white' : 'black')};
     user-select: none;
     @media only screen and (max-width: ${MOBILE_STYLE.max_width})
     {
@@ -36,6 +36,9 @@ const StyledCategory = styled.div`
     & img {
         width: 17px;
         height: 17px;
+        filter: ${(props) => (props.isChosen
+    ? 'invert(100%) sepia(0%) saturate(7484%) hue-rotate(217deg) brightness(200%) contrast(106%)'
+    : 'invert(0%) sepia(13%) saturate(7448%) hue-rotate(41deg) brightness(5%) contrast(93%)')};
     }
 `;
 
