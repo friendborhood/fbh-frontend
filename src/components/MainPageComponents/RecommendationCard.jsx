@@ -15,7 +15,7 @@ const StyledRecommendationCard = styled.div`
     align-content: space-between;
     padding-left: 40px;
     @media only screen and (max-width: ${MOBILE_STYLE.max_width}){
-      transform: scale(0.7);
+      transform: scale(0.8);
     }
 
     & p.content {
