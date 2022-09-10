@@ -22,7 +22,7 @@ function AdditionalDetailsPage() {
   const [address, setAddress] = useState('');
 
   useEffect(() => fetchUserData({
-    setUserName, setImageUrl, setPhoneNumber, setAddress,
+    setUserName, setImageUrl, setPhoneNumber, setAddress, setUserLocation: setLocation,
   }), []);
   useEffect(async () => {
     const fetchedCategories = await fetchCategories();
