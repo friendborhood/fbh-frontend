@@ -44,7 +44,8 @@ const StyledRecommendations = styled.div`
       justify-content: space-evenly;
       gap: 2%;
       @media only screen and (max-width: ${MOBILE_STYLE.max_width}){
-        overflow-x: visible;
+        flex-direction: column;
+        gap: 0;
       }
     }
 

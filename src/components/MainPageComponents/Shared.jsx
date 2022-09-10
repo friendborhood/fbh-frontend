@@ -24,8 +24,7 @@ const StyledShared = styled.div`
     width: 100vw;
     gap: 43px;
     @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
-    gap: 23px;
-
+      gap: 23px;
     }
     & h1 {
       width: 100vw;
@@ -59,11 +58,17 @@ const StyledShared = styled.div`
       }  
 
       &.card-container {
+        display: flex;
+        flex-direction: row;
+        width: 100vw;
+        gap: 30px;
+        justify-content: center;
+        @media only screen and (max-width: ${MOBILE_STYLE.max_width})
+        {
           display: flex;
-          flex-direction: row;
           width: 100vw;
-          gap: 30px;
-          justify-content: center;
+          flex-direction: column;
+        }
       }
     }
 

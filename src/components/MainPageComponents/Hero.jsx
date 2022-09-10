@@ -1,4 +1,5 @@
 import React from 'react';
+import { isMobile } from 'react-device-detect';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import styled from 'styled-components';
 import { GLOBAL_FONT, MOBILE_STYLE } from '../../GlobalStyling';
@@ -108,7 +109,7 @@ export function Hero() {
             alt="side image"
             effect="opacity"
             src={ITEMS_GIF_LINK}
-            style={{ width: '20vw', height: '20vw' }}
+            style={{ width: isMobile ? '35vw' : '20vw', height: isMobile ? '35vw' : '20vw' }}
           />
         </div>
       </div>
