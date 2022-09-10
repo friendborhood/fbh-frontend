@@ -247,7 +247,7 @@ function UploadOffer() {
             label="Condition"
           />
           )}
-          <DropDown className="item-selection on-top" options={['Like New', 'Good', 'Used', 'Bad']} setState={setCondition} state={condition} />
+          {toRender && <DropDown className="item-selection on-top" options={['Like New', 'Good', 'Used', 'Bad']} setState={setCondition} state={condition} />}
           {/* {toRender && (
           <div className="description-container">
             <div className="field-title">About the item</div>

@@ -129,7 +129,7 @@ export const Shared = () => {
           }
 
         />
-        <ItemCard
+        {/* <ItemCard
           offerData={
             {
               imageUrl: vaccum,
@@ -142,7 +142,7 @@ export const Shared = () => {
             }
           }
 
-        />
+        /> */}
       </div>
       <button type="button" onClick={goToDashboard}>Show More</button>
     </StyledShared>
