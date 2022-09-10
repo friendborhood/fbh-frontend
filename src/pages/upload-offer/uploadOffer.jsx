@@ -56,18 +56,11 @@ function UploadOffer() {
   const [toRender, setToRender] = useState(true);
   const [free, setFree] = useState(false);
   const [categories, setCategories] = useState(['Other']);
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState('Other');
   const navigate = useNavigate();
-  const fetchItems = async () => {
-    const [{ data: currentItems }, { data: fetchedCategories }] = await Promise.all([
-      network.get(END_POINTS.ITEM),
-      network.get(END_POINTS.CATEGORIES)]);
-
+  const fetchCategories = async () => {
+    const { data: fetchedCategories } = await network.get(END_POINTS.CATEGORIES);
     setCategories(Object.keys(fetchedCategories).map((categoryName) => categoryName));
-
-    const itemsNamesFormatted = currentItems.map((item) => item.itemName);
-    setItemNames(itemsNamesFormatted);
-    setItemsArray(currentItems);
   };
   useEffect(async () => {
     const { data: items } = await network.get(
@@ -91,7 +84,7 @@ function UploadOffer() {
   }, [stepOne]);
 
   useEffect(() => Promise.all([
-    fetchItems(),
+    fetchCategories(),
     fetchUserData({ setUserLocation }),
   ]), []);
 
