@@ -1,12 +1,6 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { click } from '@testing-library/user-event/dist/click';
-import CategoryMenu from '../../components/Categories/CategoryMenu';
-import DashboardWrapper from '../../components/DashboardWrapper/DashboardWrapper';
-import ItemCard from '../../components/ItemCard/ItemCard';
-import BoxInput from '../../components/BoxInput';
-import { END_POINTS, network } from '../../network';
 import { SECONDARY_BACKGROUND, MOBILE_STYLE } from '../../GlobalStyling';
 import OffersTable from './OffersTable';
 
