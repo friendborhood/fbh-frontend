@@ -5,7 +5,7 @@ export const StyledMenu = styled.div`
 @media only screen and (max-width: ${MOBILE_STYLE.max_width})
 {
     display: flex;
-    position: absolute;
+    position: sticky;
     font-style: ${GLOBAL_FONT};
     top: 0;
     z-index: 4000000000001;
