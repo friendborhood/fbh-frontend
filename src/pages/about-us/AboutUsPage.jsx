@@ -160,6 +160,8 @@ function AboutUsPage() {
       <p>
         Our vision is creating a friendly and supportive community,
         embracing unharmful eco-friendly approach and contributing to sharing economy.
+        <br />
+
       </p>
       <br />
       <div className="person-card">
@@ -177,7 +179,7 @@ function AboutUsPage() {
         </div>
         <div className="info">
           <h1>Omer Gery</h1>
-          <h2>Backend Developer & CI/CD</h2>
+          <h2>Full Stack Developer</h2>
         </div>
       </div>
       <div className="person-card">
