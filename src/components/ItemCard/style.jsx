@@ -21,6 +21,18 @@ filter: drop-shadow(0px 0px 10px rgba(20, 23, 28, 0.1));
 transform: scale(1);
 transition: transform 200ms ease;
 
+@media only screen and (max-width: ${MOBILE_STYLE.max_width})
+{
+    display: flex;
+    flex-grow: 0;
+    flex-direction: row;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(20, 23, 28, 0.1);
+}
+
 & div.personal-details {
     display: flex;
     flex-direction: column;
@@ -122,18 +134,6 @@ transition: transform 200ms ease;
     }
 }
 
-@media only screen and (max-width: ${MOBILE_STYLE.max_width})
-{
-    display: flex;
-    flex-grow: 0;
-    flex-direction: row;
-    box-sizing: border-box;
-    width: 95%;
-    height: 100px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(20, 23, 28, 0.1);
-}
-
 & img {
     &.item {
 
@@ -167,6 +167,7 @@ transition: transform 200ms ease;
         @media only screen and (max-width: ${MOBILE_STYLE.max_width}){
             font-size: 14px;
             line-height: 21px;
+            justify-content: center;
         }
     }
     &.user-info {
@@ -180,6 +181,7 @@ transition: transform 200ms ease;
         @media only screen and (max-width: ${MOBILE_STYLE.max_width}){
             font-size: 14px;
             line-height: 21px;
+            width: 80px;
         }
     }
     &.large {
