@@ -251,17 +251,7 @@ function UploadOffer() {
           />
           )}
           {toRender && <DropDown className="item-selection on-top" options={['Like New', 'Good', 'Used', 'Bad']} setState={setCondition} state={condition} />}
-          {/* {toRender && (
-          <div className="description-container">
-            <div className="field-title">About the item</div>
-            <textarea
-              className="description-input"
-              id="description"
-              onChange={onDescriptionChangeHandler}
-              placeholder="  Describe your item"
-            />
-          </div>
-          )} */}
+          <div className="img-container displayOn" />
         </div>
         {/* Step Two: */}
         <div

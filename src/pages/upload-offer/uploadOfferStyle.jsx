@@ -13,10 +13,6 @@ export const UploadOfferStyle = styled.div`
     width: 100vw;
     height: 100%;
 
-    @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
-        height: 110vh;
-    }
-
     & .display-none {
         display: none;
     }
@@ -177,7 +173,6 @@ export const UploadOfferStyle = styled.div`
                 bottom: 70px;
                 @media only screen and (max-width: ${MOBILE_STYLE.max_width}) {
                     position: unset;
-                    margin-top: 30px;
                     justify-self: center;
                     margin-left: 30%;
                     margin-right: 30%;
