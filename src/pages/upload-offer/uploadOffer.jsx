@@ -22,7 +22,6 @@ import { UploadOfferStyle } from './uploadOfferStyle';
 import miniIcon from '../../images/mini-icon-removebg.png';
 import uploadButton from '../../images/upload-img-button.svg';
 import { PAGES } from '../consts';
-import loaderGif from '../../images/loader.gif';
 import Label from '../../components/Label';
 
 const RedSwitch = styled(Switch)(({ theme }) => ({
@@ -226,70 +225,70 @@ function UploadOffer() {
           </Step>
         </ProgressBar>
       </div>
-      <div className="main-panel">
+      <div className="main-panel" style={{ marginBottom: "20%" }}>
         {/* Step One: */}
 
-        <div className={`single-step ${stepOne === true ? 'displayOnStart' : 'displayOff'}`}>
+        <div className={`single-step ${stepOne === true ? 'displayOnStart' : 'displayOff'}`} style={{ marginBottom: `${stepOne && isMobile ? '40%' : 'auto'}` }}>
           {toRender && (
-          <>
-            <Label
-              borderWidth="1px"
-              label="Select Category"
-            />
-            <DropDown className="item-selection on-top" options={categories} setState={setCategory} state={category} />
-            <Label
-              borderWidth="1px"
-              label="Select Item"
-            />
-          </>
+            <>
+              <Label
+                borderWidth="1px"
+                label="Select Category"
+              />
+              <DropDown className="item-selection on-top" options={categories} setState={setCategory} state={category} />
+              <Label
+                borderWidth="1px"
+                label="Select Item"
+              />
+            </>
           )}
           {toRender && <DropDown className="item-selection on-top" options={itemNames} setState={setItem} state={item} />}
-          { toRender && (
-          <Label
-            borderWidth="1px"
-            label="Condition"
-          />
+          {toRender && (
+            <Label
+              borderWidth="1px"
+              label="Condition"
+            />
           )}
-          {toRender && <DropDown className="item-selection on-top" options={['Like New', 'Good', 'Used', 'Bad']} setState={setCondition} state={condition} />}
-          <div className="img-container displayOn" />
+          {toRender && <DropDown className="item-selection on-top" options={['Like New', 'Good', 'Used', 'Bad']} setState={setCondition} state={condition} style={{ marginBottom: '10px' }} />}
         </div>
         {/* Step Two: */}
         <div
           className={`single-step ${stepOne ? "displayNone" : (stepTwo === true ? 'displayOn' : 'displayOff')}`}
         >
           {!isUploadingImage && (
-          <div className="single-field">
-            <div className="field-title">Upload an image</div>
-            <label htmlFor="image-upload" style={{ width: "fit-content" }}>
-              {' '}
-              <img src={uploadButton} alt="" />
-              <input
-                type="file"
-                id="image-upload"
-                onChange={async (e) => {
-                  const uploadedImage = e.target.files[0];
-                  if (uploadedImage) {
-                    setIsUploadingImage(true);
-                    try {
-                      await uploadToCloudinary(uploadedImage);
-                    } catch (e) {
-                      console.error(e);
+            <div className="single-field">
+              <div className="field-title">Upload an image</div>
+              <label htmlFor="image-upload" style={{ width: "fit-content" }}>
+                {' '}
+                <img src={uploadButton} alt="" />
+                <input
+                  type="file"
+                  id="image-upload"
+                  onChange={async (e) => {
+                    const uploadedImage = e.target.files[0];
+                    if (uploadedImage) {
+                      setIsUploadingImage(true);
+                      try {
+                        await uploadToCloudinary(uploadedImage);
+                      } catch (e) {
+                        console.error(e);
+                      }
+                      setIsUploadingImage(false);
+                    } else {
+                      console.warn('no image on upload event');
                     }
-                    setIsUploadingImage(false);
-                  } else {
-                    console.warn('no image on upload event');
-                  }
-                }}
-              />
-            </label>
-          </div>
+                  }}
+                />
+              </label>
+            </div>
           )}
           <FormGroup>
             <FormControlLabel control={<RedSwitch />} onChange={() => (setFree(!free))} value={free} label="Free & Friendly 😊" />
           </FormGroup>
           <BoxInput
+            showLabel
             borderWidth="1px"
-            label="Item's price (per rental day)"
+            label="Item's price (per day)"
             id="price"
             isHidden={free}
             state={price}
@@ -297,32 +296,23 @@ function UploadOffer() {
             setState={setPrice}
           />
         </div>
-        {stepTwo && (
-          (isUploadingImage
-            ? (
-              <div
-                className={`img-container ${stepTwo === true ? 'displayOn' : 'displayOff'}`}
-                style={{
-                  backgroundImage: 'url(https://i.gifer.com/origin/b4/b4d657e7ef262b88eb5f7ac021edda87.gif)',
-                  backgroundSize: 'contain',
-                  backgroundRepeat: 'no-repeat',
-                  backgroundPosition: 'center',
-                  width: '5%',
-                }}
-              />
-            )
-            : (
-              <div
-                className={`img-container ${stepTwo === true ? 'displayOn' : 'displayOff'}`}
-                style={{
-                  backgroundImage: `url(${cloudinaryUrl})`,
-                  backgroundSize: 'contain',
-                  backgroundRepeat: 'no-repeat',
-                  backgroundPosition: 'center',
-                }}
-              />
-            )
-          ))}
+        {stepTwo && ((
+          <div
+            className={`img-container ${stepTwo === true ? 'displayOn' : 'displayOff'}`}
+            style={!isUploadingImage ? {
+              backgroundImage: `url(${cloudinaryUrl})`,
+              backgroundSize: 'contain',
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center',
+            } : {
+              backgroundImage: 'url(https://i.gifer.com/origin/b4/b4d657e7ef262b88eb5f7ac021edda87.gif)',
+              backgroundSize: `${isMobile ? '30%' : '20%'}`,
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center',
+            }}
+          />
+        )
+        )}
         {/* Step Three */}
         <div className={`single-step ${stepOne || stepTwo ? "displayNone" : (stepThree === true ? 'displayOn' : 'displayOff')}`}>
           <p style={{ "font-weight": 500 }}>Uploading your offer...</p>

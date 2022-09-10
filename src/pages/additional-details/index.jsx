@@ -64,6 +64,7 @@ function AdditionalDetailsPage() {
           />
         </div>
         <BoxInput
+          showLabel
           label="Phone Number"
           id="phoneNumber"
           state={phoneNumber}

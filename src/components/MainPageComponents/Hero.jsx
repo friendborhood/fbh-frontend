@@ -1,7 +1,9 @@
 import React from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import styled from 'styled-components';
-import gif from '../../images/Things.gif';
 import { GLOBAL_FONT, MOBILE_STYLE } from '../../GlobalStyling';
+
+const ITEMS_GIF_LINK = 'http://drive.google.com/uc?export=view&id=16IPLEPLkCFyOsXkRd_k_S464DoFQmgnf';
 
 const HeroStyle = styled.div`
     display: flex;
@@ -69,6 +71,7 @@ const HeroStyle = styled.div`
                 }
             }
         }
+        
         & div.img-container {
           display: flex;
           flex-direction: row;
@@ -101,7 +104,12 @@ export function Hero() {
           </p>
         </div>
         <div className="img-container">
-          <img src={gif} alt="" />
+          <LazyLoadImage
+            alt="side image"
+            effect="opacity"
+            src={ITEMS_GIF_LINK}
+            style={{ width: '20vw', height: '20vw' }}
+          />
         </div>
       </div>
     </HeroStyle>
