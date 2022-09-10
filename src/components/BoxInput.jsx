@@ -21,7 +21,7 @@ export const StyledSection = styled.section`
     font-weight: 500;
     @media only screen and (max-width: ${MOBILE_STYLE.max_width})
     {
-      display: none;
+      display: ${(props) => (props.showLabel ? 'flex' : 'none')};
     }
   }
 
@@ -51,6 +51,7 @@ function BoxInput(props) {
     state,
     setState, label, id: idBox, isHidden = false, noInput, borderWidth = 'BUTTON_RADIUS',
     placeHolder,
+    showLabel,
     placeHolderPrefix = 'Enter your',
   } = props;
 
@@ -59,7 +60,7 @@ function BoxInput(props) {
   };
 
   return (
-    <StyledSection border={borderWidth}>
+    <StyledSection showLabel={showLabel} border={borderWidth}>
       <div hidden={isHidden}>{label}</div>
       <input
         value={state}
