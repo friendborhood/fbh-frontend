@@ -108,7 +108,7 @@ export function Hero() {
             alt="side image"
             effect="opacity"
             src={ITEMS_GIF_LINK}
-            style={{ marginLeft: '200px', width: '50%', height: '50%' }}
+            style={{ width: '20vw', height: '20vw' }}
           />
         </div>
       </div>
