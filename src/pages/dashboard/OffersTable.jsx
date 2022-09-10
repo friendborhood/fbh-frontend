@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Checkbox, Slider, Stack } from '@mui/material';
-import { network, END_POINTS } from '../../network';
+import { network, END_POINTS, fetchCategories } from '../../network';
 import ItemCard from '../../components/ItemCard/ItemCard';
 import CategoryMenu from '../../components/Categories/CategoryMenu';
 import { GLOBAL_FONT, GLOBAL_SCARLET } from '../../GlobalStyling';
@@ -44,7 +44,7 @@ const OfferTableStyle = styled.div`
 `;
 
 function OffersTable({ myOffers = false }) {
-  const sliderPercent = localStorage.getItem('sliderPercent') || 50;
+  const sliderPercent = localStorage.getItem('sliderPercent') || 150;
   const [slider, setSlider] = useState(sliderPercent);
   const [radius, setRadius] = useState(sliderPercent / 10);
   const [offers, setOffers] = useState([]);
@@ -52,16 +52,24 @@ function OffersTable({ myOffers = false }) {
   const [selectedCategories, setSelectedCategories] = useState({});
   const [sortMethod, setSelectedSortMethod] = useState(localStorage.getItem('sortMethod') || 'Nearest First');
 
-  const fetchSelectedCategories = () => {
+  const fetchSelectedCategories = async () => {
     const relevantCategories = [];
     const rawCategoriesFromLocalStorage = localStorage.getItem('selectedCategories');
-    if (rawCategoriesFromLocalStorage) {
+    if (rawCategoriesFromLocalStorage && rawCategoriesFromLocalStorage.length > 0) {
       const categoriesFromLocalStorage = JSON.parse(rawCategoriesFromLocalStorage);
       Object.keys(categoriesFromLocalStorage).forEach((category) => {
         if (categoriesFromLocalStorage[category]) {
           relevantCategories.push(category);
         }
       });
+    } else {
+      const categories = await fetchCategories();
+      const allCategoriesSelected = {};
+      Object.keys(categories).forEach(
+        (category) => { allCategoriesSelected[category] = true; },
+      );
+      setSelectedCategories(allCategoriesSelected);
+      localStorage.setItem('selectedCategories', JSON.stringify(allCategoriesSelected));
     }
     return relevantCategories;
   };
@@ -75,7 +83,7 @@ function OffersTable({ myOffers = false }) {
       params.newest = true;
     }
 
-    params.categories = fetchSelectedCategories();
+    params.categories = await fetchSelectedCategories();
     const { data } = await network.get(
       myOffers ? `${END_POINTS.OFFERS}/me` : `${END_POINTS.OFFERS}/in-area`,
       { params: myOffers ? {} : params },

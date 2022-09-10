@@ -43,9 +43,14 @@ const StyledRecommendations = styled.div`
       flex-direction: row;
       justify-content: space-evenly;
       gap: 2%;
+      @media only screen and (max-width: ${MOBILE_STYLE.max_width}){
+        overflow-x: visible;
       }
+    }
 
     & button {
+      width: 212px;
+      height: 45px;
       background-color: ${GLOBAL_SCARLET};
       border-radius: 8px;
       font-family: ${GLOBAL_FONT};
