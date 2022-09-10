@@ -296,32 +296,23 @@ function UploadOffer() {
             setState={setPrice}
           />
         </div>
-        {stepTwo && (
-          (isUploadingImage
-            ? (
-              <div
-                className={`img-container ${stepTwo === true ? 'displayOn' : 'displayOff'}`}
-                style={{
-                  backgroundImage: 'url(https://i.gifer.com/origin/b4/b4d657e7ef262b88eb5f7ac021edda87.gif)',
-                  backgroundSize: 'contain',
-                  backgroundRepeat: 'no-repeat',
-                  backgroundPosition: 'center',
-                  width: '5%',
-                }}
-              />
-            )
-            : (
-              <div
-                className={`img-container ${stepTwo === true ? 'displayOn' : 'displayOff'}`}
-                style={{
-                  backgroundImage: `url(${cloudinaryUrl})`,
-                  backgroundSize: 'contain',
-                  backgroundRepeat: 'no-repeat',
-                  backgroundPosition: 'center',
-                }}
-              />
-            )
-          ))}
+        {stepTwo && ((
+          <div
+            className={`img-container ${stepTwo === true ? 'displayOn' : 'displayOff'}`}
+            style={!isUploadingImage ? {
+              backgroundImage: `url(${cloudinaryUrl})`,
+              backgroundSize: 'contain',
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center',
+            } : {
+              backgroundImage: 'url(https://i.gifer.com/origin/b4/b4d657e7ef262b88eb5f7ac021edda87.gif)',
+              backgroundSize: `${isMobile ? '30%' : '20%'}`,
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center',
+            }}
+          />
+        )
+        )}
         {/* Step Three */}
         <div className={`single-step ${stepOne || stepTwo ? "displayNone" : (stepThree === true ? 'displayOn' : 'displayOff')}`}>
           <p style={{ "font-weight": 500 }}>Uploading your offer...</p>
