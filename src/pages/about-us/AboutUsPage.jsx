@@ -46,8 +46,8 @@ const AboutUsStyle = styled.div`
         font-family: ${GLOBAL_FONT};
         font-style: normal;
         font-weight: 400;
-        font-size: 28px;
-        line-height: 41px;
+        font-size: 22px;
+        line-height: 31px;
         color: black;
         text-align: left;
 
@@ -137,20 +137,26 @@ function AboutUsPage() {
     <AboutUsStyle>
       <h1 className="page-headline">About Us</h1>
       <p>
-        Overconsumption is a big problem.
+        Launched in 2022, Friendborhood is the brainchild of 3 co-founders:
+        <br />
+        Omer Gery, Omer Arzi and Daniel Dolev.
       </p>
       <p>
-        We buy so many items and just store them for a long time, while rarely actually using them.
+        The idea was born out of the frustrating experience of moving to the big city,
+        encountering many situations when you need to use an item
+        only a single use – but buying it just for this cause would be
+        a waste of time, money, and space.
+        In that case, the rational action would be to borrow it from
+        one of your friends or neighbors – The problem is that in modern urban life,
+        {'it\'s not easy to get to know the people around you.'}
       </p>
-      <p><b> Obvious Solution? Sharing!</b></p>
-      <p />
       <p>
-        Using Friendborhood’s platform,
-        users can easily find and offer items to and from people nearby.
+        Friendborhood offers a friendlier experience and helps you to
+        borrow and rent the things you need from the people in your neighborhood.
       </p>
       <p>
-        Friendborhood is saving money for its users,
-        freeing them from the hassle of buying and storing items they rarely use.
+        Our vision is creating a friendly and supportive community,
+        embracing unharmful eco-friendly approach and contributing to sharing economy.
       </p>
       <br />
       <div className="person-card">
