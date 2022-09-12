@@ -165,7 +165,7 @@ function OffersTable({ myOffers = false }) {
       )}
       <OfferTableStyle>
         {items || 'No offers found'}
-        {(errorMsg && !items.length) && <h1>{errorMsg}</h1>}
+        {(errorMsg && !items.length) && <h3>{errorMsg}</h3>}
       </OfferTableStyle>
 
     </StyledOffersTable>
