@@ -50,6 +50,7 @@ function OffersTable({ myOffers = false }) {
   const [offers, setOffers] = useState([]);
   const [filterSelf, setFilterSelf] = useState(true);
   const [selectedCategories, setSelectedCategories] = useState({});
+  const [errorMsg, setErrorMsg] = useState('');
   const [sortMethod, setSelectedSortMethod] = useState(localStorage.getItem('sortMethod') || 'Nearest First');
 
   const fetchSelectedCategories = async () => {
@@ -84,11 +85,21 @@ function OffersTable({ myOffers = false }) {
     }
 
     params.categories = await fetchSelectedCategories();
-    const { data } = await network.get(
-      myOffers ? `${END_POINTS.OFFERS}/me` : `${END_POINTS.OFFERS}/in-area`,
-      { params: myOffers ? {} : params },
-    );
-    setOffers(data);
+    setErrorMsg('');
+    try {
+      const { data } = await network.get(
+        myOffers ? `${END_POINTS.OFFERS}/me` : `${END_POINTS.OFFERS}/in-area`,
+        { params: myOffers ? {} : params },
+      );
+      if (data.length === 0) {
+        setErrorMsg('Oops! No offers found in your area. Try expanding your search radius or changing your filters.');
+      }
+      setOffers(data);
+    } catch (error) {
+      if (error?.response?.status === 406) {
+        setErrorMsg(error?.response?.data?.msg);
+      }
+    }
   };
   useEffect(() => {
     console.log('offers dashboard use effect run');
@@ -154,6 +165,7 @@ function OffersTable({ myOffers = false }) {
       )}
       <OfferTableStyle>
         {items || 'No offers found'}
+        {(errorMsg && !items.length) && <h1>{errorMsg}</h1>}
       </OfferTableStyle>
 
     </StyledOffersTable>
